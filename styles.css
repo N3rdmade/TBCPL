@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://wallpapers.com/images/featured/movie-9pvmdtvz4cb0xl37.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+h1, p {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+h1 {
+    color: #ffd700;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.section {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    border: 1px solid #fff; /* Added white border */
+}
+.section-header {
+    color: #ffd700;
+    font-size: 24px;
+    margin-bottom: 10px;
+    border: 1px solid #ffd700; /* Added gold border */
+    padding: 5px;
+    border-radius: 5px;
+}
+.icon-link {
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #fff; /* Added white border */
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #000;
+    transition: background-color 0.3s;
+}
+.icon-link:hover {
+    background-color: rgba(75, 0, 130, 0.7); /* Dark purple with transparency */
+}
+.icon {
+    width: auto;
+    height: 50px;
+}
+.link {
+    text-decoration: none;
+    color: #0078d4;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s;
+    display: block;
+    margin: 5px 0;
+}
+.link:hover {
+    color: rgb(255, 0, 0);
+}
+.footer-text {
+    color: #ffd700;
+    animation: moveText 2s infinite alternate;
+    margin-top: 10px;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+@keyframes moveText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(10px);
+    }
+}
+.gold-text {
+    color: #ffd700;
+    animation: moveUpDown 2s infinite alternate;
+}
+@keyframes moveUpDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(5px);
+    }
+}
