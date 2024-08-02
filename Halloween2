@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+body {
+    font-family: 'Creepster', Arial, sans-serif;
+    background-image: url("https://e0.pxfuel.com/wallpapers/419/758/desktop-wallpaper-horror-movies-the-ring-retro-horror-horror-movie-icons-classic-horror-movies-vintage-film.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    cursor: url('https://example.com/cursor.png'), auto; /* Custom cursor */
+}
+h1, p {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+h1 {
+    color: #ff7518; /* Pumpkin orange */
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.section {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    border: 1px solid #ff7518; /* Pumpkin orange border */
+    transition: transform 0.3s; /* Smooth transition */
+}
+.section:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+.section-header {
+    color: #ff7518;
+    font-size: 24px;
+    margin-bottom: 10px;
+    border: 1px solid #ff7518;
+    padding: 5px;
+    border-radius: 5px;
+}
+.icon-link {
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #000;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.icon-link:hover {
+    background-color: rgba(75, 0, 130, 0.7);
+    transform: rotate(10deg); /* Rotate on hover */
+}
+.icon {
+    width: auto;
+    height: 50px;
+}
+.link {
+    text-decoration: none;
+    color: #ff7518; /* Pumpkin orange */
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s, transform 0.3s;
+    display: block;
+    margin: 5px 0;
+}
+.link:hover {
+    color: rgb(255, 0, 0);
+    transform: scale(1.1); /* Enlarge on hover */
+}
+.footer-text {
+    color: #ff7518;
+    animation: moveText 2s infinite alternate;
+    margin-top: 10px;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+@keyframes moveText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(10px);
+    }
+}
+.gold-text {
+    color: #ff7518;
+    animation: moveUpDown 2s infinite alternate;
+}
+@keyframes moveUpDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(5px);
+    }
+}
+
+/* Additional Halloween-themed elements */
+.bat {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background: url('https://example.com/bat.png') no-repeat center center;
+    animation: flyBat 5s linear infinite;
+}
+@keyframes flyBat {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(200px, -100px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Example HTML to use the bat animation */
+<div class="bat" style="top: 100px; left: 50px;"></div>
+<div class="bat" style="top: 200px; left: 150px;"></div>
