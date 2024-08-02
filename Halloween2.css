@@ -11,22 +11,26 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    cursor: url('https://example.com/cursor.png'), auto; /* Custom cursor */
+    cursor: url('https://www.onlygfx.com/wp-content/uploads/2016/11/bloody-handprint-2-635x1024.png'), auto; /* Custom cursor */
 }
+
 h1, p {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 10px;
     border-radius: 5px;
     margin: 5px 0;
 }
+
 h1 {
     color: #ff7518; /* Pumpkin orange */
 }
+
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 10px;
 }
+
 .section {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
@@ -36,9 +40,11 @@ h1 {
     border: 1px solid #ff7518; /* Pumpkin orange border */
     transition: transform 0.3s; /* Smooth transition */
 }
+
 .section:hover {
     transform: scale(1.05); /* Slightly enlarge on hover */
 }
+
 .section-header {
     color: #ff7518;
     font-size: 24px;
@@ -47,6 +53,7 @@ h1 {
     padding: 5px;
     border-radius: 5px;
 }
+
 .icon-link {
     display: inline-block;
     margin: 10px;
@@ -56,14 +63,17 @@ h1 {
     background-color: #000;
     transition: background-color 0.3s, transform 0.3s;
 }
+
 .icon-link:hover {
     background-color: rgba(75, 0, 130, 0.7);
     transform: rotate(10deg); /* Rotate on hover */
 }
+
 .icon {
     width: auto;
     height: 50px;
 }
+
 .link {
     text-decoration: none;
     color: #ff7518; /* Pumpkin orange */
@@ -73,10 +83,12 @@ h1 {
     display: block;
     margin: 5px 0;
 }
+
 .link:hover {
     color: rgb(255, 0, 0);
     transform: scale(1.1); /* Enlarge on hover */
 }
+
 .footer-text {
     color: #ff7518;
     animation: moveText 2s infinite alternate;
@@ -87,6 +99,7 @@ h1 {
     border-radius: 5px;
     display: inline-block;
 }
+
 @keyframes moveText {
     0% {
         transform: translateX(0);
@@ -95,10 +108,12 @@ h1 {
         transform: translateX(10px);
     }
 }
+
 .gold-text {
     color: #ff7518;
     animation: moveUpDown 2s infinite alternate;
 }
+
 @keyframes moveUpDown {
     0% {
         transform: translateY(0);
@@ -110,27 +125,3 @@ h1 {
         transform: translateY(5px);
     }
 }
-
-/* Additional Halloween-themed elements */
-.bat {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    background: url('https://example.com/bat.png') no-repeat center center;
-    animation: flyBat 5s linear infinite;
-}
-@keyframes flyBat {
-    0% {
-        transform: translate(0, 0);
-    }
-    50% {
-        transform: translate(200px, -100px);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
-}
-
-/* Example HTML to use the bat animation */
-<div class="bat" style="top: 100px; left: 50px;"></div>
-<div class="bat" style="top: 200px; left: 150px;"></div>
