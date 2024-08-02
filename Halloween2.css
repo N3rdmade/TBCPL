@@ -139,34 +139,48 @@ h1 {
 /* Animation keyframes */
 @keyframes flyBat {
     0% {
-        transform: translate(0, 0) rotate(0);
+        transform: translate(0, 0);
     }
     25% {
-        transform: translate(50vw, 50vh) rotate(180deg);
+        transform: translate(calc(100vw - 160px), calc(100vh - 80px));
     }
     50% {
-        transform: translate(100vw, 0) rotate(360deg);
+        transform: translate(calc(-100vw + 160px), calc(100vh - 80px));
     }
     75% {
-        transform: translate(50vw, -50vh) rotate(540deg);
+        transform: translate(calc(-100vw + 160px), calc(-100vh + 80px));
     }
     100% {
-        transform: translate(0, 0) rotate(720deg);
+        transform: translate(0, 0);
     }
 }
 
-/* Bat images */
+/* Bat images with animation cycling */
 .bat1 {
     background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png');
+    animation: cycleImage 5s steps(4) infinite; /* 4 images, 5 seconds cycle */
 }
 .bat2 {
     background-image: url('https://i.ibb.co/LRgCzf2/Bat2.png');
+    animation: cycleImage 5s steps(4) infinite; /* 4 images, 5 seconds cycle */
 }
 .bat3 {
     background-image: url('https://i.ibb.co/DwC9FNB/Bat3.png');
+    animation: cycleImage 5s steps(4) infinite; /* 4 images, 5 seconds cycle */
 }
 .bat4 {
     background-image: url('https://i.ibb.co/TR2bZd3/Bat4.png');
+    animation: cycleImage 5s steps(4) infinite; /* 4 images, 5 seconds cycle */
+}
+
+/* Animation for cycling through images */
+@keyframes cycleImage {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: -160px; /* Move by the width of one image */
+    }
 }
 
 /* Example HTML to use the bat animation */
