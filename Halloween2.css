@@ -5,7 +5,7 @@ body {
     background-image: url("https://e0.pxfuel.com/wallpapers/419/758/desktop-wallpaper-horror-movies-the-ring-retro-horror-horror-movie-icons-classic-horror-movies-vintage-film.jpg");
     background-size: cover; /* Scale the image to cover the entire page */
     background-repeat: no-repeat; /* Prevent image repetition */
-    background-attachment: fixed; /* Keeps the background fixed relative to the viewport */
+    background-attachment: scroll; /* Allows the background to scroll with the content */
     text-align: center;
     color: #fff;
     margin: 0;
