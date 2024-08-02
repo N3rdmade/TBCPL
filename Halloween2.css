@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Creepster', Arial, sans-serif;
-    background-image: url("https://e0.pxfuel.com/wallpapers/419/758/desktop-wallpaper-horror-movies-the-ring-retro-horror-horror-movie-icons-classic-horror-movies-vintage-film.jpg");
+    background-image: url("https://e0.pxfuel.com/wallpapers/419/758/desktop-wallpaper-horror-movies-the-ring-retro-horror-horror-movie-icons-classic-horror-horror-movies-vintage-film.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -129,42 +129,56 @@ h1 {
 /* Additional Halloween-themed elements */
 .bat {
     position: absolute;
-    width: 40px;
-    height: 20px;
-    background-size: cover;
-    animation: flyBat 10s linear infinite, changeBatImage 1s steps(4) infinite;
+    width: 160px; /* 4 times larger */
+    height: 80px; /* 4 times larger */
+    background-size: contain; /* Ensures images fit correctly */
+    background-repeat: no-repeat; /* Prevents tiling of the background image */
+    animation: flyBat 10s linear infinite;
 }
 
-/* Bat animation movement */
+/* Animation keyframes */
 @keyframes flyBat {
     0% {
         transform: translate(0, 0);
     }
     25% {
-        transform: translate(200px, -100px);
+        transform: translate(50vw, 25vh);
     }
     50% {
-        transform: translate(400px, 0);
+        transform: translate(100vw, 0);
     }
     75% {
-        transform: translate(200px, 100px);
+        transform: translate(50vw, -25vh);
     }
     100% {
         transform: translate(0, 0);
     }
 }
 
-/* Bat image cycling */
-@keyframes changeBatImage {
-    0% { background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png'); }
-    25% { background-image: url('https://i.ibb.co/LRgCzf2/Bat2.png'); }
-    50% { background-image: url('https://i.ibb.co/DwC9FNB/Bat3.png'); }
-    75% { background-image: url('https://i.ibb.co/TR2bZd3/Bat4.png'); }
-    100% { background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png'); }
+/* Bat images */
+.bat1 {
+    background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png');
+}
+.bat2 {
+    background-image: url('https://i.ibb.co/LRgCzf2/Bat2.png');
+}
+.bat3 {
+    background-image: url('https://i.ibb.co/DwC9FNB/Bat3.png');
+}
+.bat4 {
+    background-image: url('https://i.ibb.co/TR2bZd3/Bat4.png');
 }
 
 /* Example HTML to use the bat animation */
-.bat1 { background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png'); }
-.bat2 { background-image: url('https://i.ibb.co/LRgCzf2/Bat2.png'); }
-.bat3 { background-image: url('https://i.ibb.co/DwC9FNB/Bat3.png'); }
-.bat4 { background-image: url('https://i.ibb.co/TR2bZd3/Bat4.png'); }
+<div class="bat bat1" style="top: 10%; left: 10%;"></div>
+<div class="bat bat2" style="top: 20%; left: 30%;"></div>
+<div class="bat bat3" style="top: 30%; left: 50%;"></div>
+<div class="bat bat4" style="top: 40%; left: 70%;"></div>
+<div class="bat bat1" style="top: 50%; left: 10%;"></div>
+<div class="bat bat2" style="top: 60%; left: 30%;"></div>
+<div class="bat bat3" style="top: 70%; left: 50%;"></div>
+<div class="bat bat4" style="top: 80%; left: 70%;"></div>
+<div class="bat bat1" style="top: 90%; left: 10%;"></div>
+<div class="bat bat2" style="top: 10%; left: 70%;"></div>
+<div class="bat bat3" style="top: 20%; left: 50%;"></div>
+<div class="bat bat4" style="top: 30%; left: 30%;"></div>
