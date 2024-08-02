@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Creepster', Arial, sans-serif;
     background-image: url("https://e0.pxfuel.com/wallpapers/419/758/desktop-wallpaper-horror-movies-the-ring-retro-horror-horror-movie-icons-classic-horror-movies-vintage-film.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -9,6 +11,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    cursor: url('https://example.com/cursor.png'), auto; /* Custom cursor */
 }
 h1, p {
     background-color: rgba(0, 0, 0, 0.8);
@@ -17,14 +20,12 @@ h1, p {
     margin: 5px 0;
 }
 h1 {
-    color: #ffd700;
+    color: #ff7518; /* Pumpkin orange */
 }
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 10px;
-    position: relative;
-    z-index: 1;
 }
 .section {
     background-color: rgba(0, 0, 0, 0.8);
@@ -32,27 +33,32 @@ h1 {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     margin: 20px 0;
-    border: 1px solid #fff; /* Added white border */
+    border: 1px solid #ff7518; /* Pumpkin orange border */
+    transition: transform 0.3s; /* Smooth transition */
+}
+.section:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 .section-header {
-    color: #ffd700;
+    color: #ff7518;
     font-size: 24px;
     margin-bottom: 10px;
-    border: 1px solid #ffd700; /* Added gold border */
+    border: 1px solid #ff7518;
     padding: 5px;
     border-radius: 5px;
 }
 .icon-link {
     display: inline-block;
     margin: 10px;
-    border: 1px solid #fff; /* Added white border */
+    border: 1px solid #fff;
     border-radius: 5px;
     padding: 5px;
     background-color: #000;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 .icon-link:hover {
-    background-color: rgba(75, 0, 130, 0.7); /* Dark purple with transparency */
+    background-color: rgba(75, 0, 130, 0.7);
+    transform: rotate(10deg); /* Rotate on hover */
 }
 .icon {
     width: auto;
@@ -60,18 +66,19 @@ h1 {
 }
 .link {
     text-decoration: none;
-    color: #0078d4;
+    color: #ff7518; /* Pumpkin orange */
     font-weight: bold;
     font-size: 18px;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
     display: block;
     margin: 5px 0;
 }
 .link:hover {
     color: rgb(255, 0, 0);
+    transform: scale(1.1); /* Enlarge on hover */
 }
 .footer-text {
-    color: #ffd700;
+    color: #ff7518;
     animation: moveText 2s infinite alternate;
     margin-top: 10px;
     text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
@@ -89,7 +96,7 @@ h1 {
     }
 }
 .gold-text {
-    color: #ffd700;
+    color: #ff7518;
     animation: moveUpDown 2s infinite alternate;
 }
 @keyframes moveUpDown {
@@ -104,50 +111,57 @@ h1 {
     }
 }
 
-/* Bats Animation */
-@keyframes flyBat1 {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(200px, -100px); }
-    100% { transform: translate(0, 0); }
-}
-@keyframes flyBat2 {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(-200px, 150px); }
-    100% { transform: translate(0, 0); }
-}
-@keyframes flyBat3 {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(300px, 200px); }
-    100% { transform: translate(0, 0); }
-}
-@keyframes flyBat4 {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(-300px, -200px); }
-    100% { transform: translate(0, 0); }
-}
+/* Bat styles */
 .bat {
     position: absolute;
-    width: 50px;
-    height: auto;
-    z-index: 0;
+    width: 40px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: flyBat 10s linear infinite;
 }
-.bat1 {
-    top: 10%;
-    left: 5%;
-    animation: flyBat1 10s linear infinite;
+.bat1 { background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png'); }
+.bat2 { background-image: url('https://i.ibb.co/LRgCzf2/Bat2.png'); }
+.bat3 { background-image: url('https://i.ibb.co/DwC9FNB/Bat3.png'); }
+.bat4 { background-image: url('https://i.ibb.co/TR2bZd3/Bat4.png'); }
+
+@keyframes flyBat {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(100px, -50px);
+    }
+    50% {
+        transform: translate(200px, 0);
+    }
+    75% {
+        transform: translate(100px, 50px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
 }
-.bat2 {
-    top: 20%;
-    right: 10%;
-    animation: flyBat2 12s linear infinite;
+
+/* Example HTML to use the bat animation */
+.bat1 { animation: flyBat1 15s linear infinite; }
+.bat2 { animation: flyBat2 20s linear infinite; }
+.bat3 { animation: flyBat3 25s linear infinite; }
+.bat4 { animation: flyBat4 30s linear infinite; }
+
+@keyframes flyBat1 {
+    0% { top: 0; left: 0; }
+    100% { top: 100%; left: 100%; }
 }
-.bat3 {
-    bottom: 15%;
-    left: 15%;
-    animation: flyBat3 8s linear infinite;
+@keyframes flyBat2 {
+    0% { top: 100%; left: 0; }
+    100% { top: 0; left: 100%; }
 }
-.bat4 {
-    bottom: 5%;
-    right: 20%;
-    animation: flyBat4 14s linear infinite;
+@keyframes flyBat3 {
+    0% { top: 50%; left: 50%; }
+    100% { top: 100%; left: 0; }
+}
+@keyframes flyBat4 {
+    0% { top: 0; left: 100%; }
+    100% { top: 50%; left: 0; }
 }
