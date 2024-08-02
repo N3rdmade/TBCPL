@@ -5,7 +5,7 @@ body {
     background-image: url("https://e0.pxfuel.com/wallpapers/419/758/desktop-wallpaper-horror-movies-the-ring-retro-horror-horror-movie-icons-classic-horror-horror-movies-vintage-film.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: scroll;
+    background-attachment: fixed; /* Ensure the background stays fixed */
     text-align: center;
     color: #fff;
     margin: 0;
@@ -133,25 +133,25 @@ h1 {
     height: 80px; /* 4 times larger */
     background-size: contain; /* Ensures images fit correctly */
     background-repeat: no-repeat; /* Prevents tiling of the background image */
-    animation: flyBat 10s linear infinite;
+    animation: flyBat 20s linear infinite;
 }
 
 /* Animation keyframes */
 @keyframes flyBat {
     0% {
-        transform: translate(0, 0);
+        transform: translate(0, 0) rotate(0);
     }
     25% {
-        transform: translate(50vw, 25vh);
+        transform: translate(50vw, 50vh) rotate(180deg);
     }
     50% {
-        transform: translate(100vw, 0);
+        transform: translate(100vw, 0) rotate(360deg);
     }
     75% {
-        transform: translate(50vw, -25vh);
+        transform: translate(50vw, -50vh) rotate(540deg);
     }
     100% {
-        transform: translate(0, 0);
+        transform: translate(0, 0) rotate(720deg);
     }
 }
 
