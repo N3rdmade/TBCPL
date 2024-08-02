@@ -127,26 +127,43 @@ h1 {
 }
 
 /* Additional Halloween-themed elements */
+.bat {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background-size: cover;
+    animation: flyBat 10s linear infinite, changeBatImage 1s steps(4) infinite;
+}
+
+/* Bat animation movement */
 @keyframes flyBat {
     0% {
         transform: translate(0, 0);
     }
-    50% {
+    25% {
         transform: translate(200px, -100px);
+    }
+    50% {
+        transform: translate(400px, 0);
+    }
+    75% {
+        transform: translate(200px, 100px);
     }
     100% {
         transform: translate(0, 0);
     }
 }
 
-.bat {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    background-size: cover;
-    animation: flyBat 10s linear infinite;
+/* Bat image cycling */
+@keyframes changeBatImage {
+    0% { background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png'); }
+    25% { background-image: url('https://i.ibb.co/LRgCzf2/Bat2.png'); }
+    50% { background-image: url('https://i.ibb.co/DwC9FNB/Bat3.png'); }
+    75% { background-image: url('https://i.ibb.co/TR2bZd3/Bat4.png'); }
+    100% { background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png'); }
 }
 
+/* Example HTML to use the bat animation */
 .bat1 { background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png'); }
 .bat2 { background-image: url('https://i.ibb.co/LRgCzf2/Bat2.png'); }
 .bat3 { background-image: url('https://i.ibb.co/DwC9FNB/Bat3.png'); }
