@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Creepster', Arial, sans-serif;
-    background-image: url("https://e0.pxfuel.com/wallpapers/419/758/desktop-wallpaper-horror-movies-the-ring-retro-horror-horror-movie-icons-classic-horror-movies-vintage-film.jpg");
+    background-image: url("https://e0.pxfuel.com/wallpapers/419/758/desktop-wallpaper-horror-movies-the-ring-retro-horror-horror-movie-icons-classic-horror-horror-movies-vintage-film.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -13,24 +13,20 @@ body {
     overflow-x: hidden;
     cursor: url('https://www.onlygfx.com/wp-content/uploads/2016/11/bloody-handprint-2-635x1024.png'), auto; /* Custom cursor */
 }
-
 h1, p {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 10px;
     border-radius: 5px;
     margin: 5px 0;
 }
-
 h1 {
     color: #ff7518; /* Pumpkin orange */
 }
-
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 10px;
 }
-
 .section {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
@@ -40,11 +36,9 @@ h1 {
     border: 1px solid #ff7518; /* Pumpkin orange border */
     transition: transform 0.3s; /* Smooth transition */
 }
-
 .section:hover {
     transform: scale(1.05); /* Slightly enlarge on hover */
 }
-
 .section-header {
     color: #ff7518;
     font-size: 24px;
@@ -53,7 +47,6 @@ h1 {
     padding: 5px;
     border-radius: 5px;
 }
-
 .icon-link {
     display: inline-block;
     margin: 10px;
@@ -63,17 +56,14 @@ h1 {
     background-color: #000;
     transition: background-color 0.3s, transform 0.3s;
 }
-
 .icon-link:hover {
     background-color: rgba(75, 0, 130, 0.7);
     transform: rotate(10deg); /* Rotate on hover */
 }
-
 .icon {
     width: auto;
     height: 50px;
 }
-
 .link {
     text-decoration: none;
     color: #ff7518; /* Pumpkin orange */
@@ -83,12 +73,10 @@ h1 {
     display: block;
     margin: 5px 0;
 }
-
 .link:hover {
     color: rgb(255, 0, 0);
     transform: scale(1.1); /* Enlarge on hover */
 }
-
 .footer-text {
     color: #ff7518;
     animation: moveText 2s infinite alternate;
@@ -99,7 +87,6 @@ h1 {
     border-radius: 5px;
     display: inline-block;
 }
-
 @keyframes moveText {
     0% {
         transform: translateX(0);
@@ -108,12 +95,10 @@ h1 {
         transform: translateX(10px);
     }
 }
-
 .gold-text {
     color: #ff7518;
     animation: moveUpDown 2s infinite alternate;
 }
-
 @keyframes moveUpDown {
     0% {
         transform: translateY(0);
@@ -129,42 +114,57 @@ h1 {
 /* Additional Halloween-themed elements */
 .bat {
     position: absolute;
-    width: 40px;
-    height: 20px;
+    width: 160px; /* 4 times larger */
+    height: 80px; /* 4 times larger */
     background-size: cover;
-    animation: flyBat 10s linear infinite, changeBatImage 1s steps(4) infinite;
+    animation: flyBat 10s linear infinite;
+    /* Flip some bats for variety */
+    transform: scaleX(-1); /* Flip horizontally */
 }
 
-/* Bat animation movement */
+/* Animation keyframes */
 @keyframes flyBat {
     0% {
         transform: translate(0, 0);
     }
     25% {
-        transform: translate(200px, -100px);
+        transform: translate(50vw, 25vh) scaleX(1);
     }
     50% {
-        transform: translate(400px, 0);
+        transform: translate(100vw, 0) scaleX(-1);
     }
     75% {
-        transform: translate(200px, 100px);
+        transform: translate(50vw, -25vh) scaleX(1);
     }
     100% {
-        transform: translate(0, 0);
+        transform: translate(0, 0) scaleX(-1);
     }
 }
 
-/* Bat image cycling */
-@keyframes changeBatImage {
-    0% { background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png'); }
-    25% { background-image: url('https://i.ibb.co/LRgCzf2/Bat2.png'); }
-    50% { background-image: url('https://i.ibb.co/DwC9FNB/Bat3.png'); }
-    75% { background-image: url('https://i.ibb.co/TR2bZd3/Bat4.png'); }
-    100% { background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png'); }
+/* Bat images */
+.bat1 {
+    background: url('https://i.ibb.co/dM1h5Tr/Bat1.png') no-repeat center center;
+}
+.bat2 {
+    background: url('https://i.ibb.co/LRgCzf2/Bat2.png') no-repeat center center;
+}
+.bat3 {
+    background: url('https://i.ibb.co/DwC9FNB/Bat3.png') no-repeat center center;
+}
+.bat4 {
+    background: url('https://i.ibb.co/TR2bZd3/Bat4.png') no-repeat center center;
 }
 
 /* Example HTML to use the bat animation */
-.bat1 { background-image: url('https://i.ibb.co/dM1h5Tr/Bat1.png'); }
-.bat2 { background-image: url('https://i.ibb.co/LRgCzf2/Bat2.png'); }
-.bat3 { background-image: url('https://i.ibb.co/DwC9FNB/Bat3.png'); }
-.bat4 { background-image: url('https://i.ibb.co/TR2bZd3/Bat4.png'); }
+<div class="bat bat1" style="top: 10%; left: 10%;"></div>
+<div class="bat bat2" style="top: 20%; left: 30%;"></div>
+<div class="bat bat3" style="top: 30%; left: 50%;"></div>
+<div class="bat bat4" style="top: 40%; left: 70%;"></div>
+<div class="bat bat1" style="top: 50%; left: 10%;"></div>
+<div class="bat bat2" style="top: 60%; left: 30%;"></div>
+<div class="bat bat3" style="top: 70%; left: 50%;"></div>
+<div class="bat bat4" style="top: 80%; left: 70%;"></div>
+<div class="bat bat1" style="top: 90%; left: 10%;"></div>
+<div class="bat bat2" style="top: 10%; left: 70%;"></div>
+<div class="bat bat3" style="top: 20%; left: 50%;"></div>
+<div class="bat bat4" style="top: 30%; left: 30%;"></div>
