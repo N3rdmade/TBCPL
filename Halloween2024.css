@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 h1, h2, h3, h4, h5, h6 {
     color: #ff7518; /* Pumpkin orange */
-    border: 2px solid purple; /* Purple border */
+    border: 2px solid #522F6A; /* Purple border */
     padding: 10px;
     border-radius: 5px;
 }
@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #ff7518; /* Pumpkin orange */
     font-size: 24px;
     margin-bottom: 10px;
-    border: 1px solid #522F6A; /* Halloween purple border */
+    border: 1px solid #522F6A; /* Purple border (used for Halloween purple) */
     padding: 5px;
     border-radius: 5px;
 }
