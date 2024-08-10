@@ -22,6 +22,9 @@ h1, p {
 
 h1 {
     color: #ff7518; /* Pumpkin orange */
+    border: 2px solid purple; /* Purple border */
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .container {
