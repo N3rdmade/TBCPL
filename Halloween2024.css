@@ -13,18 +13,20 @@ body {
     overflow-x: hidden;
 }
 
-h1, p {
+h1, h2, h3 {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 10px;
     border-radius: 5px;
     margin: 5px 0;
-}
-
-h1 {
     color: #ff7518; /* Pumpkin orange */
     border: 2px solid purple; /* Purple border */
+}
+
+p {
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 10px;
     border-radius: 5px;
+    margin: 5px 0;
 }
 
 .container {
