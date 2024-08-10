@@ -48,10 +48,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-header {
-    color: #ff7518;
+    color: #522F6A; /* Halloween purple */
     font-size: 24px;
     margin-bottom: 10px;
-    border: 1px solid #ff7518;
+    border: 1px solid #522F6A; /* Halloween purple border */
     padding: 5px;
     border-radius: 5px;
 }
