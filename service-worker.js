@@ -1,6 +1,6 @@
 self.addEventListener('install', (event) => {
     event.waitUntil(
-      caches.open('rgshows-cache-v1').then((cache) => {
+      caches.open('tbcpl-cache-v1').then((cache) => {
         return cache.addAll([
           '/',
           '/index.html',     
