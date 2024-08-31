@@ -1,6 +1,6 @@
 (function() {
     // Whitelisted IP addresses
-    const whitelistedIPs = ['49.14.162.17', '2405:201:a006:9027:5104:a4b0:5ff9:c333'];
+    const whitelistedIPs = ['paste your ip here for whitlisting'];
 
     // Check if the IP is whitelisted
     function isIPWhitelisted(ip) {
