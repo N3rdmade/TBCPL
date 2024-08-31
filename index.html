@@ -32,6 +32,11 @@
     <link rel="shortcut icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
 
     <link rel="stylesheet" href="Aug-Oct.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/devtools-detector/2.0.17/devtools-detector.js"></script>
+    <script src="js/protected_devtoolsdetector.js" preload></script>
+    <script src="js/nocheats.js" preload></script>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preload stylesheet" href="css/flash.css" as="style">
 
     <style>
       /* customizable Halloween styling */
@@ -180,7 +185,22 @@
         left: 65%;
         animation-delay: 2.5s;
       }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
 
+      ::-webkit-scrollbar-track {
+        background: #1f1f1f;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #333333;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555555;
+      }
     </style>
   </head>
 
@@ -558,6 +578,7 @@
       🕷️
       <div class="inner">🕷️</div>
     </div>
+    <script src="js/smoothscroll.js"></script>
   </body>
 
 </html>
