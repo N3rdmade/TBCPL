@@ -49,14 +49,14 @@ h6 {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   margin: 20px 0;
   border: 1px solid #ff7518; /* Pumpkin orange border */
-  transition: transform 0.3s; /* Smooth transition */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
 }
 
 .section:hover {
   transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0 0 15px rgba(255, 117, 24, 0.7), 0 0 30px rgba(255, 117, 24, 0.5); /* Glow effect on hover */
 }
 
 .section-header {
