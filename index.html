@@ -205,6 +205,17 @@
   </head>
 
   <body>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, (error) => {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+        });
+      }
+    </script>  
     <div class="container">
       <h1>The Best Couch Potato List!</h1>
       <p><span style="font-family: Arial, sans-serif"><strong><u>Please click and download
@@ -580,17 +591,6 @@
     </div>
     <script src="js/smoothscroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/service-worker.js').then((registration) => {
-              console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, (error) => {
-              console.log('ServiceWorker registration failed: ', error);
-            });
-          });
-        }
-      </script>  
   </body>
 
 </html>
