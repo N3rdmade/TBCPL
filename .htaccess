@@ -1,0 +1,9 @@
+SetEnvIfNoCase User-Agent "HTTrack" bad_bot
+SetEnvIfNoCase User-Agent "wget" bad_bot
+SetEnvIfNoCase User-Agent "curl" bad_bot
+
+Order Allow,Deny
+Allow from all
+Deny from env=bad_bot
+
+ErrorDocument 404 /404.html
