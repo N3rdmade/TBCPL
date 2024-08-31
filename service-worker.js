@@ -6,7 +6,7 @@ self.addEventListener('install', (event) => {
           '/index.html',     
           '/404.html',
           '/.htaccess',
-          '/js/devtoolsdetector.js',
+          '/js/protected_devtoolsdetector.js',
           '/js/nocheats.js',
           '/js/smoothscroll.js',
           '/css/flash.css',
