@@ -49,11 +49,11 @@
         }
 
         .four_zero_four_bg {
-            background-image: url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjRmemNmNGhyb3drNDhwZW5wNDEwbmdrejgzOHV1aWd1YnRqNTgxayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ThrM4jEi2lBxd7X2yz/giphy.gif);
-            height: 400px;
-            background-position: center;
-            filter: grayscale(100%);
             position: relative;
+            background-image: url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjRmemNmNGhyb3drNDhwZW5wNDEwbmdrejgzOHV1aWd1YnRqNTgxayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ThrM4jEi2lBxd7X2yz/giphy.gif);
+            background-size: cover;
+            background-position: center;
+            height: 400px;
         }
 
         .four_zero_four_bg::before {
@@ -67,7 +67,10 @@
         }
 
         .four_zero_four_bg h1 {
-            position: relative;
+            position: absolute;
+            top: -70px; /* Raise the 404 text above the gif */
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 100px;
             text-shadow: 3px 3px 5px #ff0000;
             font-family: 'Creepster', cursive;
@@ -76,7 +79,7 @@
         }
 
         .contant_box_404 {
-            margin-top: -50px;
+            margin-top: 20px;
         }
 
         .contant_box_404 h3 {
