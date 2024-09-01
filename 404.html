@@ -28,6 +28,7 @@
     <link rel="icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
     <link rel="shortcut icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
     <link rel="stylesheet" href="Aug-Oct.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Arvo'>
   
@@ -52,12 +53,26 @@
             height: 400px;
             background-position: center;
             filter: grayscale(100%);
+            position: relative;
+        }
+
+        .four_zero_four_bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
         }
 
         .four_zero_four_bg h1 {
+            position: relative;
             font-size: 100px;
             text-shadow: 3px 3px 5px #ff0000;
             font-family: 'Creepster', cursive;
+            color: transparent;
+            -webkit-text-stroke: 2px #ff4500; /* Fine orange outline */
         }
 
         .contant_box_404 {
