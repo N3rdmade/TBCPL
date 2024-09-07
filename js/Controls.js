@@ -22,7 +22,7 @@ disableEmojisButton.addEventListener('click', () => {
 
 // Toggle audio
 const toggleAudioButton = document.getElementById('toggle-audio');
-const audio = new Audio('path/to/your/audiofile.mp3');
+const audio = new Audio('https://github.com/N3rdmade/TBCPL/blob/main/Scary%20Halloween%20Music.mp3');
 let audioEnabled = true;
 
 toggleAudioButton.addEventListener('click', () => {
