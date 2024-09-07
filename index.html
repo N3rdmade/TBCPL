@@ -1,576 +1,777 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheBestCouchPotatoList</title>
-    <meta name="description" content="Free Media for all! ">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>TheBestCouchPotatoList</title>
+   <meta name="description" content="Free Media for all! ">
 
+   <!-- Open Graph Meta Tags -->
+   <meta property="og:url" content="https://n3rdmade.github.io/tbcpl/">
+   <meta property="og:type" content="website">
+   <meta property="og:title" content="TheBestCouchPotatoList">
+   <meta property="og:description" content="Free Media for all! ">
+   <meta property="og:image" content="https://i.imghippo.com/files/G6RAv1725139805.png">
+   <meta property="og:image:width" content="800">
+   <meta property="og:image:height" content="420">
 
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:url" content="https://n3rdmade.github.io/tbcpl/">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="TheBestCouchPotatoList">
-    <meta property="og:description" content="Free Media for all! ">
-    <meta property="og:image" content="https://i.imghippo.com/files/G6RAv1725139805.png">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="420">
+   <!-- Twitter Meta Tags -->
+   <meta name="twitter:card" content="summary_large_image">
+   <meta property="twitter:domain" content="n3rdmade.github.io">
+   <meta property="twitter:url" content="https://n3rdmade.github.io/tbcpl/">
+   <meta name="twitter:title" content="TheBestCouchPotatoList">
+   <meta name="twitter:description" content="Free Media for all! ">
+   <meta name="twitter:image" content="https://i.imghippo.com/files/G6RAv1725139805.png">
 
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="n3rdmade.github.io">
-    <meta property="twitter:url" content="https://n3rdmade.github.io/tbcpl/">
-    <meta name="twitter:title" content="TheBestCouchPotatoList">
-    <meta name="twitter:description" content="Free Media for all! ">
-    <meta name="twitter:image" content="https://i.imghippo.com/files/G6RAv1725139805.png">
+   <!-- Meta Tags Generated via https://opengraph.dev -->
 
-    <!-- Meta Tags Generated via https://opengraph.dev -->
+   <!-- Favicon -->
+   <link rel="icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
+   <link rel="shortcut icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
 
-    <!-- Favicon -->
-    <link rel="icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
-    <link rel="shortcut icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
+   <link rel="stylesheet" href="HalloweenCSS.css">
 
-    <link rel="stylesheet" href="Halloween-24.css">
+   <style>
+      /* HallowMoji Halloween-themed styling */
+      .hallowmoji {
+         color: #fff;
+         font-size: 45px;
+         font-family: Arial, sans-serif;
+         text-shadow: 0 0 5px #000;
+      }
 
-<style>
-  /* HallowMoji Halloween-themed styling */
-  .hallowmoji {
-    color: #fff;
-    font-size: 45px;
-    font-family: Arial, sans-serif;
-    text-shadow: 0 0 5px #000;
-  }
+      .hallowmoji,
+      .hallowmoji .inner {
+         animation-iteration-count: infinite;
+         animation-play-state: running;
+      }
 
-  .hallowmoji,
-  .hallowmoji .inner {
-    animation-iteration-count: infinite;
-    animation-play-state: running;
-  }
+      @keyframes hallowmojis-fall {
+         0% {
+            transform: translateY(0);
+         }
 
-  @keyframes hallowmojis-fall {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(110vh);
-    }
-  }
+         100% {
+            transform: translateY(110vh);
+         }
+      }
 
-  @keyframes hallowmojis-shake {
-    0%,
-    100% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(80px);
-    }
-  }
+      @keyframes hallowmojis-shake {
 
-  .hallowmoji {
-    position: fixed;
-    top: -10%;
-    z-index: 9999;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: default;
-    animation-name: hallowmojis-shake;
-    animation-duration: 3s;
-    animation-timing-function: ease-in-out;
-  }
+         0%,
+         100% {
+            transform: translateX(0);
+         }
 
-  .hallowmoji .inner {
-    animation-duration: 10s;
-    animation-name: hallowmojis-fall;
-    animation-timing-function: linear;
-  }
+         50% {
+            transform: translateX(80px);
+         }
+      }
 
-  .hallowmoji:nth-of-type(1) {
-    left: 1%;
-    animation-delay: 0s;
-  }
+      .hallowmoji {
+         position: fixed;
+         top: -30%;
+         z-index: 9999;
+         -webkit-user-select: none;
+         user-select: none;
+         cursor: default;
+         animation-name: hallowmojis-shake;
+         animation-duration: 3s;
+         animation-timing-function: ease-in-out;
+      }
 
-  .hallowmoji:nth-of-type(1) .inner {
-    animation-delay: 0s;
-  }
+      .hallowmoji .inner {
+         animation-duration: 10s;
+         animation-name: hallowmojis-fall;
+         animation-timing-function: linear;
+      }
 
-  .hallowmoji:nth-of-type(2) {
-    left: 10%;
-    animation-delay: 1s;
-  }
+      .hallowmoji:nth-of-type(1) {
+         left: 1%;
+         animation-delay: 0s;
+      }
 
-  .hallowmoji:nth-of-type(2) .inner {
-    animation-delay: 1s;
-  }
+      .hallowmoji:nth-of-type(1) .inner {
+         animation-delay: 0s;
+      }
 
-  .hallowmoji:nth-of-type(3) {
-    left: 20%;
-    animation-delay: .5s;
-  }
+      .hallowmoji:nth-of-type(2) {
+         left: 10%;
+         animation-delay: 1s;
+      }
 
-  .hallowmoji:nth-of-type(3) .inner {
-    animation-delay: 6s;
-  }
+      .hallowmoji:nth-of-type(2) .inner {
+         animation-delay: 1s;
+      }
 
-  .hallowmoji:nth-of-type(4) {
-    left: 30%;
-    animation-delay: 2s;
-  }
+      .hallowmoji:nth-of-type(3) {
+         left: 20%;
+         animation-delay: 0.5s;
+      }
 
-  .hallowmoji:nth-of-type(4) .inner {
-    animation-delay: 4s;
-  }
+      .hallowmoji:nth-of-type(3) .inner {
+         animation-delay: 6s;
+      }
 
-  .hallowmoji:nth-of-type(5) {
-    left: 40%;
-    animation-delay: 2s;
-  }
+      .hallowmoji:nth-of-type(4) {
+         left: 30%;
+         animation-delay: 2s;
+      }
 
-  .hallowmoji:nth-of-type(5) .inner {
-    animation-delay: 2s;
-  }
+      .hallowmoji:nth-of-type(4) .inner {
+         animation-delay: 4s;
+      }
 
-  .hallowmoji:nth-of-type(6) {
-    left: 50%;
-    animation-delay: 3s;
-  }
+      .hallowmoji:nth-of-type(5) {
+         left: 40%;
+         animation-delay: 2s;
+      }
 
-  .hallowmoji:nth-of-type(6) .inner {
-    animation-delay: 8s;
-  }
+      .hallowmoji:nth-of-type(5) .inner {
+         animation-delay: 2s;
+      }
 
-  .hallowmoji:nth-of-type(7) {
-    left: 60%;
-    animation-delay: 2s;
-  }
+      .hallowmoji:nth-of-type(6) {
+         left: 50%;
+         animation-delay: 3s;
+      }
 
-  .hallowmoji:nth-of-type(8) {
-    left: 70%;
-    animation-delay: 1s;
-  }
+      .hallowmoji:nth-of-type(6) .inner {
+         animation-delay: 8s;
+      }
 
-  .hallowmoji:nth-of-type(8) .inner {
-    animation-delay: 2.5s;
-  }
+      .hallowmoji:nth-of-type(7) {
+         left: 60%;
+         animation-delay: 2s;
+      }
 
-  .hallowmoji:nth-of-type(9) {
-    left: 80%;
-    animation-delay: 0s;
-  }
+      .hallowmoji:nth-of-type(7) .inner {
+         animation-delay: 1s;
+      }
 
-  .hallowmoji:nth-of-type(10) {
-    left: 90%;
-    animation-delay: 1.5s;
-  }
+      .hallowmoji:nth-of-type(8) {
+         left: 70%;
+         animation-delay: 1s;
+      }
 
-  .hallowmoji:nth-of-type(10) .inner {
-    animation-delay: 3s;
-  }
+      .hallowmoji:nth-of-type(8) .inner {
+         animation-delay: 2.5s;
+      }
 
-  .hallowmoji:nth-of-type(11) {
-    left: 25%;
-    animation-delay: 0s;
-  }
+      .hallowmoji:nth-of-type(9) {
+         left: 80%;
+         animation-delay: 0s;
+      }
 
-  .hallowmoji:nth-of-type(12) {
-    left: 75%;
-    animation-delay: 2.8s;
-  }
+      .hallowmoji:nth-of-type(9) .inner {
+         animation-delay: 3.5s;
+      }
 
-</style>
-  </head>
+      .hallowmoji:nth-of-type(10) {
+         left: 90%;
+         animation-delay: 1.5s;
+      }
+
+      .hallowmoji:nth-of-type(10) .inner {
+         animation-delay: 3s;
+      }
+
+      .hallowmoji:nth-of-type(11) {
+         left: 25%;
+         animation-delay: 0.5s;
+      }
+
+      .hallowmoji:nth-of-type(11) .inner {
+         animation-delay: 5s;
+      }
+
+      .hallowmoji:nth-of-type(12) {
+         left: 75%;
+         animation-delay: 2.8s;
+      }
+
+      .hallowmoji:nth-of-type(12) .inner {
+         animation-delay: 7s;
+      }
+
+      .hallowmoji:nth-of-type(13) {
+         left: 5%;
+         animation-delay: 1.2s;
+      }
+
+      .hallowmoji:nth-of-type(13) .inner {
+         animation-delay: 2.2s;
+      }
+
+      .hallowmoji:nth-of-type(14) {
+         left: 15%;
+         animation-delay: 1.8s;
+      }
+
+      .hallowmoji:nth-of-type(14) .inner {
+         animation-delay: 4s;
+      }
+
+      .hallowmoji:nth-of-type(15) {
+         left: 35%;
+         animation-delay: 0.8s;
+      }
+
+      .hallowmoji:nth-of-type(15) .inner {
+         animation-delay: 6.5s;
+      }
+
+      .hallowmoji:nth-of-type(16) {
+         left: 45%;
+         animation-delay: 2.5s;
+      }
+
+      .hallowmoji:nth-of-type(16) .inner {
+         animation-delay: 4.2s;
+      }
+
+      .hallowmoji:nth-of-type(17) {
+         left: 55%;
+         animation-delay: 1s;
+      }
+
+      .hallowmoji:nth-of-type(17) .inner {
+         animation-delay: 3.8s;
+      }
+
+      .hallowmoji:nth-of-type(18) {
+         left: 65%;
+         animation-delay: 2.2s;
+      }
+
+      .hallowmoji:nth-of-type(18) .inner {
+         animation-delay: 5.5s;
+      }
+
+      .hallowmoji:nth-of-type(19) {
+         left: 85%;
+         animation-delay: 0.9s;
+      }
+
+      .hallowmoji:nth-of-type(19) .inner {
+         animation-delay: 6s;
+      }
+
+      .hallowmoji:nth-of-type(20) {
+         left: 95%;
+         animation-delay: 3s;
+      }
+
+      .hallowmoji:nth-of-type(20) .inner {
+         animation-delay: 8s;
+      }
+
+      .hallowmoji:nth-of-type(21) {
+         left: 15%;
+         animation-delay: 1s;
+      }
+
+      .hallowmoji:nth-of-type(21) .inner {
+         animation-delay: 0.8s;
+      }
+
+      .hallowmoji:nth-of-type(22) {
+         left: 25%;
+         animation-delay: 2s;
+      }
+
+      .hallowmoji:nth-of-type(22) .inner {
+         animation-delay: 2s;
+      }
+
+      .hallowmoji:nth-of-type(23) {
+         left: 35%;
+         animation-delay: 1.5s;
+      }
+
+      .hallowmoji:nth-of-type(23) .inner {
+         animation-delay: 3.5s;
+      }
+
+      .hallowmoji:nth-of-type(24) {
+         left: 45%;
+         animation-delay: 0.5s;
+      }
+
+      .hallowmoji:nth-of-type(24) .inner {
+         animation-delay: 4.5s;
+      }
+
+      .hallowmoji:nth-of-type(25) {
+         left: 55%;
+         animation-delay: 1.7s;
+      }
+
+      .hallowmoji:nth-of-type(25) .inner {
+         animation-delay: 5s;
+      }
+
+      .hallowmoji:nth-of-type(26) {
+         left: 65%;
+         animation-delay: 2.5s;
+      }
+
+      .hallowmoji:nth-of-type(26) .inner {
+         animation-delay: 6.5s;
+      }
+
+      .hallowmoji:nth-of-type(27) {
+         left: 75%;
+         animation-delay: 0.8s;
+      }
+
+      .hallowmoji:nth-of-type(27) .inner {
+         animation-delay: 7.2s;
+      }
+
+      .hallowmoji:nth-of-type(28) {
+         left: 85%;
+         animation-delay: 1.6s;
+      }
+
+      .hallowmoji:nth-of-type(28) .inner {
+         animation-delay: 4.2s;
+      }
+
+      .hallowmoji:nth-of-type(29) {
+         left: 5%;
+         animation-delay: 2.4s;
+      }
+
+      .hallowmoji:nth-of-type(29) .inner {
+         animation-delay: 2.8s;
+      }
+
+      .hallowmoji:nth-of-type(30) {
+         left: 10%;
+         animation-delay: 3s;
+      }
+
+      .hallowmoji:nth-of-type(30) .inner {
+         animation-delay: 5.5s;
+      }
+      }
+   </style>
+</head>
+
 <body>
-   
-<!-- Controls Section -->
-  <div class="controls">
-    <button id="disable-emojis" class="control-btn">Disable Emojis</button>
-    <button id="toggle-audio" class="control-btn">Disable Audio</button>
-    <input type="range" id="volume-slider" min="0" max="100" value="100">
-  </div>
-   
-   
-    <div class="container">
+
+   <!-- Controls Section -->
+   <div class="controls">
+      <button id="disable-emojis" class="control-btn">Disable Emojis</button>
+      <button id="toggle-audio" class="control-btn">Disable Audio</button>
+      <input type="range" id="volume-slider" min="0" max="100" value="100">
+   </div>
+
+   <div class="container">
       <h1>The Best Couch Potato List!</h1>
       <p><span style="font-family: Arial, sans-serif"><strong><u>Please click and download
-              <a href="https://brave.com/" class="gold-text" style="text-decoration: underline;">
-                <img src="https://i.imghippo.com/files/S2UB31723335663.png" alt="BRAVE Browser" style="height: 24px; vertical-align: middle;">
-              </a>
-              OR use this AdBlocker
-              <a href="https://ublockorigin.com/" class="gold-text" style="text-decoration: underline;">
-                <img src="https://i.imghippo.com/files/97UKj1723335831.png" alt="Ad Blocker" style="height: 24px; vertical-align: middle;">
-              </a>
-              BEFORE clicking on one of the links below (Otherwise you will see ads/popups!)</u></strong></span></p>
+                  <a href="https://brave.com/" class="gold-text" style="text-decoration: underline;">
+                     <img src="https://i.imghippo.com/files/S2UB31723335663.png" alt="BRAVE Browser" style="height: 24px; vertical-align: middle;">
+                  </a>
+                  OR use this AdBlocker
+                  <a href="https://ublockorigin.com/" class="gold-text" style="text-decoration: underline;">
+                     <img src="https://i.imghippo.com/files/97UKj1723335831.png" alt="Ad Blocker" style="height: 24px; vertical-align: middle;">
+                  </a>
+                  BEFORE clicking on one of the links below (Otherwise you will see ads/popups!)</u></strong></span></p>
 
       <p style="font-family: Arial, sans-serif;">
-        Hey there! If you've got ideas or just want to hang out, come join us on our brand new Reddit page!
-        <span style="font-size: 20px; font-weight: bold; margin-right: 5px;">→</span>
-        <a href="https://www.reddit.com/r/TBCPL/">
-          <img src="https://www.redditinc.com/assets/images/site/reddit-logo.png" alt="Reddit" style="width: 36px; vertical-align: middle;">
-        </a>
+         Hey there! If you've got ideas or just want to hang out, come join us on our brand new Reddit page!
+         <span style="font-size: 20px; font-weight: bold; margin-right: 5px;">→</span>
+         <a href="https://www.reddit.com/r/TBCPL/">
+            <img src="https://www.redditinc.com/assets/images/site/reddit-logo.png" alt="Reddit" style="width: 36px; vertical-align: middle;">
+         </a>
       </p>
 
       <div id="qrCode" style="display:none; text-align: center; margin-top: 5px;">
-        <img src="https://i.imghippo.com/files/0w6FH1724939630.jpg" alt="QR Code" style="width: 180px;">
+         <img src="https://i.imghippo.com/files/0w6FH1724939630.jpg" alt="QR Code" style="width: 180px;">
       </div>
-
-
-
-
 
       <!-- Movies & Shows Section (Fmovies, Movies7, Ect. logos) -->
       <div class="section">
-        <p class="section-header">Movies & Shows</p>
+         <p class="section-header">Movies & Shows</p>
 
-                <!-- Entry for VidBinge -->
-        <div class="icon-link">
-          <a href="https://www.vidbinge.com/ " class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/FtAgO1725000848.png" alt="VidBinge Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for VidBinge -->
+         <div class="icon-link" data-description="VidBinge offers a wide selection of movies and TV shows.">
+            <a href="https://www.vidbinge.com/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/FtAgO1725000848.png" alt="VidBinge Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for Binged -->
-        <div class="icon-link">
-          <a href="https://binged.live/" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/6DKFj1724761091.png" alt="Binged Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for Binged -->
+         <div class="icon-link">
+            <a href="https://binged.live/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/6DKFj1724761091.png" alt="Binged Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for braflix.video -->
-        <div class="icon-link">
-          <a href="https://www.braflix.so/" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/yZkEt1723286372.png" alt="BFLIX.SX Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for braflix.video -->
+         <div class="icon-link">
+            <a href="https://www.braflix.so/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/yZkEt1723286372.png" alt="BFLIX.SX Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for rivestream.live -->
-        <div class="icon-link">
-          <a href="https://rivestream.live/" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/HdLW81723624024.png" alt="RiveStream.live Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for rivestream.live -->
+         <div class="icon-link">
+            <a href="https://rivestream.live/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/HdLW81723624024.png" alt="RiveStream.live Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for Fmovies -->
-        <div class="icon-link">
-          <a href="https://fmovies-hd.to/home/" class="link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/FMovies_Logo.png/800px-FMovies_Logo.png?20180712092753" alt="Fmovies Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for Fmovies -->
+         <div class="icon-link">
+            <a href="https://fmovies-hd.to/home/" class="link" target="_blank">
+               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/FMovies_Logo.png/800px-FMovies_Logo.png?20180712092753" alt="Fmovies Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for FlixWave -->
-        <div class="icon-link">
-          <a href="https://flixwave.watch/home/" class="link" target="_blank">
-            <img src="https://flixwave.watch/images/logo.png" alt="Flixwave Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for FlixWave -->
+         <div class="icon-link">
+            <a href="https://flixwave.watch/home/" class="link" target="_blank">
+               <img src="https://flixwave.watch/images/logo.png" alt="Flixwave Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for bflix.sh -->
-        <div class="icon-link">
-          <a href="https://bflix.sh/home/" class="link" target="_blank">
-            <img src="https://bflix.sh/images/logo.png" alt="Bflix Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for bflix.sh -->
+         <div class="icon-link">
+            <a href="https://bflix.sh/home/" class="link" target="_blank">
+               <img src="https://bflix.sh/images/logo.png" alt="Bflix Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for faragski -->
-        <div class="icon-link">
-          <a href="https://faragski.com/" class="link" target="_blank">
-            <img src="https://faragski.com/assets/embed-logo.png" alt="Faragski Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for faragski -->
+         <div class="icon-link">
+            <a href="https://faragski.com/" class="link" target="_blank">
+               <img src="https://faragski.com/assets/embed-logo.png" alt="Faragski Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for autoembed -->
-        <div class="icon-link">
-          <a href="https://watch.autoembed.cc/" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/KIDcO1724709727.png" alt="autoembed Logo" class="icon">
-          </a>
-        </div>
-        
-        <!-- Entry for cinebook -->
-        <div class="icon-link">
-          <a href="https://www.cinebook.xyz/" class="link" target="_blank">
-            <img src="https://www.cinebook.xyz/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-white.00d35c63.png&w=256&q=75" alt="cinebook Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for autoembed -->
+         <div class="icon-link">
+            <a href="https://watch.autoembed.cc/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/KIDcO1724709727.png" alt="autoembed Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for Hydra -->
-        <div class="icon-link">
-          <a href="https://hydrahd.com/" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/UnF971724715842.png" alt="Hydra Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for cinebook -->
+         <div class="icon-link">
+            <a href="https://www.cinebook.xyz/" class="link" target="_blank">
+               <img src="https://www.cinebook.xyz/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-white.00d35c63.png&w=256&q=75" alt="cinebook Logo" class="icon">
+            </a>
+         </div>
+
+         <!-- Entry for Hydra -->
+         <div class="icon-link">
+            <a href="https://hydrahd.com/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/UnF971724715842.png" alt="Hydra Logo" class="icon">
+            </a>
+         </div>
       </div>
       <!-- End of Movies & Shows Section -->
       <!-- Anime Section (icons with logos) -->
       <div class="section">
-        <p class="section-header">Anime</p>
-        <!-- Entry for Hianime -->
-        <div class="icon-link">
-          <a href="https://hianime.to/home" class="link" target="_blank">
-            <img src="https://hianime.to/images/logo.png?v=0.1" alt="HiAnime Logo" class="icon">
-          </a>
-        </div>
+         <p class="section-header">Anime</p>
+         <!-- Entry for Hianime -->
+         <div class="icon-link">
+            <a href="https://hianime.to/home" class="link" target="_blank">
+               <img src="https://hianime.to/images/logo.png?v=0.1" alt="HiAnime Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for Aniwave -->
-        <div class="icon-link">
-          <a href="https://aniwave.se/home-anime" class="link" target="_blank">
-            <img src="https://aniwave.se/assets/img/logo3.png" alt="Aniwave Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for Aniwave -->
+         <div class="icon-link">
+            <a href="https://aniwave.se/home-anime" class="link" target="_blank">
+               <img src="https://aniwave.se/assets/img/logo3.png" alt="Aniwave Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for Animetsu -->
-        <div class="icon-link">
-          <a href="https://animetsu.cc/" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/Ku7B41723286338.png" alt="Animetsu Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for Animetsu -->
+         <div class="icon-link">
+            <a href="https://animetsu.cc/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/Ku7B41723286338.png" alt="Animetsu Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for Anicrush -->
-        <div class="icon-link">
-          <a href="https://anicrush.to/home" class="link" target="_blank">
-            <img src="https://anicrush.to/images/logo.png" alt="Anicrush Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for Anicrush -->
+         <div class="icon-link">
+            <a href="https://anicrush.to/home" class="link" target="_blank">
+               <img src="https://anicrush.to/images/logo.png" alt="Anicrush Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for RiveKun -->
-        <div class="icon-link">
-          <a href="https://rivekun.rivestream.live/" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/vXOCc1724998473.png" alt="RiveKun Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for RiveKun -->
+         <div class="icon-link">
+            <a href="https://rivekun.rivestream.live/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/vXOCc1724998473.png" alt="RiveKun Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for kickassanime.am -->
-        <div class="icon-link">
-          <a href="https://kickassanime.am/anime" class="link" target="_blank">
-            <img src="https://kickassanime.am/img/logo.png?v=1.0" alt="Zorox Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for kickassanime.am -->
+         <div class="icon-link">
+            <a href="https://kickassanime.am/anime" class="link" target="_blank">
+               <img src="https://kickassanime.am/img/logo.png?v=1.0" alt="Zorox Logo" class="icon">
+            </a>
+         </div>
 
-        <!-- Entry for GoGoAnime -->
-        <div class="icon-link">
-          <a href="https://gogoanime3.co/" class="link" target="_blank">
-            <img src="https://gogoanime3.co/img/icon/logo.png" alt="GoGoAnime Logo" class="icon">
-          </a>
-        </div>
-        <!-- End of Anime Section -->
-        <!-- Manga Section (icons with logos) -->
-        <p class="section-header">Manga</p>
-        <!-- Entry for MangaDex -->
-        <div class="icon-link">
-          <a href="https://mangadex.org/" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/jxl7y1724993726.png" alt="MangaDex Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for Comick -->
-        <div class="icon-link">
-          <a href="https://comick.io/home2" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/q0sjq1724994374.png" alt="Comick Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for MangaReader -->
-        <div class="icon-link">
-          <a href="https://mangareader.to/home" class="link" target="_blank">
-            <img src="https://mangareader.to/images/logo.png" alt="MangaReader Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for agscomics -->
-        <div class="icon-link">
-          <a href="https://agscomics.com/" class="link" target="_blank">
-            <img src="https://agscomics.com/wp-content/uploads/2023/11/Aniglis-Logo75x75.png" alt="agscomics Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for mangafire -->
-        <div class="icon-link">
-          <a href="https://mangafire.to/home" class="link" target="_blank">
-            <img src="https://mangafire.to/assets/sites/mangafire/logo.png?v3" alt="mangafires Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for AllManga -->
-        <div class="icon-link">
-          <a href="https://allmanga.to/manga?cty=ALL" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/3p7jx1724994756.png" alt="AllManga Logo" class="icon">
-          </a>
-      </div>
-        <!-- Entry for MangaKakalot -->
-        <div class="icon-link">
-          <a href="https://mangakakalot.com/" class="link" target="_blank">
-            <img src="https://mangakakalot.com/themes/home/icons/logo.png" alt="MangaKakalot Logo" class="icon">
-          </a>
-      </div>
-      <!-- Entry for Asuracomic -->
-        <div class="icon-link">
-          <a href="https://asuracomic.net/" class="link" target="_blank">
-            <img src="https://asuracomic.net/images/logo.webp" alt="Asuracomic Logo" class="icon">
-          </a>
-        </div>
+         <!-- Entry for GoGoAnime -->
+         <div class="icon-link">
+            <a href="https://gogoanime3.co/" class="link" target="_blank">
+               <img src="https://gogoanime3.co/img/icon/logo.png" alt="GoGoAnime Logo" class="icon">
+            </a>
+         </div>
+         <!-- End of Anime Section -->
+         <!-- Manga Section (icons with logos) -->
+         <p class="section-header">Manga</p>
+         <!-- Entry for MangaDex -->
+         <div class="icon-link">
+            <a href="https://mangadex.org/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/jxl7y1724993726.png" alt="MangaDex Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for Comick -->
+         <div class="icon-link">
+            <a href="https://comick.io/home2" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/q0sjq1724994374.png" alt="Comick Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for MangaReader -->
+         <div class="icon-link">
+            <a href="https://mangareader.to/home" class="link" target="_blank">
+               <img src="https://mangareader.to/images/logo.png" alt="MangaReader Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for agscomics -->
+         <div class="icon-link">
+            <a href="https://agscomics.com/" class="link" target="_blank">
+               <img src="https://agscomics.com/wp-content/uploads/2023/11/Aniglis-Logo75x75.png" alt="agscomics Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for mangafire -->
+         <div class="icon-link">
+            <a href="https://mangafire.to/home" class="link" target="_blank">
+               <img src="https://mangafire.to/assets/sites/mangafire/logo.png?v3" alt="mangafires Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for AllManga -->
+         <div class="icon-link">
+            <a href="https://allmanga.to/manga?cty=ALL" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/3p7jx1724994756.png" alt="AllManga Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for MangaKakalot -->
+         <div class="icon-link">
+            <a href="https://mangakakalot.com/" class="link" target="_blank">
+               <img src="https://mangakakalot.com/themes/home/icons/logo.png" alt="MangaKakalot Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for Asuracomic -->
+         <div class="icon-link">
+            <a href="https://asuracomic.net/" class="link" target="_blank">
+               <img src="https://asuracomic.net/images/logo.webp" alt="Asuracomic Logo" class="icon">
+            </a>
+         </div>
       </div>
       <!-- End Of Manga -->
 
       <!-- Live TV Section (icons with logos) -->
       <div class="section">
-        <p class="section-header">LiveTv</p>
-        <!-- Entry for TheTvApp -->
-        <div class="icon-link">
-          <a href="https://thetvapp.to" class="link" target="_blank">
-            <img src="https://thetvapp.to/img/TheTVApp.svg" alt="TheTvApp Logo" class="icon">
-          </a>
-        </div>    
-        <!-- Entry for TV247 -->
-        <div class="icon-link">
-          <a href="https://tv247.us/all-channels/" class="link" target="_blank">
-            <img src="https://i2.wp.com/tv247.us/wp-content/uploads/2020/08/logo-1.png?fit=205%2C123&ssl=1" alt=" TV247 Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for BraflixLIVETV -->
-        <div class="icon-link">
-          <a href="https://www.braflix.ru/livestream" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/q8Iul1723286479.png" alt="braflixLIVETV Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for USATVGO -->
-        <div class="icon-link">
-          <a href="https://usatvgo.live/" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/oK56s1723286576.png" alt="USATVGO Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for Sport+ -->
-        <div class="icon-link">
-          <a href="https://en12.sportplus.live/" class="link" target="_blank">
-            <img src="https://cdn.apigodata.com/sp-imgs/logo.svg" alt="Sport+" class="icon">
-          </a>
-        </div>
-        <!-- Entry for StreamEast -->
-        <div class="icon-link">
-          <a href="https://v3.streameast.to/" class="link" target="_blank">
-            <img src="https://v3.streameast.to/images/logo.png" alt="StreamEast" class="icon">
-          </a>
-        </div>
-        <!-- Entry for sportsurge -->
-        <div class="icon-link">
-          <a href="https://v2.sportsurge.net/" class="link" target="_blank">
-            <img src="https://i.imghippo.com/files/j4ZZN1724656768.png" alt="sportsurge Logo" class="icon">
-          </a>
-        </div>
+         <p class="section-header">LiveTv</p>
+         <!-- Entry for TheTvApp -->
+         <div class="icon-link">
+            <a href="https://thetvapp.to" class="link" target="_blank">
+               <img src="https://thetvapp.to/img/TheTVApp.svg" alt="TheTvApp Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for TV247 -->
+         <div class="icon-link">
+            <a href="https://tv247.us/all-channels/" class="link" target="_blank">
+               <img src="https://i2.wp.com/tv247.us/wp-content/uploads/2020/08/logo-1.png?fit=205%2C123&ssl=1" alt=" TV247 Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for BraflixLIVETV -->
+         <div class="icon-link">
+            <a href="https://www.braflix.ru/livestream" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/q8Iul1723286479.png" alt="braflixLIVETV Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for USATVGO -->
+         <div class="icon-link">
+            <a href="https://usatvgo.live/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/oK56s1723286576.png" alt="USATVGO Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for Sport+ -->
+         <div class="icon-link">
+            <a href="https://en12.sportplus.live/" class="link" target="_blank">
+               <img src="https://cdn.apigodata.com/sp-imgs/logo.svg" alt="Sport+" class="icon">
+            </a>
+         </div>
+         <!-- Entry for StreamEast -->
+         <div class="icon-link">
+            <a href="https://v3.streameast.to/" class="link" target="_blank">
+               <img src="https://v3.streameast.to/images/logo.png" alt="StreamEast" class="icon">
+            </a>
+         </div>
+         <!-- Entry for sportsurge -->
+         <div class="icon-link">
+            <a href="https://v2.sportsurge.net/" class="link" target="_blank">
+               <img src="https://i.imghippo.com/files/j4ZZN1724656768.png" alt="sportsurge Logo" class="icon">
+            </a>
+         </div>
       </div>
       <!-- End of Live TV Section -->
       <!-- PAID Movies & Shows Section -->
       <div class="section">
-        <p class="section-header">Paid-Movies & Shows</p>
-        <!-- Entry for Disney+ -->
-        <div class="icon-link">
-          <a href="https://www.disneyplus.com/identity/login/" class="link" target="_blank">
-            <img src="https://lumiere-a.akamaihd.net/v1/images/dp2024_mainlogo_1c11458c.png?v=1.0" alt="Disney+ Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for HULU -->
-        <div class="icon-link">
-          <a href="https://auth.hulu.com/web/login/" class="link" target="_blank">
-            <img src="https://download.logo.wine/logo/Hulu/Hulu-Logo.wine.png?v=1.0" alt="HULU Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for NETFLIX -->
-        <div class="icon-link">
-          <a href="https://www.netflix.com/" class="link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png?v=1.0" alt="Netflix Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for MAX-->
-        <div class="icon-link">
-          <a href="https://www.max.com/" class="link" target="_blank">
-            <img src="https://www.max.com/img/max-h-w-l.svg?v=1.0" alt="MAX Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for AppleTv+ -->
-        <div class="icon-link">
-          <a href="https://tv.apple.com/" class="link" target="_blank">
-            <img src="https://cdn2.steamgriddb.com/logo_thumb/e88b7ed1cb586cf4a763bb4eef4e07ac.png?v=1.0" alt="AppleTv+ Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for AmazonPrime -->
-        <div class="icon-link">
-          <a href="https://www.amazon.com/gp/video/collection/IncludedwithPrime" class="link" target="_blank">
-            <img src="https://1000logos.net/wp-content/uploads/2023/11/Amazon-Prime-Video-Logo.png?v=1.0" alt="AmazonPrime Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for Paramount+ -->
-        <div class="icon-link">
-          <a href="https://www.paramountplus.com/account/signin/" class="link" target="_blank">
-            <img src="https://wwwimage-us.pplusstatic.com/base/files/cbs_page_attribute/pplus_logo_white.svg?v=1.0" alt="Paramount+ Logo" class="icon">
-          </a>
-        </div>
-        <!-- Entry for CrunchyRoll -->
-        <div class="icon-link">
-          <a href="https://sso-v2.crunchyroll.com/login" class="link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Crunchyroll.svg/1024px-Crunchyroll.svg.png?v=1.0" alt="CrunchyRoll Logo" class="icon">
-          </a>
-        </div>
+         <p class="section-header">Paid-Movies & Shows</p>
+         <!-- Entry for Disney+ -->
+         <div class="icon-link">
+            <a href="https://www.disneyplus.com/identity/login/" class="link" target="_blank">
+               <img src="https://lumiere-a.akamaihd.net/v1/images/dp2024_mainlogo_1c11458c.png?v=1.0" alt="Disney+ Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for HULU -->
+         <div class="icon-link">
+            <a href="https://auth.hulu.com/web/login/" class="link" target="_blank">
+               <img src="https://download.logo.wine/logo/Hulu/Hulu-Logo.wine.png?v=1.0" alt="HULU Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for NETFLIX -->
+         <div class="icon-link">
+            <a href="https://www.netflix.com/" class="link" target="_blank">
+               <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png?v=1.0" alt="Netflix Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for MAX-->
+         <div class="icon-link">
+            <a href="https://www.max.com/" class="link" target="_blank">
+               <img src="https://www.max.com/img/max-h-w-l.svg?v=1.0" alt="MAX Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for AppleTv+ -->
+         <div class="icon-link">
+            <a href="https://tv.apple.com/" class="link" target="_blank">
+               <img src="https://cdn2.steamgriddb.com/logo_thumb/e88b7ed1cb586cf4a763bb4eef4e07ac.png?v=1.0" alt="AppleTv+ Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for AmazonPrime -->
+         <div class="icon-link">
+            <a href="https://www.amazon.com/gp/video/collection/IncludedwithPrime" class="link" target="_blank">
+               <img src="https://1000logos.net/wp-content/uploads/2023/11/Amazon-Prime-Video-Logo.png?v=1.0" alt="AmazonPrime Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for Paramount+ -->
+         <div class="icon-link">
+            <a href="https://www.paramountplus.com/account/signin/" class="link" target="_blank">
+               <img src="https://wwwimage-us.pplusstatic.com/base/files/cbs_page_attribute/pplus_logo_white.svg?v=1.0" alt="Paramount+ Logo" class="icon">
+            </a>
+         </div>
+         <!-- Entry for CrunchyRoll -->
+         <div class="icon-link">
+            <a href="https://sso-v2.crunchyroll.com/login" class="link" target="_blank">
+               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Crunchyroll.svg/1024px-Crunchyroll.svg.png?v=1.0" alt="CrunchyRoll Logo" class="icon">
+            </a>
+         </div>
       </div>
       <!-- End of Movies & Shows Section -->
       <p class="footer-text">Thrown Together By Hellhorde</p>
       <p class="footer-text">(Share responsibly)</p>
       <p class="footer-text">ENJOY!</p>
       <p class="footer-text">Disclosure: I do not own or host any of the content from these sites. This page simply provides links. None of the content is hosted or contained on this page; it serves purely as a text-based reference.</p>
-    </div>
-<!-- Floating Halloween HallowMojis -->
-<div class="hallowmoji">
-  🎃
-  <div class="inner">🎃</div>
-</div>
-<div class="hallowmoji">
-  🧟‍♂️
-  <div class="inner">🧟‍♂️</div>
-</div>
-<div class="hallowmoji">
-  👻
-  <div class="inner">👻</div>
-</div>
-<div class="hallowmoji">
-  🕸️
-  <div class="inner">🕸️</div>
-</div>
-<div class="hallowmoji">
-  🕷️
-  <div class="inner">🕷️</div>
-</div>
-<div class="hallowmoji">
-  🧙‍♀️
-  <div class="inner">🧙‍♀️</div>
-</div>
-<div class="hallowmoji">
-  💀
-  <div class="inner">💀</div>
-</div>
-<div class="hallowmoji">
-  🧛‍♂️
-  <div class="inner">🧛‍♂️</div>
-</div>
-<div class="hallowmoji">
-  🍬
-  <div class="inner">🍬</div>
-</div>
-  <div class="hallowmoji">
-  🦇
-  <div class="inner">🦇</div>
-</div>
-   
-<script src="js/Controls.js"></script>
-    
-      <script src="js/smoothscroll.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-    <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then((registration) => {
-          console.log('Service Worker registered with scope:', registration.scope);
-        }, (err) => {
-          console.log('Service Worker registration failed:', err);
-        });
-    });
-  }
-</script>
-    <p class="footer-text">
-    &copy; 2024 TBCPL. All rights reserved. 
-    <a href="dmca.html" class="footer-button">Go to DMCA Page</a>
-</p>
-  </body>
+   </div>
+   <!-- Floating Halloween HallowMojis -->
+   <div class="hallowmoji">
+      🎃
+      <div class="inner">🎃</div>
+   </div>
+   <div class="hallowmoji">
+      🧟‍♂️
+      <div class="inner">🧟‍♂️</div>
+   </div>
+   <div class="hallowmoji">
+      👻
+      <div class="inner">👻</div>
+   </div>
+   <div class="hallowmoji">
+      🕸️
+      <div class="inner">🕸️</div>
+   </div>
+   <div class="hallowmoji">
+      🕷️
+      <div class="inner">🕷️</div>
+   </div>
+   <div class="hallowmoji">
+      🧙‍♀️
+      <div class="inner">🧙‍♀️</div>
+   </div>
+   <div class="hallowmoji">
+      💀
+      <div class="inner">💀</div>
+   </div>
+   <div class="hallowmoji">
+      🧛‍♂️
+      <div class="inner">🧛‍♂️</div>
+   </div>
+   <div class="hallowmoji">
+      🍬
+      <div class="inner">🍬</div>
+   </div>
+   <div class="hallowmoji">
+      🦇
+      <div class="inner">🦇</div>
+   </div>
+   <div class="hallowmoji">
+      🧛‍♀️
+      <div class="inner">🧛‍♀️</div>
+   </div>
+   <div class="hallowmoji">
+      🍭
+      <div class="inner">🍭</div>
+   </div>
+   <div class="hallowmoji">
+      👀
+      <div class="inner">👀</div>
+   </div>
+   <div class="hallowmoji">
+      🧟‍♀️
+      <div class="inner">🧟‍♀️</div>
+   </div>
+   <div class="hallowmoji">
+      🦉
+      <div class="inner">🦉</div>
+   </div>
+   <div class="hallowmoji">
+      🧙‍♂️
+      <div class="inner">🧙‍♂️</div>
+   </div>
+
+   <script src="js/Controls.js"></script>
+
+   <script src="js/smoothscroll.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+   <script>
+      if ('serviceWorker' in navigator) {
+         window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+               .then((registration) => {
+                  console.log('Service Worker registered with scope:', registration.scope);
+               }, (err) => {
+                  console.log('Service Worker registration failed:', err);
+               });
+         });
+      }
+   </script>
+   <p class="footer-text">
+      &copy; 2024 TBCPL. All rights reserved.
+      <a href="dmca.html" class="footer-button">Go to DMCA Page</a>
+   </p>
+
+</body>
 
 </html>
