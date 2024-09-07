@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TheBestCouchPotatoList</title>
     <meta name="description" content="Free Media for all! ">
+     <script src="js/Controls.js"></script>
+
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:url" content="https://n3rdmade.github.io/tbcpl/">
@@ -176,13 +178,18 @@
     animation-delay: 2.8s;
   }
 
-
-
-
 </style>
   </head>
-
-  <body>
+<body>
+   
+<!-- Controls Section -->
+  <div class="controls">
+    <button id="disable-emojis" class="control-btn">Disable Emojis</button>
+    <button id="toggle-audio" class="control-btn">Disable Audio</button>
+    <input type="range" id="volume-slider" min="0" max="100" value="100">
+  </div>
+   
+   
     <div class="container">
       <h1>The Best Couch Potato List!</h1>
       <p><span style="font-family: Arial, sans-serif"><strong><u>Please click and download
@@ -548,6 +555,8 @@
   🦇
   <div class="inner">🦇</div>
 </div>
+   
+
     
       <script src="js/smoothscroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
