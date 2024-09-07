@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="HalloweenCSS.css">
 
 <style>
- /* HallowMoji Halloween-themed styling */
+/* HallowMoji Halloween-themed styling */
 .hallowmoji {
   color: #fff;
   font-size: 2em;
@@ -49,10 +49,10 @@
 
 @keyframes hallowmojis-fall {
   0% {
-    transform: translateY(0);
+    transform: translateY(-100vh); /* Start above the viewport */
   }
   100% {
-    transform: translateY(110vh);
+    transform: translateY(100vh); /* End below the viewport */
   }
 }
 
@@ -62,7 +62,7 @@
     transform: translateX(0);
   }
   50% {
-    transform: translateX(80px);
+    transform: translateX(30px); /* Reduced sway */
   }
 }
 
@@ -84,74 +84,74 @@
   animation-timing-function: linear;
 }
 
-/* Adjust positions and delays for 14 HallowMojis */
+/* Randomize delays and positions for 14 HallowMojis */
 .hallowmoji:nth-of-type(1) {
-  left: 1%;
+  left: 5%;
   animation-delay: 0s;
 }
 
 .hallowmoji:nth-of-type(2) {
-  left: 10%;
-  animation-delay: 1s;
-}
-
-.hallowmoji:nth-of-type(3) {
-  left: 20%;
+  left: 15%;
   animation-delay: 2s;
 }
 
-.hallowmoji:nth-of-type(4) {
-  left: 30%;
-  animation-delay: 3s;
-}
-
-.hallowmoji:nth-of-type(5) {
-  left: 40%;
+.hallowmoji:nth-of-type(3) {
+  left: 25%;
   animation-delay: 4s;
 }
 
+.hallowmoji:nth-of-type(4) {
+  left: 35%;
+  animation-delay: 1s;
+}
+
+.hallowmoji:nth-of-type(5) {
+  left: 45%;
+  animation-delay: 3s;
+}
+
 .hallowmoji:nth-of-type(6) {
-  left: 50%;
+  left: 55%;
   animation-delay: 5s;
 }
 
 .hallowmoji:nth-of-type(7) {
-  left: 60%;
+  left: 65%;
   animation-delay: 6s;
 }
 
 .hallowmoji:nth-of-type(8) {
-  left: 70%;
+  left: 75%;
   animation-delay: 7s;
 }
 
 .hallowmoji:nth-of-type(9) {
-  left: 80%;
+  left: 85%;
   animation-delay: 8s;
 }
 
 .hallowmoji:nth-of-type(10) {
-  left: 90%;
+  left: 10%;
   animation-delay: 9s;
 }
 
 .hallowmoji:nth-of-type(11) {
-  left: 15%;
+  left: 20%;
   animation-delay: 10s;
 }
 
 .hallowmoji:nth-of-type(12) {
-  left: 25%;
+  left: 30%;
   animation-delay: 11s;
 }
 
 .hallowmoji:nth-of-type(13) {
-  left: 35%;
+  left: 40%;
   animation-delay: 12s;
 }
 
 .hallowmoji:nth-of-type(14) {
-  left: 45%;
+  left: 50%;
   animation-delay: 13s;
 }
 
