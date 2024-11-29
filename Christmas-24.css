@@ -4,9 +4,10 @@
 body {
   font-family: "Rock Salt", Arial, sans-serif;
   background-image: url("https://images6.alphacoders.com/134/thumb-1920-1343500.png");
-  background-size: cover;
+  background-size: cover; /* This ensures the background image scales to cover the entire viewport */
+  background-position: center center; /* Centers the background image */
   background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-attachment: fixed; /* Fixes the background in place so it doesn’t scroll with content */
   text-align: center;
   color: #fff;
   margin: 0;
