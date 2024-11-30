@@ -42,7 +42,7 @@ h6 {
   border: 3px solid #228B22;
   padding: 10px;
   border-radius: 5px;
-  font-family: 'Creepster', cursive;
+  font-family: 'Rock Salt', cursive;
   position: relative;
   overflow: hidden;
 }
@@ -108,7 +108,7 @@ h6::before {
   border: 3px solid #228B22;
   padding: 5px;
   border-radius: 5px;
-  font-family: 'Creepster', cursive;
+  font-family: 'Rock Salt', cursive;
 }
 
 .icon-link {
@@ -238,7 +238,362 @@ h6::before {
   padding: 10px;
   border-radius: 5px;
   display: inline-block;
-  font-family: 'Creepster', cursive;
+  font-family: 'Rock Salt', cursive;
+}
+
+@keyframes moveText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(10px);
+  }
+}
+
+.Orange-text {
+  color: #ff0000;
+  animation: moveUpDown 2s infinite alternate;
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #228B22;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #333, #228B22);
+}
+
+.controls {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 1000;
+}
+
+.control-btn {
+  background-color: rgba(34, 139, 34, 0.7);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 16px;
+}
+
+.control-btn:hover {
+  background-color: red;
+  color: black;
+}
+
+#volume-slider {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 8px;
+  background: #228B22;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .15s ease-in-out;
+}
+
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: red;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  border-radius: 90%;
+  transition: background .3s ease-in-out;
+}
+
+#volume-slider::-moz-range-thumb {
+  background: red;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+}
+
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: auto;
+  background-color: transparent;
+}@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+
+body {
+  font-family: "Rock Salt", Arial, sans-serif;
+  background-image: url("https://images6.alphacoders.com/134/thumb-1920-1343500.png");
+  background-size: 100% 100%;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text x="0" y="24" font-size="24">🎄</text></svg>') 16 16, auto;
+  position: relative;
+  z-index: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #ff0000;
+  border: 3px solid #228B22;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Rock Salt', cursive;
+  position: relative;
+  overflow: hidden;
+}
+
+h1::before,
+h2::before,
+h3::before,
+h4::before,
+h5::before,
+h6::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(34, 139, 34, 0.5);
+  border-radius: 5px;
+  z-index: -1;
+  filter: blur(5px);
+  opacity: 0.7;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.section {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  border: 1px solid #ff0000;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.section:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.section:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.5);
+}
+
+.section-header {
+  color: #ff0000;
+  font-size: 24px;
+  margin-bottom: 10px;
+  border: 3px solid #228B22;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: 'Rock Salt', cursive;
+}
+
+.icon-link {
+  display: inline-block;
+  margin: 15px;
+  padding: 5px;
+  transition: transform 0.3s;
+  position: relative;
+}
+
+.icon-link::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 24px;
+  height: 8px;
+  background: linear-gradient(to bottom, #a8a8a8, #d4d4d4);
+  transform: translateX(-50%);
+  border-radius: 3px;
+  z-index: 1;
+}
+
+.icon-link::after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  width: 16px;
+  height: 4px;
+  background: linear-gradient(to bottom, #808080, #a8a8a8);
+  transform: translateX(-50%);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  padding: 10px;
+  background: radial-gradient(circle at 30% 30%, 
+    var(--ornament-color, #cc0000) 60%,
+    rgba(0,0,0,0.3) 100%
+  );
+  box-shadow: 
+    inset -4px -4px 8px rgba(0,0,0,0.3),
+    inset 4px 4px 8px rgba(255,255,255,0.3),
+    0 0 15px rgba(255,255,255,0.2);
+  transition: transform 0.3s;
+  position: relative;
+  z-index: 0;
+  object-fit: contain;
+}
+
+.icon-link:nth-child(8n) .icon {
+  --ornament-color: #006400;
+}
+
+.icon-link:nth-child(8n+1) .icon {
+  --ornament-color: #4169E1;
+}
+
+.icon-link:nth-child(8n+2) .icon {
+  --ornament-color: #cc0000;
+}
+
+.icon-link:nth-child(8n+3) .icon {
+  --ornament-color: #9400D3;
+}
+
+.icon-link:nth-child(8n+4) .icon {
+  --ornament-color: #1a472a;
+}
+
+.icon-link:nth-child(8n+5) .icon {
+  --ornament-color: #800000;
+}
+
+.icon-link:nth-child(8n+6) .icon {
+  --ornament-color: #000080;
+}
+
+.icon-link:nth-child(8n+7) .icon {
+  --ornament-color: #4B0082;
+}
+
+.icon-link:hover {
+  transform: rotate(8deg) scale(1.1);
+  cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text x="0" y="24" font-size="24">🩸</text></svg>') 16 16, auto;
+}
+
+.icon-link:hover .icon {
+  animation: ornamentSwing 1.2s ease-in-out infinite;
+  filter: brightness(1.2);
+}
+
+@keyframes ornamentSwing {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.link {
+  text-decoration: none;
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s, transform 0.3s;
+  display: block;
+  margin: 5px 0;
+}
+
+.link:hover {
+  color: rgb(255, 0, 0);
+  transform: scale(1.1);
+  cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text x="0" y="24" font-size="24">🎅</text></svg>') 16 16, auto;
+}
+
+.footer-text {
+  color: #ff0000;
+  animation: moveText 2s infinite alternate;
+  margin-top: 10px;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  font-family: 'Rock Salt', cursive;
 }
 
 @keyframes moveText {
