@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap");
+
+/* Styling the body of the page */
+body {
+  font-family: "Trade Winds", Arial, sans-serif; /* Using Google's Trade Winds font */
+  background-image: url("https://c1.wallpaperflare.com/path/457/975/724/fireworks-night-sky-moon-35d3f7b108b97b9372a1f6174b63b04b.jpg"); /* Fireworks and night sky wallpaper */
+  background-size: cover; /* Cover entire background */
+  background-repeat: no-repeat; /* Prevent tiling */
+  background-attachment: fixed; /* Fixed background */
+  color: #f5d042; /* Gold color for text */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  text-align: center; /* Center-align all text */
+}
+
+/* Generic styling for headings and paragraphs */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  padding: 15px;
+  border-radius: 10px; /* Rounded corners */
+  margin: 10px 0;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2); /* Subtle white text shadow */
+}
+
+/* Specific styles for headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #f5d042; /* Gold text color */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold; /* Bold text for emphasis */
+  text-transform: uppercase; /* Uppercase for uniformity */
+}
+
+/* Container for page content */
+.container {
+  max-width: 900px; /* Restrict width for better readability */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Styling individual sections */
+.section {
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+  padding: 30px;
+  border-radius: 15px;
+  margin: 30px 0;
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+/* Hover effect for sections */
+.section:hover {
+  transform: scale(1.05); /* Slight enlargement */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4); /* White glow effect */
+}
+
+/* Styling section headers */
+.section-header {
+  color: #f5d042;
+  font-size: 26px;
+  margin-bottom: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* Styling icon links */
+.icon-link {
+  display: inline-block;
+  margin: 15px;
+  border: 1px solid #f5d042; /* Gold border */
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+/* Hover effect for icon links */
+.icon-link:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Lighten on hover */
+  transform: scale(1.1); /* Slight enlargement */
+}
+
+/* Sizing icons within links */
+.icon {
+  width: auto;
+  height: 50px; /* Fixed height for uniformity */
+}
+
+/* Styling general links */
+.link {
+  text-decoration: none; /* Remove underline */
+  color: #f5d042; /* Gold text */
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s, transform 0.3s; /* Smooth hover effects */
+  display: block;
+  margin: 10px 0;
+}
+
+/* Footer text styling */
+.footer-text {
+  color: #f5d042;
+  margin-top: 15px;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2); /* Subtle white shadow */
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+  padding: 15px;
+  border-radius: 10px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+/* Customizing the scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* Narrow scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2); /* Light thumb */
+  border-radius: 10px;
+  transition: background 0.3s; /* Smooth hover transition */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5); /* Brighter on hover */
+}
+
+/* Controls container for buttons */
+.controls {
+  position: fixed; /* Fixed position for accessibility */
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 1000; /* Ensure visibility */
+}
+
+/* Button styling */
+.control-btn {
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+  color: #f5d042; /* Gold text */
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Smooth hover effects */
+  font-size: 16px; /* Readable font size */
+}
+
+/* Hover effect for buttons */
+.control-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Lighten on hover */
+  color: #6a329f; /* Purple text */
+}
+
+/* Styling for sliders */
+#volume-slider {
+  -webkit-appearance: none; /* Remove default styling */
+  width: 200px;
+  height: 8px; /* Thin slider */
+  background: rgba(255, 255, 255, 0.2); /* Light track */
+  outline: none;
+  opacity: 0.7; /* Slight transparency */
+  transition: opacity .15s ease-in-out; /* Smooth opacity transition */
+}
+
+/* Slider thumb styling */
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove default styling */
+  background: #f5d042; /* Gold thumb */
+  cursor: pointer; /* Indicate interactivity */
+  height: 18px;
+  width: 18px;
+  border-radius: 50%; /* Circular shape */
+  transition: background .3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Firefox slider thumb styling */
+#volume-slider::-moz-range-thumb {
+  background: #f5d042; /* Gold thumb */
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%; /* Circular shape */
+}
+
+/* Firework effect animation */
+@keyframes firework {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* Firework container inside the logo container */
+.icon-link {
+  position: relative; /* Needed to position fireworks inside the container */
+  display: inline-block;
+  border: 1px solid #f5d042; /* Gold border */
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
