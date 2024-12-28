@@ -28,33 +28,12 @@
   <link rel="icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
   <link rel="shortcut icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
 
-  <link rel="stylesheet" href="Xmas-24.CSS">
-
-  <!-- Particles.js CSS -->
-  <style>
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      background-color: transparent;
-    }
+  <link rel="stylesheet" href="Newyears.CSS">
   </style>
+  
 </head>
 
 <body>
-  <!-- Particles.js container -->
-  <div id="particles-js"></div>
-
-  <!-- Controls Section -->
-  <div class="controls">
-    <button id="toggle-snow" class="control-btn">Disable Snow</button>
-    <button id="toggle-audio" class="control-btn">Disable Audio</button>
-    <input type="range" id="volume-slider" min="0" max="100" value="100">
-  </div>
-
   <div class="container">
     <h1>The Best Couch Potato List!</h1>
     <p><span style="font-family: Arial, sans-serif"><strong><u>Please click and download
@@ -78,6 +57,9 @@
     <div id="qrCode" style="display:none; text-align: center; margin-top: 5px;">
       <img src="https://i.imghippo.com/files/0w6FH1724939630.jpg" alt="QR Code" style="width: 180px;">
     </div>
+    </style>
+</head>
+<body>
 
  <!-- Movies & Shows Section -->
 <div class="section">
@@ -271,7 +253,7 @@
 
         <!-- Live TV Section -->
         <div class="section">
-            <h2 class="section-header">LiveTv</h2>
+            <h2 class="section-header">Live-Tv</h2>
             <div class="icon-link">
                 <a href="https://thetvapp.to" target="_blank">
                     <img src="https://thetvapp.to/img/TheTVApp.svg" alt="TheTvApp Logo" class="icon">
@@ -350,128 +332,11 @@
             </div>
         </div>
     </div>
-
-
-    <p class="footer-text">Thrown Together By Hellhorde</p>
+  <p class="footer-text">Thrown Together By Hellhorde</p>
     <p class="footer-text">(Share responsibly)</p>
     <p class="footer-text">ENJOY!</p>
     <p class="footer-text">Disclosure: I do not own or host any of the content from these sites. This page simply provides links. None of the content is hosted or contained on this page; it serves purely as a text-based reference.</p>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize particles
-      particlesJS('particles-js', {
-        "particles": {
-          "number": {
-            "value": 300,
-            "density": {
-              "enable": true,
-              "value_area": 800
-            }
-          },
-          "color": {
-            "value": "#ffffff"
-          },
-          "shape": {
-            "type": "image",
-            "image": {
-              "src": "https://png.pngtree.com/png-vector/20230831/ourmid/pngtree-3d-rendering-snowflake-isolated-png-image_9192400.png",
-              "width": 100,
-              "height": 100
-            }
-          },
-          "opacity": {
-            "value": 1,
-            "random": true
-          },
-          "size": {
-            "value": 20,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 1,
-              "size_min": 10,
-              "sync": false
-            }
-          },
-          "line_linked": {
-            "enable": false
-          },
-          "move": {
-            "enable": true,
-            "speed": 1,
-            "direction": "bottom",
-            "random": true,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-              "enable": true,
-              "rotateX": 600,
-              "rotateY": 1200
-            }
-          }
-        },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "repulse"
-            },
-            "onclick": {
-              "enable": true,
-              "mode": "push"
-            },
-            "resize": true
-          },
-          "modes": {
-            "repulse": {
-              "distance": 100,
-              "duration": 0.4
-            },
-            "push": {
-              "particles_nb": 4
-            }
-          }
-        },
-        "retina_detect": true
-      });
-      // Snow toggle functionality
-      const snowButton = document.getElementById('toggle-snow');
-      let snowEnabled = true;
-      snowButton.addEventListener('click', function() {
-        if (snowEnabled) {
-          const particles = document.getElementById('particles-js');
-          particles.style.display = 'none';
-          snowButton.textContent = 'Enable Snow';
-        } else {
-          const particles = document.getElementById('particles-js');
-          particles.style.display = 'block';
-          snowButton.textContent = 'Disable Snow';
-        }
-        snowEnabled = !snowEnabled;
-      });
-    });
-  </script>
-
-  <script src="js/Controls.js"></script>
-  <script src="js/smoothscroll.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then((registration) => {
-            console.log('Service Worker registered with scope:', registration.scope);
-          }, (err) => {
-            console.log('Service Worker registration failed:', err);
-          });
-      });
-    }
-  </script>
   <p class="footer-text">
     &copy; 2024 TBCPL. All rights reserved.
     <a href="dmca.html" class="footer-button">Go to DMCA Page</a>
