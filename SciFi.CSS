@@ -30,6 +30,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
   text-transform: uppercase;
   box-shadow: 0 0 15px rgba(147, 112, 219, 0.3);
+  letter-spacing: 2px;
+}
+
+h1 {
+  animation: textPulse 2s ease-in-out infinite;
 }
 
 .container {
@@ -39,19 +44,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section {
-  background-color: rgba(0, 0, 0, 0.8);
+  position: relative;
+  background: rgba(0, 0, 0, 0.9);
   padding: 30px;
   border-radius: 15px;
   margin: 30px 0;
-  border: 2px solid rgba(147, 112, 219, 0.3);
+  border: 2px solid #ff69b4;
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
-  will-change: transform;
-  box-shadow: 0 0 20px rgba(147, 112, 219, 0.2);
 }
 
 .section:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+  box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
 }
 
 .section-header {
@@ -62,7 +67,9 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px;
   border-radius: 10px;
   font-weight: bold;
-  text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+  text-shadow: 0 0 10px #ff69b4, 0 0 20px #9370db;
+  background: linear-gradient(45deg, rgba(147, 112, 219, 0.1), rgba(255, 105, 180, 0.1));
+  letter-spacing: 2px;
 }
 
 .icon-link {
@@ -70,10 +77,15 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   margin: 15px;
-  border: 1px solid #9370db;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(147, 112, 219, 0.1) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  backdrop-filter: blur(5px);
   transition: all 0.3s ease;
   width: 160px;
   height: 60px;
@@ -81,9 +93,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .icon-link:hover {
-  background-color: rgba(147, 112, 219, 0.1);
+  background: linear-gradient(135deg,
+    rgba(147, 112, 219, 0.2) 0%,
+    rgba(255, 105, 180, 0.2) 50%,
+    rgba(147, 112, 219, 0.2) 100%
+  );
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+  border-color: #ff69b4;
 }
 
 .icon {
@@ -198,6 +215,82 @@ h1, h2, h3, h4, h5, h6 {
   width: 18px;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+}
+
+.star-field {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    perspective: 600px;
+    -webkit-perspective: 600px;
+    z-index: -1;
+}
+
+.star-field .layer {
+    box-shadow: -411px -476px #cccccc, 777px -407px #d4d4d4, -387px -477px #fcfcfc, -91px -235px #d4d4d4, 491px -460px #f7f7f7, 892px -128px #f7f7f7, 758px -277px #ededed, 596px 378px #cccccc, 647px 423px whitesmoke, 183px 389px #c7c7c7,
+        524px -237px #f0f0f0, 679px -535px #e3e3e3, 158px 399px #ededed, 157px 249px #ededed, 81px -450px #ebebeb, 719px -360px #c2c2c2, -499px 473px #e8e8e8, -158px -349px #d4d4d4, 870px -134px #cfcfcf, 446px 404px #c2c2c2,
+        440px 490px #d4d4d4, 414px 507px #e6e6e6, -12px 246px #fcfcfc, -384px 369px #e3e3e3, 641px -413px #fcfcfc, 822px 516px #dbdbdb, 449px 132px #c2c2c2, 727px 146px #f7f7f7, -315px -488px #e6e6e6, 952px -70px #e3e3e3,
+        -869px -29px #dbdbdb, 502px 80px #dedede, 764px 342px #e0e0e0, -150px -380px #dbdbdb, 654px -426px #e3e3e3, -325px -263px #c2c2c2, 755px -447px #c7c7c7, 729px -177px #c2c2c2;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 4px;
+    width: 4px;
+    border-radius: 2px;
+}
+
+@keyframes sf-fly-by-1 {
+    from {
+        transform: translateZ(-600px);
+        opacity: 0.5;
+    }
+    to {
+        transform: translateZ(0);
+        opacity: 0.5;
+    }
+}
+
+@keyframes sf-fly-by-2 {
+    from {
+        transform: translateZ(-1200px);
+        opacity: 0.5;
+    }
+    to {
+        transform: translateZ(-600px);
+        opacity: 0.5;
+    }
+}
+
+@keyframes sf-fly-by-3 {
+    from {
+        transform: translateZ(-1800px);
+        opacity: 0.5;
+    }
+    to {
+        transform: translateZ(-1200px);
+        opacity: 0.5;
+    }
+}
+
+.star-field .layer:nth-child(1) {
+    animation: sf-fly-by-1 5s linear infinite;
+}
+
+.star-field .layer:nth-child(2) {
+    animation: sf-fly-by-2 5s linear infinite;
+}
+
+.star-field .layer:nth-child(3) {
+    animation: sf-fly-by-3 5s linear infinite;
+}
+
+@keyframes textPulse {
+  0% { text-shadow: 0 0 10px #ff69b4; }
+  50% { text-shadow: 0 0 20px #ff69b4, 0 0 30px #9370db; }
+  100% { text-shadow: 0 0 10px #ff69b4; }
 }
 
 @media (max-width: 768px) {
