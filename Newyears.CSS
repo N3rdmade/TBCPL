@@ -11,6 +11,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   text-align: center;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -43,6 +44,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 30px 0;
   border: 2px solid rgba(255, 255, 255, 0.2);
   transition: transform 0.3s, box-shadow 0.3s;
+  will-change: transform;
 }
 
 .section:hover {
@@ -67,8 +69,8 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.7);
-  transition: background-color 0.3s, transform 0.3s;
-  position: relative;
+  transition: transform 0.3s;
+  will-change: transform;
 }
 
 .icon-link:hover {
@@ -79,8 +81,7 @@ h1, h2, h3, h4, h5, h6 {
 .icon {
   width: auto;
   height: 50px;
-  max-width: 180px;
-  object-fit: contain;
+  vertical-align: middle;
 }
 
 .link {
@@ -88,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #f5d042;
   font-weight: bold;
   font-size: 18px;
-  transition: color 0.3s, transform 0.3s;
+  transition: color 0.3s;
   display: block;
   margin: 10px 0;
 }
@@ -178,16 +179,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes firework {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(0);
-    opacity: 0;
-  }
+  0% { transform: scale(0); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.7; }
+  100% { transform: scale(0); opacity: 0; }
 }
