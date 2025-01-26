@@ -1,232 +1,250 @@
 @import url("https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap");
 
-/* Styling the body of the page */
 body {
-  font-family: "Trade Winds", Arial, sans-serif; /* Using Google's Trade Winds font */
-  background-image: url("https://c1.wallpaperflare.com/path/457/975/724/fireworks-night-sky-moon-35d3f7b108b97b9372a1f6174b63b04b.jpg"); /* Fireworks and night sky wallpaper */
-  background-size: cover; /* Cover entire background */
-  background-repeat: no-repeat; /* Prevent tiling */
-  background-attachment: fixed; /* Fixed background */
-  color: #f5d042; /* Gold color for text */
+  font-family: "Trade Winds", Arial, sans-serif;
+  background-image: url("https://c1.wallpaperflare.com/path/457/975/724/fireworks-night-sky-moon-35d3f7b108b97b9372a1f6174b63b04b.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #f5d042;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  text-align: center; /* Center-align all text */
+  overflow-x: hidden;
+  text-align: center;
+  min-height: 100vh;
 }
 
-/* Generic styling for headings and paragraphs */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-  padding: 15px;
-  border-radius: 10px; /* Rounded corners */
-  margin: 10px 0;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2); /* Subtle white text shadow */
-}
-
-/* Specific styles for headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #f5d042; /* Gold text color */
-  border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+h1, h2, h3, h4, h5, h6, p {
+  background-color: rgba(0, 0, 0, 0.85);
   padding: 15px;
   border-radius: 10px;
-  font-weight: bold; /* Bold text for emphasis */
-  text-transform: uppercase; /* Uppercase for uniformity */
+  margin: 15px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Container for page content */
+h1, h2, h3, h4, h5, h6 {
+  color: #f5d042;
+  border: 2px solid rgba(245, 208, 66, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(245, 208, 66, 0.2);
+}
+
 .container {
-  max-width: 900px; /* Restrict width for better readability */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Styling individual sections */
 .section {
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+  background-color: rgba(0, 0, 0, 0.85);
   padding: 30px;
   border-radius: 15px;
-  margin: 30px 0;
-  border: 2px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
-  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+  margin: 40px 0;
+  border: 2px solid rgba(245, 208, 66, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  will-change: transform;
 }
 
-/* Hover effect for sections */
 .section:hover {
-  transform: scale(1.05); /* Slight enlargement */
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4); /* White glow effect */
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(245, 208, 66, 0.3);
 }
 
-/* Styling section headers */
 .section-header {
   color: #f5d042;
-  font-size: 26px;
-  margin-bottom: 15px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  padding: 10px;
+  font-size: 28px;
+  margin: 0 0 25px 0;
+  border: 2px solid rgba(245, 208, 66, 0.3);
+  padding: 15px;
   border-radius: 10px;
   font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(245, 208, 66, 0.2);
 }
 
-/* Styling icon links */
 .icon-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin: 15px;
-  border: 1px solid #f5d042; /* Gold border */
-  border-radius: 10px;
+  border: 2px solid #f5d042;
+  border-radius: 12px;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  will-change: transform;
+  width: 160px;
+  height: 60px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Hover effect for icon links */
 .icon-link:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Lighten on hover */
-  transform: scale(1.1); /* Slight enlargement */
+  background-color: rgba(245, 208, 66, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(245, 208, 66, 0.2);
 }
 
-/* Sizing icons within links */
 .icon {
+  max-width: 140px;
+  max-height: 50px;
   width: auto;
-  height: 50px; /* Fixed height for uniformity */
+  height: auto;
+  transition: filter 0.3s ease;
 }
 
-/* Styling general links */
+.icon-link:hover .icon {
+  filter: brightness(1.2);
+}
+
 .link {
-  text-decoration: none; /* Remove underline */
-  color: #f5d042; /* Gold text */
+  text-decoration: none;
+  color: #f5d042;
   font-weight: bold;
   font-size: 18px;
-  transition: color 0.3s, transform 0.3s; /* Smooth hover effects */
+  transition: all 0.3s;
   display: block;
   margin: 10px 0;
 }
 
-/* Footer text styling */
+.link:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(245, 208, 66, 0.5);
+}
+
 .footer-text {
   color: #f5d042;
-  margin-top: 15px;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2); /* Subtle white shadow */
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-  padding: 15px;
+  margin: 20px auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 15px 25px;
   border-radius: 10px;
   display: inline-block;
   font-weight: bold;
+  border: 1px solid rgba(245, 208, 66, 0.2);
 }
 
-/* Customizing the scrollbar */
 ::-webkit-scrollbar {
-  width: 8px; /* Narrow scrollbar */
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+  background: rgba(0, 0, 0, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2); /* Light thumb */
+  background: rgba(245, 208, 66, 0.3);
   border-radius: 10px;
-  transition: background 0.3s; /* Smooth hover transition */
+  border: 2px solid rgba(0, 0, 0, 0.8);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5); /* Brighter on hover */
+  background: rgba(245, 208, 66, 0.5);
 }
 
-/* Controls container for buttons */
 .controls {
-  position: fixed; /* Fixed position for accessibility */
-  top: 10px;
-  right: 10px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  z-index: 1000; /* Ensure visibility */
+  z-index: 1000;
+  gap: 10px;
 }
 
-/* Button styling */
 .control-btn {
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-  color: #f5d042; /* Gold text */
-  border: none;
-  padding: 15px 20px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #f5d042;
+  border: 1px solid rgba(245, 208, 66, 0.3);
+  padding: 12px 20px;
   border-radius: 10px;
-  margin: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s; /* Smooth hover effects */
-  font-size: 16px; /* Readable font size */
+  transition: all 0.3s;
+  font-size: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Hover effect for buttons */
 .control-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Lighten on hover */
-  color: #6a329f; /* Purple text */
+  background-color: rgba(245, 208, 66, 0.2);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(245, 208, 66, 0.3);
 }
 
-/* Styling for sliders */
 #volume-slider {
-  -webkit-appearance: none; /* Remove default styling */
+  -webkit-appearance: none;
   width: 200px;
-  height: 8px; /* Thin slider */
-  background: rgba(255, 255, 255, 0.2); /* Light track */
+  height: 8px;
+  background: rgba(245, 208, 66, 0.2);
+  border-radius: 4px;
   outline: none;
-  opacity: 0.7; /* Slight transparency */
-  transition: opacity .15s ease-in-out; /* Smooth opacity transition */
+  opacity: 0.7;
+  transition: opacity 0.2s;
 }
 
-/* Slider thumb styling */
 #volume-slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Remove default styling */
-  background: #f5d042; /* Gold thumb */
-  cursor: pointer; /* Indicate interactivity */
-  height: 18px;
-  width: 18px;
-  border-radius: 50%; /* Circular shape */
-  transition: background .3s ease-in-out; /* Smooth hover effect */
-}
-
-/* Firefox slider thumb styling */
-#volume-slider::-moz-range-thumb {
-  background: #f5d042; /* Gold thumb */
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #f5d042;
+  border-radius: 50%;
   cursor: pointer;
-  height: 18px;
-  width: 18px;
-  border-radius: 50%; /* Circular shape */
+  transition: all 0.3s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Firework effect animation */
-@keyframes firework {
-  0% {
-    transform: scale(0);
-    opacity: 1;
+#volume-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #f5d042;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#volume-slider:hover::-webkit-slider-thumb {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(245, 208, 66, 0.3);
+}
+
+#volume-slider:hover::-moz-range-thumb {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(245, 208, 66, 0.3);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
   }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.7;
+  
+  .icon-link {
+    width: 140px;
+    height: 55px;
+    margin: 10px;
   }
-  100% {
-    transform: scale(0);
-    opacity: 0;
+  
+  .icon {
+    max-width: 120px;
+    max-height: 45px;
+  }
+  
+  .section-header {
+    font-size: 24px;
   }
 }
 
-/* Firework container inside the logo container */
-.icon-link {
-  position: relative; /* Needed to position fireworks inside the container */
-  display: inline-block;
-  border: 1px solid #f5d042; /* Gold border */
-  border-radius: 10px;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+@media (max-width: 480px) {
+  .icon-link {
+    width: 130px;
+    height: 50px;
+    margin: 8px;
+  }
+  
+  .icon {
+    max-width: 110px;
+    max-height: 40px;
+  }
 }
