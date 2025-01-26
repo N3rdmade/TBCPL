@@ -95,6 +95,13 @@ h1, h2, h3, h4, h5, h6 {
   transition: filter 0.3s ease;
 }
 
+.icon[src$=".svg"] {
+  width: auto;
+  height: 50px;
+  max-width: none;
+  max-height: none;
+}
+
 .icon-link:hover .icon {
   filter: brightness(1.2);
 }
