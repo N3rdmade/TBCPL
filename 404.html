@@ -1,153 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TheBestCouchPotatoList - 404</title>
-    <meta name="description" content="Free Media for all!">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:url" content="https://n3rdmade.github.io/tbcpl/">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="TheBestCouchPotatoList">
-    <meta property="og:description" content="Free Media for all!">
-    <meta property="og:image" content="https://i.imghippo.com/files/G6RAv1725139805.png">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="420">
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="n3rdmade.github.io">
-    <meta property="twitter:url" content="https://n3rdmade.github.io/tbcpl/">
-    <meta name="twitter:title" content="TheBestCouchPotatoList">
-    <meta name="twitter:description" content="Free Media for all!">
-    <meta name="twitter:image" content="https://i.imghippo.com/files/G6RAv1725139805.png">
-
-    <!-- Favicon -->
-    <link rel="icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
-    <link rel="shortcut icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
-    <link rel="stylesheet" href="Aug-Oct.css">
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Arvo'>
-  
+    
     <style>
-        /*======================
-            404 page
-        =======================*/
-        body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Arvo', serif;
+        @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap");
+
+        /* Star Field Animation */
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 600px;
+            -webkit-perspective: 600px;
+            z-index: -1;
         }
 
-        .page_404 {
-            padding: 40px 0;
-            background: #121212;
+        .star-field .layer {
+            box-shadow: -411px -476px 2px #cccccc, 777px -407px 3px #d4d4d4, -387px -477px #fcfcfc, -91px -235px 2px #d4d4d4, 491px -460px #f7f7f7, 892px -128px 3px #f7f7f7, 758px -277px #ededed, 596px 378px #cccccc, 647px 423px 2px whitesmoke, 183px 389px #c7c7c7,
+                524px -237px 2px #f0f0f0, 679px -535px #e3e3e3, 158px 399px 3px #ededed, 157px 249px #ededed, 81px -450px #ebebeb, 719px -360px #c2c2c2;
+            transform-style: preserve-3d;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 4px;
+            width: 4px;
+            border-radius: 2px;
+        }
+
+        @keyframes sf-fly-by-1 {
+            from {transform: translateZ(-2000px) translateX(-100%);opacity: 0.6;}
+            to {transform: translateZ(2000px) translateX(100%);opacity: 0.6;}
+        }
+
+        @keyframes sf-fly-by-2 {
+            from {transform: translateZ(-2000px) translateX(-100%);opacity: 0.4;}
+            to {transform: translateZ(2000px) translateX(100%);opacity: 0.4;}
+        }
+
+        @keyframes sf-fly-by-3 {
+            from {transform: translateZ(-2000px) translateX(-100%);opacity: 0.2;}
+            to {transform: translateZ(2000px) translateX(100%);opacity: 0.2;}
+        }
+
+        .star-field .layer:nth-child(1) {animation: sf-fly-by-1 8s linear infinite;}
+        .star-field .layer:nth-child(2) {animation: sf-fly-by-2 12s linear infinite;}
+        .star-field .layer:nth-child(3) {animation: sf-fly-by-3 16s linear infinite;}
+
+        body {
+            background: linear-gradient(135deg, #0a0011, #130726);
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
             text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .four_zero_four_bg {
             position: relative;
-            background-image: url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWoxbW53NXAyY3hzb3c5bjFxc3RjMG01cnJqZXJjeTlsNzQ5N2FqZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohA2J9itZkn8Dp3zi/giphy.webp);
-            background-size: cover;
-            background-position: center;
             height: 400px;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
         }
 
         .four_zero_four_bg::before {
-            content: "";
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            background-image: url('https://raw.githubusercontent.com/N3rdmade/TBCPL/main/assets/404-SciFi.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.8);
+        }
+
+        .four_zero_four_bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(3px);
         }
 
         .four_zero_four_bg h1 {
-            position: absolute;
-            top: -70px; /* Raise the 404 text above the gif */
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 100px;
-            text-shadow: 3px 3px 5px #ff0000;
-            font-family: 'Rock Salt', cursive;
-            color: transparent;
-            -webkit-text-stroke: 2px #ff4500; /* Fine orange outline */
+            position: relative;
+            z-index: 2;
+            font-size: 150px;
+            animation: glow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.7),
+                         0 0 30px rgba(255, 105, 180, 0.5),
+                         0 0 40px rgba(255, 105, 180, 0.3);
+            background: linear-gradient(45deg, 
+                #ff69b4,
+                #9370db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.9;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        @keyframes glow {
+            from {text-shadow: 0 0 20px rgba(255, 105, 180, 0.7),
+                            0 0 30px rgba(255, 105, 180, 0.5);}
+            to {text-shadow: 0 0 30px rgba(255, 105, 180, 0.7),
+                            0 0 40px rgba(255, 105, 180, 0.5),
+                            0 0 50px rgba(255, 105, 180, 0.3);}
         }
 
         .contant_box_404 {
-            margin-top: 20px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 15px;
+            border: 2px solid #ff69b4;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+            margin: 20px auto;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
         }
 
         .contant_box_404 h3 {
-            font-size: 50px;
-            text-shadow: 2px 2px 4px #ff0000;
-            font-family: 'Rock Salt;
+            font-size: 36px;
+            color: #ff69b4;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 0 20px 0;
         }
 
         .contant_box_404 p {
             font-size: 18px;
-            color: #e0e0e0;
-            text-shadow: 1px 1px 2px #ff0000;
+            color: #ff69b4;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
         }
 
         .link_404 {
-            color: #fff !important;
-            padding: 10px 20px;
-            background: #d32f2f;
-            border: 2px dashed #ff0000;
-            text-shadow: 1px 1px 2px #000;
+            color: #ff69b4;
+            padding: 12px 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #ff69b4;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
             display: inline-block;
-            transition: background 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.2);
         }
 
         .link_404:hover {
-            background: #ff0000;
-            box-shadow: 0px 0px 10px 2px #ff0000;
+            transform: scale(1.05);
+            background: rgba(255, 105, 180, 0.2);
+            box-shadow: 0 0 25px rgba(255, 105, 180, 0.4);
+            color: #ffffff;
             text-decoration: none;
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
 
-        ::-webkit-scrollbar-track {
-            background: #1f1f1f;
+        .four_zero_four_bg h1 {
+            animation: float 6s ease-in-out infinite;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #333333;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555555;
+        @media (max-width: 768px) {
+            .four_zero_four_bg h1 {
+                font-size: 100px;
+            }
+            
+            .contant_box_404 h3 {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
-
-<body translate="no">
-    <section class="page_404">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="col-sm-10 col-sm-offset-1 text-center">
-                        <div class="four_zero_four_bg">
-                            <h1 class="text-center">404</h1>
-                        </div>
-                        <div class="contant_box_404">
-                            <h3 class="h2">Looks like you're lost</h3>
-                            <p>The page you are looking for is not available!</p>
-                            <a href="https://n3rdmade.github.io/TBCPL/" class="link_404">Go to Home</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<body>
+    <div class="star-field">
+        <div class="layer"></div>
+        <div class="layer"></div>
+        <div class="layer"></div>
+    </div>
+    <div class="container">
+        <div class="four_zero_four_bg">
+            <h1>404</h1>
         </div>
-    </section>
+        <div class="contant_box_404">
+            <h3>Looks like you're lost in space</h3>
+            <p>The page you are looking for has drifted into a black hole!</p>
+            <a href="https://n3rdmade.github.io/TBCPL/" class="link_404">Return to Earth</a>
+        </div>
+    </div>
 </body>
-
 </html>
