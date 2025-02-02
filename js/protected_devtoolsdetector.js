@@ -1,6 +1,6 @@
 (function() {
     // Whitelisted IP addresses
-    const whitelistedIPs = ['paste your ip here for whitlisting'];
+    const whitelistedIPs = ['YOU REALLY THOUGHT WE WILL PUT ANY INFO HERE LMAO XD'];
 
     // Check if the IP is whitelisted
     function isIPWhitelisted(ip) {

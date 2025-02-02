@@ -2,7 +2,12 @@
 <html lang="en">
 
 <head>
+  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/devtools-detector/2.0.17/devtools-detector.js"></script>
+  <script src="js/protected_devtoolsdetector.js" defer></script>
+  <script src="js/nocheats.js" defer></script>
   <meta charset="UTF-8">
+  <link rel="manifest" href="/manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TheBestCouchPotatoList</title>
   <meta name="description" content="Free Media for all! ">
@@ -12,7 +17,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="TheBestCouchPotatoList">
   <meta property="og:description" content="Free Media for all! ">
-  <meta property="og:image" content="https://i.imghippo.com/files/G6RAv1725139805.png">
+  <meta property="og:image" content="./banner.png">
   <meta property="og:image:width" content="800">
   <meta property="og:image:height" content="420">
 
@@ -22,12 +27,13 @@
   <meta property="twitter:url" content="https://n3rdmade.github.io/tbcpl/">
   <meta name="twitter:title" content="TheBestCouchPotatoList">
   <meta name="twitter:description" content="Free Media for all! ">
-  <meta name="twitter:image" content="https://i.imghippo.com/files/G6RAv1725139805.png">
+  <meta name="twitter:image" content="./banner.png">
 
   <!-- Favicon -->
-  <link rel="icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
-  <link rel="shortcut icon" href="https://i.imghippo.com/files/eargy1723286691.png" type="image/png">
-
+  <link rel="icon" href="./logo.png" type="image/png">
+  <link rel="shortcut icon" href="./logo.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+  <link rel="stylesheet" href="./flash/minimal.css">
   <link rel="stylesheet" href="SciFi2.CSS">
   </style>
   
@@ -43,11 +49,11 @@
     <h1>The Best Couch Potato List!</h1>
     <p><span style="font-family: Arial, sans-serif"><strong><u>Please click and download
             <a href="https://brave.com/" class="gold-text" style="text-decoration: underline;">
-              <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/S2UB31723335663.png" alt="BRAVE Browser" style="height: 24px; vertical-align: middle;">
+              <img src="./assets/brave.png" alt="BRAVE Browser" style="height: 24px; vertical-align: middle;">
             </a>
             OR use this AdBlocker
             <a href="https://ublockorigin.com/" class="gold-text" style="text-decoration: underline;">
-              <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/97UKj1723335831.png" alt="Ad Blocker" style="height: 24px; vertical-align: middle;">
+              <img src="./assets/ublock.png" alt="Ad Blocker" style="height: 24px; vertical-align: middle;">
             </a>
             BEFORE clicking on one of the links below (Otherwise you will see ads/popups!)</u></strong></span></p>
 
@@ -55,12 +61,12 @@
       Hey there! If you've got ideas or just want to hang out, come join the Reddit page!
       <span style="font-size: 20px; font-weight: bold; margin-right: 5px;">→</span>
       <a href="https://www.reddit.com/r/TBCPL/">
-        <img src="https://redditinc.com/hs-fs/hubfs/Reddit%20Inc/Graphics/Headers/Desktop/RedditInc_Header_Homepage.png?width=400&height=400&name=RedditInc_Header_Homepage.png" alt="Reddit" style="width: 36px; vertical-align: middle;">
+        <img src="./assets/reddit.png"" alt="Reddit" style="width: 36px; vertical-align: middle;">
       </a>
     </p>
 
     <div id="qrCode" style="display:none; text-align: center; margin-top: 5px;">
-      <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/0w6FH1724939630.jpg" alt="QR Code" style="width: 180px;">
+      <img src="./assets/qrcode.png" alt="QR Code" style="width: 180px;">
     </div>
     </style>
 </head>
@@ -70,23 +76,23 @@
 <div class="section">
     <h2 class="section-header">Movies & Shows</h2>
     <div class="icon-link">
-        <a href="https://rgshows.me/" target="_blank">
-            <img src="https://rgshows.me/banner.png" alt="RgShows Logo" class="icon">
+        <a href="https://rgshowsme/" target="_blank">
+            <img src="https://rgshows.me/banner.png" alt="Nova Fork Logo" class="icon">
         </a>
-    </div>
+        </div>
     <div class="icon-link">
         <a href="https://novafork.com/" target="_blank">
-            <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/lBFW6006qkc.png" alt="Nova Fork Logo" class="icon">
+            <img src="./logo/movies_shows/novafork.png" alt="Nova Fork Logo" class="icon">
         </a>
     </div>
       <div class="icon-link">
         <a href="https://www.vidbinge.com/" target="_blank">
-            <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/cWdI2802mg.png" alt="Vidbinge Logo" class="icon">
+            <img src="./logo/movies_shows/vidbinge.png" alt="Vidbinge Logo" class="icon">
         </a>
     </div>
   <div class="icon-link">
         <a href="https://pstream.org/" target="_blank">
-            <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/sRj9316xY.png" alt="P-Stream Logo" class="icon">
+            <img src="./logo/movies_shows/pstream.png" alt="P-Stream Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
@@ -96,72 +102,72 @@
     </div>
       <div class="icon-link">
         <a href="https://cinemadeck.com/" target="_blank">
-            <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/hz2661MTQ.png" alt="CinemaDeck Logo" class="icon">
+            <img src="./logo/movies_shows/cinemadeck.png" alt="CinemaDeck Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://www.popcornmovies.to/home" target="_blank">
-            <img src="https://www.popcornmovies.to/static/img/logo-1723617006.png" alt="PopcornMovies Logo" class="icon">
+            <img src="./logo/movies_shows/popcornmovies.png" alt="PopcornMovies Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://nepu.to/" target="_blank">
-            <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/lTi8711Gm.png" alt="Nepu Logo" class="icon">
+            <img src="./logo/movies_shows/nepu.png" alt="Nepu Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://broflix.cc/" target="_blank">
-            <img src="https://files.catbox.moe/m7b0xt.webp" alt="BroFlix Logo" class="icon">
+            <img src="./logo/movies_shows/broflix.png" alt="BroFlix Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://freek.to/" target="_blank">
-            <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/Hej3468Ng.png" alt="Freek Logo" class="icon">
+            <img src="./logo/movies_shows/freek.png" alt="Freek Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://www.cineby.ru/" target="_blank">
-            <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/yM9960MRM.png" alt="Cineby Logo" class="icon">
+            <img src="./logo/movies_shows/cineby.png" alt="Cineby Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://rivestream.live/" target="_blank">
-            <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/HdLW81723624024.png" alt="RiveStream Logo" class="icon">
+            <img src="./logo/movies_shows/rivestream.png" alt="RiveStream Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://fmovies-hd.to/home/" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/FMovies_Logo.png/800px-FMovies_Logo.png?20180712092753" alt="Fmovies Logo" class="icon">
+            <img src="./logo/movies_shows/fmovies.png" alt="Fmovies Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://xprime.tv/" target="_blank">
-            <img src="https://xprime.tv/logo.webp" alt="Xprime Logo" class="icon">
+            <img src="./logo/movies_shows/xprime.png" alt="Xprime Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://bflix.sh/home/" target="_blank">
-            <img src="https://bflix.sh/images/logo.png" alt="Bflix Logo" class="icon">
+            <img src="./logo/movies_shows/bflix.png" alt="Bflix Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://hexa.watch/" target="_blank">
-            <img src="https://hexa.watch/logo.png" alt="Hexa Logo" class="icon">
+            <img src="./logo/movies_shows/hexa.png" alt="Hexa Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://watch.autoembed.cc/" target="_blank">
-            <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/KIDcO1724709727.png" alt="autoembed Logo" class="icon">
+            <img src="./logo/movies_shows/autoembed.png" alt="autoembed Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://www.cinebook.xyz/" target="_blank">
-            <img src="https://www.cinebook.xyz/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-white.00d35c63.png&w=256&q=75" alt="cinebook Logo" class="icon">
+            <img src="./logo/movies_shows/cinebook.png" alt="cinebook Logo" class="icon">
         </a>
     </div>
     <div class="icon-link">
         <a href="https://hydrahd.com/" target="_blank">
-            <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/UnF971724715842.png" alt="Hydra Logo" class="icon">
+            <img src="./logo/movies_shows/hydrahd.png" alt="Hydra Logo" class="icon">
         </a>
     </div>
 </div>
@@ -171,47 +177,47 @@
             <h2 class="section-header">Anime</h2>
                  <div class="icon-link">
                 <a href="https://www.miruro.tv" target="_blank">
-                    <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/TRv2107pDU.png" alt="GoGoAnime Logo" class="icon">
+                    <img src="./logo/anime/miruro.png" alt="Miruro Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://hianime.to/home" target="_blank">
-                    <img src="https://hianime.to/images/logo.png" alt="HiAnime Logo" class="icon">
+                    <img src="./logo/anime/hianime.png" alt="HiAnime Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://yukiwatch.su/home" target="_blank">
-                    <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/5SQWm1728817939.png" alt="Yuki Logo" class="icon">
+                    <img src="./logo/anime/yukiwatch.png" alt="Yuki Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://aniwatchtv.to/home" target="_blank">
-                    <img src="https://aniwatchtv.to/images/logo.png" alt="Aniwatch Logo" class="icon">
+                    <img src="./logo/anime/aniwatch.png" alt="Aniwatch Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://animetsu.cc/" target="_blank">
-                    <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/Ku7B41723286338.png" alt="Animetsu Logo" class="icon">
+                    <img src="./logo/anime/animetsu.png" alt="Animetsu Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://kaido.to/home" target="_blank">
-                    <img src="https://kaido.to/images/logo.png" alt="Kaido  Logo" class="icon">
+                    <img src="./logo/anime/kaido.png" alt="Kaido  Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://anicrush.to/home" target="_blank">
-                    <img src="https://anicrush.to/images/logo.png" alt="Anicrush Logo" class="icon">
+                    <img src="./logo/anime/anicrush.png" alt="Anicrush Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://rivekun.rivestream.live/" target="_blank">
-                    <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/vXOCc1724998473.png" alt="RiveKun Logo" class="icon">
+                    <img src="./logo/anime/rivekun.png" alt="RiveKun Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://kickassanime.am/anime" target="_blank">
-                    <img src="https://kickassanime.am/img/logo.png?v=1.0" alt="Zorox Logo" class="icon">
+                    <img src="./logo/anime/kickassanime.png" alt="kickassanime Logo" class="icon">
                 </a>
             </div>
            </div>
@@ -221,42 +227,42 @@
             <h2 class="section-header">Manga</h2>
             <div class="icon-link">
                 <a href="https://mangadex.org/" target="_blank">
-                    <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/jxl7y1724993726.png" alt="MangaDex Logo" class="icon">
+                    <img src="./logo/manga/mangadex.png" alt="MangaDex Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://comick.io/home2" target="_blank">
-                    <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/q0sjq1724994374.png" alt="Comick Logo" class="icon">
+                    <img src="./logo/manga/comick.png" alt="Comick Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://mangareader.to/home" target="_blank">
-                    <img src="https://mangareader.to/images/logo.png" alt="MangaReader Logo" class="icon">
+                    <img src="./logo/manga/mangareader.png" alt="MangaReader Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://mangago.me/" target="_blank">
-                    <img src="https://pic1.mangapicgallery.com/images/logo-new-g.png" alt="mangago Logo" class="icon">
+                    <img src="./logo/manga/mangago.png" alt="mangago Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://mangafire.to/home" target="_blank">
-                    <img src="https://mangafire.to/assets/sites/mangafire/logo.png?v3" alt="mangafires Logo" class="icon">
+                    <img src="./logo/manga/mangafire.png" alt="mangafires Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://allmanga.to/manga?cty=ALL" target="_blank">
-                    <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/3p7jx1724994756.png" alt="AllManga Logo" class="icon">
+                    <img src="./logo/manga/allmanga.png" alt="AllManga Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://mangakakalot.com/" target="_blank">
-                    <img src="https://mangakakalot.com/themes/home/icons/logo.png" alt="MangaKakalot Logo" class="icon">
+                    <img src="./logo/manga/mangakaklot.png" alt="MangaKakalot Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://asuracomic.net/" target="_blank">
-                    <img src="https://asuracomic.net/images/logo.webp" alt="Asuracomic Logo" class="icon">
+                    <img src="./logo/manga/asuracomic.png" alt="Asuracomic Logo" class="icon">
                 </a>
             </div>
         </div>
@@ -266,17 +272,17 @@
             <h2 class="section-header">Live-Tv</h2>
             <div class="icon-link">
                 <a href="https://thetvapp.to" target="_blank">
-                    <img src="https://thetvapp.to/img/TheTVApp.svg" alt="TheTvApp Logo" class="icon">
+                    <img src="./logo/livetv/tvappto.png" alt="TheTvApp Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://tv247.us/all-channels/" target="_blank">
-                    <img src="https://i2.wp.com/tv247.us/wp-content/uploads/2020/08/logo-1.png?fit=205%2C123&ssl=1" alt=" TV247 Logo" class="icon">
+                    <img src="./logo/livetv/tv247.png" alt=" TV247 Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://usatvgo.live/" target="_blank">
-                    <img src="https://api.cors.lol/?url=https://i.imghippo.com/files/oK56s1723286576.png" alt="USATVGO Logo" class="icon">
+                    <img src="./logo/livetv/usatvgo.png" alt="USATVGO Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
@@ -286,12 +292,12 @@
             </div>
             <div class="icon-link">
                 <a href="https://the.streameast.app/v86" target="_blank">
-                    <img src="https://the.streameast.app/images/logo.png" alt="StreamEast" class="icon">
+                    <img src="./logo/livetv/streameast.png" alt="StreamEast" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://v2.sportsurge.net/" target="_blank">
-                    <img src="https://i.imghippo.com/files/j4ZZN1724656768.png" alt="sportsurge Logo" class="icon">
+                    <img src="./logo/livetv/streamsurge.png" alt="sportsurge Logo" class="icon">
                 </a>
             </div>
         </div>
@@ -301,22 +307,22 @@
             <h2 class="section-header">Paid-Movies & Shows</h2>
             <div class="icon-link">
                 <a href="https://www.disneyplus.com/identity/login/" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Disney_Plus_logo.svg/800px-Disney_Plus_logo.svg.png" alt="Disney+ Logo" class="icon">
+                    <img src="./logo/paid_apps/disney+.png" alt="Disney+ Logo" class="icon">
                 </a>
             </div>
                <div class="icon-link">
                 <a href="https://www.shudder.com/" target="_blank">
-                    <img src="https://images.amcsvod.io/sh/shudder-logo-flat.png" alt="Shudder Logo" class="icon">
+                    <img src="./logo/paid_apps/shudder.png" alt="Shudder Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://auth.hulu.com/web/login/" target="_blank">
-                    <img src="https://download.logo.wine/logo/Hulu/Hulu-Logo.wine.png?v=1.0" alt="HULU Logo" class="icon">
+                    <img src="./logo/paid_apps/hulu.png" alt="HULU Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
                 <a href="https://www.netflix.com/" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png?v=1.0" alt="Netflix Logo" class="icon">
+                    <img src="./logo/paid_apps/netflix.png" alt="Netflix Logo" class="icon">
                 </a>
             </div>
         
@@ -327,7 +333,7 @@
             </div>
             <div class="icon-link">
                 <a href="https://tv.apple.com/" target="_blank">
-                    <img src="https://cdn2.steamgriddb.com/logo_thumb/e88b7ed1cb586cf4a763bb4eef4e07ac.png?v=1.0" alt="AppleTv+ Logo" class="icon">
+                    <img src="./logo/paid_apps/appletv.png" alt="AppleTv+ Logo" class="icon">
                 </a>
             </div>
             <div class="icon-link">
@@ -342,7 +348,7 @@
             </div>
             <div class="icon-link">
                 <a href="https://sso-v2.crunchyroll.com/login" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Crunchyroll.svg/1024px-Crunchyroll.svg.png?v=1.0" alt="CrunchyRoll Logo" class="icon">
+                    <img src="./logo/paid_apps/cruncyroll.png" alt="CrunchyRoll Logo" class="icon">
                 </a>
             </div>
         </div>
@@ -356,7 +362,17 @@
     &copy; 2024 TBCPL. All rights reserved.
     <a href="dmca.html" class="footer-button">Go to DMCA Page</a>
   </p>
-
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, (error) => {
+          console.log('ServiceWorker registration failed: ', error);
+        });
+      });
+    }
+  </script>      
 </body>
 
 </html>
