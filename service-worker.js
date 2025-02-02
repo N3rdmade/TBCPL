@@ -6,13 +6,13 @@ self.addEventListener('install', (event) => {
           '/index.html',
           '/404.html',
           '/robots.txt',
-        '/manifest.json',
-        '/logo.png',
-        '.htaccess',
-        '/flash/minimal.css',
-        '/js/smoothscroll.js',
-        '/js/nocheats.js',
-        '/js/protected_devtoolsdetector.js'
+          '/manifest.json',
+          '/logo.png',
+          '.htaccess',
+          '/flash/minimal.css',
+          '/js/smoothscroll.js',
+          '/js/nocheats.js',
+          '/js/protected_devtoolsdetector.js'
         ]);
       })
     );
