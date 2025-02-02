@@ -1,32 +1,17 @@
 function addNoCheatListeners(doc) {
-    doc.oncontextmenu = () => {
-        return false;
-    };
+    doc.oncontextmenu = () => false;
 
     doc.onkeydown = e => {
-        if (e.key === "F12") {
-            return false;
-        }
-        if ((e.ctrlKey && e.key === "u") || (e.ctrlKey && e.key === "U")) {
-            return false;
-        }
-        if ((e.ctrlKey && e.shiftKey && e.key === "J") || (e.ctrlKey && e.key === "j")) {
-            return false;
-        }
-        if ((e.ctrlKey && e.shiftKey && e.key === "C") || (e.ctrlKey && e.key === "c")) {
-            return false;
-        }
-        if ((e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "i")) {
-            return false;
-        }
-    };
-
-    doc.addEventListener('keydown', function(e) {
-        if ((e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'i')) {
+        if (
+            e.key === "F12" ||
+            (e.ctrlKey && (e.key === "u" || e.key === "U")) ||
+            (e.ctrlKey && e.shiftKey && (e.key === "J" || e.key === "C" || e.key === "I")) ||
+            (e.ctrlKey && (e.key === "j" || e.key === "c" || e.key === "i"))
+        ) {
             e.preventDefault();
             return false;
         }
-    });
+    };
 }
 
 function addListenersToIframes() {
@@ -41,25 +26,9 @@ function addListenersToIframes() {
     });
 }
 
-// Whitelisted IP addresses
-const whitelistedIPs = ['put ips here'];
+// Apply listeners to the main document
+addNoCheatListeners(document);
+addListenersToIframes();
 
-// Check if the IP is whitelisted
-function isIPWhitelisted(ip) {
-    return whitelistedIPs.includes(ip);
-}
-
-// Fetch IP and initiate listeners if not whitelisted
-fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-        const ip = data.ip;
-        if (!isIPWhitelisted(ip)) {
-            addNoCheatListeners(document);
-            addListenersToIframes();
-
-            // Re-apply listeners to iframes periodically to catch dynamically added iframes
-            setInterval(addListenersToIframes, 1000);
-        }
-    })
-    .catch(error => console.error('Error getting IP address:', error));
+// Re-apply listeners to iframes periodically to catch dynamically added iframes
+setInterval(addListenersToIframes, 1000);
