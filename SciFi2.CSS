@@ -52,6 +52,10 @@ h1 {
   border: 2px solid #ff69b4;
   box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Reduced gap */
 }
 
 .section:hover {
@@ -60,6 +64,8 @@ h1 {
 }
 
 .section-header {
+  width: 100%;
+  text-align: center;
   color: #ff69b4;
   font-size: 26px;
   margin-bottom: 15px;
@@ -73,10 +79,9 @@ h1 {
 }
 
 .icon-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin: 15px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 10px;
@@ -87,8 +92,8 @@ h1 {
   );
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
-  width: 160px;
-  height: 60px;
+  width: 160px; /* Original size */
+  height: 60px; /* Original size */
   box-shadow: 0 0 10px rgba(147, 112, 219, 0.2);
 }
 
@@ -117,6 +122,26 @@ h1 {
   max-width: 140px;
   object-fit: contain;
 }
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+  .section {
+    padding: 20px;
+    gap: 5px; /* Further reduced gap on mobile */
+  }
+
+  .icon-link {
+    width: 140px; /* Slightly reduced for mobile */
+    height: 50px;
+    padding: 8px;
+  }
+
+  .icon {
+    max-width: 120px;
+    max-height: 40px;
+  }
+}
+
 
 .link {
   text-decoration: none;
@@ -310,3 +335,4 @@ h1 {
     max-height: 45px;
   }
 }
+
