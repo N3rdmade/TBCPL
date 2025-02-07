@@ -3,9 +3,9 @@ self.addEventListener('install', event => {
     caches.open('tbcpl-cache-v1').then(cache => {
       return cache.addAll([
         '/',
-        '/index.html',
-        '/logo.png',
-        '/manifest.json'
+        'index.html',
+        'logo.png',
+        'manifest.json'
       ]);
     })
   );
