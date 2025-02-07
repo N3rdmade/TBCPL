@@ -12,7 +12,7 @@ self.addEventListener('install', event => {
         'robots.txt',
         'SciFi2.CSS',
         'flash/minimal.css',
-        'assets/404-SciFi.jps',
+        'assets/404-SciFi.jpg',
         'assets/brave.png',
         'assets/qrcode.png',
         'assets/reddit.png',
