@@ -1,6 +1,6 @@
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open('tbcpl-cache-v1').then(cache => {
+    caches.open('tbcpl-cache-v2').then(cache => {
       return cache.addAll([
         '404.html',
         'index.html',
@@ -10,7 +10,7 @@ self.addEventListener('install', event => {
         'banner.png',
         'dmca.html',
         'robots.txt',
-        'SciFi2.CSS',
+        'styles.css',
         'flash/minimal.css',
         'assets/404-SciFi.jpg',
         'assets/brave.png',
