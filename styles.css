@@ -80,14 +80,26 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  width: 160px;
-  height: 60px;
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(147, 112, 219, 0.1) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  width: 160px; /* Original size */
+  height: 60px; /* Original size */
+  box-shadow: 0 0 10px rgba(147, 112, 219, 0.2);
 }
 
 .icon-link:hover {
+  background: linear-gradient(135deg,
+    rgba(147, 112, 219, 0.2) 0%,
+    rgba(255, 105, 180, 0.2) 50%,
+    rgba(147, 112, 219, 0.2) 100%
+  );
   transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
   border-color: #ff69b4;
 }
 
@@ -110,11 +122,11 @@ h1 {
 @media (max-width: 600px) {
   .section {
     padding: 20px;
-    gap: 5px;
+    gap: 5px; /* Further reduced gap on mobile */
   }
 
   .icon-link {
-    width: 140px;
+    width: 140px; /* Slightly reduced for mobile */
     height: 50px;
     padding: 8px;
   }
