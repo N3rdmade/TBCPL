@@ -10,7 +10,7 @@ self.addEventListener('install', event => {
         'banner.png',
         'dmca.html',
         'robots.txt',
-        'styles.css',
+        'new_styles.css',
         'flash/minimal.css',
         'assets/404-SciFi.jpg',
         'assets/brave.png',
