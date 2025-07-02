@@ -82,13 +82,6 @@
         }
     </style>
 <body>
-  <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(() => console.log('Service Worker Registered'))
-                .catch(err => console.error('Service Worker Failed', err));
-        }
-    </script>
   <div class="star-field">
     <div class="layer"></div>
     <div class="layer"></div>
