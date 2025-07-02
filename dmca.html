@@ -32,17 +32,19 @@
     <link rel="preload stylesheet" href="css/flash.css" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+body {
+  font-family: "Orbitron", sans-serif;
+  background-image: url("gif/1.gif"); /* Updated to your local GIF */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  text-align: center;
+  min-height: 100vh;
+}
         .header, .footer {
             background-color: #202020;
             padding: 2px 0;
@@ -137,13 +139,24 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #555555;
         }
+
+        @font-face {
+  font-family: 'Blanka';
+  src: url('/fonts/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.blanka {
+  font-family: 'Blanka', sans-serif;
+}
     </style>
 </head>
 <body>
     <div class="header">
         <!-- Banner removed -->
     </div>
-    <div class="container">
+    <div class="container blanka">
         <h1>DMCA Takedown Request</h1>
         <p>Our website provides links to third-party sites.None of them or their content is owned or operated by N3rdmade, We do not host any of the movies or other content provided by these 3rd party sites, and we do not have control over the content hosted on these third-party sites. We simply provide links to these sites as a referance.</p>
         <p>We take the intellectual property rights of others seriously and require that our users do the same. The Digital Millennium Copyright Act (DMCA) established a process for addressing claims of copyright infringement. If you own a copyright or have authority to act on behalf of a copyright owner and want to report a claim that a third party is infringing that material, please submit a DMCA report via Discord or email and we will take appropriate action.</p>
@@ -161,9 +174,6 @@
         <center>
             <h3 class="thank-you">Thank you for your cooperation.</h3>
         </center>
-    </div>
-    <div class="footer">
-        &copy; 2024 TBCPL. All rights reserved.
     </div>
     <script src="js/smoothscroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>

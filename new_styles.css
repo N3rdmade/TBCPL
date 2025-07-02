@@ -2,10 +2,11 @@
 
 body {
   font-family: "Orbitron", sans-serif;
-  background-image: url("https://wallpapercave.com/wp/wp13991585.jpg");
+  background-image: url("gif/1.gif"); /* Updated to your local GIF */
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed; 
+  background-attachment: fixed;
+  background-position: center;
   color: #ff69b4;
   margin: 0;
   padding: 0;
@@ -303,4 +304,16 @@ h1 {
     max-width: 120px;
     max-height: 45px;
   }
+}
+
+
+@font-face {
+  font-family: 'Blanka';
+  src: url('/fonts/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.blanka {
+  font-family: 'Blanka', sans-serif;
 }
