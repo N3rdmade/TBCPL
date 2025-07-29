@@ -175,14 +175,6 @@
     </div>
 
     <script>
-        const encodedWebhookUrl = "V1ZWb1UwMUhUa2xVVkZwTlpWUnNjbGxXYUU5aGJVbDZVMjEwVFdKVk5USlpiRTAxWVVkT1NHRXpXbXROYkZwd1dWVmpOV1J0UlhwVVdGcE9Wa1V3TVZReFVscE9WVEUyWVhwU1QyRnJNSHBVVjNCcVRrVTFSVk5VU2xCVmVtZzJWVlJCTlZWck5YSlRhMlJwVm14YVJsVXlkR0ZSTVVwd1RWZDRhMlZ0VWtOVmJuQnJWVWRHUmsxV1NtbFNWa2w2V1cweE5HRXdOVWhaZWtKcVRXNW9lbFZYY3pWak1WWklaRVp3VDFaNlJYaGFSVlV4Vm14T2RWUnROV3RsYkZvMVdrUkNZV014VFhkYVJ6RldVMFZKZUZkcVNsZGlWazVDVUZRd1BRPT0=";
-
-        // Decode the webhook URL four times
-        const decoded1 = atob(encodedWebhookUrl);
-        const decoded2 = atob(decoded1);
-        const decoded3 = atob(decoded2);
-        const webhookUrl = atob(decoded3);
-
         // Form submission handling
         const form = document.getElementById('siteRequestForm');
         const popup = document.getElementById('popup');
@@ -195,20 +187,13 @@
             const siteFeature = document.getElementById('siteFeature').value;
 
             const payload = {
-                embeds: [{
-                    title: "New Site Request",
-                    color: 0xff4d82,
-                    fields: [
-                        { name: "Site URL", value: siteUrl, inline: false },
-                        { name: "Site Name", value: siteName, inline: false },
-                        { name: "Favorite Feature", value: siteFeature, inline: false }
-                    ],
-                    timestamp: new Date().toISOString()
-                }]
+                siteUrl,
+                siteName,
+                siteFeature
             };
 
             try {
-                const response = await fetch(webhookUrl, {
+                const response = await fetch('/api/submit', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
