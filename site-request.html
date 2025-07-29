@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+  <script src="js/nocheats.js" defer></script>
+  <script src="js/smoothscroll.js" defer></script>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TBCPL - SITE REQUEST</title>
+  <meta name="description" content="Free Media for all! ">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:url" content="https://tbcpl.lol">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TheBestCouchPotatoList">
+  <meta property="og:description" content="Free Media for all! ">
+  <meta property="og:image" content="https://tbcpl.lol/banner.png">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="420">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="tbcpl.lol">
+  <meta property="twitter:url" content="https://tbcpl.lol">
+  <meta name="twitter:title" content="TheBestCouchPotatoList">
+  <meta name="twitter:description" content="Free Media for all! ">
+  <meta name="twitter:image" content="https://tbcpl.lol/banner.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
+  <link rel="shortcut icon" href="https://tbcpl.lol/logo.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+  <link rel="stylesheet" href="./flash/minimal.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('./gif/1.gif') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.8s ease-out forwards;
+            backdrop-filter: blur(8px);
+        }
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .form-input {
+            transition: all 0.4s ease;
+            border: 2px solid #ff8ab5;
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 245, 247, 0.7);
+        }
+        .form-input:focus {
+            border-color: #ff4d82;
+            outline: none;
+            box-shadow: 0 0 12px rgba(255, 77, 130, 0.4);
+            transform: scale(1.02);
+        }
+        .form-label {
+            color: #ff4d82;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            pointer-events: none;
+        }
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            transform: translateY(-2rem);
+            font-size: 0.85rem;
+            color: #ff2e6a;
+        }
+        .submit-btn {
+            background: linear-gradient(45deg, #ff4d82, #ff8ab5);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.75rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 77, 130, 0.5);
+        }
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        .submit-btn:hover::after {
+            left: 100%;
+        }
+        .popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ff4d82;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .popup.show {
+            display: block;
+        }
+        @keyframes slideIn {
+            from { right: -100%; }
+            to { right: 20px; }
+        }
+                @font-face {
+  font-family: 'Blanka';
+  src: url('/fonts/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.blanka {
+  font-family: 'Blanka', sans-serif;
+}
+    </style>
+</head>
+<body>
+    <div class="form-container blanka">
+        <h2 class="text-3xl font-bold text-center text-pink-700 mb-8">Site Request Form</h2>
+        <form id="siteRequestForm">
+            <div class="mb-6 relative">
+                <input type="url" id="siteUrl" class="form-input" placeholder=" " required>
+                <label for="siteUrl" class="form-label">Site URL</label>
+            </div>
+            <div class="mb-6 relative">
+                <input type="text" id="siteName" class="form-input" placeholder=" " required>
+                <label for="siteName" class="form-label">Site Name</label>
+            </div>
+            <div class="mb-6 relative">
+                <textarea id="siteFeature" class="form-input" placeholder=" " rows="4" required></textarea>
+                <label for="siteFeature" class="form-label">Favorite Feature</label>
+            </div>
+            <button type="submit" class="submit-btn w-full">Submit Request</button>
+        </form>
+    </div>
+    <div id="popup" class="popup blanka">
+        Request Sent Successfully!
+    </div>
+
+    <script>
+        const encodedWebhookUrl = "V1ZWb1UwMUhUa2xVVkZwTlpWUnNjbGxXYUU5aGJVbDZVMjEwVFdKVk5USlpiRTAxWVVkT1NHRXpXbXROYkZwd1dWVmpOV1J0UlhwVVdGcE9Wa1V3TVZReFVscE9WVEUyWVhwU1QyRnJNSHBVVjNCcVRrVTFSVk5VU2xCVmVtZzJWVlJCTlZWck5YSlRhMlJwVm14YVJsVXlkR0ZSTVVwd1RWZDRhMlZ0VWtOVmJuQnJWVWRHUmsxV1NtbFNWa2w2V1cweE5HRXdOVWhaZWtKcVRXNW9lbFZYY3pWak1WWklaRVp3VDFaNlJYaGFSVlV4Vm14T2RWUnROV3RsYkZvMVdrUkNZV014VFhkYVJ6RldVMFZKZUZkcVNsZGlWazVDVUZRd1BRPT0=";
+
+        // Decode the webhook URL four times
+        const decoded1 = atob(encodedWebhookUrl);
+        const decoded2 = atob(decoded1);
+        const decoded3 = atob(decoded2);
+        const webhookUrl = atob(decoded3);
+
+        // Form submission handling
+        const form = document.getElementById('siteRequestForm');
+        const popup = document.getElementById('popup');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const siteUrl = document.getElementById('siteUrl').value;
+            const siteName = document.getElementById('siteName').value;
+            const siteFeature = document.getElementById('siteFeature').value;
+
+            const payload = {
+                embeds: [{
+                    title: "New Site Request",
+                    color: 0xff4d82,
+                    fields: [
+                        { name: "Site URL", value: siteUrl, inline: false },
+                        { name: "Site Name", value: siteName, inline: false },
+                        { name: "Favorite Feature", value: siteFeature, inline: false }
+                    ],
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    popup.classList.add('show');
+                    form.reset();
+                    setTimeout(() => {
+                        popup.classList.remove('show');
+                    }, 3000);
+                } else {
+                    alert('Failed to send request. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TD8F20DS4V');
+</script>
+</html>
