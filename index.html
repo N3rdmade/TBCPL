@@ -156,8 +156,65 @@
                     // Remove from DOM after fade completes
                     setTimeout(function() {
                         loadingScreen.style.display = 'none';
+                        // Initialize scroll animations after loading
+                        initializeScrollAnimations();
                     }, 800);
                 }, 2500);
+            });
+
+            // Scroll Animation System
+            function initializeScrollAnimations() {
+                // Check if user prefers reduced motion
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    return;
+                }
+
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animationPlayState = 'running';
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe sections for scroll animations
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.animationPlayState = 'paused';
+                    observer.observe(section);
+                });
+
+                // Add subtle parallax effect to star field (desktop only)
+                const isMobile = window.innerWidth <= 600;
+                if (!isMobile) {
+                    let ticking = false;
+                    
+                    window.addEventListener('scroll', () => {
+                        if (!ticking) {
+                            requestAnimationFrame(() => {
+                                const scrolled = window.pageYOffset;
+                                const parallax = document.querySelector('.star-field');
+                                if (parallax) {
+                                    parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
+                                }
+                                ticking = false;
+                            });
+                            ticking = true;
+                        }
+                    }, { passive: true });
+                }
+            }
+
+            // Close popup on outside click
+            window.addEventListener('click', function(event) {
+                const popup = document.getElementById('qrPopup');
+                if (event.target === popup) {
+                    closePopup();
+                }
             });
         </script>
 
@@ -294,11 +351,13 @@
                     </a>
                 </div>
                 -->
+                <!-- I SAW THE MOBILE VIEW OF THE SITE ITS VERY CONFUSING UI , BAD IN SCALING, AND AVG PERSON MIGHT GET CONFUSED HOW TO USE IT
                 <div class="icon-link">
                     <a href="https://nunflix.org/" target="_blank">
                         <img src="./logo/movies_shows/nunflix.png" alt="nunflix Logo" class="icon">
                     </a>
                 </div>
+                -->
                 <div class="icon-link">
                     <a href="https://willow.arlen.icu/" target="_blank">
                         <img src="./logo/movies_shows/willow.png" alt="willow Logo" class="icon">
@@ -494,13 +553,15 @@
                         <img src="./logo/livetv/totv.png" alt="TOTV Logo" class="icon">
                     </a>
                 </div>
+                <!-- ITS USING STREAMED.SU API THAT SITE IS ALREADY LISTED ABOVE
                 <div class="icon-link">
                     <a href="https://rivestream.org/livesports/" target="_blank">
                         <img src="./logo/movies_shows/rivestream.png" alt="RiveStream Logo" class="icon">
                     </a>
                 </div>
+                -->
                 <div class="icon-link">
-                    <a href="https://www.1shows.ru/sports" target="_blank">
+                    <a href="https://www.1shows.ru/livetv" target="_blank">
                         <img src="./logo/movies_shows/1shows.png" alt="RiveStream Logo" class="icon">
                     </a>
                 </div>
