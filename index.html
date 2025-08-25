@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+   
     <script src="js/nocheats.js" defer></script>
     <script src="js/smoothscroll.js" defer></script>
     <meta charset="UTF-8">
@@ -83,6 +83,12 @@
 </style>
 
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <img src="./logo.png" alt="TBCPL Logo" class="loading-logo">
+        <div class="loading-text">WELCOME BACK</div>
+    </div>
+
     <div class="star-field">
         <div class="layer"></div>
         <div class="layer"></div>
@@ -138,6 +144,21 @@
             function closePopup() {
                 document.getElementById('qrPopup').style.display = 'none';
             }
+
+            // Loading Screen Control
+            window.addEventListener('load', function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                
+                // Wait for 2.5 seconds to show the animation
+                setTimeout(function() {
+                    loadingScreen.classList.add('fade-out');
+                    
+                    // Remove from DOM after fade completes
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                    }, 800);
+                }, 2500);
+            });
         </script>
 
 
@@ -180,18 +201,28 @@
                     </a>
                 </div>
                 <div class="icon-link">
+                    <a href="https://myflixerz.to/" target="_blank"> <!--THEY GOT BIG STORAGE OF CONTENT ALMOST 50K MOVIES AND 30K TVSHOWS-->
+                        <img src="./logo/movies_shows/myflixerz.png" alt="myflixerz Logo" class="icon">
+                    </a>
+                </div>
+                <div class="icon-link">
+                    <a href="https://netnaija.video/" target="_blank"> <!--A DESERVERED SEAT FOR THIS SITE THEY GOT BIG VARIETY-->
+                        <img src="./logo/movies_shows/moviebox.png" alt="moviebox Logo" class="icon">
+                    </a>
+                </div>
+                <div class="icon-link">
+                    <a href="https://www.cineby.app/" target="_blank">
+                        <img src="./logo/movies_shows/cineby.png" alt="Cineby Logo" class="icon">
+                    </a>
+                </div>
+                <div class="icon-link">
                     <a href="https://filmcave.net/" target="_blank">
                         <img src="./logo/movies_shows/filmcave.png" alt="FilmCave Logo" class="icon">
                     </a>
                 </div>
                 <div class="icon-link">
-                    <a href="https://watch.corsflix.net/" target="_blank">
-                        <img src="./logo/movies_shows/corsflix.png" alt="corsflix Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://lordflix.cc" target="_blank">
-                        <img src="./logo/movies_shows/lordflix.png" alt="lordflix Logo" class="icon">
+                    <a href="https://fmovies-hd.to/home/" target="_blank"> <!--COMEBACK AS PEOPLE DEMANDED-->
+                        <img src="./logo/movies_shows/fmovies.png" alt="fmovies Logo" class="icon">
                     </a>
                 </div>
                 <div class="icon-link">
@@ -200,53 +231,8 @@
                     </a>
                 </div>
                 <div class="icon-link">
-                    <a href="https://net2025.cc/" target="_blank">
-                        <img src="./logo/movies_shows/netmirror.png" alt="netmirror Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://nunflix.org/" target="_blank">
-                        <img src="./logo/movies_shows/nunflix.png" alt="nunflix Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://myflixerz.to/" target="_blank">
-                        <img src="./logo/movies_shows/myflixerz.png" alt="myflixerz Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
                     <a href="https://vexo.to/" target="_blank">
                         <img src="./logo/movies_shows/vexo.png" alt="vexo Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://smashystream.xyz/" target="_blank">
-                        <img src="./logo/movies_shows/smashystream.png" alt="smashystream Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.5movierulz.poker/" target="_blank">
-                        <img src="./logo/movies_shows/5movierulz.png" alt="5movierulz Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://cinemora.ru/" target="_blank">
-                        <img src="./logo/movies_shows/cinemora.png" alt="cinemora Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://nepu.to/" target="_blank">
-                        <img src="./logo/movies_shows/nepu.png" alt="Nepu Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://freek.to/" target="_blank">
-                        <img src="./logo/movies_shows/freek.png" alt="Freek Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.cineby.app/" target="_blank">
-                        <img src="./logo/movies_shows/cineby.png" alt="Cineby Logo" class="icon">
                     </a>
                 </div>
                 <div class="icon-link">
@@ -260,8 +246,57 @@
                     </a>
                 </div>
                 <div class="icon-link">
+                    <a href="https://smashystream.xyz/" target="_blank">
+                        <img src="./logo/movies_shows/smashystream.png" alt="smashystream Logo" class="icon">
+                    </a>
+                </div>
+                <!--
+                <div class="icon-link"> //REQUIRES GOOGLE LOGIN TO PROCEED FURTHER
+                    <a href="https://net2025.cc/" target="_blank">
+                        <img src="./logo/movies_shows/netmirror.png" alt="netmirror Logo" class="icon">
+                    </a>
+                </div>
+                -->
+                <div class="icon-link">
+                    <a href="https://lordflix.cc" target="_blank">
+                        <img src="./logo/movies_shows/lordflix.png" alt="lordflix Logo" class="icon">
+                    </a>
+                </div>
+                <div class="icon-link">
                     <a href="https://pstream.mov/" target="_blank">
                         <img src="./logo/movies_shows/pstream.png" alt="P-Stream Logo" class="icon">
+                    </a>
+                </div>
+                <!--
+                <div class="icon-link"> //LESS VARIETY FOR ENGLISH DUBBED CONTENT
+                    <a href="https://www.5movierulz.poker/" target="_blank">
+                        <img src="./logo/movies_shows/5movierulz.png" alt="5movierulz Logo" class="icon">
+                    </a>
+                </div
+                -->
+                <!-- WE ALREADY HAVE FLICKYSTREAM BOTH OF THEM GOT SAME SOURCE AND EVEN SAME OWNER
+                <div class="icon-link">
+                    <a href="https://cinemora.ru/" target="_blank">
+                        <img src="./logo/movies_shows/cinemora.png" alt="cinemora Logo" class="icon">
+                    </a>
+                </div>
+                -->
+                <div class="icon-link">
+                    <a href="https://nepu.to/" target="_blank">
+                        <img src="./logo/movies_shows/nepu.png" alt="Nepu Logo" class="icon">
+                    </a>
+                </div> 
+                <!-- ITS BEEN 4 MONTHS SINCE THE OWNER ABANDONDED THIS PROJECT, NOW NOTHING WORKS ANIME, MANGA, MOVIES, TV SHOWS NOTHING WORKS , only the external embeds api works
+                 I'll add it back once i confirmed the bugs has been fixed, CUZ THE UI OF THIS SITE CRAZY good
+                <div class="icon-link">
+                    <a href="https://freek.to/" target="_blank">
+                        <img src="./logo/movies_shows/freek.png" alt="Freek Logo" class="icon">
+                    </a>
+                </div>
+                -->
+                <div class="icon-link">
+                    <a href="https://nunflix.org/" target="_blank">
+                        <img src="./logo/movies_shows/nunflix.png" alt="nunflix Logo" class="icon">
                     </a>
                 </div>
                 <div class="icon-link">
@@ -399,6 +434,11 @@
                         <img src="./logo/manga/mangakatana.png" alt="MangaKatana Logo" class="icon">
                     </a>
                 </div>
+                <div class="icon-link">
+                    <a href="https://vexo.to/search?tab=manga" target="_blank">
+                        <img src="./logo/movies_shows/vexo.png" alt="vexo Logo" class="icon">
+                    </a>
+                </div>
             </div>
 
             <!-- Live TV Section -->
@@ -494,6 +534,7 @@
                         <img src="./logo/paid_apps/netflix.png" alt="Netflix Logo" class="icon">
                     </a>
                 </div>
+                <!-- no need for this now too 
                 <div class="icon-link">
                     <a href="https://www.hotstar.com/" target="_blank">
                         <img src="./logo/paid_apps/hotstar.png" alt="Hotstar Logo" class="icon">
@@ -504,6 +545,7 @@
                         <img src="./logo/paid_apps/sonyliv.png" alt="sonyliv Logo" class="icon">
                     </a>
                 </div>
+                -->
                 <div class="icon-link">
                     <a href="https://www.viki.com/" target="_blank">
                         <img src="./logo/paid_apps/viki.png" alt="viki Logo" class="icon">
@@ -511,7 +553,7 @@
                 </div>
                 <div class="icon-link">
                     <a href="https://www.max.com/" target="_blank">
-                        <img src="https://www.max.com/img/max-h-w-l.svg?v=1.0" alt="MAX Logo" class="icon">
+                        <img src="https://www.hbomax.com/img/hbomax/logo_nav_bar.png" alt="MAX Logo" class="icon">
                     </a>
                 </div>
                 <div class="icon-link">
@@ -549,11 +591,13 @@
                         <img src="./logo/paid_apps/amc+.png" alt="AMC+ Logo" class="icon">
                     </a>
                 </div>
+                <!-- NO NEED FOR THIS NOW
                 <div class="icon-link">
                     <a href="https://www.zee5.com/" target="_blank">
                         <img src="./logo/paid_apps/zee5.png" alt="zee5 Logo" class="icon">
                     </a>
                 </div>
+                -->
             </div>
             <p class="footer-text">
                 <a href="https://discord.gg/Dsts8Y2jWz" target="_blank" rel="noopener noreferrer" style="color: #ff69b4; text-decoration: none;">

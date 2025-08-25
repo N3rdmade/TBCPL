@@ -35,6 +35,22 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   animation: textPulse 2s ease-in-out infinite;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 20px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 14px;
+    white-space: nowrap;
+  }
 }
 
 .container {
@@ -122,20 +138,86 @@ h1 {
 /* Mobile Adjustments */
 @media (max-width: 600px) {
   .section {
-    padding: 20px;
-    gap: 5px; /* Further reduced gap on mobile */
+    padding: 20px 15px;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 
   .icon-link {
-    width: 140px; /* Slightly reduced for mobile */
-    height: 50px;
-    padding: 8px;
+    width: 47% !important;
+    min-width: 47% !important;
+    max-width: 47% !important;
+    flex: 0 0 47% !important;
+    flex-basis: 47% !important;
+    height: 70px;
+    padding: 12px;
+    box-sizing: border-box;
+    margin: 0 0 8px 0 !important;
+    border-radius: 12px;
   }
 
   .icon {
-    max-width: 120px;
-    max-height: 40px;
+    max-width: 95px;
+    max-height: 45px;
+    width: 95px;
+    height: 45px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    margin: 0 auto;
   }
+
+  .section-header {
+    font-size: 22px;
+    margin-bottom: 20px;
+    padding: 12px;
+  }
+}
+
+/* Loading Screen Styles */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 1;
+  transition: opacity 0.8s ease-out;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-logo {
+  width: 150px;
+  height: 150px;
+  animation: logoZoom 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.5));
+}
+
+@keyframes logoZoom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.loading-text {
+  position: absolute;
+  bottom: 30%;
+  color: #ff69b4;
+  font-family: "Orbitron", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+  animation: textPulse 1.5s ease-in-out infinite;
 }
 
 .link {
@@ -293,18 +375,6 @@ h1 {
   100% { text-shadow: 0 0 5px #ff69b4; }
 }
 
-@media (max-width: 768px) {
-  .icon-link {
-    width: 140px;
-    height: 55px;
-    margin: 10px;
-  }
-  
-  .icon {
-    max-width: 120px;
-    max-height: 45px;
-  }
-}
 
 
 @font-face {
