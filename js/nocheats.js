@@ -30,5 +30,6 @@ function addListenersToIframes() {
 addNoCheatListeners(document);
 addListenersToIframes();
 
-// Re-apply listeners to iframes periodically to catch dynamically added iframes
-setInterval(addListenersToIframes, 1000);
+// Re-apply listeners to iframes less frequently on mobile
+const interval = window.innerWidth <= 600 ? 5000 : 1000;
+setInterval(addListenersToIframes, interval);

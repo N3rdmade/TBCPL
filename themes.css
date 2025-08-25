@@ -1,12 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap");
 
+/* Fallback font for faster loading */
+@media (max-width: 600px) {
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+}
+
 body {
   font-family: "Orbitron", sans-serif;
-  background-image: url("gif/1.gif");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
+  background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
   color: #ff69b4;
   margin: 0;
   padding: 0;
@@ -15,8 +18,35 @@ body {
   min-height: 100vh;
 }
 
+/* Only load GIF on larger screens with good connection */
+@media (min-width: 1200px) and (min-resolution: 2dppx) {
+  body {
+    background-image: url("gif/1.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* Changed from fixed for better performance */
+    background-position: center;
+  }
+}
+
+/* Static fallback background for better performance */
+@media (min-width: 601px) and (max-width: 1199px) {
+  body {
+    background: 
+      radial-gradient(ellipse at center, rgba(147, 112, 219, 0.1) 0%, transparent 50%),
+      linear-gradient(135deg, #000000 0%, #1a0033 25%, #000000 50%, #1a0033 75%, #000000 100%);
+    background-size: 400px 400px, 100% 100%;
+    animation: subtleMove 20s ease-in-out infinite;
+  }
+}
+
+@keyframes subtleMove {
+  0%, 100% { background-position: 0% 0%, center; }
+  50% { background-position: 100% 100%, center; }
+}
+
 h1, h2, h3, h4, h5, h6, p {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.95);
   padding: 15px;
   border-radius: 10px;
   margin: 10px 0;
@@ -77,7 +107,7 @@ h1::before {
 
 .section {
   position: relative;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(25, 0, 51, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.99) 0%, rgba(25, 0, 51, 0.98) 100%);
   padding: 30px;
   border-radius: 20px;
   margin: 30px 0;
@@ -88,7 +118,7 @@ h1::before {
   justify-content: center;
   gap: 15px;
   box-shadow: 0 8px 32px rgba(255, 105, 180, 0.1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
   animation: fadeInUp 0.8s ease-out;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -151,11 +181,11 @@ h1::before {
   border-radius: 15px;
   padding: 10px;
   background: linear-gradient(135deg, 
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(147, 112, 219, 0.1) 50%,
-    rgba(0, 0, 0, 0.8) 100%
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(147, 112, 219, 0.3) 50%,
+    rgba(0, 0, 0, 0.98) 100%
   );
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   width: 160px;
   height: 60px;
@@ -220,11 +250,13 @@ h1::before {
 /* Mobile Optimizations */
 @media (max-width: 600px) {
   .section {
-    padding: 20px 15px;
-    gap: 12px;
+    padding: 15px 10px;
+    gap: 8px;
     justify-content: space-between;
     align-items: flex-start;
-    transform: none !important; /* Disable hover transforms on mobile */
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
   }
 
   .icon-link {
@@ -263,23 +295,44 @@ h1::before {
     padding: 12px;
   }
 
-  /* Reduce star field complexity on mobile */
-  .star-field .layer {
-    animation-duration: 20s; /* Slower, less demanding */
-  }
-
-  /* Disable parallax on mobile for performance */
+  /* Disable star field on mobile completely */
   .star-field {
-    transform: none !important;
+    display: none;
   }
 
-  /* Reduce animation complexity */
+/* Ensure content appears above particles */
+.container {
+  position: relative;
+  z-index: 5;
+}
+
+.section {
+  position: relative;
+  z-index: 5;
+}
+
+.loading-screen {
+  position: fixed;
+  z-index: 10000;
+}
+
+  /* Disable complex animations on mobile */
   h1::before {
-    animation: none; /* Disable complex gradient animation on mobile */
+    display: none;
   }
 
   .section::before {
-    animation-duration: 5s; /* Slower border glow */
+    display: none;
+  }
+
+  .section-header::after {
+    display: none;
+  }
+
+  /* Disable hover effects on mobile */
+  .icon-link:hover {
+    transform: none !important;
+    box-shadow: 0 4px 15px rgba(147, 112, 219, 0.15) !important;
   }
 }
 
@@ -432,21 +485,17 @@ h1::before {
 
 .star-field .layer {
   box-shadow: 
-    -200px -300px 1px #cccccc, 
-    400px -200px 1px #d4d4d4, 
-    -150px -350px 1px #fcfcfc, 
-    300px -250px 1px #f7f7f7, 
-    500px -100px 1px #ededed, 
-    -100px 400px 1px #c7c7c7, 
-    200px 350px 1px #e3e3e3, 
-    -300px 200px 1px #dbdbdb;
+    -100px -150px 1px #cccccc, 
+    200px -100px 1px #d4d4d4, 
+    -75px -175px 1px #fcfcfc, 
+    150px -125px 1px #f7f7f7;
   position: absolute;
   top: 50%;
   left: 50%;
   height: 2px;
   width: 2px;
   border-radius: 1px;
-  transform: translate(-50%, -50%); /* Centered properly */
+  transform: translate(-50%, -50%);
 }
 
 @keyframes sf-fly-by {
@@ -469,11 +518,9 @@ h1::before {
 
 .star-field .layer:nth-child(2) {
   box-shadow: 
-    100px -150px 1px #e6e6e6, 
-    -400px 250px 1px #dedede, 
-    250px 300px 1px #cfcfcf, 
-    -50px -200px 1px #fafafa;
-  animation: sf-fly-by 15s linear infinite;
+    50px -75px 1px #e6e6e6, 
+    -200px 125px 1px #dedede;
+  animation: sf-fly-by 20s linear infinite;
   animation-delay: -3s;
 }
 
@@ -580,10 +627,13 @@ h1::before {
 .icon-link:nth-child(19) { animation-delay: 1.8s; }
 .icon-link:nth-child(20) { animation-delay: 1.9s; }
 
-/* Reduce delays on mobile for faster loading perception */
+/* Disable animations on mobile completely */
 @media (max-width: 600px) {
-  .icon-link:nth-child(n) { animation-delay: 0s !important; }
-  .icon-link { animation-duration: 0.3s !important; }
+  .icon-link:nth-child(n) { animation: none !important; }
+  .icon-link { animation: none !important; }
+  .section { animation: none !important; }
+  .section-header { animation: none !important; }
+  h1 { animation: none !important; }
 }
 
 @font-face {
@@ -612,13 +662,25 @@ h1::before {
   }
 }
 
-/* GPU acceleration for smooth animations */
-.icon-link,
-.section,
-.loading-logo,
-h1 {
-  transform: translateZ(0);
-  will-change: transform;
+/* GPU acceleration for smooth animations - desktop only */
+@media (min-width: 601px) {
+  .icon-link,
+  .section,
+  .loading-logo,
+  h1 {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+/* Remove will-change on mobile to save memory */
+@media (max-width: 600px) {
+  .icon-link,
+  .section,
+  .loading-logo,
+  h1 {
+    will-change: auto;
+  }
 }
 
 /* Optimize images for better performance */

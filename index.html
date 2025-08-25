@@ -2,12 +2,9 @@
 <html lang="en">
 
 <head>
-    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
-    <script src="js/nocheats.js" defer></script>
-    <script src="js/smoothscroll.js" defer></script>
     <meta charset="UTF-8">
-    <link rel="manifest" href="manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
     <title>TheBestCouchPotatoList</title>
     <meta name="description" content="Free Media for all! ">
 
@@ -31,10 +28,11 @@
     <!-- Favicon -->
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
     <link rel="shortcut icon" href="https://tbcpl.lol/logo.png" type="image/png">
-    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preload" href="./fonts/ClashDisplay-Variable.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="./flash/minimal.css">
-    <link rel="stylesheet" href="./theme.css">
+    <link rel="stylesheet" href="./themes.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
     </style>
 
 </head>
@@ -89,11 +87,7 @@
         <div class="loading-text">WELCOME BACK</div>
     </div>
 
-    <div class="star-field">
-        <div class="layer"></div>
-        <div class="layer"></div>
-        <div class="layer"></div>
-    </div>
+    <!-- Star field removed - replaced by particles.js -->
     <div class="container">
         <h1>The Best Couch Potato List!</h1>
         <p><span class="blanka" style="font-family: Blanka, sans-serif"><strong><u>Please click and download 
@@ -156,10 +150,12 @@
                     // Remove from DOM after fade completes
                     setTimeout(function() {
                         loadingScreen.style.display = 'none';
-                        // Initialize scroll animations after loading
-                        initializeScrollAnimations();
-                    }, 800);
-                }, 2500);
+                        // Initialize scroll animations after loading on desktop only
+                        if (window.innerWidth > 600) {
+                            initializeScrollAnimations();
+                        }
+                    }, 300);
+                }, 1000);
             });
 
             // Scroll Animation System
@@ -215,7 +211,7 @@
                 if (event.target === popup) {
                     closePopup();
                 }
-            });
+            }, { passive: true });
         </script>
 
 
@@ -685,15 +681,27 @@
         &copy; 2024 TBCPL. All rights reserved.
         <a href="dmca.html" class="footer-button">Go to DMCA Page</a>
     </p>
+    
+    <!-- No particles div in HTML - created by JavaScript -->
     </body>
+    <!-- Particles.js Library and Simple Setup -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="js/particles-simple.js"></script>
+    <script src="js/mouse-effects.js" defer></script>
+    
+    <!-- Other Deferred scripts -->
+    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
+    <script src="js/nocheats.js" defer></script>
+    <script src="js/smoothscroll.js" defer></script>
+
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-TD8F20DS4V');
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TD8F20DS4V');
     </script>
 
 </html>

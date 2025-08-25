@@ -1,0 +1,11 @@
+/* Critical CSS - inline in head for faster first paint */
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:#000;color:#ff69b4;margin:0;padding:0;overflow-x:hidden;text-align:center;min-height:100vh}
+.container{max-width:900px;margin:0 auto;padding:20px}
+.loading-screen{position:fixed;top:0;left:0;width:100vw;height:100vh;background:linear-gradient(135deg,#000 0%,#1a0033 50%,#000 100%);display:flex;justify-content:center;align-items:center;z-index:10000;opacity:1;transition:opacity .3s ease-out}
+.loading-logo{width:120px;height:120px;filter:drop-shadow(0 0 15px rgba(255,105,180,.5))}
+.section{background:linear-gradient(135deg,rgba(0,0,0,.95) 0%,rgba(25,0,51,.9) 100%);padding:20px 15px;border-radius:15px;margin:20px 0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+@media (min-width:601px){
+  body{font-family:"Orbitron",sans-serif}
+  .section{padding:30px;gap:15px}
+  .loading-logo{width:150px;height:150px}
+}

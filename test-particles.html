@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particle Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+        .test-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+        .info {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <div class="test-content">
+        <h1>Particle System Test</h1>
+        <div class="info">
+            <p>You should see floating particles with connecting lines.</p>
+            <p>Click anywhere to create explosion effects!</p>
+            <p>Check the console for debug info.</p>
+        </div>
+        <button onclick="testParticles()">Test Particles</button>
+        <button onclick="testClick()">Test Click Effect</button>
+    </div>
+
+    <!-- Particles.js Library and Configuration -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="js/particles-config.js"></script>
+    <script src="js/particles-init.js"></script>
+    <script src="js/mouse-effects.js"></script>
+    
+    <script>
+        function testParticles() {
+            console.log('Testing particles...');
+            if (typeof pJSDom !== 'undefined' && pJSDom[0]) {
+                console.log('Particles.js loaded:', pJSDom[0]);
+                console.log('Particles count:', pJSDom[0].pJS.particles.array.length);
+                console.log('Canvas:', pJSDom[0].pJS.canvas.el);
+            } else if (window.particlesLoaded) {
+                console.log('Particles initialized but pJSDom not available');
+            } else {
+                console.log('No particles found!');
+            }
+        }
+        
+        function testClick() {
+            if (window.mouseEffects) {
+                window.mouseEffects.cursor.x = window.innerWidth / 2;
+                window.mouseEffects.cursor.y = window.innerHeight / 2;
+                window.mouseEffects.createClickEffect();
+            }
+        }
+        
+        // Auto-test after 2 seconds
+        setTimeout(testParticles, 2000);
+    </script>
+</body>
+</html>
