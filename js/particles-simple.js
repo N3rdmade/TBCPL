@@ -1,3 +1,5 @@
+
+/*
 // Super simple particles.js initialization
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Initializing particles.js...');
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         number: {
           value: window.innerWidth > 600 ? 80 : 40,
           density: {
-            enable: true,
+            enable: true, //LAGGING LOW END DEVICES
             value_area: 800
           }
         },
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
             mode: 'repulse'
           },
           onclick: {
-            enable: true,
+            enable: false,
             mode: 'push'
           },
           resize: true
@@ -106,3 +108,4 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error('Particles.js not loaded!');
   }
 });
+*/
