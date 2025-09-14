@@ -1,10 +1,21 @@
 
-/*
-// Super simple particles.js initialization
+// Lightweight particles only for high-end devices
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('Initializing particles.js...');
-  
-  // Create particles container with JavaScript ONLY
+  // Skip particles on low-end devices completely
+  const isLowEndDevice = (
+    window.innerWidth <= 768 ||
+    window.innerHeight <= 600 ||
+    navigator.deviceMemory < 4 ||
+    navigator.hardwareConcurrency < 4
+  );
+
+  if (isLowEndDevice) {
+    console.log('Skipping particles.js for low-end device');
+    return;
+  }
+
+  console.log('Initializing lightweight particles.js...');
+
   const particlesDiv = document.createElement('div');
   particlesDiv.id = 'particles-js';
   particlesDiv.style.cssText = `
@@ -17,19 +28,17 @@ document.addEventListener('DOMContentLoaded', function() {
     pointer-events: none !important;
     background: transparent !important;
   `;
-  
-  // Add to body
+
   document.body.appendChild(particlesDiv);
-  
+
   if (typeof particlesJS !== 'undefined') {
-    // Basic particles config
+    // Ultra-lightweight config for better performance
     particlesJS('particles-js', {
       particles: {
         number: {
-          value: window.innerWidth > 600 ? 80 : 40,
+          value: 30, // Reduced from 80 to 30
           density: {
-            enable: true, //LAGGING LOW END DEVICES
-            value_area: 800
+            enable: false // Disable density calculations
           }
         },
         color: {
@@ -39,23 +48,23 @@ document.addEventListener('DOMContentLoaded', function() {
           type: 'circle'
         },
         opacity: {
-          value: 0.5,
+          value: 0.3, // Reduced opacity
           random: false
         },
         size: {
-          value: 3,
-          random: true
+          value: 2, // Smaller particles
+          random: false // Disable randomization
         },
         line_linked: {
           enable: true,
-          distance: 150,
+          distance: 100, // Shorter connections
           color: '#ff69b4',
-          opacity: 0.4,
-          width: 1
+          opacity: 0.2, // Lower opacity
+          width: 0.5 // Thinner lines
         },
         move: {
           enable: true,
-          speed: 2,
+          speed: 1, // Slower movement
           direction: 'none',
           random: false,
           straight: false,
@@ -64,48 +73,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       },
       interactivity: {
-        detect_on: 'window',
+        detect_on: 'canvas',
         events: {
           onhover: {
-            enable: window.innerWidth > 600,
-            mode: 'repulse'
+            enable: false // Disable hover interactions
           },
           onclick: {
-            enable: false,
-            mode: 'push'
+            enable: false
           },
           resize: true
-        },
-        modes: {
-          repulse: {
-            distance: 120,
-            duration: 0.8,
-            speed: 1
-          },
-          push: {
-            particles_nb: 4
-          }
         }
       },
-      retina_detect: true
+      retina_detect: false // Disable retina detection for performance
     });
-    
-    console.log('Particles.js loaded successfully!');
-    
-    // Ensure canvas is properly configured
-    setTimeout(() => {
-      const canvas = document.querySelector('#particles-js canvas');
-      if (canvas) {
-        canvas.style.zIndex = '0';
-        canvas.style.opacity = '1';
-        canvas.style.visibility = 'visible';
-        canvas.style.pointerEvents = 'none';
-        console.log('Canvas configured for desktop:', canvas);
-      }
-    }, 500);
-    
+
+    console.log('Lightweight particles.js loaded successfully!');
+
   } else {
-    console.error('Particles.js not loaded!');
+    console.error('Particles.js library not loaded!');
   }
 });
-*/

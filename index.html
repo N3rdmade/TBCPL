@@ -28,10 +28,10 @@
     <!-- Favicon -->
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
     <link rel="shortcut icon" href="https://tbcpl.lol/logo.png" type="image/png">
-    <link rel="preload" href="./fonts/ClashDisplay-Variable.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="./flash/minimal.css">
     <link rel="stylesheet" href="./themes.css">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="./fonts/ClashDisplay-Variable.ttf" as="font" type="font/ttf" crossorigin media="(min-width: 769px)">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" media="(min-width: 769px)">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
     </style>
 
@@ -703,15 +703,32 @@
     
     <!-- No particles div in HTML - created by JavaScript -->
     </body>
-    <!-- Particles.js Library and Simple Setup -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="js/particles-simple.js"></script>
-    <script src="js/mouse-effects.js" defer></script>
-    
-    <!-- Other Deferred scripts -->
-    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
-    <script src="js/nocheats.js" defer></script>
+
+    <!-- Load heavy scripts only on high-end devices -->
+    <script>
+    if (window.innerWidth > 768 && (navigator.deviceMemory >= 4 || navigator.hardwareConcurrency >= 4)) {
+        // Load particles.js only for capable devices
+        const particlesScript = document.createElement('script');
+        particlesScript.src = 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js';
+        particlesScript.onload = function() {
+            const particlesSetup = document.createElement('script');
+            particlesSetup.src = 'js/particles-simple.js';
+            document.head.appendChild(particlesSetup);
+        };
+        document.head.appendChild(particlesScript);
+
+        // Load mouse effects for desktop
+        const mouseScript = document.createElement('script');
+        mouseScript.src = 'js/mouse-effects.js';
+        mouseScript.defer = true;
+        document.head.appendChild(mouseScript);
+    }
+    </script>
+
+    <!-- Essential scripts only -->
     <script src="js/smoothscroll.js" defer></script>
+    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool' defer></script>
+    <script src="js/nocheats.js" defer></script>
 
     
     <!-- Google tag (gtag.js) -->

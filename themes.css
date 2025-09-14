@@ -1,4 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap");
+/* Use system fonts for better performance on low-end devices */
+@media (max-width: 768px) {
+  * {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  }
+}
+
+/* Load custom font only on desktop */
+@media (min-width: 769px) {
+  @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap");
+}
 
 /* Fallback font for faster loading */
 @media (max-width: 600px) {
@@ -18,32 +28,25 @@ body {
   min-height: 100vh;
 }
 
-/* Only load GIF on larger screens with good connection */
-@media (min-width: 1200px) and (min-resolution: 2dppx) {
+/* Only load GIF on high-performance devices */
+@media (min-width: 1400px) and (min-resolution: 2dppx) and (min-device-pixel-ratio: 2) {
   body {
     background-image: url("gif/1.gif");
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: scroll; /* Changed from fixed for better performance */
+    background-attachment: scroll;
     background-position: center;
   }
 }
 
-/* Static fallback background for better performance */
-@media (min-width: 601px) and (max-width: 1199px) {
+/* Simplified background for mid-range devices */
+@media (min-width: 769px) and (max-width: 1399px) {
   body {
-    background: 
-      radial-gradient(ellipse at center, rgba(147, 112, 219, 0.1) 0%, transparent 50%),
-      linear-gradient(135deg, #000000 0%, #1a0033 25%, #000000 50%, #1a0033 75%, #000000 100%);
-    background-size: 400px 400px, 100% 100%;
-    animation: subtleMove 20s ease-in-out infinite;
+    background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
   }
 }
 
-@keyframes subtleMove {
-  0%, 100% { background-position: 0% 0%, center; }
-  50% { background-position: 100% 100%, center; }
-}
+/* Remove subtleMove animation - performance optimization */
 
 h1, h2, h3, h4, h5, h6, p {
   background-color: rgba(0, 0, 0, 0.95);
@@ -64,10 +67,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  animation: titleGlow 3s ease-in-out infinite, slideInFromTop 1s ease-out;
   white-space: nowrap;
   overflow: hidden;
   position: relative;
+}
+
+/* Only animate title on desktop */
+@media (min-width: 1200px) {
+  h1 {
+    animation: titleGlow 3s ease-in-out infinite, slideInFromTop 1s ease-out;
+  }
 }
 
 h1::before {
@@ -247,16 +256,37 @@ h1::before {
   object-fit: contain;
 }
 
-/* Mobile Optimizations */
-@media (max-width: 600px) {
+/* Performance optimizations for low-end devices */
+@media (max-width: 768px), (max-device-width: 768px) {
+  /* Disable ALL animations on mobile/tablets for better performance */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  /* Remove heavy background effects */
+  body {
+    background: #000000 !important;
+    background-image: none !important;
+    background-attachment: scroll !important;
+  }
+
   .section {
     padding: 15px 10px;
     gap: 8px;
     justify-content: space-between;
     align-items: flex-start;
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(147, 112, 219, 0.3) !important;
+  }
+
+  .section::before {
+    display: none !important;
   }
 
   .icon-link {
@@ -269,13 +299,16 @@ h1::before {
     padding: 12px;
     box-sizing: border-box;
     margin: 0 0 8px 0 !important;
-    border-radius: 12px;
-    animation-duration: 0.4s; /* Faster animations on mobile */
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: none !important;
+    border: 1px solid rgba(147, 112, 219, 0.3) !important;
+    box-shadow: none !important;
   }
 
   .icon-link:hover {
-    transform: translateY(-4px) scale(1.02); /* Reduced hover effects for mobile */
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+    background: rgba(147, 112, 219, 0.2) !important;
+    border-color: #ff69b4 !important;
   }
 
   .icon {
@@ -627,13 +660,19 @@ h1::before {
 .icon-link:nth-child(19) { animation-delay: 1.8s; }
 .icon-link:nth-child(20) { animation-delay: 1.9s; }
 
-/* Disable animations on mobile completely */
-@media (max-width: 600px) {
+/* Disable animations on low-end devices completely */
+@media (max-width: 768px), (max-device-memory: 2GB) {
   .icon-link:nth-child(n) { animation: none !important; }
   .icon-link { animation: none !important; }
   .section { animation: none !important; }
   .section-header { animation: none !important; }
   h1 { animation: none !important; }
+
+  /* Disable expensive effects */
+  .icon-link::before { display: none !important; }
+  .section::before { display: none !important; }
+  .section-header::after { display: none !important; }
+  h1::before { display: none !important; }
 }
 
 @font-face {
@@ -662,8 +701,8 @@ h1::before {
   }
 }
 
-/* GPU acceleration for smooth animations - desktop only */
-@media (min-width: 601px) {
+/* GPU acceleration only for high-end devices */
+@media (min-width: 1200px) and (min-device-memory: 4GB) {
   .icon-link,
   .section,
   .loading-logo,
@@ -673,13 +712,14 @@ h1::before {
   }
 }
 
-/* Remove will-change on mobile to save memory */
-@media (max-width: 600px) {
+/* Remove will-change on low-end devices to save memory */
+@media (max-width: 1199px) {
   .icon-link,
   .section,
   .loading-logo,
   h1 {
-    will-change: auto;
+    will-change: auto !important;
+    transform: none !important;
   }
 }
 
