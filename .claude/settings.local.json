@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(dir:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(start C:UsersRDownloadsProjectsTBCPLindex.html)",
+      "Read(//c/**)"
     ],
     "deny": [],
     "ask": []

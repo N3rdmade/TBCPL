@@ -1,26 +1,7 @@
-/* Use system fonts for better performance on low-end devices */
-@media (max-width: 768px) {
-  * {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
-  }
-}
-
-/* Load custom font only on desktop */
-@media (min-width: 769px) {
-  @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap");
-}
-
-/* Fallback font for faster loading */
-@media (max-width: 600px) {
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  }
-}
-
 body {
   font-family: "Orbitron", sans-serif;
-  background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
-  color: #ff69b4;
+  background: linear-gradient(135deg, #000000 0%, #1a0d00 50%, #000000 100%);
+  color: #ff8c00;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -42,7 +23,7 @@ body {
 /* Simplified background for mid-range devices */
 @media (min-width: 769px) and (max-width: 1399px) {
   body {
-    background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
+    background: linear-gradient(135deg, #000000 0%, #1a0d00 50%, #000000 100%);
   }
 }
 
@@ -53,12 +34,12 @@ h1, h2, h3, h4, h5, h6, p {
   padding: 15px;
   border-radius: 10px;
   margin: 10px 0;
-  text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+  text-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #ff69b4;
-  border: 2px solid rgba(147, 112, 219, 0.5);
+  color: #ff8c00;
+  border: 2px solid rgba(255, 140, 0, 0.5);
   padding: 15px;
   border-radius: 10px;
   font-weight: bold;
@@ -86,7 +67,7 @@ h1::before {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #ff69b4, #9370db, #ff69b4, #9370db);
+  background: linear-gradient(45deg, #ff8c00, #ff4500, #ff8c00, #ff4500);
   background-size: 400% 400%;
   border-radius: 12px;
   z-index: -1;
@@ -116,7 +97,7 @@ h1::before {
 
 .section {
   position: relative;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.99) 0%, rgba(25, 0, 51, 0.98) 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.99) 0%, rgba(26, 13, 0, 0.98) 100%);
   padding: 30px;
   border-radius: 20px;
   margin: 30px 0;
@@ -126,7 +107,7 @@ h1::before {
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
-  box-shadow: 0 8px 32px rgba(255, 105, 180, 0.1);
+  box-shadow: 0 8px 32px rgba(255, 140, 0, 0.1);
   backdrop-filter: blur(15px);
   animation: fadeInUp 0.8s ease-out;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -141,7 +122,7 @@ h1::before {
   bottom: 0;
   border-radius: 20px;
   padding: 2px;
-  background: linear-gradient(45deg, #ff69b4, #9370db, #ff69b4);
+  background: linear-gradient(45deg, #ff8c00, #ff4500, #ff8c00);
   background-size: 300% 300%;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
@@ -152,19 +133,19 @@ h1::before {
 
 .section:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 16px 48px rgba(255, 105, 180, 0.2);
+  box-shadow: 0 16px 48px rgba(255, 140, 0, 0.2);
 }
 
 .section-header {
   width: 100%;
   text-align: center;
-  color: #ff69b4;
+  color: #ff8c00;
   font-size: 26px;
   margin-bottom: 25px;
   padding: 15px;
   border-radius: 15px;
   font-weight: bold;
-  background: linear-gradient(135deg, rgba(147, 112, 219, 0.2), rgba(255, 105, 180, 0.1));
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(255, 140, 0, 0.1));
   letter-spacing: 3px;
   position: relative;
   overflow: hidden;
@@ -191,14 +172,14 @@ h1::before {
   padding: 10px;
   background: linear-gradient(135deg, 
     rgba(0, 0, 0, 0.98) 0%,
-    rgba(147, 112, 219, 0.3) 50%,
+    rgba(255, 140, 0, 0.3) 50%,
     rgba(0, 0, 0, 0.98) 100%
   );
   backdrop-filter: blur(12px);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   width: 160px;
   height: 60px;
-  box-shadow: 0 4px 15px rgba(147, 112, 219, 0.15);
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.15);
   position: relative;
   overflow: hidden;
   animation: fadeInScale 0.6s ease-out;
@@ -212,7 +193,7 @@ h1::before {
   left: 50%;
   width: 0;
   height: 0;
-  background: radial-gradient(circle, rgba(255, 105, 180, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 140, 0, 0.3) 0%, transparent 70%);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate(-50%, -50%);
   border-radius: 50%;
@@ -220,13 +201,13 @@ h1::before {
 
 .icon-link:hover {
   background: linear-gradient(135deg,
-    rgba(147, 112, 219, 0.3) 0%,
-    rgba(255, 105, 180, 0.2) 50%,
-    rgba(147, 112, 219, 0.3) 100%
+    rgba(255, 140, 0, 0.3) 0%,
+    rgba(255, 69, 0, 0.2) 50%,
+    rgba(255, 140, 0, 0.3) 100%
   );
   transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 12px 30px rgba(255, 105, 180, 0.4);
-  border-color: #ff69b4;
+  box-shadow: 0 12px 30px rgba(255, 140, 0, 0.4);
+  border-color: #ff8c00;
 }
 
 .icon-link:hover::before {
@@ -236,7 +217,7 @@ h1::before {
 
 .icon-link:hover .icon {
   transform: scale(1.1) rotate(2deg);
-  filter: brightness(1.2) drop-shadow(0 0 10px rgba(255, 105, 180, 0.5));
+  filter: brightness(1.2) drop-shadow(0 0 10px rgba(255, 140, 0, 0.5));
 }
 
 .icon {
@@ -282,7 +263,7 @@ h1::before {
     background: rgba(0, 0, 0, 0.95) !important;
     backdrop-filter: none !important;
     box-shadow: none !important;
-    border: 1px solid rgba(147, 112, 219, 0.3) !important;
+    border: 1px solid rgba(255, 140, 0, 0.3) !important;
   }
 
   .section::before {
@@ -302,13 +283,13 @@ h1::before {
     border-radius: 8px;
     background: rgba(0, 0, 0, 0.8) !important;
     backdrop-filter: none !important;
-    border: 1px solid rgba(147, 112, 219, 0.3) !important;
+    border: 1px solid rgba(255, 140, 0, 0.3) !important;
     box-shadow: none !important;
   }
 
   .icon-link:hover {
-    background: rgba(147, 112, 219, 0.2) !important;
-    border-color: #ff69b4 !important;
+    background: rgba(255, 140, 0, 0.2) !important;
+    border-color: #ff8c00 !important;
   }
 
   .icon {
@@ -365,7 +346,7 @@ h1::before {
   /* Disable hover effects on mobile */
   .icon-link:hover {
     transform: none !important;
-    box-shadow: 0 4px 15px rgba(147, 112, 219, 0.15) !important;
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.15) !important;
   }
 }
 
@@ -376,7 +357,7 @@ h1::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #000000 0%, #1a0033 50%, #000000 100%);
+  background: linear-gradient(135deg, #000000 0%, #1a0d00 50%, #000000 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -394,7 +375,7 @@ h1::before {
   width: 150px;
   height: 150px;
   animation: logoZoom 2s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.5));
+  filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.5));
 }
 
 @keyframes logoZoom {
@@ -406,17 +387,17 @@ h1::before {
 .loading-text {
   position: absolute;
   bottom: 30%;
-  color: #ff69b4;
+  color: #ff8c00;
   font-family: "Orbitron", sans-serif;
   font-size: 18px;
   font-weight: bold;
-  text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+  text-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
   animation: textPulse 1.5s ease-in-out infinite;
 }
 
 .link {
   text-decoration: none;
-  color: #ff69b4;
+  color: #ff8c00;
   font-weight: bold;
   font-size: 18px;
   transition: color 0.3s;
@@ -425,7 +406,7 @@ h1::before {
 }
 
 .footer-text {
-  color: #ff69b4;
+  color: #ff8c00;
   margin-top: 15px;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 15px;
@@ -443,12 +424,12 @@ h1::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(147, 112, 219, 0.3);
+  background: rgba(255, 140, 0, 0.3);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 105, 180, 0.5);
+  background: rgba(255, 140, 0, 0.5);
 }
 
 .controls {
@@ -463,8 +444,8 @@ h1::before {
 
 .control-btn {
   background-color: rgba(0, 0, 0, 0.8);
-  color: #ff69b4;
-  border: 1px solid rgba(147, 112, 219, 0.4);
+  color: #ff8c00;
+  border: 1px solid rgba(255, 140, 0, 0.4);
   padding: 15px 20px;
   border-radius: 10px;
   margin: 5px;
@@ -473,7 +454,7 @@ h1::before {
 }
 
 .control-btn:hover {
-  background-color: rgba(147, 112, 219, 0.2);
+  background-color: rgba(255, 140, 0, 0.2);
   color: #fff;
 }
 
@@ -481,7 +462,7 @@ h1::before {
   -webkit-appearance: none;
   width: 200px;
   height: 8px;
-  background: rgba(147, 112, 219, 0.2);
+  background: rgba(255, 140, 0, 0.2);
   outline: none;
   opacity: 0.7;
   transition: opacity 0.2s;
@@ -490,7 +471,7 @@ h1::before {
 
 #volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  background: #ff69b4;
+  background: #ff8c00;
   cursor: pointer;
   height: 18px;
   width: 18px;
@@ -498,7 +479,7 @@ h1::before {
 }
 
 #volume-slider::-moz-range-thumb {
-  background: #ff69b4;
+  background: #ff8c00;
   cursor: pointer;
   height: 18px;
   width: 18px;
@@ -558,14 +539,14 @@ h1::before {
 }
 
 @keyframes textPulse {
-  0% { text-shadow: 0 0 5px #ff69b4; }
-  50% { text-shadow: 0 0 10px #ff69b4; }
-  100% { text-shadow: 0 0 5px #ff69b4; }
+  0% { text-shadow: 0 0 5px #ff8c00; }
+  50% { text-shadow: 0 0 10px #ff8c00; }
+  100% { text-shadow: 0 0 5px #ff8c00; }
 }
 
 @keyframes titleGlow {
-  0%, 100% { text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4; }
-  50% { text-shadow: 0 0 20px #9370db, 0 0 30px #9370db, 0 0 40px #9370db; }
+  0%, 100% { text-shadow: 0 0 10px #ff8c00, 0 0 20px #ff8c00, 0 0 30px #ff8c00; }
+  50% { text-shadow: 0 0 20px #ff4500, 0 0 30px #ff4500, 0 0 40px #ff4500; }
 }
 
 @keyframes slideInFromTop {
@@ -603,10 +584,10 @@ h1::before {
 
 @keyframes headerPulse {
   0%, 100% {
-    background: linear-gradient(135deg, rgba(147, 112, 219, 0.2), rgba(255, 105, 180, 0.1));
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(255, 140, 0, 0.1));
   }
   50% {
-    background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(147, 112, 219, 0.1));
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(255, 140, 0, 0.1));
   }
 }
 
@@ -736,6 +717,44 @@ html {
 
 /* Focus styles for accessibility */
 .icon-link:focus-visible {
-  outline: 2px solid #ff69b4;
+  outline: 2px solid #ff8c00;
   outline-offset: 2px;
+}
+
+/* Halloween orange glow class for special elements */
+.orange-text {
+  color: #ff8c00 !important;
+}
+
+/* Halloween subtle animation for icons - DISABLED to prevent card vanishing */
+
+@keyframes halloweenGlow {
+  0%, 100% {
+    box-shadow: 0 12px 30px rgba(255, 140, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 12px 30px rgba(255, 140, 0, 0.6), 0 0 20px rgba(255, 69, 0, 0.3);
+  }
+}
+
+/* Halloween pulsing effect for headers */
+@media (min-width: 769px) {
+  .section-header {
+    animation: headerPulse 3s ease-in-out infinite, halloweenPulse 4s ease-in-out infinite;
+  }
+}
+
+@keyframes halloweenPulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
+  }
+  25% {
+    text-shadow: 0 0 15px rgba(255, 140, 0, 0.9), 0 0 25px rgba(255, 69, 0, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 140, 0, 1), 0 0 30px rgba(255, 69, 0, 0.5);
+  }
+  75% {
+    text-shadow: 0 0 15px rgba(255, 140, 0, 0.9), 0 0 25px rgba(255, 69, 0, 0.4);
+  }
 }

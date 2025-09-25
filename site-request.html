@@ -62,21 +62,21 @@
         }
         .form-input {
             transition: all 0.4s ease;
-            border: 2px solid #ff8ab5;
+            border: 2px solid #ff8c00;
             border-radius: 0.75rem;
             padding: 0.75rem;
             width: 100%;
             margin-bottom: 1.5rem;
-            background: rgba(255, 245, 247, 0.7);
+            background: rgba(255, 248, 240, 0.7);
         }
         .form-input:focus {
-            border-color: #ff4d82;
+            border-color: #ff4500;
             outline: none;
-            box-shadow: 0 0 12px rgba(255, 77, 130, 0.4);
+            box-shadow: 0 0 12px rgba(255, 140, 0, 0.4);
             transform: scale(1.02);
         }
         .form-label {
-            color: #ff4d82;
+            color: #ff8c00;
             font-weight: 600;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
@@ -89,10 +89,10 @@
         .form-input:not(:placeholder-shown) + .form-label {
             transform: translateY(-2rem);
             font-size: 0.85rem;
-            color: #ff2e6a;
+            color: #ff4500;
         }
         .submit-btn {
-            background: linear-gradient(45deg, #ff4d82, #ff8ab5);
+            background: linear-gradient(45deg, #ff8c00, #ff4500);
             color: white;
             padding: 0.75rem 2rem;
             border-radius: 0.75rem;
@@ -105,7 +105,7 @@
         }
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 77, 130, 0.5);
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.5);
         }
         .submit-btn::after {
             content: '';
@@ -124,7 +124,7 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #ff4d82;
+            background: #ff8c00;
             color: white;
             padding: 1rem 2rem;
             border-radius: 0.75rem;
@@ -153,7 +153,7 @@
 </head>
 <body>
     <div class="form-container blanka">
-        <h2 class="text-3xl font-bold text-center text-pink-700 mb-8">Site Request Form</h2>
+        <h2 class="text-3xl font-bold text-center mb-8" style="color: #ff8c00;">🎃 Site Request Form 🎃</h2>
         <form id="siteRequestForm">
             <div class="mb-6 relative">
                 <input type="url" id="siteUrl" class="form-input" placeholder=" " required>
