@@ -119,26 +119,9 @@
             <a href="https://www.reddit.com/r/TBCPL/" target="_blank">
                 <img src="./assets/reddit.png" alt="Reddit" style="width: 36px; vertical-align: middle;">
             </a>
-            <img src="./assets/qrcode.png" alt="QR Code" style="width: 36px; vertical-align: middle; cursor: pointer;" onclick="openPopup()">
         </p>
 
-        <!-- Popup -->
-        <div id="qrPopup" class="popup">
-            <div class="popup-content">
-                <button class="close-btn" onclick="closePopup()">×</button>
-                <img src="./assets/qrcode.png" alt="QR Code">
-            </div>
-        </div>
-
         <script>
-            function openPopup() {
-                document.getElementById('qrPopup').style.display = 'flex';
-            }
-        
-            function closePopup() {
-                document.getElementById('qrPopup').style.display = 'none';
-            }
-
             // Loading Screen Control
             window.addEventListener('load', function() {
                 const loadingScreen = document.getElementById('loadingScreen');
