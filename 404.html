@@ -3,204 +3,442 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> TheBestCouchPotatoList - 404</title>
+    <title>404 - Page Not Found | TBCPL</title>
+    <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
+
+    <!-- Pace.js for page loading progress -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
+
+    <link rel="stylesheet" href="./css/flash.css">
+    <link rel="stylesheet" href="./ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="TBCPL" class="nav-logo-img">
+                TBCPL
+            </a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="site-request.html" class="nav-link"><i class="fas fa-plus-circle"></i> Request</a></li>
+                <li><a href="dmca.html" class="nav-link"><i class="fas fa-shield-alt"></i> DMCA</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Floating Halloween Elements -->
+    <div class="halloween-bg">
+        <div class="ghost ghost-1">👻</div>
+        <div class="ghost ghost-2">👻</div>
+        <div class="ghost ghost-3">👻</div>
+        <div class="bat bat-1">🦇</div>
+        <div class="bat bat-2">🦇</div>
+        <div class="bat bat-3">🦇</div>
+        <div class="spider spider-1">🕷️</div>
+        <div class="spider spider-2">🕷️</div>
+    </div>
+
+    <div class="container-404">
+        <!-- 404 Content -->
+        <div class="error-section">
+            <div class="error-number">
+                <span class="error-digit">4</span>
+                <span class="error-pumpkin">🎃</span>
+                <span class="error-digit">4</span>
+            </div>
+
+            <h1 class="error-title">
+                <span class="title-word">Lost</span>
+                <span class="title-word">in</span>
+                <span class="title-word">the</span>
+                <span class="title-word">Haunted</span>
+                <span class="title-word">Woods!</span>
+            </h1>
+
+            <p class="error-message">
+                Looks like you wandered into the spooky forest and got lost!<br>
+                The page you're looking for has vanished into the mist... 👻
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="error-actions">
+                <a href="index.html" class="error-button primary">
+                    <i class="fas fa-home"></i>
+                    Return Home
+                </a>
+                <a href="javascript:history.back()" class="error-button secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Go Back
+                </a>
+            </div>
+
+            <!-- Error Suggestions -->
+            <div class="error-suggestions">
+                <h2>Maybe you're looking for...</h2>
+                <div class="suggestions-grid">
+                    <a href="index.html" class="suggestion-card">
+                        <div class="suggestion-icon">🎬</div>
+                        <h3>Browse Sites</h3>
+                        <p>Explore our streaming collection</p>
+                    </a>
+                    <a href="site-request.html" class="suggestion-card">
+                        <div class="suggestion-icon">➕</div>
+                        <h3>Request a Site</h3>
+                        <p>Submit your favorite site</p>
+                    </a>
+                    <a href="faq.html" class="suggestion-card">
+                        <div class="suggestion-icon">❓</div>
+                        <h3>FAQ</h3>
+                        <p>Find answers to common questions</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Fun Halloween Facts -->
+            <div class="fun-fact">
+                <h3>🎃 Spooky Fun Fact 🎃</h3>
+                <p id="randomFact"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://discord.gg/Dsts8Y2jWz" target="_blank" class="footer-link" title="Discord">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="./site-request.html" class="footer-link" title="Request Site">
+                <i class="fas fa-plus-circle"></i>
+            </a>
+        </div>
+        <div class="footer-text">
+            <p>🎃 Thrown Together By Hellhorde 🎃</p>
+            <p class="copyright">&copy; 2024 TBCPL. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Sticky Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Random Halloween Facts
+        const facts = [
+            "404 errors got their name from the room number at CERN where the World Wide Web was invented!",
+            "The first website ever created is still online at info.cern.ch",
+            "Halloween originated from the ancient Celtic festival of Samhain.",
+            "The fear of the number 404 is not a real phobia, but getting lost on the web sure is spooky!",
+            "Did you know? The Jack-o'-lantern was originally carved from turnips, not pumpkins!",
+            "Error 404 means 'Not Found' - much like a ghost, the page exists somewhere but can't be seen!",
+            "The world's largest pumpkin ever grown weighed over 2,600 pounds!",
+            "Black cats are considered lucky in many countries, including Japan and the UK!"
+        ];
+
+        const randomFact = facts[Math.floor(Math.random() * facts.length)];
+        document.getElementById('randomFact').textContent = randomFact;
+
+        // Floating animation for pumpkin
+        const pumpkin = document.querySelector('.error-pumpkin');
+        setInterval(() => {
+            pumpkin.style.transform = `translateY(${Math.sin(Date.now() / 500) * 10}px)`;
+        }, 50);
+    </script>
+
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap");
-
-        /* Star Field Animation */
-        .star-field {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            perspective: 600px;
-            -webkit-perspective: 600px;
-            z-index: -1;
-        }
-
-        .star-field .layer {
-            box-shadow: -411px -476px 2px #cccccc, 777px -407px 3px #d4d4d4, -387px -477px #fcfcfc, -91px -235px 2px #d4d4d4, 491px -460px #f7f7f7, 892px -128px 3px #f7f7f7, 758px -277px #ededed, 596px 378px #cccccc, 647px 423px 2px whitesmoke, 183px 389px #c7c7c7,
-                524px -237px 2px #f0f0f0, 679px -535px #e3e3e3, 158px 399px 3px #ededed, 157px 249px #ededed, 81px -450px #ebebeb, 719px -360px #c2c2c2, -499px 473px #e8e8e8, -158px -349px #d4d4d4, 870px -134px #cfcfcf, 446px 404px 3px #c2c2c2,
-                440px 490px #d4d4d4, 414px 507px #e6e6e6, -12px 246px #fcfcfc, -384px 369px 3px #e3e3e3, 641px -413px #fcfcfc, 822px 516px 2px #dbdbdb, 449px 132px #c2c2c2, 727px 146px #f7f7f7, -315px -488px #e6e6e6, 952px -70px #e3e3e3,
-                -869px -29px 3px #dbdbdb, 502px 80px #dedede, 764px 342px #e0e0e0, -150px -380px #dbdbdb, 654px -426px #e3e3e3, -325px -263px #c2c2c2, 755px -447px 2px #c7c7c7, 729px -177px #c2c2c2, -682px -391px #e6e6e6, 554px -176px #ededed;
-            transform-style: preserve-3d;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            height: 4px;
-            width: 4px;
-            border-radius: 2px;
-        }
-
-        @keyframes sf-fly-by-1 {
-            from {transform: translateZ(-2000px) translateX(-100%);opacity: 0.6;}
-            to {transform: translateZ(2000px) translateX(100%);opacity: 0.6;}
-        }
-
-        @keyframes sf-fly-by-2 {
-            from {transform: translateZ(-2000px) translateX(-100%);opacity: 0.4;}
-            to {transform: translateZ(2000px) translateX(100%);opacity: 0.4;}
-        }
-
-        @keyframes sf-fly-by-3 {
-            from {transform: translateZ(-2000px) translateX(-100%);opacity: 0.2;}
-            to {transform: translateZ(2000px) translateX(100%);opacity: 0.2;}
-        }
-
-        .star-field .layer:nth-child(1) {animation: sf-fly-by-1 8s linear infinite;}
-        .star-field .layer:nth-child(2) {animation: sf-fly-by-2 12s linear infinite;}
-        .star-field .layer:nth-child(3) {animation: sf-fly-by-3 16s linear infinite;}
-
-        body {
-            background: linear-gradient(135deg, #0a0011, #130726);
-            color: #ffffff;
-            font-family: 'Orbitron', sans-serif;
-            margin: 0;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 900px;
+        .container-404 {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .four_zero_four_bg {
-            position: relative;
-            height: 400px;
-            width: 100%;
-            max-width: 800px;
-            margin: 20px auto;
+            padding: 60px 20px 40px;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid rgba(255, 105, 180, 0.3);
-            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
-            background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3k0aXRucXJ6dmJqbWZ3NHU0NTlzN3o4cmlyM2V6anMxbGtwNzRoaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1vZaxVZNfnYVxtcfRb/giphy.gif');
-            background-size: cover;
-            background-position: center;
         }
 
-        .four_zero_four_bg h1 {
-            position: relative;
-            z-index: 2;
-            font-size: 150px;
-            animation: glow 2s ease-in-out infinite alternate;
-            text-shadow: 0 0 20px rgba(255, 105, 180, 0.7),
-                         0 0 30px rgba(255, 105, 180, 0.5),
-                         0 0 40px rgba(255, 105, 180, 0.3);
-            background: linear-gradient(45deg, 
-                #ff69b4,
-                #9370db);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0.9;
-            margin: 0;
+        .error-section {
+            text-align: center;
+            width: 100%;
+        }
+
+        .error-number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .error-digit {
+            font-family: var(--font-sans);
+            font-size: 10rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            animation: digitFloat 3s ease-in-out infinite;
+        }
+
+        .error-digit:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .error-digit:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes digitFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .error-pumpkin {
+            font-size: 8rem;
+            filter: drop-shadow(0 4px 12px rgba(255, 107, 53, 0.15));
+            animation: pumpkinFloat 3s ease-in-out infinite;
+            animation-delay: 0.25s;
+        }
+
+        @keyframes pumpkinFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .error-title {
+            font-family: var(--font-sans);
+            font-size: 2.5rem;
             font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        @keyframes glow {
-            from {text-shadow: 0 0 20px rgba(255, 105, 180, 0.7),
-                            0 0 30px rgba(255, 105, 180, 0.5);}
-            to {text-shadow: 0 0 30px rgba(255, 105, 180, 0.7),
-                            0 0 40px rgba(255, 105, 180, 0.5),
-                            0 0 50px rgba(255, 105, 180, 0.3);}
-        }
-
-        .contant_box_404 {
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.9);
-            border-radius: 15px;
-            border: 2px solid #ff69b4;
-            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
-            margin: 20px auto;
-            max-width: 600px;
-            backdrop-filter: blur(10px);
-        }
-
-        .contant_box_404 h3 {
-            font-size: 36px;
-            color: #ff69b4;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
-            font-weight: bold;
-            text-transform: uppercase;
-            margin: 0 0 20px 0;
-        }
-
-        .contant_box_404 p {
-            font-size: 18px;
-            color: #ff69b4;
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-        }
-
-        .link_404 {
-            color: #ff69b4;
-            padding: 12px 30px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #ff69b4;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
+        .title-word {
             display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(255, 105, 180, 0.2);
         }
 
-        .link_404:hover {
-            transform: scale(1.05);
-            background: rgba(255, 105, 180, 0.2);
-            box-shadow: 0 0 25px rgba(255, 105, 180, 0.4);
-            color: #ffffff;
+        .error-message {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .error-actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .error-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-size: 0.9375rem;
+            font-weight: 600;
             text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border);
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        .error-button.primary {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
         }
 
-        .four_zero_four_bg h1 {
-            animation: float 6s ease-in-out infinite;
+        .error-button.secondary {
+            background: var(--surface-elevated);
+            color: var(--text-primary);
+            border-color: var(--border);
         }
 
+        .error-button:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-primary);
+        }
+
+        .error-button.primary:hover {
+            background: var(--accent-secondary);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+        }
+
+        .error-button.secondary:hover {
+            background: var(--surface);
+        }
+
+        .error-suggestions {
+            margin: 60px 0;
+        }
+
+        .error-suggestions h2 {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .suggestion-card {
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .suggestion-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .suggestion-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+
+        .suggestion-card h3 {
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .suggestion-card p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        .fun-fact {
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            max-width: 700px;
+            margin: 60px auto 0;
+        }
+
+        .fun-fact h3 {
+            font-family: var(--font-sans);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .fun-fact p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .four_zero_four_bg h1 {
-                font-size: 100px;
+            .error-digit {
+                font-size: 6rem;
             }
-            
-            .contant_box_404 h3 {
-                font-size: 28px;
+
+            .error-pumpkin {
+                font-size: 5rem;
+            }
+
+            .error-title {
+                font-size: 2rem;
+                gap: 10px;
+            }
+
+            .error-message {
+                font-size: 1rem;
+            }
+
+            .error-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .error-button {
+                justify-content: center;
+            }
+
+            .suggestions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-number {
+                gap: 10px;
+            }
+
+            .error-digit {
+                font-size: 4rem;
+            }
+
+            .error-pumpkin {
+                font-size: 3.5rem;
+            }
+
+            .error-title {
+                font-size: 1.5rem;
             }
         }
     </style>
-</head>
-<body>
-    <div class="star-field">
-        <div class="layer"></div>
-        <div class="layer"></div>
-        <div class="layer"></div>
-    </div>
-    <div class="container">
-        <div class="four_zero_four_bg">
-            <h1>404</h1>
-        </div>
-        <div class="contant_box_404">
-            <h3>Looks like you're lost in space</h3>
-            <p>The page you are looking for has drifted into a black hole!</p>
-            <a href="https://tbcpl.lol" class="link_404">Return to Earth</a>
-        </div>
-    </div>
+
+    <!-- Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TD8F20DS4V');
+    </script>
 </body>
 </html>

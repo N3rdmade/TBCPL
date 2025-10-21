@@ -1,190 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
-  <script src="js/nocheats.js" defer></script>
-  <script src="js/smoothscroll.js" defer></script>
-  <meta charset="UTF-8">
-  <link rel="manifest" href="manifest.json">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TBCPL - SITE REQUEST</title>
-  <meta name="description" content="Free Media for all! ">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Request - TBCPL</title>
+    <meta name="description" content="Request a site to be added to TBCPL">
 
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:url" content="https://tbcpl.lol">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="TheBestCouchPotatoList">
-  <meta property="og:description" content="Free Media for all! ">
-  <meta property="og:image" content="https://tbcpl.lol/banner.png">
-  <meta property="og:image:width" content="800">
-  <meta property="og:image:height" content="420">
+    <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
 
-  <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:domain" content="tbcpl.lol">
-  <meta property="twitter:url" content="https://tbcpl.lol">
-  <meta name="twitter:title" content="TheBestCouchPotatoList">
-  <meta name="twitter:description" content="Free Media for all! ">
-  <meta name="twitter:image" content="https://tbcpl.lol/banner.png">
+    <!-- Pace.js for page loading progress -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
 
-  <!-- Favicon -->
-  <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
-  <link rel="shortcut icon" href="https://tbcpl.lol/logo.png" type="image/png">
-  <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
-  <link rel="stylesheet" href="./flash/minimal.css">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: url('./gif/1.gif') no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-        }
-        .form-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 450px;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: slideUp 0.8s ease-out forwards;
-            backdrop-filter: blur(8px);
-        }
-        @keyframes slideUp {
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .form-input {
-            transition: all 0.4s ease;
-            border: 2px solid #ff8c00;
-            border-radius: 0.75rem;
-            padding: 0.75rem;
-            width: 100%;
-            margin-bottom: 1.5rem;
-            background: rgba(255, 248, 240, 0.7);
-        }
-        .form-input:focus {
-            border-color: #ff4500;
-            outline: none;
-            box-shadow: 0 0 12px rgba(255, 140, 0, 0.4);
-            transform: scale(1.02);
-        }
-        .form-label {
-            color: #ff8c00;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            position: absolute;
-            top: 0.75rem;
-            left: 0.75rem;
-            pointer-events: none;
-        }
-        .form-input:focus + .form-label,
-        .form-input:not(:placeholder-shown) + .form-label {
-            transform: translateY(-2rem);
-            font-size: 0.85rem;
-            color: #ff4500;
-        }
-        .submit-btn {
-            background: linear-gradient(45deg, #ff8c00, #ff4500);
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 0.75rem;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.5);
-        }
-        .submit-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: all 0.4s ease;
-        }
-        .submit-btn:hover::after {
-            left: 100%;
-        }
-        .popup {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #ff8c00;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.75rem;
-            display: none;
-            animation: slideIn 0.5s ease-out;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        .popup.show {
-            display: block;
-        }
-        @keyframes slideIn {
-            from { right: -100%; }
-            to { right: 20px; }
-        }
-                @font-face {
-  font-family: 'Blanka';
-  src: url('/fonts/ClashDisplay-Variable.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-.blanka {
-  font-family: 'Blanka', sans-serif;
-}
-    </style>
+    <link rel="stylesheet" href="./css/flash.css">
+    <link rel="stylesheet" href="./ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Eater&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
-    <div class="form-container blanka">
-        <h2 class="text-3xl font-bold text-center mb-8" style="color: #ff8c00;">🎃 Site Request Form 🎃</h2>
-        <form id="siteRequestForm">
-            <div class="mb-6 relative">
-                <input type="url" id="siteUrl" class="form-input" placeholder=" " required>
-                <label for="siteUrl" class="form-label">Site URL</label>
-            </div>
-            <div class="mb-6 relative">
-                <input type="text" id="siteName" class="form-input" placeholder=" " required>
-                <label for="siteName" class="form-label">Site Name</label>
-            </div>
-            <div class="mb-6 relative">
-                <textarea id="siteFeature" class="form-input" placeholder=" " rows="4" required></textarea>
-                <label for="siteFeature" class="form-label">Favorite Feature</label>
-            </div>
-            <button type="submit" class="submit-btn w-full">Submit Request</button>
-        </form>
+    <!-- Navigation Menu -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="TBCPL" class="nav-logo-img">
+                TBCPL
+            </a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="site-request.html" class="nav-link active"><i class="fas fa-plus-circle"></i> Request</a></li>
+                <li><a href="dmca.html" class="nav-link"><i class="fas fa-shield-alt"></i> DMCA</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Floating Halloween Elements -->
+    <div class="halloween-bg">
+        <div class="ghost ghost-1">👻</div>
+        <div class="ghost ghost-2">👻</div>
+        <div class="bat bat-1">🦇</div>
+        <div class="bat bat-2">🦇</div>
     </div>
-    <div id="popup" class="popup blanka">
-        Request Sent Successfully!
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="spooky-title">
+                <span class="title-word">Request</span>
+                <span class="title-word">A</span>
+                <span class="title-word">Site</span>
+            </h1>
+            <div class="subtitle">🎃 Help Us Grow The Collection! 🎃</div>
+        </div>
+
+        <!-- Request Form Section -->
+        <div class="section">
+            <h2 class="section-header">
+                Submit Your Request
+            </h2>
+
+            <div class="form-container-wrapper">
+                <form id="siteRequestForm" class="request-form">
+                    <div class="form-group">
+                        <label for="siteUrl" class="form-label">
+                            <i class="fas fa-link"></i>
+                            Site URL *
+                        </label>
+                        <input
+                            type="url"
+                            id="siteUrl"
+                            class="form-input"
+                            placeholder="https://example.com"
+                            required
+                        >
+                        <span class="form-hint">Enter the full URL of the site</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteName" class="form-label">
+                            <i class="fas fa-tag"></i>
+                            Site Name *
+                        </label>
+                        <input
+                            type="text"
+                            id="siteName"
+                            class="form-input"
+                            placeholder="Awesome Streaming Site"
+                            required
+                        >
+                        <span class="form-hint">What's the name of the site?</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteFeature" class="form-label">
+                            <i class="fas fa-star"></i>
+                            Why Should We Add It? *
+                        </label>
+                        <textarea
+                            id="siteFeature"
+                            class="form-input form-textarea"
+                            placeholder="Tell us what makes this site special... (e.g., large content library, fast streaming, mobile-friendly, etc.)"
+                            rows="5"
+                            required
+                        ></textarea>
+                        <span class="form-hint">What's your favorite feature or why do you recommend it?</span>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Request
+                    </button>
+                </form>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="success-message">
+                    <div class="success-icon">✅</div>
+                    <h3>Request Sent Successfully!</h3>
+                    <p>Thank you for your submission. We'll review it and add quality sites to our list.</p>
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="error-message">
+                    <div class="error-icon">❌</div>
+                    <h3>Oops! Something Went Wrong</h3>
+                    <p>Failed to send your request. Please try again or contact us on Discord.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guidelines Section -->
+        <div class="section">
+            <h2 class="section-header">
+                Submission Guidelines
+            </h2>
+
+            <div class="guidelines-grid">
+                <div class="guideline-card">
+                    <div class="guideline-icon">✅</div>
+                    <h3>We Look For</h3>
+                    <ul>
+                        <li>Working, active sites</li>
+                        <li>Good content library</li>
+                        <li>User-friendly interface</li>
+                        <li>Mobile compatibility</li>
+                        <li>Minimal intrusive ads</li>
+                        <li>Regular updates</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <div class="guideline-icon">❌</div>
+                    <h3>We Avoid</h3>
+                    <ul>
+                        <li>Broken or offline sites</li>
+                        <li>Excessive pop-ups</li>
+                        <li>Malware risks</li>
+                        <li>Poor quality content</li>
+                        <li>Scam or phishing sites</li>
+                        <li>Sites requiring payment (PAID CATEGORY EXCEPTION)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://discord.gg/Dsts8Y2jWz" target="_blank" class="footer-link" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <div class="footer-text">
+                <p>🎃 Thrown Together By Hellhorde 🎃</p>
+                <p>(Share responsibly)</p>
+                <p class="copyright">&copy; 2025 TBCPL. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
     <script>
-        // Form submission handling
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Sticky Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form Submission
         const form = document.getElementById('siteRequestForm');
-        const popup = document.getElementById('popup');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const siteUrl = document.getElementById('siteUrl').value;
             const siteName = document.getElementById('siteName').value;
+            const siteCategory = document.getElementById('siteCategory').value;
             const siteFeature = document.getElementById('siteFeature').value;
+            const userEmail = document.getElementById('userEmail').value;
 
             const payload = {
                 siteUrl,
@@ -200,27 +236,241 @@
                 });
 
                 if (response.ok) {
-                    popup.classList.add('show');
-                    form.reset();
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+
+                    // Reset form after 5 seconds
                     setTimeout(() => {
-                        popup.classList.remove('show');
-                    }, 3000);
+                        form.reset();
+                        form.style.display = 'block';
+                        successMessage.style.display = 'none';
+                    }, 5000);
                 } else {
-                    alert('Failed to send request. Please try again.');
+                    throw new Error('Request failed');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+                errorMessage.style.display = 'block';
+
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
             }
         });
     </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-TD8F20DS4V');
-</script>
+    <style>
+        /* Make sections visible */
+        .section {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        .form-container-wrapper {
+            padding: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .request-form {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--surface-elevated);
+            border: 3px solid var(--accent-primary);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            outline: none;
+            font-family: var(--font-sans);
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-secondary);
+            background: var(--surface-elevated);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+
+        .form-hint {
+            display: block;
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+            margin-top: 6px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 12px 24px;
+            background: var(--accent-primary);
+            border: 1px solid var(--accent-primary);
+            border-radius: var(--radius-md);
+            color: white;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-button:hover {
+            background: var(--accent-secondary);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            text-align: center;
+            padding: 32px;
+            border-radius: var(--radius-lg);
+        }
+
+        .success-message {
+            background: var(--surface-elevated);
+            border: 3px solid #22c55e;
+        }
+
+        .error-message {
+            background: var(--surface-elevated);
+            border: 3px solid #ef4444;
+        }
+
+        .success-icon,
+        .error-icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        .success-message h3 {
+            color: #22c55e;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .error-message h3 {
+            color: #ef4444;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .success-message p,
+        .error-message p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .guideline-card {
+            background: var(--surface-elevated);
+            border: 2px solid var(--accent-primary);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            transition: all 0.2s ease;
+        }
+
+        .guideline-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
+        }
+
+        .guideline-icon {
+            font-size: 2.0rem;
+            margin-bottom: 12px;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .guideline-card h3 {
+            color: var(--accent-primary);
+            font-size: 1.0rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .guideline-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .guideline-card li {
+            color: var(--text-primary);
+            padding: 2px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .guideline-card li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-container-wrapper {
+                padding: 16px;
+            }
+
+            .guidelines-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-button {
+                font-size: 0.9375rem;
+            }
+        }
+    </style>
+
+    <!-- Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TD8F20DS4V');
+    </script>
+</body>
 </html>

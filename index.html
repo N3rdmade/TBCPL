@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.json">
-    <title>TheBestCouchPotatoList</title>
-    <meta name="description" content="Free Media for all! ">
+    <title>TheBestCouchPotatoList - Spooky Season</title>
+    <meta name="description" content="Free Media for all! Spooky streaming collection">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:url" content="https://tbcpl.lol">
@@ -28,700 +27,402 @@
     <!-- Favicon -->
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
     <link rel="shortcut icon" href="https://tbcpl.lol/logo.png" type="image/png">
-    <link rel="stylesheet" href="./flash/minimal.css">
-    <link rel="stylesheet" href="./themes.css">
-    <link rel="preload" href="./fonts/ClashDisplay-Variable.ttf" as="font" type="font/ttf" crossorigin media="(min-width: 769px)">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" media="(min-width: 769px)">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
-    </style>
 
+    <!-- Pace.js for page loading progress -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/flash.css">
+    <link rel="stylesheet" href="./ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Eater&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 </head>
-<style>
-    .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 9999; /* Ensures it's on top */
-        }
-        .popup-content {
-            position: relative;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            z-index: 10000; 
-        }
-        .popup img {
-            width: 200px;
-            max-width: 80%;
-        }
-        .close-btn {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
-            background: #ff8c00;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 50%;
-        }
-        @media (max-width: 600px) {
-            .popup img {
-                width: 150px;
-            }
-        }
-</style>
 
 <body>
-    <!-- Loading Screen -->
+    <!-- Halloween Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
-        <img src="./logo.png" alt="TBCPL Logo" class="loading-logo">
-        <div class="loading-text blanka">WELCOME BACK</div>
+        <div class="pumpkin-loader">
+            <img src="logo.png" alt="TBCPL Logo" class="pumpkin-logo">
+            <div class="loading-text">WELCOME BACK</div>
+        </div>
     </div>
 
-    <!-- Star field removed - replaced by particles.js -->
+    <!-- Navigation Menu -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="TBCPL" class="nav-logo-img">
+                TBCPL
+            </a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="site-request.html" class="nav-link"><i class="fas fa-plus-circle"></i> Request</a></li>
+                <li><a href="dmca.html" class="nav-link"><i class="fas fa-shield-alt"></i> DMCA</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Floating Halloween Elements -->
+    <div class="halloween-bg">
+        <div class="ghost ghost-1">👻</div>
+        <div class="ghost ghost-2">👻</div>
+        <div class="ghost ghost-3">👻</div>
+        <div class="bat bat-1">🦇</div>
+        <div class="bat bat-2">🦇</div>
+        <div class="bat bat-3">🦇</div>
+        <div class="spider spider-1">🕷️</div>
+        <div class="spider spider-2">🕷️</div>
+    </div>
+
+    <!-- Main Container -->
     <div class="container">
-        <h1>The Best Couch Potato List!</h1>
-        <p><span class="blanka" style="font-family: Blanka, sans-serif"><strong><u>Please click and download 
-            <a href="https://brave.com/" class="orange-text" style="text-decoration: underline;">
-              <img src="./assets/brave.png" alt="BRAVE Browser" style="height: 24px; vertical-align: middle;">
-            </a>
-             OR use this AdBlocker 
-            <a href="https://ublockorigin.com/" class="orange-text" style="text-decoration: underline;">
-              <img src="./assets/ublock.png" alt="Ad Blocker" style="height: 24px; vertical-align: middle;">
-            </a>
-             BEFORE clicking on one of the links below (Otherwise you will see ads/popups!)</u></strong></span></p>
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="spooky-title">
+                <span class="title-word">The</span>
+                <span class="title-word">Best</span>
+                <span class="title-word">Couch</span>
+                <span class="title-word">Potato</span>
+                <span class="title-word">List!</span>
+            </h1>
+            <div class="subtitle">🎃 Your Spooky Streaming Collection 🎃</div>
+        </div>
 
-        <p style="font-family: Arial, sans-serif;">
-            <span class="blanka">
-    Our Support DISCORD SRV (Ask Any Queries or Suggestions)
-    </span>
-            <span class="blanka" style="font-size: 20px; font-weight: bold; margin-right: 5px;">→</span>
-            <a href="https://discord.gg/Dsts8Y2jWz" target="_blank">
-                <img src="./assets/discord.png" alt="Discord" style="width: 36px; vertical-align: middle;">
-            </a>
-        </p>
+        <!-- Warning Section -->
+        <div class="warning-card">
+            <p class="warning-text">
+                <strong>Before entering the darkness...</strong><br>
+                Download
+                <a href="https://brave.com/" class="halloween-link" target="_blank">
+                    <img src="./assets/brave.png" alt="BRAVE Browser" class="inline-icon"> Brave Browser
+                </a>
+                or 
+                <a href="https://ublockorigin.com/" class="halloween-link" target="_blank">
+                    <img src="./assets/ublock.png" alt="Ad Blocker" class="inline-icon"> uBlock Origin
+                </a>
+                to avoid scary popups and ads!
+            </p>
+        </div>
 
-
-        <p style="font-family: Arial, sans-serif;">
-            <span class="blanka">
-        Hey there! If you've got ideas or just want to hang out, come join the Reddit page!
-    </span>
-            <span style="font-size: 20px; font-weight: bold; margin-right: 5px;">→</span>
-            <a href="https://www.reddit.com/r/TBCPL/" target="_blank">
-                <img src="./assets/reddit.png" alt="Reddit" style="width: 36px; vertical-align: middle;">
-            </a>
-        </p>
-
-        <script>
-            // Loading Screen Control
-            window.addEventListener('load', function() {
-                const loadingScreen = document.getElementById('loadingScreen');
-                
-                // Wait for 2.5 seconds to show the animation
-                setTimeout(function() {
-                    loadingScreen.classList.add('fade-out');
-                    
-                    // Remove from DOM after fade completes
-                    setTimeout(function() {
-                        loadingScreen.style.display = 'none';
-                        // Initialize scroll animations after loading on desktop only
-                        if (window.innerWidth > 600) {
-                            initializeScrollAnimations();
-                        }
-                    }, 300);
-                }, 1000);
-            });
-
-            // Scroll Animation System
-            function initializeScrollAnimations() {
-                // Check if user prefers reduced motion
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                    return;
-                }
-
-                const observerOptions = {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                };
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.animationPlayState = 'running';
-                        }
-                    });
-                }, observerOptions);
-
-                // Observe sections for scroll animations
-                document.querySelectorAll('.section').forEach(section => {
-                    section.style.animationPlayState = 'paused';
-                    observer.observe(section);
-                });
-
-                // Add subtle parallax effect to star field (desktop only)
-                const isMobile = window.innerWidth <= 600;
-                if (!isMobile) {
-                    let ticking = false;
-                    
-                    window.addEventListener('scroll', () => {
-                        if (!ticking) {
-                            requestAnimationFrame(() => {
-                                const scrolled = window.pageYOffset;
-                                const parallax = document.querySelector('.star-field');
-                                if (parallax) {
-                                    parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
-                                }
-                                ticking = false;
-                            });
-                            ticking = true;
-                        }
-                    }, { passive: true });
-                }
-            }
-
-            // Close popup on outside click
-            window.addEventListener('click', function(event) {
-                const popup = document.getElementById('qrPopup');
-                if (event.target === popup) {
-                    closePopup();
-                }
-            }, { passive: true });
-        </script>
-
-
-        </style>
-        </head>
-
-        <body>
-
-            <!-- Movies & Shows Section -->
-            <div class="section">
-                <h2 class="section-header blanka">Movies & Shows</h2>
-                <div class="icon-link">
-                    <a href="https://www.1shows.ru/" target="_blank">
-                        <img src="./logo/movies_shows/1shows.png" alt="1Shows Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.1flex.ru/" target="_blank">
-                        <img src="./logo/movies_shows/1flex.png" alt="1Shows Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.rgshows.ru/" target="_blank">
-                        <img src="./logo/movies_shows/rgshows.png" alt="RgShows Logo" class="icon">
-                    </a>
-                </div>
-                <!-- RIP VIDJOY
-                <div class="icon-link">
-                    <a href="https://vidjoy.pro/" target="_blank">
-                        <img src="./logo/movies_shows/vidjoy.png" alt="Vidjoy Logo" class="icon">
-                    </a>
-                </div>
-                -->
-                <div class="icon-link">
-                    <a href="https://rivestream.org/" target="_blank">
-                        <img src="./logo/movies_shows/rivestream.png" alt="RiveStream Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://watch.spencerdevs.xyz/" target="_blank">
-                        <img src="./logo/movies_shows/spenflix.png" alt="Spenflix Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://flickystream.ru/" target="_blank">
-                        <img src="./logo/movies_shows/flickystream.png" alt="FlickyStream Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://filmcave.net/" target="_blank">
-                        <img src="./logo/movies_shows/filmcave.png" alt="FilmCave Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://watch.corsflix.net/" target="_blank">
-                        <img src="./logo/movies_shows/corsflix.png" alt="corsflix Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://filmex.to/" target="_blank"> 
-                        <img src="./logo/movies_shows/filmex.png" alt="filmex Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://myflixerz.to/" target="_blank"> <!--THEY GOT BIG STORAGE OF CONTENT ALMOST 50K MOVIES AND 30K TVSHOWS-->
-                        <img src="./logo/movies_shows/myflixerz.png" alt="myflixerz Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://nepu.to/" target="_blank">
-                        <img src="./logo/movies_shows/nepu.png" alt="Nepu Logo" class="icon">
-                    </a>
-                </div> 
-                <!--
-                <div class="icon-link">
-                    <a href="https://netnaija.video/" target="_blank"> //they have blocked usa users so its no use
-                        <img src="./logo/movies_shows/moviebox.png" alt="moviebox Logo" class="icon">
-                    </a>
-                </div>
-                -->
-                <div class="icon-link">
-                    <a href="https://fmovies-hd.to/home/" target="_blank"> <!--COMEBACK AS PEOPLE DEMANDED-->
-                        <img src="./logo/movies_shows/fmovies.png" alt="fmovies Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://cinemadeck.com/" target="_blank">
-                        <img src="./logo/movies_shows/cinemadeck.png" alt="CinemaDeck Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.cineby.app/" target="_blank">
-                        <img src="./logo/movies_shows/cineby.png" alt="Cineby Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://fullhdmovies.me/" target="_blank">
-                        <img src="./logo/movies_shows/wooflix.png" alt="Vidjoy Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://vexo.to/" target="_blank">
-                        <img src="./logo/movies_shows/vexo.png" alt="vexo Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://xprime.tv/" target="_blank">
-                        <img src="./logo/movies_shows/xprime.png" alt="Xprime Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://hexa.watch/" target="_blank">
-                        <img src="./logo/movies_shows/hexa.png" alt="Hexa Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://smashystream.xyz/" target="_blank">
-                        <img src="./logo/movies_shows/smashystream.png" alt="smashystream Logo" class="icon">
-                    </a>
-                </div>
-                <!--
-                <div class="icon-link"> //REQUIRES GOOGLE LOGIN TO PROCEED FURTHER
-                    <a href="https://net2025.cc/" target="_blank">
-                        <img src="./logo/movies_shows/netmirror.png" alt="netmirror Logo" class="icon">
-                    </a>
-                </div>
-                -->
-                <!--
-                <div class="icon-link"> //rip owner discontinued this project
-                    <a href="https://lordflix.cc" target="_blank">
-                        <img src="./logo/movies_shows/lordflix.png" alt="lordflix Logo" class="icon">
-                    </a>
-                </div>
-            -->
-                <div class="icon-link">
-                    <a href="https://pstream.mov/" target="_blank">
-                        <img src="./logo/movies_shows/pstream.png" alt="P-Stream Logo" class="icon">
-                    </a>
-                </div>
-                <!--
-                <div class="icon-link"> //LESS VARIETY FOR ENGLISH DUBBED CONTENT
-                    <a href="https://www.5movierulz.poker/" target="_blank">
-                        <img src="./logo/movies_shows/5movierulz.png" alt="5movierulz Logo" class="icon">
-                    </a>
-                </div
-                -->
-                <!-- WE ALREADY HAVE FLICKYSTREAM BOTH OF THEM GOT SAME SOURCE AND EVEN SAME OWNER
-                <div class="icon-link">
-                    <a href="https://cinemora.ru/" target="_blank">
-                        <img src="./logo/movies_shows/cinemora.png" alt="cinemora Logo" class="icon">
-                    </a>
-                </div>
-                -->
-                <!-- ITS BEEN 4 MONTHS SINCE THE OWNER ABANDONDED THIS PROJECT, NOW NOTHING WORKS ANIME, MANGA, MOVIES, TV SHOWS NOTHING WORKS , only the external embeds api works
-                 I'll add it back once i confirmed the bugs has been fixed, CUZ THE UI OF THIS SITE CRAZY good
-                <div class="icon-link">
-                    <a href="https://freek.to/" target="_blank">
-                        <img src="./logo/movies_shows/freek.png" alt="Freek Logo" class="icon">
-                    </a>
-                </div>
-                -->
-                <!-- I SAW THE MOBILE VIEW OF THE SITE ITS VERY CONFUSING UI , BAD IN SCALING, AND AVG PERSON MIGHT GET CONFUSED HOW TO USE IT
-                <div class="icon-link">
-                    <a href="https://nunflix.org/" target="_blank">
-                        <img src="./logo/movies_shows/nunflix.png" alt="nunflix Logo" class="icon">
-                    </a>
-                </div>
-                -->
-                <!-- I GOT FEW REPORTS OF THIS SITE , THEY SERVING G@Y P0rN
-                <div class="icon-link">
-                    <a href="https://willow.arlen.icu/" target="_blank">
-                        <img src="./logo/movies_shows/willow.png" alt="willow Logo" class="icon">
-                    </a>
-                </div>
-                -->
+        <!-- Community Section -->
+        <div class="community-cards">
+            <div class="community-card">
+                <div class="card-icon">💀</div>
+                <h3>Join Our Coven</h3>
+                <p>Ask queries or share suggestions in our haunted Discord server</p>
+                <a href="https://discord.gg/Dsts8Y2jWz" target="_blank" class="card-button">
+                    <img src="./assets/discord.png" alt="Discord" class="btn-icon">
+                    Enter Discord
+                </a>
             </div>
-
-            <!-- Anime Section -->
-            <div class="section">
-                <h2 class="section-header blanka">Anime</h2>
-                <div class="icon-link">
-                    <a href="https://www.miruro.to" target="_blank">
-                        <img src="./logo/anime/miruro.png" alt="Miruro Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://tanime.tv/home" target="_blank">
-                        <img src="./logo/anime/tanime.png" alt="TAnime Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://hianime.to/home" target="_blank">
-                        <img src="./logo/anime/hianime.png" alt="HiAnime Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.enma.lol" target="_blank">
-                        <img src="./logo/anime/enma.png" alt="Enma Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://animetsu.cc" target="_blank">
-                        <img src="./logo/anime/animetsu.png" alt="animetsu Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://aniwatchtv.to/home" target="_blank">
-                        <img src="./logo/anime/aniwatch.png" alt="Aniwatch Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://kaido.to/home" target="_blank">
-                        <img src="./logo/anime/kaido.png" alt="Kaido  Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://anicrush.to/home" target="_blank">
-                        <img src="./logo/anime/anicrush.png" alt="Anicrush Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://kaa.mx/" target="_blank">
-                        <img src="./logo/anime/kickassanime.png" alt="kickassanime Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://animekai.to/home" target="_blank">
-                        <img src="./logo/anime/animekai.png" alt="AnimeKai Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://animez.org/" target="_blank">
-                        <img src="./logo/anime/animez.png" alt="AnimeZ Logo" class="icon">
-                    </a>
-                </div>
+            <div class="community-card">
+                <div class="card-icon">🕸️</div>
+                <h3>Reddit Graveyard</h3>
+                <p>Share your ideas or just hang out with fellow couch potatoes</p>
+                <a href="https://www.reddit.com/r/TBCPL/" target="_blank" class="card-button">
+                    <img src="./assets/reddit.png" alt="Reddit" class="btn-icon">
+                    Visit Reddit
+                </a>
             </div>
+        </div>
 
-            <!-- Manga Section -->
-            <div class="section">
-                <h2 class="section-header blanka">Manga</h2>
-                <div class="icon-link">
-                    <a href="https://mangadex.org/" target="_blank">
-                        <img src="./logo/manga/mangadex.png" alt="MangaDex Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://comick.io/home2" target="_blank">
-                        <img src="./logo/manga/comick.png" alt="Comick Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://mangareader.to/home" target="_blank">
-                        <img src="./logo/manga/mangareader.png" alt="MangaReader Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://bato.to/" target="_blank">
-                        <img src="./logo/manga/bato.png" alt="bato Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://mangago.me/" target="_blank">
-                        <img src="./logo/manga/mangago.png" alt="mangago Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://mangafire.to/home" target="_blank">
-                        <img src="./logo/manga/mangafire.png" alt="mangafires Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://allmanga.to/manga?cty=ALL" target="_blank">
-                        <img src="./logo/manga/allmanga.png" alt="AllManga Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://mangakakalot.com/" target="_blank">
-                        <img src="./logo/manga/mangakakalot.png" alt="MangaKakalot Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://asuracomic.net/" target="_blank">
-                        <img src="./logo/manga/asuracomic.png" alt="Asuracomic Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://mangahub.io/" target="_blank">
-                        <img src="./logo/manga/mangahub.png" alt="MangaHub Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://mangapark.io/" target="_blank">
-                        <img src="./logo/manga/mangapark.png" alt="MangaPark Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://weebcentral.com/" target="_blank">
-                        <img src="./logo/manga/weebcentral.png" alt="WeebCentral Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://mangakatana.com/" target="_blank">
-                        <img src="./logo/manga/mangakatana.png" alt="MangaKatana Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://vexo.to/search?tab=manga" target="_blank">
-                        <img src="./logo/movies_shows/vexo.png" alt="vexo Logo" class="icon">
-                    </a>
-                </div>
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search for sites...">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="movies">Movies</button>
+                <button class="filter-btn" data-filter="anime">Anime</button>
+                <button class="filter-btn" data-filter="manga">Manga</button>
+                <button class="filter-btn" data-filter="livetv">Live TV</button>
+                <button class="filter-btn" data-filter="paid">Paid</button>
             </div>
+        </div>
 
-            <!-- Live TV Section -->
-            <div class="section">
-                <h2 class="section-header blanka">Live-Tv</h2>
-                <div class="icon-link">
-                    <a href="https://thetvapp.to" target="_blank">
-                        <img src="./logo/livetv/tvappto.png" alt="TheTvApp Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://tv247.us/all-channels/" target="_blank">
-                        <img src="./logo/livetv/tv247.png" alt="TV247 Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://dlhd.click/" target="_blank">
-                        <img src="./logo/livetv/thedaddy.png" alt="thedaddy Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://ntvstream.cx/" target="_blank">
-                        <img src="./logo/livetv/ntvstream.png" alt="ntvstream Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://publiciptv.com/" target="_blank">
-                        <img src="./logo/livetv/publiciptv.png" alt="PublicIPTV Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://en12.sportplus.live/" target="_blank">
-                        <img src="https://cdn.apigodata.com/sp-imgs/logo.svg" alt="Sport+" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://the.streameast.app/v86" target="_blank">
-                        <img src="./logo/livetv/streameast.png" alt="StreamEast" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://v2.sportsurge.net/" target="_blank">
-                        <img src="./logo/livetv/streamsurge.png" alt="sportsurge Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://tv.garden/" target="_blank">
-                        <img src="./logo/livetv/tvgarden.png" alt="TV Garden Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="http://totv.org/tv/usa/" target="_blank">
-                        <img src="./logo/livetv/totv.png" alt="TOTV Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://rivestream.org/livesports/" target="_blank">
-                        <img src="./logo/movies_shows/rivestream.png" alt="RiveStream Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.1flex.ru/live-tv" target="_blank">
-                        <img src="./logo/movies_shows/1flex.png" alt="1Flex Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://globetv.app/" target="_blank">
-                        <img src="./logo/livetv/globetv.png" alt="globetv Logo" class="icon">
-                    </a>
-                </div>
-            </div>
+        <!-- Dynamic Categories Container -->
+        <div id="categories-container"></div>
 
-            <!-- PAID Movies & Shows Section -->
-            <div class="section">
-                <h2 class="section-header blanka">Paid-Movies & Shows</h2>
-                <div class="icon-link">
-                    <a href="https://www.disneyplus.com/identity/login/" target="_blank">
-                        <img src="./logo/paid_apps/disney+.png" alt="Disney+ Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.shudder.com/" target="_blank">
-                        <img src="./logo/paid_apps/shudder.png" alt="Shudder Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://auth.hulu.com/web/login/" target="_blank">
-                        <img src="./logo/paid_apps/hulu.png" alt="HULU Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.netflix.com/" target="_blank">
-                        <img src="./logo/paid_apps/netflix.png" alt="Netflix Logo" class="icon">
-                    </a>
-                </div>
-                <!-- no need for this now too 
-                <div class="icon-link">
-                    <a href="https://www.hotstar.com/" target="_blank">
-                        <img src="./logo/paid_apps/hotstar.png" alt="Hotstar Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.sonyliv.com/" target="_blank">
-                        <img src="./logo/paid_apps/sonyliv.png" alt="sonyliv Logo" class="icon">
-                    </a>
-                </div>
-                -->
-                <div class="icon-link">
-                    <a href="https://www.viki.com/" target="_blank">
-                        <img src="./logo/paid_apps/viki.png" alt="viki Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.max.com/" target="_blank">
-                        <img src="https://www.hbomax.com/img/hbomax/logo_nav_bar.png" alt="MAX Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://tv.apple.com/" target="_blank">
-                        <img src="./logo/paid_apps/appletv.png" alt="AppleTv+ Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.amazon.com/gp/video/collection/IncludedwithPrime" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg" alt="AmazonPrime Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.paramountplus.com/account/signin/" target="_blank">
-                        <img src="https://wwwimage-us.pplusstatic.com/base/files/cbs_page_attribute/pplus_logo_white.svg?v=1.0" alt="Paramount+ Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://sso-v2.crunchyroll.com/login" target="_blank">
-                        <img src="./logo/paid_apps/cruncyroll.png" alt="CrunchyRoll Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.mgmplus.com/" target="_blank">
-                        <img src="./logo/paid_apps/mgm+.png" alt="MGM+ Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.peacocktv.com/start" target="_blank">
-                        <img src="./logo/paid_apps/Peacock.png" alt="Peacock Logo" class="icon">
-                    </a>
-                </div>
-                <div class="icon-link">
-                    <a href="https://www.amcplus.com/login" target="_blank">
-                        <img src="./logo/paid_apps/amc+.png" alt="AMC+ Logo" class="icon">
-                    </a>
-                </div>
-                <!-- NO NEED FOR THIS NOW
-                <div class="icon-link">
-                    <a href="https://www.zee5.com/" target="_blank">
-                        <img src="./logo/paid_apps/zee5.png" alt="zee5 Logo" class="icon">
-                    </a>
-                </div>
-                -->
-            </div>
-            <p class="footer-text">
-                <a href="https://discord.gg/Dsts8Y2jWz" target="_blank" rel="noopener noreferrer" style="color: #ff8c00; text-decoration: none;">
+        <!-- Back to Top Button with Progress Circle -->
+        <div class="back-to-top-wrapper" id="backToTopWrapper">
+            <svg class="scroll-progress-svg" width="60" height="60">
+                <circle class="scroll-progress-bg" cx="30" cy="30" r="26"></circle>
+                <circle class="scroll-progress-fill" cx="30" cy="30" r="26"></circle>
+            </svg>
+            <button class="back-to-top" id="backToTop">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://discord.gg/Dsts8Y2jWz" target="_blank" class="footer-link" title="Discord">
                     <i class="fab fa-discord"></i>
                 </a>
-            </p>
-            <p class="footer-text">
-                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" rel="noopener noreferrer" style="color: #ff8c00; text-decoration: none;">
+                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link" title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-            </p>
-            <p class="footer-text blanka">
-                <a href="./site-request.html" style="color: #ff8c00; text-decoration: none;">
-                    <span>REQUEST SITE</span>
-                    <i class="fab fa-plus"></i>
-                </a>
-            </p>
-            <p class="footer-text blanka">Thrown Together By Hellhorde</p>
-            <p class="footer-text blanka">(Share responsibly)</p>
-            <p class="footer-text blanka">Disclosure: I do not own or host any of the content from these sites. This page simply provides links. None of the content is hosted or contained on this page; it serves purely as a text-based reference.</p>
+            </div>
+            <div class="footer-text">
+                <p>🎃 Thrown Together By Hellhorde 🎃</p>
+                <p>(Share responsibly)</p>
+                <p class="copyright">&copy; 2025 TBCPL. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
-    <p class="footer-text blanka">
-        &copy; 2024 TBCPL. All rights reserved.
-        <a href="dmca.html" class="footer-button">Go to DMCA Page</a>
-    </p>
-    
-    <!-- No particles div in HTML - created by JavaScript -->
-    </body>
-
-    <!-- Load heavy scripts only on high-end devices -->
+    <!-- Scripts -->
     <script>
-    if (window.innerWidth > 768 && (navigator.deviceMemory >= 4 || navigator.hardwareConcurrency >= 4)) {
-        // Load particles.js only for capable devices
-        const particlesScript = document.createElement('script');
-        particlesScript.src = 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js';
-        particlesScript.onload = function() {
-            const particlesSetup = document.createElement('script');
-            particlesSetup.src = 'js/particles-simple.js';
-            document.head.appendChild(particlesSetup);
-        };
-        document.head.appendChild(particlesScript);
+        // Load and render links from JSON
+        async function loadLinks() {
+            try {
+                const response = await fetch('links.json');
+                const data = await response.json();
+                const container = document.getElementById('categories-container');
 
-        // Load mouse effects for desktop
-        const mouseScript = document.createElement('script');
-        mouseScript.src = 'js/mouse-effects.js';
-        mouseScript.defer = true;
-        document.head.appendChild(mouseScript);
-    }
+                data.categories.forEach(category => {
+                    const sectionDiv = document.createElement('div');
+                    sectionDiv.className = 'section';
+                    sectionDiv.setAttribute('data-category', category.id);
+
+                    // Create header
+                    const header = document.createElement('h2');
+                    header.className = 'section-header';
+                    header.textContent = category.name;
+                    sectionDiv.appendChild(header);
+
+                    // Create links grid
+                    const linksGrid = document.createElement('div');
+                    linksGrid.className = 'links-grid';
+
+                    // Filter only enabled sites
+                    category.sites.filter(site => site.enabled !== false).forEach(site => {
+                        const link = document.createElement('a');
+                        link.href = site.url;
+                        link.target = '_blank';
+                        link.className = 'link-card';
+                        link.setAttribute('data-name', site.name);
+
+                        link.innerHTML = `
+                            <img src="${site.logo}" alt="${site.name}" class="card-logo">
+                            <span class="card-hover-text">${site.name}</span>
+                        `;
+
+                        linksGrid.appendChild(link);
+                    });
+
+                    sectionDiv.appendChild(linksGrid);
+                    container.appendChild(sectionDiv);
+                });
+
+                // Observe newly created elements for reveal animation
+                document.querySelectorAll('.section, .community-card, .stat-card').forEach(el => {
+                    observer.observe(el);
+                });
+            } catch (error) {
+                console.error('Error loading links:', error);
+            }
+        }
+
+        // Scroll Reveal Animation Observer (defined early for use in loadLinks)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, observerOptions);
+
+        // Loading Screen
+        window.addEventListener('load', function() {
+            // Load links first
+            loadLinks();
+
+            // Then handle loading screen
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                loadingScreen.style.opacity = '0';
+                setTimeout(function() {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Sticky Navbar
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const sections = document.querySelectorAll('.section[data-category]');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+
+            // Reset filter to "All" when user starts typing
+            if (searchTerm !== '') {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+            }
+
+            sections.forEach(section => {
+                const linkCards = section.querySelectorAll('.link-card');
+                let hasVisibleCards = false;
+
+                linkCards.forEach(card => {
+                    const name = card.getAttribute('data-name').toLowerCase();
+                    if (name.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                        hasVisibleCards = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Hide entire category if no cards match
+                if (hasVisibleCards || searchTerm === '') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Filter Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                const sections = document.querySelectorAll('.section[data-category]');
+
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                // Clear search
+                searchInput.value = '';
+
+                // Filter sections
+                if (filter === 'all') {
+                    sections.forEach(section => {
+                        section.style.display = 'block';
+                        section.querySelectorAll('.link-card').forEach(card => {
+                            card.style.display = 'flex';
+                        });
+                    });
+                } else {
+                    sections.forEach(section => {
+                        if (section.getAttribute('data-category') === filter) {
+                            section.style.display = 'block';
+                            section.querySelectorAll('.link-card').forEach(card => {
+                                card.style.display = 'flex';
+                            });
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+
+        // Initial observation for static elements
+        document.querySelectorAll('.community-card, .stat-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for floating elements (desktop only)
+        if (window.innerWidth > 768) {
+            document.addEventListener('mousemove', function(e) {
+                const ghosts = document.querySelectorAll('.ghost');
+                const bats = document.querySelectorAll('.bat');
+
+                const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
+                const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+
+                ghosts.forEach((ghost, index) => {
+                    const speed = (index + 1) * 0.5;
+                    ghost.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+                });
+
+                bats.forEach((bat, index) => {
+                    const speed = (index + 1) * 0.3;
+                    bat.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+                });
+            });
+        }
+
+        // Scroll Progress Circle & Back to Top
+        const backToTopWrapper = document.getElementById('backToTopWrapper');
+        const backToTop = document.getElementById('backToTop');
+        const progressFill = document.querySelector('.scroll-progress-fill');
+
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+
+            // Get current radius (changes on mobile)
+            const radius = window.innerWidth <= 768 ? 21 : 26;
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (scrollPercentage / 100) * circumference;
+
+            progressFill.style.strokeDashoffset = offset;
+
+            // Show/hide wrapper
+            if (scrollTop > 300) {
+                backToTopWrapper.classList.add('show');
+            } else {
+                backToTopWrapper.classList.remove('show');
+            }
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
 
-    <!-- Essential scripts only -->
-    <script src="js/smoothscroll.js" defer></script>
-    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool' defer></script>
-    <script src="js/nocheats.js" defer></script>
-
-    
-    <!-- Google tag (gtag.js) -->
+    <!-- Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -729,5 +430,5 @@
         gtag('js', new Date());
         gtag('config', 'G-TD8F20DS4V');
     </script>
-
+</body>
 </html>
