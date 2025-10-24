@@ -253,6 +253,12 @@
           "enabled": true
         },
         {
+          "name": "ReadComicOnline",
+          "url": "https://readcomiconline.li/",
+          "logo": "./logo/manga/readcomiconline.png",
+          "enabled": true
+        },
+        {
           "name": "MangaHub",
           "url": "https://mangahub.io/",
           "logo": "./logo/manga/mangahub.png",
