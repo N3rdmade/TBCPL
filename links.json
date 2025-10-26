@@ -199,9 +199,21 @@
       "name": "Manga",
       "sites": [
         {
-          "name": "MangaDex",
-          "url": "https://mangadex.org/",
-          "logo": "./logo/manga/mangadex.png",
+          "name": "MangaReader",
+          "url": "https://mangareader.to/home",
+          "logo": "./logo/manga/mangareader.png",
+          "enabled": true
+        },
+        {
+          "name": "MangaBall",
+          "url": "https://mangaball.net/",
+          "logo": "./logo/manga/mangaball.png",
+          "enabled": true
+        },
+        {
+          "name": "Bato",
+          "url": "https://bato.to/",
+          "logo": "./logo/manga/bato.png",
           "enabled": true
         },
         {
@@ -211,15 +223,9 @@
           "enabled": true
         },
         {
-          "name": "MangaReader",
-          "url": "https://mangareader.to/home",
-          "logo": "./logo/manga/mangareader.png",
-          "enabled": true
-        },
-        {
-          "name": "Bato",
-          "url": "https://bato.to/",
-          "logo": "./logo/manga/bato.png",
+          "name": "MangaDex",
+          "url": "https://mangadex.org/",
+          "logo": "./logo/manga/mangadex.png",
           "enabled": true
         },
         {
