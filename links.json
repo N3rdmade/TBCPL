@@ -35,6 +35,12 @@
           "enabled": true
         },
         {
+          "name": "CinemaBZ",
+          "url": "https://cinema.bz/",
+          "logo": "./logo/movies_shows/cinemabz.png",
+          "enabled": true
+        },
+        {
           "name": "Spenflix",
           "url": "https://spenflix.ru/",
           "logo": "./logo/movies_shows/spenflix.png",
