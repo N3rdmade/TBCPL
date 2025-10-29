@@ -65,6 +65,12 @@
           "enabled": true
         },
         {
+          "name": "Cinezo",
+          "url": "https://www.cinezo.net/",
+          "logo": "./logo/movies_shows/cinezo.png",
+          "enabled": true
+        },
+        {
           "name": "MyFlixerz",
           "url": "https://myflixerz.to/",
           "logo": "./logo/movies_shows/myflixerz.png",
