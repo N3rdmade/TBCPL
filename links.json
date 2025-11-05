@@ -22,6 +22,12 @@
           "logo": "./logo/movies_shows/rgshows.png",
           "enabled": true
         },
+         {
+          "name": "AlienFlix",
+          "url": "https://alienflix.net/",
+          "logo": "./logo/movies_shows/alienflix.png",
+          "enabled": true
+        },
         {
           "name": "FlickyStream",
           "url": "https://flickystream.ru/",
