@@ -482,6 +482,36 @@
           "enabled": true
         }
       ]
+    },
+    {
+      "id": "apps",
+      "name": "📱 Apps",
+      "sites": [
+        {
+          "name": "Playtorrio",
+          "url": "https://playtorrio.pages.dev/",
+          "logo": "./logo/apps/playtorrio.png",
+          "enabled": true
+        },
+        {
+          "name": "OnStream APKs",
+          "url": "https://onstreamapks.app/",
+          "logo": "./logo/apps/onstream.png",
+          "enabled": true
+        },
+        {
+          "name": "HDO Box",
+          "url": "https://hdobox.net/",
+          "logo": "./logo/apps/hdobox.png",
+          "enabled": true
+        },
+        {
+          "name": "BeeTV",
+          "url": "https://beetv.download/",
+          "logo": "./logo/apps/beetv.png",
+          "enabled": true
+        }
+      ]
     }
   ]
 }
