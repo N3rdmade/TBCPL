@@ -71,6 +71,12 @@
           "enabled": true
         },
         {
+          "name": "Cineby",
+          "url": "https://www.cineby.ru/",
+          "logo": "./logo/movies_shows/cineby.png",
+          "enabled": true
+        },
+        {
           "name": "MyFlixerz",
           "url": "https://myflixerz.to/",
           "logo": "./logo/movies_shows/myflixerz.png",
@@ -92,12 +98,6 @@
           "name": "CinemaDeck",
           "url": "https://cinemadeck.com/",
           "logo": "./logo/movies_shows/cinemadeck.png",
-          "enabled": true
-        },
-        {
-          "name": "Cineby",
-          "url": "https://www.cineby.ru/",
-          "logo": "./logo/movies_shows/cineby.png",
           "enabled": true
         },
         {
@@ -129,6 +129,12 @@
           "name": "SmashyStream",
           "url": "https://smashystream.xyz/",
           "logo": "./logo/movies_shows/smashystream.png",
+          "enabled": true
+        },
+        {
+          "name": "Flixway",
+          "url": "https://flixway.pro/",
+          "logo": "./logo/movies_shows/flixway.png",
           "enabled": true
         },
         {
