@@ -11,29 +11,31 @@
 }
 
 :root {
-    /* Professional Color Palette - Dark Theme */
-    --background: #0a0a0f;
-    --background-secondary: #12121a;
-    --surface: #1a1a2e;
-    --surface-elevated: #25253a;
-    --border: rgba(255, 107, 53, 0.15);
-    --border-hover: rgba(255, 107, 53, 0.3);
+    /* Christmas Color Palette - Dark Theme */
+    --background: #0a1f0a;
+    --background-secondary: #0f2a0f;
+    --surface: #1a3a1a;
+    --surface-elevated: #254a2a;
+    --border: rgba(239, 68, 68, 0.2);
+    --border-hover: rgba(239, 68, 68, 0.4);
 
-    /* Accent Colors */
-    --accent-primary: #ff6b35;
-    --accent-secondary: #ff8c42;
-    --accent-gradient: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    /* Accent Colors - Christmas Red and Green */
+    --accent-primary: #ef4444;
+    --accent-secondary: #22c55e;
+    --accent-gold: #fbbf24;
+    --accent-gradient: linear-gradient(135deg, #ef4444 0%, #22c55e 50%, #fbbf24 100%);
 
     /* Text Colors */
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.85);
     --text-tertiary: rgba(255, 255, 255, 0.65);
 
-    /* Shadows */
+    /* Shadows - Christmas themed */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-    --shadow-accent: 0 4px 16px rgba(255, 107, 53, 0.2);
+    --shadow-accent: 0 4px 16px rgba(239, 68, 68, 0.3);
+    --shadow-glow: 0 0 30px rgba(34, 197, 94, 0.15);
 
     /* Border Radius */
     --radius-sm: 6px;
@@ -61,7 +63,7 @@ html {
 
 body {
     font-family: var(--font-sans);
-    background: var(--background);
+    background: radial-gradient(ellipse at top, rgba(34, 197, 94, 0.03) 0%, var(--background) 50%);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
@@ -87,16 +89,22 @@ body {
     transition: opacity 0.4s ease-out;
 }
 
-.pumpkin-loader {
+.christmas-loader {
     text-align: center;
 }
 
-.pumpkin-logo {
+.christmas-logo {
     width: 120px;
     height: 120px;
-    animation: subtleBounce 2s ease-in-out infinite;
+    animation: subtleBounce 2s ease-in-out infinite, christmasGlow 3s ease-in-out infinite alternate;
     opacity: 0.9;
-    filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.4));
+    filter: drop-shadow(0 0 25px rgba(239, 68, 68, 0.5));
+}
+
+@keyframes christmasGlow {
+    0% { filter: drop-shadow(0 0 25px rgba(239, 68, 68, 0.5)); }
+    50% { filter: drop-shadow(0 0 30px rgba(34, 197, 94, 0.6)); }
+    100% { filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.5)); }
 }
 
 @keyframes subtleBounce {
@@ -113,8 +121,8 @@ body {
     text-transform: uppercase;
 }
 
-/* === FLOATING HALLOWEEN ELEMENTS === */
-.halloween-bg {
+/* === FLOATING CHRISTMAS ELEMENTS === */
+.christmas-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -123,27 +131,38 @@ body {
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
-    opacity: 0.15;
+    opacity: 0.2;
 }
 
-.ghost, .bat, .spider {
+.snowflake, .ornament, .star {
     position: absolute;
     font-size: 2rem;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
-.ghost-1 { top: 10%; left: 5%; animation: float 15s ease-in-out infinite; }
-.ghost-2 { top: 50%; right: 10%; animation: float 18s ease-in-out infinite 2s; }
-.ghost-3 { bottom: 20%; left: 15%; animation: float 20s ease-in-out infinite 4s; }
-.bat-1 { top: 15%; right: 20%; animation: float 12s ease-in-out infinite 1s; }
-.bat-2 { top: 60%; left: 25%; animation: float 16s ease-in-out infinite 3s; }
-.bat-3 { bottom: 30%; right: 15%; animation: float 14s ease-in-out infinite 5s; }
-.spider-1 { top: 5%; left: 30%; animation: float 10s ease-in-out infinite; }
-.spider-2 { top: 40%; right: 5%; animation: float 13s ease-in-out infinite 2s; }
+.snowflake-1 { top: 10%; left: 5%; animation: snowfall 15s linear infinite; }
+.snowflake-2 { top: 0%; left: 25%; animation: snowfall 18s linear infinite 2s; }
+.snowflake-3 { top: 5%; right: 15%; animation: snowfall 20s linear infinite 4s; }
+.snowflake-4 { top: 15%; right: 35%; animation: snowfall 12s linear infinite 1s; }
+.snowflake-5 { top: 0%; left: 50%; animation: snowfall 16s linear infinite 3s; }
+.snowflake-6 { top: 10%; right: 5%; animation: snowfall 14s linear infinite 5s; }
+.ornament-1 { top: 20%; left: 15%; animation: swing 8s ease-in-out infinite; }
+.ornament-2 { top: 30%; right: 20%; animation: swing 10s ease-in-out infinite 2s; }
+.star-1 { top: 5%; left: 40%; animation: twinkle 3s ease-in-out infinite; }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(-20px) translateX(10px); }
+@keyframes snowfall {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); }
+    100% { transform: translateY(100vh) translateX(50px) rotate(360deg); }
+}
+
+@keyframes swing {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.2); }
 }
 
 /* === CONTAINER === */
@@ -249,7 +268,7 @@ body {
 
 .nav-link.active {
     color: var(--text-primary);
-    background: rgba(255, 107, 53, 0.1);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(34, 197, 94, 0.1));
 }
 
 .nav-link i {
@@ -285,18 +304,26 @@ body {
     margin-bottom: var(--spacing-2xl);
 }
 
-.spooky-title {
-    font-family: 'Creepster', cursive;
+.festive-title {
+    font-family: 'Mountains of Christmas', cursive;
     font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 400;
-    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-gold) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    background-size: 200% 200%;
+    animation: festiveShimmer 4s ease infinite;
     margin-bottom: var(--spacing-md);
     letter-spacing: 0.02em;
-    text-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+    filter: drop-shadow(0 0 25px rgba(239, 68, 68, 0.4));
     line-height: 1.1;
+}
+
+@keyframes festiveShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .title-word {
@@ -336,7 +363,7 @@ body {
 
 .search-input:focus {
     border-color: var(--accent-primary);
-    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15), var(--shadow-glow);
 }
 
 .filter-buttons {
@@ -370,7 +397,7 @@ body {
     background: var(--accent-gradient);
     border-color: var(--accent-primary);
     color: white;
-    box-shadow: var(--shadow-accent);
+    box-shadow: var(--shadow-accent), var(--shadow-glow);
 }
 
 /* === STATS SECTION === */
@@ -399,7 +426,7 @@ body {
 
 .stat-card:hover {
     border-color: var(--border-hover);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
     transform: translateY(-4px);
 }
 
@@ -430,7 +457,8 @@ body {
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-2xl);
-    border-left: 3px solid var(--accent-primary);
+    border-left: 4px solid var(--accent-primary);
+    box-shadow: var(--shadow-glow);
 }
 
 .warning-icon {
@@ -449,7 +477,7 @@ body {
     font-weight: 600;
 }
 
-.halloween-link {
+.festive-link {
     color: var(--accent-primary);
     text-decoration: none;
     font-weight: 500;
@@ -459,7 +487,7 @@ body {
     gap: 6px;
 }
 
-.halloween-link:hover {
+.festive-link:hover {
     color: var(--accent-secondary);
 }
 
@@ -468,7 +496,68 @@ body {
     vertical-align: middle;
 }
 
-/* === COMMUNITY CARDS === */
+/* === COMMUNITY SECTION - COMPACT === */
+.community-section-compact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.community-text {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.community-links {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+.community-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.community-link:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+.community-link.discord-link:hover {
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.1), rgba(88, 101, 242, 0.05));
+    border-color: #5865f2;
+}
+
+.community-link.reddit-link:hover {
+    background: linear-gradient(135deg, rgba(255, 69, 0, 0.1), rgba(255, 69, 0, 0.05));
+    border-color: #ff4500;
+}
+
+.community-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* === LEGACY COMMUNITY CARDS (for other pages) === */
 .community-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -494,8 +583,9 @@ body {
 
 .community-card:hover {
     border-color: var(--border-hover);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
     transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.03), rgba(34, 197, 94, 0.03));
 }
 
 .card-icon {
@@ -535,7 +625,7 @@ body {
 
 .card-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4), var(--shadow-glow);
 }
 
 .btn-icon {
@@ -562,20 +652,23 @@ body {
 
 .section:hover {
     border-color: var(--border-hover);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
 }
 
 .section-header {
-    font-family: 'Creepster', cursive;
+    font-family: 'Mountains of Christmas', cursive;
     font-size: 2rem;
-    color: var(--accent-primary);
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-align: center;
     margin-bottom: var(--spacing-xl);
-    font-weight: 400;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-shadow: 0 0 15px rgba(255, 107, 53, 0.2);
+    filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.3));
     gap: var(--spacing-sm);
     letter-spacing: -0.01em;
 }
@@ -609,8 +702,9 @@ body {
 
 .link-card:hover {
     border-color: var(--accent-primary);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
     transform: translateY(-4px);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(34, 197, 94, 0.05));
 }
 
 .card-logo {
@@ -682,7 +776,7 @@ body {
 
 .scroll-progress-bg {
     fill: none;
-    stroke: rgba(255, 107, 53, 0.2);
+    stroke: rgba(239, 68, 68, 0.2);
     stroke-width: 3;
 }
 
@@ -720,6 +814,7 @@ body {
     background: var(--accent-gradient);
     border-color: var(--accent-primary);
     transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
 }
 
 /* === FOOTER === */
@@ -784,14 +879,15 @@ body {
     color: var(--accent-primary);
     text-decoration: none;
     padding: 4px 12px;
-    background: rgba(255, 107, 53, 0.1);
+    background: rgba(239, 68, 68, 0.1);
     border-radius: var(--radius-sm);
     margin-left: var(--spacing-sm);
     transition: all 0.2s ease;
 }
 
 .dmca-link:hover {
-    background: rgba(255, 107, 53, 0.2);
+    background: rgba(239, 68, 68, 0.2);
+    box-shadow: var(--shadow-glow);
 }
 
 /* === SCROLLBAR === */
@@ -815,7 +911,7 @@ body {
 
 /* === RESPONSIVE DESIGN === */
 @media (max-width: 1024px) {
-    .spooky-title {
+    .festive-title {
         font-size: 3rem;
     }
 
@@ -829,7 +925,7 @@ body {
         padding-top: 56px;
     }
 
-    .halloween-bg {
+    .christmas-bg {
         display: none;
     }
 
@@ -907,6 +1003,21 @@ body {
 
     .section {
         padding: var(--spacing-lg);
+    }
+
+    .community-section-compact {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .community-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .community-link {
+        width: 100%;
+        justify-content: center;
     }
 
     .community-cards {
@@ -999,7 +1110,7 @@ body {
 
 /* === PRINT STYLES === */
 @media print {
-    .halloween-bg,
+    .christmas-bg,
     .loading-screen,
     .navbar,
     .back-to-top {

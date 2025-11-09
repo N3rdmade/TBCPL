@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./ui.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -39,16 +39,14 @@
         </div>
     </nav>
 
-    <!-- Floating Halloween Elements -->
-    <div class="halloween-bg">
-        <div class="ghost ghost-1">👻</div>
-        <div class="ghost ghost-2">👻</div>
-        <div class="ghost ghost-3">👻</div>
-        <div class="bat bat-1">🦇</div>
-        <div class="bat bat-2">🦇</div>
-        <div class="bat bat-3">🦇</div>
-        <div class="spider spider-1">🕷️</div>
-        <div class="spider spider-2">🕷️</div>
+    <!-- Floating Christmas Elements -->
+    <div class="christmas-bg">
+        <div class="snowflake snowflake-1">❄️</div>
+        <div class="snowflake snowflake-2">❄️</div>
+        <div class="snowflake snowflake-3">❄️</div>
+        <div class="snowflake snowflake-4">❄️</div>
+        <div class="ornament ornament-1">🔴</div>
+        <div class="star star-1">⭐</div>
     </div>
 
     <div class="container-404">
@@ -56,7 +54,7 @@
         <div class="error-section">
             <div class="error-number">
                 <span class="error-digit">4</span>
-                <span class="error-pumpkin">🎃</span>
+                <span class="error-ornament">🎄</span>
                 <span class="error-digit">4</span>
             </div>
 
@@ -64,13 +62,13 @@
                 <span class="title-word">Lost</span>
                 <span class="title-word">in</span>
                 <span class="title-word">the</span>
-                <span class="title-word">Haunted</span>
-                <span class="title-word">Woods!</span>
+                <span class="title-word">Winter</span>
+                <span class="title-word">Wonderland!</span>
             </h1>
 
             <p class="error-message">
-                Looks like you wandered into the spooky forest and got lost!<br>
-                The page you're looking for has vanished into the mist... 👻
+                Looks like you wandered into the snowy forest and got lost!<br>
+                The page you're looking for has disappeared in the snowfall... ❄️
             </p>
 
             <!-- Action Buttons -->
@@ -107,9 +105,9 @@
                 </div>
             </div>
 
-            <!-- Fun Halloween Facts -->
+            <!-- Fun Christmas Facts -->
             <div class="fun-fact">
-                <h3>🎃 Spooky Fun Fact 🎃</h3>
+                <h3>🎄 Festive Fun Fact 🎁</h3>
                 <p id="randomFact"></p>
             </div>
         </div>
@@ -129,8 +127,8 @@
             </a>
         </div>
         <div class="footer-text">
-            <p>🎃 Thrown Together By Hellhorde 🎃</p>
-            <p class="copyright">&copy; 2024 TBCPL. All rights reserved.</p>
+            <p>🎄 Crafted with Holiday Spirit 🎄</p>
+            <p class="copyright">&copy; 2025 TBCPL. All rights reserved.</p>
         </div>
     </footer>
 
@@ -154,25 +152,25 @@
             }
         });
 
-        // Random Halloween Facts
+        // Random Christmas Facts
         const facts = [
             "404 errors got their name from the room number at CERN where the World Wide Web was invented!",
             "The first website ever created is still online at info.cern.ch",
-            "Halloween originated from the ancient Celtic festival of Samhain.",
-            "The fear of the number 404 is not a real phobia, but getting lost on the web sure is spooky!",
-            "Did you know? The Jack-o'-lantern was originally carved from turnips, not pumpkins!",
-            "Error 404 means 'Not Found' - much like a ghost, the page exists somewhere but can't be seen!",
-            "The world's largest pumpkin ever grown weighed over 2,600 pounds!",
-            "Black cats are considered lucky in many countries, including Japan and the UK!"
+            "The tradition of Christmas trees originated in Germany in the 16th century!",
+            "Error 404 means 'Not Found' - much like a gift hidden too well, the page exists somewhere but can't be found!",
+            "Did you know? Jingle Bells was originally written for Thanksgiving, not Christmas!",
+            "The world's tallest Christmas tree ever cut was 221 feet tall in Washington state!",
+            "In Japan, KFC is a popular Christmas Eve dinner tradition!",
+            "Santa Claus has different names around the world: Father Christmas, Saint Nicholas, Kris Kringle, and more!"
         ];
 
         const randomFact = facts[Math.floor(Math.random() * facts.length)];
         document.getElementById('randomFact').textContent = randomFact;
 
-        // Floating animation for pumpkin
-        const pumpkin = document.querySelector('.error-pumpkin');
+        // Floating animation for ornament
+        const ornament = document.querySelector('.error-ornament');
         setInterval(() => {
-            pumpkin.style.transform = `translateY(${Math.sin(Date.now() / 500) * 10}px)`;
+            ornament.style.transform = `translateY(${Math.sin(Date.now() / 500) * 10}px)`;
         }, 50);
     </script>
 
@@ -221,14 +219,14 @@
             50% { transform: translateY(-10px); }
         }
 
-        .error-pumpkin {
+        .error-ornament {
             font-size: 8rem;
-            filter: drop-shadow(0 4px 12px rgba(255, 107, 53, 0.15));
-            animation: pumpkinFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.15));
+            animation: ornamentFloat 3s ease-in-out infinite;
             animation-delay: 0.25s;
         }
 
-        @keyframes pumpkinFloat {
+        @keyframes ornamentFloat {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
@@ -386,7 +384,7 @@
                 font-size: 6rem;
             }
 
-            .error-pumpkin {
+            .error-ornament {
                 font-size: 5rem;
             }
 
@@ -422,7 +420,7 @@
                 font-size: 4rem;
             }
 
-            .error-pumpkin {
+            .error-ornament {
                 font-size: 3.5rem;
             }
 
