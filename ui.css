@@ -771,14 +771,17 @@ body {
         border-bottom: 1px solid var(--border);
         flex-direction: column;
         gap: 0;
-        padding: var(--spacing-md);
+        padding: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
     }
 
     .nav-menu.active {
         max-height: 300px;
+        padding: var(--spacing-md);
+        opacity: 1;
     }
 
     .nav-link {
