@@ -147,9 +147,9 @@
 
         <!-- Back to Top Button with Progress Circle -->
         <div class="back-to-top-wrapper" id="backToTopWrapper">
-            <svg class="scroll-progress-svg" width="60" height="60">
-                <circle class="scroll-progress-bg" cx="30" cy="30" r="26"></circle>
-                <circle class="scroll-progress-fill" cx="30" cy="30" r="26"></circle>
+            <svg class="scroll-progress-svg" width="50" height="50">
+                <circle class="scroll-progress-bg" cx="25" cy="25" r="23"></circle>
+                <circle class="scroll-progress-fill" cx="25" cy="25" r="23"></circle>
             </svg>
             <button class="back-to-top" id="backToTop">
                 <i class="fas fa-arrow-up"></i>
@@ -208,7 +208,6 @@
 
                         link.innerHTML = `
                             <img src="${site.logo}" alt="${site.name}" class="card-logo">
-                            <span class="card-hover-text">${site.name}</span>
                         `;
 
                         linksGrid.appendChild(link);
@@ -391,15 +390,15 @@
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrollPercentage = (scrollTop / scrollHeight) * 100;
 
-            // Get current radius (changes on mobile)
-            const radius = window.innerWidth <= 768 ? 21 : 26;
+            // Radius is 23 for 50px circle
+            const radius = 23;
             const circumference = 2 * Math.PI * radius;
             const offset = circumference - (scrollPercentage / 100) * circumference;
 
             progressFill.style.strokeDashoffset = offset;
 
             // Show/hide wrapper
-            if (scrollTop > 300) {
+            if (scrollTop > 1) {
                 backToTopWrapper.classList.add('show');
             } else {
                 backToTopWrapper.classList.remove('show');
