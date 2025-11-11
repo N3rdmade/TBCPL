@@ -48,7 +48,7 @@
         },
         {
           "name": "Spenflix",
-          "url": "https://spenflix.ru/",
+          "url": "https://watch.spencerdevs.xyz/",
           "logo": "./logo/movies_shows/spenflix.png",
           "enabled": true
         },
@@ -78,7 +78,7 @@
         },
         {
           "name": "Cineby",
-          "url": "https://www.cineby.ru/",
+          "url": "https://www.cineby.gd/",
           "logo": "./logo/movies_shows/cineby.png",
           "enabled": true
         },
