@@ -142,12 +142,6 @@
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png",
           "enabled": true
-        },
-        {
-          "name": "P-Stream",
-          "url": "https://pstream.mov/",
-          "logo": "./logo/movies_shows/pstream.png",
-          "enabled": true
         }
       ]
     },
