@@ -6,13 +6,13 @@
       "sites": [
         {
           "name": "1Shows",
-          "url": "https://www.1shows.ru/",
+          "url": "https://www.1shows.nl/",
           "logo": "./logo/movies_shows/1shows.png",
           "enabled": true
         },
         {
           "name": "1Flex",
-          "url": "https://www.1flex.ru/",
+          "url": "https://www.1flex.nl/",
           "logo": "./logo/movies_shows/1flex.png",
           "enabled": true
         },
