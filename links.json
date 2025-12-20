@@ -54,7 +54,7 @@
         },
         {
           "name": "FilmCave",
-          "url": "https://filmcave.net/",
+          "url": "https://filmcave.ru/",
           "logo": "./logo/movies_shows/filmcave.png",
           "enabled": true
         },
@@ -62,6 +62,12 @@
           "name": "Corsflix",
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
+          "enabled": true
+        },
+        {
+          "name": "StreamX",
+          "url": "https://streamex.net/",
+          "logo": "./logo/movies_shows/streamx.png",
           "enabled": true
         },
         {
@@ -121,13 +127,13 @@
         },
         {
           "name": "Xprime",
-          "url": "https://xprime.tv/",
+          "url": "https://xprime.stream/",
           "logo": "./logo/movies_shows/xprime.png",
           "enabled": true
         },
         {
           "name": "Hexa",
-          "url": "https://hexa.watch/",
+          "url": "https://hexa.su/",
           "logo": "./logo/movies_shows/hexa.png",
           "enabled": true
         },
@@ -365,6 +371,12 @@
           "name": "StreamEast",
           "url": "https://xstreameast.com/",
           "logo": "./logo/livetv/streameast.png",
+          "enabled": true
+        },
+        {
+          "name": "iStreamEast",
+          "url": "https://istreameast.app/",
+          "logo": "./logo/livetv/istreameast.png",
           "enabled": true
         },
         {
