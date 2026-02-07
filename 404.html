@@ -54,21 +54,19 @@
         <div class="error-section">
             <div class="error-number">
                 <span class="error-digit">4</span>
-                <span class="error-ornament">🎄</span>
+                <span class="error-ornament">💀</span>
                 <span class="error-digit">4</span>
             </div>
 
             <h1 class="error-title">
+                <span class="title-word">You</span>
+                <span class="title-word">Got</span>
                 <span class="title-word">Lost</span>
-                <span class="title-word">in</span>
-                <span class="title-word">the</span>
-                <span class="title-word">Winter</span>
-                <span class="title-word">Wonderland!</span>
+                <span class="title-word">Gang</span>
             </h1>
 
             <p class="error-message">
-                Looks like you wandered into the snowy forest and got lost!<br>
-                The page you're looking for has disappeared in the snowfall... ❄️
+                Looks like you tried to visit a deleted or non-existed page!<br>
             </p>
 
             <!-- Action Buttons -->
@@ -97,17 +95,12 @@
                         <h3>Request a Site</h3>
                         <p>Submit your favorite site</p>
                     </a>
-                    <a href="faq.html" class="suggestion-card">
-                        <div class="suggestion-icon">❓</div>
-                        <h3>FAQ</h3>
-                        <p>Find answers to common questions</p>
-                    </a>
                 </div>
             </div>
 
             <!-- Fun Christmas Facts -->
             <div class="fun-fact">
-                <h3>🎄 Festive Fun Fact 🎁</h3>
+                <h3>A Random Fact</h3>
                 <p id="randomFact"></p>
             </div>
         </div>
@@ -122,13 +115,10 @@
             <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link" title="GitHub">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="./site-request.html" class="footer-link" title="Request Site">
-                <i class="fas fa-plus-circle"></i>
-            </a>
         </div>
         <div class="footer-text">
-            <p>🎄 Crafted with Holiday Spirit 🎄</p>
-            <p class="copyright">&copy; 2025 TBCPL. All rights reserved.</p>
+            <p>Curated with ❤️ by Team</p>
+            <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
         </div>
     </footer>
 
@@ -152,20 +142,22 @@
             }
         });
 
-        // Random Christmas Facts
-        const facts = [
-            "404 errors got their name from the room number at CERN where the World Wide Web was invented!",
-            "The first website ever created is still online at info.cern.ch",
-            "The tradition of Christmas trees originated in Germany in the 16th century!",
-            "Error 404 means 'Not Found' - much like a gift hidden too well, the page exists somewhere but can't be found!",
-            "Did you know? Jingle Bells was originally written for Thanksgiving, not Christmas!",
-            "The world's tallest Christmas tree ever cut was 221 feet tall in Washington state!",
-            "In Japan, KFC is a popular Christmas Eve dinner tradition!",
-            "Santa Claus has different names around the world: Father Christmas, Saint Nicholas, Kris Kringle, and more!"
-        ];
+        // Fetch random fact from API
+        async function fetchRandomFact() {
+            const factElement = document.getElementById('randomFact');
+            factElement.textContent = 'Loading...';
 
-        const randomFact = facts[Math.floor(Math.random() * facts.length)];
-        document.getElementById('randomFact').textContent = randomFact;
+            try {
+                const response = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/random?language=en');
+                if (!response.ok) throw new Error('API error');
+                const data = await response.json();
+                factElement.textContent = data.text;
+            } catch (error) {
+                factElement.textContent = 'The first website ever created is still online at info.cern.ch';
+            }
+        }
+
+        fetchRandomFact();
 
         // Floating animation for ornament
         const ornament = document.querySelector('.error-ornament');

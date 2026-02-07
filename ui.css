@@ -1,6 +1,6 @@
 /* ===================================
    TBCPL - Minimalistic AMOLED Theme
-   True Black with Christmas Accents
+   True Black Theme
    =================================== */
 
 /* === RESET & BASE === */
@@ -549,7 +549,8 @@ body {
     content: '';
     width: 4px;
     height: 20px;
-    background: var(--accent-green);
+    background: var(--accent-red);
+    /* background: var(--accent-green); */
     border-radius: 2px;
 }
 
