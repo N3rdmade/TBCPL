@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ║  • Performance optimized                                     ║
     ║                                                              ║
     ║  GitHub: https://github.com/N3rdmade/TBCPL/                 ║
-    ║  Discord: https://discord.gg/Dsts8Y2jWz                    ║
+    ║  Discord: https://discord.gg/BPxzYVY5UU                    ║
     ╚══════════════════════════════════════════════════════════════╝
     `);
 

@@ -95,6 +95,18 @@
           "enabled": true
         },
         {
+          "name": "SFlix",
+          "url": "https://sflix.fi/",
+          "logo": "./logo/movies_shows/sflix.png",
+          "enabled": true
+        },
+        {
+          "name": "Hdtodayz",
+          "url": "https://hdtodayz.to/",
+          "logo": "./logo/movies_shows/hdtodayz.png",
+          "enabled": true
+        },
+        {
           "name": "Nepu",
           "url": "https://nepu.to/",
           "logo": "./logo/movies_shows/nepu.png",
@@ -104,12 +116,6 @@
           "name": "FMovies",
           "url": "https://fmovies-hd.to/home/",
           "logo": "./logo/movies_shows/fmovies.png",
-          "enabled": true
-        },
-        {
-          "name": "CinemaDeck",
-          "url": "https://cinemadeck.com/",
-          "logo": "./logo/movies_shows/cinemadeck.png",
           "enabled": true
         },
         {
@@ -181,6 +187,12 @@
           "enabled": true
         },
         {
+          "name": "animepahe",
+          "url": "https://animepahe.si/",
+          "logo": "./logo/anime/animepahe.png",
+          "enabled": true
+        },
+        {
           "name": "Animetsu",
           "url": "https://animetsu.bz",
           "logo": "./logo/anime/animetsu.png",
@@ -215,6 +227,12 @@
           "url": "https://animekai.to/home",
           "logo": "./logo/anime/animekai.png",
           "enabled": true
+        },
+        {
+          "name": "FAnime",
+          "url": "https://fanime.tv/",
+          "logo": "./logo/anime/fanime.png",
+          "enabled": true
         }
       ]
     },
@@ -223,21 +241,21 @@
       "name": "Manga",
       "sites": [
         {
-          "name": "MangaReader",
-          "url": "https://mangareader.to/home",
-          "logo": "./logo/manga/mangareader.png",
-          "enabled": true
-        },
-        {
           "name": "MangaBall",
           "url": "https://mangaball.net/",
           "logo": "./logo/manga/mangaball.png",
           "enabled": true
         },
         {
-          "name": "Bato",
-          "url": "https://bato.to/",
-          "logo": "./logo/manga/bato.png",
+          "name": "Atsu",
+          "url": "https://atsu.moe/",
+          "logo": "./logo/manga/atsumaru.png",
+          "enabled": true
+        },
+        {
+          "name": "Kagane",
+          "url": "https://kagane.org/",
+          "logo": "./logo/manga/kagane.png",
           "enabled": true
         },
         {
@@ -347,6 +365,12 @@
           "name": "TheDaddy",
           "url": "https://dlhd.dad/",
           "logo": "./logo/livetv/thedaddy.png",
+          "enabled": true
+        },
+        {
+          "name": "DaddyHD",
+          "url": "https://daddyhd.nl/",
+          "logo": "./logo/livetv/daddyhd.png",
           "enabled": true
         },
         {
@@ -527,6 +551,24 @@
           "name": "BeeTV",
           "url": "https://beetv.download/",
           "logo": "./logo/apps/beetv.png",
+          "enabled": true
+        },
+        {
+          "name": "MovieBox",
+          "url": "https://themoviebox.org/download-app",
+          "logo": "./logo/apps/moviebox.png",
+          "enabled": true
+        },
+        {
+          "name": "NetMirror",
+          "url": "https://netmirror.gg/2/en",
+          "logo": "./logo/apps/netmirror.png",
+          "enabled": true
+        },
+        {
+          "name": "PikaShow",
+          "url": "https://pikashowtv.in/",
+          "logo": "./logo/apps/pikashow.png",
           "enabled": true
         }
       ]
