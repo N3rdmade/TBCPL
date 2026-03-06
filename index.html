@@ -34,12 +34,18 @@
     </nav>
 
     <div class="slide-indicators" id="slideIndicators">
-        <div class="slide-dot active" data-filter="movies" title="Movies"></div>
-        <div class="slide-dot" data-filter="anime" title="Anime"></div>
-        <div class="slide-dot" data-filter="manga" title="Manga"></div>
-        <div class="slide-dot" data-filter="livetv" title="Live TV"></div>
-        <div class="slide-dot" data-filter="paid" title="Paid"></div>
-        <div class="slide-dot" data-filter="apps" title="Apps"></div>
+        <div class="slide-dot active" data-filter="movies">
+            <div class="dot-top">MOVIES</div>
+            <div class="dot-bottom">SHOWS</div>
+        </div>
+        <div class="slide-dot" data-filter="anime">ANIME</div>
+        <div class="slide-dot" data-filter="manga">MANGA</div>
+        <div class="slide-dot" data-filter="livetv">
+            <div class="dot-top">LIVE TV</div>
+            <div class="dot-bottom">SPORTS</div>
+        </div>
+        <div class="slide-dot" data-filter="paid">PAID</div>
+        <div class="slide-dot" data-filter="apps">APPS</div>
     </div>
 
     <div class="container">
@@ -146,7 +152,7 @@
             const query = searchInput.value.toLowerCase();
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
             
-            // Sync side dots
+            // Sync side indicators
             slideDots.forEach(d => d.classList.remove('active'));
             document.querySelector(`.slide-dot[data-filter="${filter}"]`).classList.add('active');
 
@@ -226,9 +232,7 @@
             if (!anchor) return;
             const lockPos = Math.floor(anchor.offsetTop - 60);
             
-            // Checks if you are at the absolute bottom of the current list
             const isAtBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5;
-            // Checks if you are exactly at the top of the search dock
             const isAtDockTop = window.scrollY <= lockPos + 5 && window.scrollY >= lockPos - 5;
 
             const btns = Array.from(document.querySelectorAll('.filter-btn'));
@@ -246,7 +250,6 @@
                     triggerSlideChange(btns[nextIdx].dataset.filter);
                     setTimeout(() => slideCooldown = false, 600);
                 }
-                // If we aren't at the bottom, the browser scrolls naturally down the movies list!
             } 
             else if (e.deltaY < 0) {
                 // SCROLL UP: Only flip slide if we are at the top of the search dock
@@ -258,7 +261,6 @@
                     triggerSlideChange(btns[activeIdx - 1].dataset.filter);
                     setTimeout(() => slideCooldown = false, 600);
                 }
-                // If you are on Movies (Index 0), let the browser scroll up to the Hero section naturally!
             }
         }, { passive: false });
 
