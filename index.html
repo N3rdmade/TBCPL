@@ -10,19 +10,22 @@
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
     
     <link rel="stylesheet" href="./ui.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
                 <img src="logo.png" alt="TBCPL" class="nav-logo-img"> TBCPL
             </a>
-            <ul class="nav-menu">
+            
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
                 <li><a href="site-request.html" class="nav-link"><i class="fas fa-plus-circle"></i> Request</a></li>
@@ -140,6 +143,10 @@
             this.classList.add('active');
             applyFilter();
         }));
+
+        document.getElementById('navToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
     </script>
 </body>
 </html>
