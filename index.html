@@ -146,7 +146,7 @@
             const query = searchInput.value.toLowerCase();
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
             
-            // Sync side indicators
+            // Sync side dots
             slideDots.forEach(d => d.classList.remove('active'));
             document.querySelector(`.slide-dot[data-filter="${filter}"]`).classList.add('active');
 
@@ -199,6 +199,7 @@
         // SMART PRESENTATION ENGINE (SCROLL FIX)
         // ==========================================
         
+        // 1. The Dynamic Brick Wall: Prevents scrolling UP past the dock unless you are on Movies!
         window.addEventListener('scroll', () => {
             const anchor = document.getElementById('searchAnchor');
             if (!anchor) return;
@@ -212,6 +213,7 @@
             }
         });
 
+        // 2. The Smart Sensor Wheel Controller
         let slideCooldown = false;
 
         window.addEventListener('wheel', (e) => {
@@ -224,24 +226,30 @@
             if (!anchor) return;
             const lockPos = Math.floor(anchor.offsetTop - 60);
             
+            // Checks if you are at the absolute bottom of the current list
             const isAtBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5;
+            // Checks if you are exactly at the top of the search dock
             const isAtDockTop = window.scrollY <= lockPos + 5 && window.scrollY >= lockPos - 5;
 
             const btns = Array.from(document.querySelectorAll('.filter-btn'));
             const activeIdx = btns.findIndex(b => b.classList.contains('active'));
 
             if (e.deltaY > 0) {
+                // SCROLL DOWN: Only flip slide if we have reached the bottom of the list!
                 if (isAtBottom) {
-                    e.preventDefault(); 
+                    e.preventDefault(); // Stop page bouncing
                     if (e.deltaY < 30) return;
                     
                     slideCooldown = true;
+                    // Infinite Loop Math perfectly loops back to 0!
                     let nextIdx = (activeIdx + 1) % btns.length; 
                     triggerSlideChange(btns[nextIdx].dataset.filter);
                     setTimeout(() => slideCooldown = false, 600);
                 }
+                // If we aren't at the bottom, the browser scrolls naturally down the movies list!
             } 
             else if (e.deltaY < 0) {
+                // SCROLL UP: Only flip slide if we are at the top of the search dock
                 if (isAtDockTop && activeIdx > 0) {
                     e.preventDefault(); 
                     if (e.deltaY > -30) return;
@@ -250,6 +258,7 @@
                     triggerSlideChange(btns[activeIdx - 1].dataset.filter);
                     setTimeout(() => slideCooldown = false, 600);
                 }
+                // If you are on Movies (Index 0), let the browser scroll up to the Hero section naturally!
             }
         }, { passive: false });
 
