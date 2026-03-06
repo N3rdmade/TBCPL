@@ -56,6 +56,13 @@ body {
 /* === LAYOUT CONTAINERS === */
 .hero-section { text-align: center; padding: 60px 0 30px; }
 .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -2px; }
+
+/* DYNAMIC TITLE LETTERS */
+.brand-letter {
+    color: var(--accent-primary);
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
 .warning-card { background: var(--surface-glass); border: 1px solid var(--border); border-left: 4px solid var(--accent-primary); border-radius: 12px; padding: 20px; margin-bottom: 40px; backdrop-filter: var(--glass-blur); }
 .community-section-compact { display: flex; justify-content: center; align-items: center; margin-bottom: 35px; }
 .community-links { display: flex; gap: 30px; }
@@ -85,7 +92,6 @@ body {
 
 /* === POWERPOINT SCROLL ZONES === */
 #categories-container {
-    /* REMOVED flex: 1 and min-height so it perfectly wraps the grid and pulls footer up! */
     padding-bottom: 20px;
 }
 
@@ -123,13 +129,12 @@ body {
     text-align: center; 
     padding: 60px 0; 
     border-top: 1px solid var(--border); 
-    margin-top: 20px; /* Snugs it up tighter to the content */
+    margin-top: 20px; 
     color: rgba(255,255,255,0.5); 
 }
 
 @media (min-width: 769px) {
     .footer {
-        /* Desktop ONLY: Provides invisible space below footer to let the Javascript engine lock perfectly */
         margin-bottom: 60vh;
     }
 }

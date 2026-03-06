@@ -44,7 +44,13 @@
 
     <div class="container">
         <div class="hero-section">
-            <h1 class="hero-title">The Best Couch Potato List!</h1>
+            <h1 class="hero-title">
+                <span class="brand-letter">T</span>he 
+                <span class="brand-letter">B</span>est 
+                <span class="brand-letter">C</span>ouch 
+                <span class="brand-letter">P</span>otato 
+                <span class="brand-letter">L</span>ist!
+            </h1>
             <div class="subtitle">Your Streaming Collection 🫶</div>
         </div>
 
@@ -231,7 +237,6 @@
             const anchor = document.getElementById('searchAnchor');
             if (!anchor) return;
             
-            // NEW VISUAL SENSOR: Dynamically checks if the footer has visibly appeared on your screen!
             const footer = document.querySelector('.footer');
             const footerRect = footer.getBoundingClientRect();
             const isAtBottom = footerRect.bottom <= window.innerHeight + 10;
