@@ -146,6 +146,7 @@
             const query = searchInput.value.toLowerCase();
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
             
+            // Sync side dots
             slideDots.forEach(d => d.classList.remove('active'));
             document.querySelector(`.slide-dot[data-filter="${filter}"]`).classList.add('active');
 
@@ -195,56 +196,51 @@
         }));
 
         // ==========================================
-        // THE NEW PRESENTATION ENGINE
+        // THE FLAWLESS INFINITE LOOP ENGINE
         // ==========================================
-        
-        // 1. The Brick Wall: Stops the page from physically scrolling past the dock
-        window.addEventListener('scroll', () => {
-            const anchor = document.getElementById('searchAnchor');
-            if (!anchor) return;
-            const lockPos = Math.floor(anchor.offsetTop - 60);
-
-            // If the browser or user tries to scroll past the anchor, force them back!
-            if (window.scrollY > lockPos + 2) {
-                window.scrollTo({ top: lockPos, behavior: 'auto' });
-            }
-        });
-
-        // 2. The Infinite Loop Wheel Controller
         let slideCooldown = false;
 
         window.addEventListener('wheel', (e) => {
-            if (slideCooldown) return;
-
-            const btns = Array.from(document.querySelectorAll('.filter-btn'));
-            const activeIdx = btns.findIndex(b => b.classList.contains('active'));
-
             const anchor = document.getElementById('searchAnchor');
+            if (!anchor) return;
+            
             const lockPos = Math.floor(anchor.offsetTop - 60);
             
-            // Check if the user is locked into the presentation view
-            const isAtLock = window.scrollY >= lockPos - 5; 
+            // Check if user is docked at the presentation layer
+            const isDocked = window.scrollY >= lockPos - 5; 
 
-            if (isAtLock) {
-                if (e.deltaY > 30) {
-                    // SCROLL DOWN -> Blocks physical scroll, triggers next slide, loops to 0!
-                    e.preventDefault();
+            if (isDocked) {
+                const btns = Array.from(document.querySelectorAll('.filter-btn'));
+                const activeIdx = btns.findIndex(b => b.classList.contains('active'));
+
+                if (e.deltaY > 0) {
+                    // 1. SCROLLING DOWN
+                    // Forcefully block the page from scrolling down under the dock!
+                    e.preventDefault(); 
+
+                    if (slideCooldown || e.deltaY < 30) return;
+                    
                     slideCooldown = true;
+                    // Infinite loop math: When it hits the end, it safely cycles back to 0 (Movies)
+                    let nextIdx = (activeIdx + 1) % btns.length; 
                     
-                    let nextIdx = (activeIdx + 1) % btns.length; // The magic infinite loop math
                     triggerSlideChange(btns[nextIdx].dataset.filter);
-                    
-                    setTimeout(() => slideCooldown = false, 500);
-                } else if (e.deltaY < -30) {
-                    // SCROLL UP -> Previous slide
+                    setTimeout(() => slideCooldown = false, 600); // 0.6s cooldown between wheel flicks
+                } 
+                else if (e.deltaY < 0) {
+                    // 2. SCROLLING UP
                     if (activeIdx > 0) {
-                        e.preventDefault();
+                        // Block page scroll so we can change the slide instead
+                        e.preventDefault(); 
+                        
+                        if (slideCooldown || e.deltaY > -30) return;
+
                         slideCooldown = true;
                         triggerSlideChange(btns[activeIdx - 1].dataset.filter);
-                        setTimeout(() => slideCooldown = false, 500);
+                        setTimeout(() => slideCooldown = false, 600);
                     }
-                    // If activeIdx is 0 (Movies), we intentionally DO NOT block the scroll.
-                    // This lets you cleanly scroll back up to your header!
+                    // If you are on "Movies" (activeIdx === 0) and scroll up, we DO NOT preventDefault.
+                    // This lets you cleanly and naturally escape the presentation and scroll back to the top of the site.
                 }
             }
         }, { passive: false });
