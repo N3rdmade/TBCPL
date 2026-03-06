@@ -1,32 +1,26 @@
 /* ===================================
    TBCPL - AMOLED Purple Glass
-   Performance Optimized + Gradient Scrollbar
+   Restored Layout + Neon Scrollbar
    =================================== */
 
 :root {
     --background: #000000;
     --surface-glass: rgba(15, 15, 15, 0.75);
-    --border: rgba(255, 255, 255, 0.06);
+    --border: rgba(255, 255, 255, 0.08);
     --accent-primary: #8b5cf6;
     --accent-hover: #a78bfa;
-    --accent-glow: rgba(139, 92, 246, 0.15);
-    /* Lower blur = Smoother Scrolling */
-    --glass-blur: blur(6px); 
+    --accent-glow: rgba(139, 92, 246, 0.2);
+    --glass-blur: blur(8px); 
     --radius-lg: 16px;
     --font-sans: 'Inter', sans-serif;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
     background-color: var(--background);
     color-scheme: dark !important;
-    /* Disable CSS smooth scroll so SmoothScroll.js can work without stutter */
-    scroll-behavior: auto !important;
+    scroll-behavior: auto !important; /* Managed by SmoothScroll.js */
 }
 
 body {
@@ -34,28 +28,36 @@ body {
     background: var(--background);
     color: #fff;
     line-height: 1.6;
-    padding-top: 60px;
+    padding-top: 70px;
     -webkit-font-smoothing: antialiased;
 }
 
-/* === THE PURPLE NEON GRADIENT SCROLLBAR === */
-/* Force the browser to use our custom scrollbar */
-::-webkit-scrollbar {
-    width: 16px !important; 
-    display: block;
+/* === RESTORED FLEXBOX LAYOUTS === */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; }
+
+.community-section-compact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
-::-webkit-scrollbar-track {
-    background: #000 !important;
+.community-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
+/* === PURPLE NEON GRADIENT SCROLLBAR === */
+::-webkit-scrollbar { width: 16px !important; }
+::-webkit-scrollbar-track { background: #000 !important; }
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, var(--accent-primary) 0%, #000 100%) !important;
     border-radius: 10px;
     border: 3px solid #000;
     box-shadow: 0 0 10px var(--accent-glow);
 }
-
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, var(--accent-hover) 0%, #111 100%) !important;
     box-shadow: 0 0 15px var(--accent-primary);
@@ -73,8 +75,6 @@ body {
     z-index: 1000;
 }
 
-.navbar.scrolled { border-bottom-color: var(--accent-primary); }
-
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -89,76 +89,54 @@ body {
 .nav-logo-img { height: 32px; }
 
 .nav-menu { display: flex; list-style: none; gap: 10px; }
-.nav-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; padding: 8px 12px; transition: 0.2s; }
-.nav-link.active, .nav-link:hover { color: var(--accent-primary); }
+.nav-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; padding: 8px 12px; transition: 0.2s; border-radius: 8px; }
+.nav-link.active, .nav-link:hover { color: var(--accent-primary); background: rgba(139, 92, 246, 0.1); }
 
-.nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; }
-
-/* === HERO & CONTENT === */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-.hero-section { text-align: center; padding: 80px 0 40px; }
+/* === WARNING & HERO === */
+.hero-section { text-align: center; padding: 60px 0 30px; }
 .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -2px; }
 
 .warning-card {
     background: var(--surface-glass);
     border: 1px solid var(--border);
-    border-left: 3px solid var(--accent-primary);
+    border-left: 4px solid var(--accent-primary);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 40px;
     backdrop-filter: var(--glass-blur);
 }
 
-.standard-link { color: var(--accent-primary); text-decoration: none; font-weight: 600; }
-.inline-icon { height: 20px; vertical-align: middle; margin: 0 4px; }
+.standard-link { color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; vertical-align: middle; }
+.inline-icon { height: 22px; width: auto; margin: 0 6px; vertical-align: middle; }
 
-/* === SEARCH & CARDS === */
-.search-input {
-    width: 100%; padding: 15px 25px; border-radius: 50px;
-    border: 1px solid var(--border); background: var(--surface-glass);
-    color: #fff; outline: none; transition: 0.3s;
-}
-
-.search-input:focus { border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
-
+/* === CARDS & SECTIONS === */
 .section {
     background: var(--surface-glass);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 40px; margin-bottom: 40px;
+    padding: 35px; margin-bottom: 40px;
     backdrop-filter: var(--glass-blur);
     opacity: 0; transform: translateY(15px);
     transition: 0.5s ease-out;
 }
-
 .section.active { opacity: 1; transform: translateY(0); }
 
-.links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+.links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 18px; }
 
 .link-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border);
-    border-radius: 8px; padding: 20px;
+    border-radius: 10px; padding: 20px;
     display: flex; align-items: center; justify-content: center;
-    transition: 0.3s; min-height: 90px;
+    transition: 0.3s; min-height: 95px;
 }
-
-.link-card:hover { border-color: var(--accent-primary); background: var(--accent-glow); transform: translateY(-3px); }
-.card-logo { max-width: 100%; max-height: 40px; object-fit: contain; }
+.link-card:hover { border-color: var(--accent-primary); background: var(--accent-glow); transform: translateY(-4px); }
+.card-logo { max-width: 100%; max-height: 45px; object-fit: contain; }
 
 /* === BACK TO TOP === */
-.back-to-top-wrapper { position: fixed; bottom: 25px; right: 25px; z-index: 99; opacity: 0; visibility: hidden; transition: 0.3s; }
+.back-to-top-wrapper { position: fixed; bottom: 25px; right: 25px; z-index: 1001; opacity: 0; visibility: hidden; transition: 0.3s; }
 .back-to-top-wrapper.show { opacity: 1; visibility: visible; }
-.scroll-progress-svg { transform: rotate(-90deg); }
-.scroll-progress-bg { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 2; }
-.scroll-progress-fill { fill: none; stroke: var(--accent-primary); stroke-width: 2; transition: 0.1s; }
-.back-to-top { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: #111; border: 1px solid var(--border); border-radius: 50%; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.scroll-progress-fill { fill: none; stroke: var(--accent-primary); stroke-width: 2.5; transition: 0.1s; }
+.back-to-top { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; background: #0a0a0a; border: 1px solid var(--border); border-radius: 50%; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
 
-.footer { text-align: center; padding: 50px 0; border-top: 1px solid var(--border); margin-top: 50px; color: rgba(255,255,255,0.4); }
-
-@media (max-width: 768px) {
-    .nav-toggle { display: block; }
-    .nav-menu { position: fixed; top: 60px; left: 0; right: 0; flex-direction: column; background: #000; padding: 20px; border-bottom: 1px solid var(--border); display: none; }
-    .nav-menu.active { display: flex; }
-}
+.footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 60px; color: rgba(255,255,255,0.5); }
