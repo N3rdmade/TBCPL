@@ -86,6 +86,8 @@
         </footer>
     </div>
 
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    
     <script src="./SmoothScroll.js"></script>
     
     <script>
@@ -129,7 +131,7 @@
             const query = searchInput.value.toLowerCase();
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
             
-            let delay = 0; // Used to stagger the float-in animation
+            let delay = 0; 
 
             document.querySelectorAll('.section').forEach(sec => {
                 const cards = sec.querySelectorAll('.link-card');
@@ -143,13 +145,11 @@
                 
                 if (hasVisible) {
                     sec.style.display = 'block';
-                    // Strip the active class so it resets
                     sec.classList.remove('active');
-                    // Add it back slightly later so it beautifully floats in again
                     setTimeout(() => {
                         sec.classList.add('active');
                     }, 20 + delay);
-                    delay += 50; // Makes multiple sections load in a staggered wave
+                    delay += 50; 
                 } else {
                     sec.style.display = 'none';
                     sec.classList.remove('active');
@@ -165,13 +165,13 @@
             
             applyFilter();
             
-            // Auto-Centering
+            // 3. Auto-Center using the global window.lenis we created in SmoothScroll.js
             if (this.dataset.filter === 'all') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.lenis.scrollTo(0, { duration: 1.5 });
             } else {
                 const searchArea = document.querySelector('.search-container');
                 const yPosition = searchArea.getBoundingClientRect().top + window.scrollY - 80;
-                window.scrollTo({ top: yPosition, behavior: 'smooth' });
+                window.lenis.scrollTo(yPosition, { duration: 1.5 });
             }
         }));
 
