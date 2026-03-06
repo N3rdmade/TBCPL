@@ -34,9 +34,7 @@
                 TBCPL
             </a>
             <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
@@ -117,16 +115,15 @@
     </div>
 
     <script>
-        // Scroll Reveal Animation Observer
+        // Updated Observer to sync with your CSS classes
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                    entry.target.classList.add('active'); // Changed to .active to trigger animation
                 }
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Load and render links from JSON
         async function loadLinks() {
             try {
                 const response = await fetch('links.json');
@@ -135,7 +132,7 @@
 
                 data.categories.forEach(category => {
                     const sectionDiv = document.createElement('div');
-                    sectionDiv.className = 'section reveal';
+                    sectionDiv.className = 'section'; // Matches CSS for glass box
                     sectionDiv.setAttribute('data-category', category.id);
 
                     const header = document.createElement('h2');
@@ -172,7 +169,6 @@
         const navMenu = document.getElementById('navMenu');
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
         });
 
         // Search & Filter (Dynamic)

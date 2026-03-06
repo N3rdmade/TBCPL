@@ -8,19 +8,17 @@
 
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
 
-    <!-- Pace.js for page loading progress -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
 
     <link rel="stylesheet" href="./css/flash.css">
     <link rel="stylesheet" href="./ui.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- Navigation Menu -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -28,9 +26,7 @@
                 TBCPL
             </a>
             <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
@@ -41,43 +37,22 @@
         </div>
     </nav>
 
-    <!-- Floating Christmas Elements -->
-    <div class="christmas-bg">
-        <div class="snowflake snowflake-1">❄️</div>
-        <div class="snowflake snowflake-2">❄️</div>
-        <div class="snowflake snowflake-3">❄️</div>
-        <div class="snowflake snowflake-4">❄️</div>
-        <div class="ornament ornament-1">🔴</div>
-        <div class="star star-1">⭐</div>
-    </div>
-
     <div class="container">
-        <!-- Hero Section -->
         <div class="hero-section">
-            <h1 class="festive-title">
-                <span class="title-word">About</span>
-                <span class="title-word">TBCPL</span>
-            </h1>
-            <div class="subtitle">The Story Behind The List 💔</div>
+            <h1 class="hero-title">About TBCPL</h1>
+            <div class="subtitle">The Story Behind The List 💜</div>
         </div>
 
-        <!-- About Section -->
         <div class="section">
-            <h2 class="section-header">
-                Our Mission
-            </h2>
+            <h2 class="section-header">Our Mission</h2>
             <div class="about-content">
                 <p>Welcome to <strong>TheBestCouchPotatoList (TBCPL)</strong> - your ultimate guide to free streaming entertainment! We've curated the most comprehensive collection of streaming sites across movies, TV shows, anime, manga, and live TV.</p>
-
                 <p>Our mission is simple: to help you discover quality entertainment without the hassle of searching through countless websites. Whether you're a movie buff, anime enthusiast, manga reader, or sports fan, we've got you covered!</p>
             </div>
         </div>
 
-        <!-- Why Us Section -->
         <div class="section">
-            <h2 class="section-header">
-                Why Choose TBCPL?
-            </h2>
+            <h2 class="section-header">Why Choose TBCPL?</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
@@ -99,30 +74,17 @@
                     <h3>Mobile Friendly</h3>
                     <p>Fully responsive design works perfectly on all your devices.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Diverse Categories</h3>
-                    <p>Movies, anime, manga, live TV, and paid services all in one place.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3>Community Driven</h3>
-                    <p>Join our Discord and Reddit to share suggestions and connect with others.</p>
-                </div>
             </div>
         </div>
 
-        <!-- Team Section -->
         <div class="section">
-            <h2 class="section-header">
-                The Team
-            </h2>
+            <h2 class="section-header">The Team</h2>
             <div class="team-grid">
                 <div class="team-card">
                     <img src="https://avatars.githubusercontent.com/u/161110729?v=4" alt="Hellhorde" class="team-avatar">
                     <h3>Hellhorde</h3>
                     <p class="team-role">Founder & Curator</p>
-                    <p class="team-bio">Passionate about making entertainment accessible to everyone. Constantly hunting for the best streaming sites to add to the collection.</p>
+                    <p class="team-bio">Passionate about making entertainment accessible to everyone. Constantly hunting for the best streaming sites.</p>
                     <div class="team-social">
                         <a href="https://github.com/N3rdmade/" target="_blank" class="social-link">
                             <i class="fab fa-github"></i>
@@ -144,225 +106,48 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <footer class="footer">
             <div class="footer-links">
-                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="footer-link" title="Discord">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
+                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="footer-link"><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link"><i class="fab fa-github"></i></a>
             </div>
             <div class="footer-text">
-                <p>Curated with ❤️ by Team</p>
-                <p>(Share responsibly)</p>
+                <p>Curated with 💜 by Team</p>
                 <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
             </div>
         </footer>
     </div>
 
+    <style>
+        .about-content { padding: 20px; text-align: center; }
+        .about-content p { color: var(--text-secondary); margin-bottom: 16px; font-size: 1rem; line-height: 1.8; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
+        .feature-card { background: var(--surface-glass); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px; text-align: center; transition: 0.3s; backdrop-filter: var(--glass-blur); }
+        .feature-card:hover { border-color: var(--accent-primary); transform: translateY(-5px); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; padding: 20px; }
+        .team-card { background: var(--surface-glass); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px; text-align: center; backdrop-filter: var(--glass-blur); transition: 0.3s; }
+        .team-avatar { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--accent-primary); margin-bottom: 15px; }
+        .team-role { color: var(--accent-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
+        .team-bio { color: var(--text-secondary); font-size: 0.85rem; }
+        .social-link { color: var(--text-tertiary); font-size: 1.2rem; transition: 0.2s; }
+        .social-link:hover { color: var(--accent-primary); }
+    </style>
+
     <script>
-        // Mobile Navigation Toggle
-        const navToggle = document.getElementById('navToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
-
-        // Sticky Navbar
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Reveal animations
+        // Reveal Logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.section, .feature-card, .stat-card, .team-card').forEach(el => {
-            observer.observe(el);
+        document.querySelectorAll('.section, .feature-card, .team-card').forEach(el => observer.observe(el));
+
+        // Mobile Nav
+        document.getElementById('navToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
         });
-    </script>
-
-    <style>
-        .about-content {
-            padding: 20px;
-        }
-
-        .about-content p {
-            font-size: 0.9375rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            text-align: left;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            padding: 20px;
-        }
-
-        .feature-card {
-            background: var(--surface-elevated);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            text-align: center;
-            transition: all 0.2s ease;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .feature-card.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-primary);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-            opacity: 0.9;
-        }
-
-        .feature-card h3 {
-            color: var(--text-primary);
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.9375rem;
-            line-height: 1.6;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            padding: 20px;
-        }
-
-        .team-card {
-            background: var(--surface-elevated);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.2s ease;
-        }
-
-        .team-card.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 16px;
-            display: block;
-            border: 3px solid var(--accent-primary);
-            object-fit: cover;
-        }
-
-        .team-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-            font-family: var(--font-sans);
-        }
-
-        .team-role {
-            color: var(--accent-primary);
-            font-size: 0.9375rem;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        .team-bio {
-            color: var(--text-secondary);
-            font-size: 0.9375rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .team-social {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 1.25rem;
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            background: var(--surface-elevated);
-            color: var(--accent-primary);
-            border-color: var(--accent-primary);
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-                padding: 12px;
-            }
-
-            .feature-card {
-                padding: 20px;
-            }
-
-            .team-card {
-                padding: 24px 16px;
-            }
-        }
-    </style>
-
-    <!-- Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-TD8F20DS4V');
     </script>
 </body>
 </html>
