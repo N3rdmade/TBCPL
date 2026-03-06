@@ -196,52 +196,69 @@
         }));
 
         // ==========================================
-        // THE FLAWLESS INFINITE LOOP ENGINE
+        // SMART PRESENTATION ENGINE (SCROLL FIX)
         // ==========================================
+        
+        // 1. The Dynamic Brick Wall: Prevents scrolling UP past the dock unless you are on Movies!
+        window.addEventListener('scroll', () => {
+            const anchor = document.getElementById('searchAnchor');
+            if (!anchor) return;
+            const lockPos = Math.floor(anchor.offsetTop - 60);
+
+            const activeBtn = document.querySelector('.filter-btn.active');
+            if (!activeBtn) return;
+            
+            if (activeBtn.dataset.filter !== 'movies' && window.scrollY < lockPos) {
+                window.scrollTo({ top: lockPos, behavior: 'auto' });
+            }
+        });
+
+        // 2. The Smart Sensor Wheel Controller
         let slideCooldown = false;
 
         window.addEventListener('wheel', (e) => {
+            if (slideCooldown) {
+                e.preventDefault();
+                return;
+            }
+
             const anchor = document.getElementById('searchAnchor');
             if (!anchor) return;
-            
             const lockPos = Math.floor(anchor.offsetTop - 60);
             
-            // Check if user is docked at the presentation layer
-            const isDocked = window.scrollY >= lockPos - 5; 
+            // Checks if you are at the absolute bottom of the current list
+            const isAtBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5;
+            // Checks if you are exactly at the top of the search dock
+            const isAtDockTop = window.scrollY <= lockPos + 5 && window.scrollY >= lockPos - 5;
 
-            if (isDocked) {
-                const btns = Array.from(document.querySelectorAll('.filter-btn'));
-                const activeIdx = btns.findIndex(b => b.classList.contains('active'));
+            const btns = Array.from(document.querySelectorAll('.filter-btn'));
+            const activeIdx = btns.findIndex(b => b.classList.contains('active'));
 
-                if (e.deltaY > 0) {
-                    // 1. SCROLLING DOWN
-                    // Forcefully block the page from scrolling down under the dock!
-                    e.preventDefault(); 
-
-                    if (slideCooldown || e.deltaY < 30) return;
+            if (e.deltaY > 0) {
+                // SCROLL DOWN: Only flip slide if we have reached the bottom of the list!
+                if (isAtBottom) {
+                    e.preventDefault(); // Stop page bouncing
+                    if (e.deltaY < 30) return;
                     
                     slideCooldown = true;
-                    // Infinite loop math: When it hits the end, it safely cycles back to 0 (Movies)
+                    // Infinite Loop Math perfectly loops back to 0!
                     let nextIdx = (activeIdx + 1) % btns.length; 
-                    
                     triggerSlideChange(btns[nextIdx].dataset.filter);
-                    setTimeout(() => slideCooldown = false, 600); // 0.6s cooldown between wheel flicks
-                } 
-                else if (e.deltaY < 0) {
-                    // 2. SCROLLING UP
-                    if (activeIdx > 0) {
-                        // Block page scroll so we can change the slide instead
-                        e.preventDefault(); 
-                        
-                        if (slideCooldown || e.deltaY > -30) return;
-
-                        slideCooldown = true;
-                        triggerSlideChange(btns[activeIdx - 1].dataset.filter);
-                        setTimeout(() => slideCooldown = false, 600);
-                    }
-                    // If you are on "Movies" (activeIdx === 0) and scroll up, we DO NOT preventDefault.
-                    // This lets you cleanly and naturally escape the presentation and scroll back to the top of the site.
+                    setTimeout(() => slideCooldown = false, 600);
                 }
+                // If we aren't at the bottom, the browser scrolls naturally down the movies list!
+            } 
+            else if (e.deltaY < 0) {
+                // SCROLL UP: Only flip slide if we are at the top of the search dock
+                if (isAtDockTop && activeIdx > 0) {
+                    e.preventDefault(); 
+                    if (e.deltaY > -30) return;
+
+                    slideCooldown = true;
+                    triggerSlideChange(btns[activeIdx - 1].dataset.filter);
+                    setTimeout(() => slideCooldown = false, 600);
+                }
+                // If you are on Movies (Index 0), let the browser scroll up to the Hero section naturally!
             }
         }, { passive: false });
 
