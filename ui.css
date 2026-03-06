@@ -1,5 +1,6 @@
 /* ===================================
    TBCPL - AMOLED Purple Glass
+   Modern Pill-Style & Centered Layout
    =================================== */
 
 :root {
@@ -10,8 +11,8 @@
     --accent-hover: #a78bfa;
     --accent-glow: rgba(139, 92, 246, 0.2);
     --glass-blur: blur(8px); 
-    --radius-lg: 16px;
     --radius-pill: 50px;
+    --radius-lg: 16px;
     --font-sans: 'Inter', sans-serif;
 }
 
@@ -20,7 +21,6 @@
 html {
     background-color: var(--background);
     color-scheme: dark !important;
-    scroll-behavior: auto !important; 
 }
 
 body {
@@ -32,45 +32,20 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; }
-
-/* === COMMUNITY SECTION (CENTERED) === */
-.community-section-compact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    width: 100%;
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    position: relative; 
 }
 
-.community-links {
-    display: flex;
-    gap: 25px;
-    align-items: center;
-}
-
-/* === NEON GRADIENT SCROLLBAR === */
-::-webkit-scrollbar { width: 14px !important; }
-::-webkit-scrollbar-track { background: #000 !important; }
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--accent-primary) 0%, #000 100%) !important;
-    border-radius: 10px;
-    border: 3px solid #000;
-    box-shadow: 0 0 10px var(--accent-glow);
-}
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, var(--accent-hover) 0%, #111 100%) !important;
-    box-shadow: 0 0 15px var(--accent-primary);
-}
-
-/* === NAVBAR === */
+/* === NAVIGATION === */
 .navbar {
     position: fixed;
     top: 0; left: 0; right: 0;
     height: 60px;
     background: var(--surface-glass);
     backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
     border-bottom: 1px solid var(--border);
     z-index: 1000;
 }
@@ -106,11 +81,51 @@ body {
     backdrop-filter: var(--glass-blur);
 }
 
-.standard-link { color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; vertical-align: middle; transition: 0.2s; }
-.standard-link:hover { color: var(--accent-hover); opacity: 0.9; }
+.standard-link { color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; vertical-align: middle; }
 .inline-icon { height: 22px; width: auto; margin: 0 6px; vertical-align: middle; }
 
-/* === FILTER BUTTONS (PILL SHAPED) === */
+/* === COMMUNITY SECTION (CENTERED) === */
+.community-section-compact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.community-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+/* === SEARCH BAR (PILL STYLE) === */
+.search-container {
+    max-width: 650px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.search-input {
+    width: 100%;
+    padding: 16px 25px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border);
+    background: var(--surface-glass);
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.search-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 15px var(--accent-glow);
+    background: rgba(25, 25, 25, 0.8);
+}
+
+/* === FILTER BUTTONS (LARGE PILLS) === */
 .filter-buttons { 
     display: flex; 
     justify-content: center; 
@@ -120,15 +135,15 @@ body {
 }
 
 .filter-btn {
-    padding: 10px 22px;
+    padding: 10px 24px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border);
     border-radius: var(--radius-pill);
     color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: var(--font-sans);
 }
 
 .filter-btn:hover {
@@ -145,27 +160,7 @@ body {
     box-shadow: 0 0 15px var(--accent-glow);
 }
 
-/* === SEARCH INPUT === */
-.search-input {
-    width: 100%;
-    max-width: 650px;
-    padding: 15px 25px;
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--border);
-    background: var(--surface-glass);
-    color: #fff;
-    outline: none;
-    display: block;
-    margin: 0 auto;
-    transition: 0.3s;
-}
-
-.search-input:focus {
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 15px var(--accent-glow);
-}
-
-/* === CARDS & SECTIONS === */
+/* === CONTENT CARDS === */
 .section {
     background: var(--surface-glass);
     border: 1px solid var(--border);
@@ -186,18 +181,16 @@ body {
     display: flex; align-items: center; justify-content: center;
     transition: 0.3s; min-height: 95px;
 }
-.link-card:hover { 
-    border-color: var(--accent-primary); 
-    background: var(--accent-glow); 
-    transform: translateY(-4px); 
-    box-shadow: 0 0 20px var(--accent-glow);
-}
+.link-card:hover { border-color: var(--accent-primary); background: var(--accent-glow); transform: translateY(-4px); box-shadow: 0 0 20px var(--accent-glow); }
 .card-logo { max-width: 100%; max-height: 45px; object-fit: contain; }
 
-/* === BACK TO TOP === */
-.back-to-top-wrapper { position: fixed; bottom: 25px; right: 25px; z-index: 1001; opacity: 0; visibility: hidden; transition: 0.3s; }
-.back-to-top-wrapper.show { opacity: 1; visibility: visible; }
-.scroll-progress-fill { fill: none; stroke: var(--accent-primary); stroke-width: 2.5; transition: 0.1s; }
-.back-to-top { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; background: #0a0a0a; border: 1px solid var(--border); border-radius: 50%; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+/* === NEON GRADIENT SCROLLBAR === */
+::-webkit-scrollbar { width: 14px !important; }
+::-webkit-scrollbar-track { background: #000 !important; }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--accent-primary) 0%, #000 100%) !important;
+    border-radius: 10px;
+    border: 3px solid #000;
+}
 
 .footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 60px; color: rgba(255,255,255,0.5); }

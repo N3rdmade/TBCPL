@@ -9,9 +9,7 @@
     <meta name="color-scheme" content="dark">
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
     
-    <link rel="stylesheet" href="./css/flash.css">
     <link rel="stylesheet" href="./ui.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -24,7 +22,6 @@
             <a href="index.html" class="nav-logo">
                 <img src="logo.png" alt="TBCPL" class="nav-logo-img"> TBCPL
             </a>
-            <button class="nav-toggle" id="navToggle" style="display:none;"><i class="fas fa-bars"></i></button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
@@ -45,11 +42,11 @@
                 <strong>Before Clicking any Link</strong><br>
                 Use 
                 <a href="https://brave.com/" class="standard-link" target="_blank">
-                    <img src="./assets/brave.png" alt="Brave" class="inline-icon">
+                    <img src="./assets/brave.png" alt="Brave" class="inline-icon"> brave
                 </a> 
                 or 
                 <a href="https://ublockorigin.com/" class="standard-link" target="_blank">
-                    <img src="./assets/ublock.png" alt="uBlock Origin" class="inline-icon">
+                    <img src="./assets/ublock.png" alt="uBlock Origin" class="inline-icon"> uBlock Origin
                 </a> 
                 to stop all unwanted popups and ads!
             </p>
@@ -57,7 +54,7 @@
 
         <div class="community-section-compact">
             <div class="community-links">
-                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="standard-link" style="color:#5865F2;">
+                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="standard-link" style="color:#8b5cf6;">
                     <img src="./assets/discord.png" width="22" style="margin-right:8px;"> Discord
                 </a>
                 <a href="https://www.reddit.com/r/TBCPL/" target="_blank" class="standard-link" style="color:#FF4500;">
@@ -66,9 +63,9 @@
             </div>
         </div>
 
-        <div class="search-container" style="max-width:650px; margin: 0 auto 40px; text-align: center;">
+        <div class="search-container">
             <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search for sites...">
-            <div class="filter-buttons" style="display:flex; justify-content:center; gap:10px; margin-top:20px; flex-wrap:wrap;">
+            <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="movies">Movies</button>
                 <button class="filter-btn" data-filter="anime">Anime</button>
@@ -81,19 +78,7 @@
 
         <div id="categories-container"></div>
 
-        <div class="back-to-top-wrapper" id="backToTopWrapper">
-            <svg class="scroll-progress-svg" width="50" height="50">
-                <circle cx="25" cy="25" r="23" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"></circle>
-                <circle class="scroll-progress-fill" cx="25" cy="25" r="23"></circle>
-            </svg>
-            <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
-        </div>
-
         <footer class="footer">
-            <div class="footer-links" style="display:flex; justify-content:center; gap:25px; margin-bottom:20px; font-size:1.6rem;">
-                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" style="color:inherit;"><i class="fab fa-discord"></i></a>
-                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" style="color:inherit;"><i class="fab fa-github"></i></a>
-            </div>
             <p>Curated with 💜 by the TBCPL Team</p>
             <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
         </footer>
@@ -116,7 +101,7 @@
                     const sec = document.createElement('div');
                     sec.className = 'section';
                     sec.setAttribute('data-category', category.id);
-                    sec.innerHTML = `<h2 style="text-align:center; margin-bottom:30px; letter-spacing:-1px;">${category.name}</h2><div class="links-grid"></div>`;
+                    sec.innerHTML = `<h2 style="text-align:center; margin-bottom:30px;">${category.name}</h2><div class="links-grid"></div>`;
                     category.sites.filter(s => s.enabled !== false).forEach(site => {
                         const link = document.createElement('a');
                         link.href = site.url;
@@ -155,18 +140,6 @@
             this.classList.add('active');
             applyFilter();
         }));
-
-        const fill = document.querySelector('.scroll-progress-fill');
-        const circumference = 2 * Math.PI * 23;
-        fill.style.strokeDasharray = circumference;
-        window.addEventListener('scroll', () => {
-            const top = window.pageYOffset;
-            const height = document.documentElement.scrollHeight - window.innerHeight;
-            fill.style.strokeDashoffset = circumference - ((top / height) * circumference);
-            document.getElementById('backToTopWrapper').classList.toggle('show', top > 300);
-            document.getElementById('navbar').classList.toggle('scrolled', top > 50);
-        });
-        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 </body>
 </html>
