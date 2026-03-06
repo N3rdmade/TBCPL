@@ -1,6 +1,6 @@
 /* ===================================
    TBCPL - AMOLED Purple Glass
-   Final Unified Dynamic Theme + Firefox Fix
+   Final Theme (SmoothScroll.js Compatible)
    =================================== */
 
 :root {
@@ -21,9 +21,6 @@
 html {
     background-color: var(--background);
     color-scheme: dark !important;
-    
-    /* Native, buttery smooth scrolling */
-    scroll-behavior: smooth !important; 
     
     /* Firefox Scrollbar Support */
     scrollbar-width: thin;

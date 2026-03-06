@@ -86,6 +86,8 @@
         </footer>
     </div>
 
+    <script src="./SmoothScroll.js"></script>
+    
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -102,8 +104,6 @@
                     const sec = document.createElement('div');
                     sec.className = 'section';
                     sec.setAttribute('data-category', category.id);
-                    
-                    // Injects the section-header class for the glowing dashes
                     sec.innerHTML = `<h2 class="section-header">${category.name}</h2><div class="links-grid"></div>`;
                     
                     category.sites.filter(s => s.enabled !== false).forEach(site => {
@@ -128,31 +128,47 @@
         function applyFilter() {
             const query = searchInput.value.toLowerCase();
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
+            
+            let delay = 0; // Used to stagger the float-in animation
+
             document.querySelectorAll('.section').forEach(sec => {
                 const cards = sec.querySelectorAll('.link-card');
                 let hasVisible = false;
+                
                 cards.forEach(card => {
                     const match = card.dataset.name.toLowerCase().includes(query) && (filter === 'all' || sec.dataset.category === filter);
                     card.style.display = match ? 'flex' : 'none';
                     if (match) hasVisible = true;
                 });
-                sec.style.display = hasVisible ? 'block' : 'none';
+                
+                if (hasVisible) {
+                    sec.style.display = 'block';
+                    // Strip the active class so it resets
+                    sec.classList.remove('active');
+                    // Add it back slightly later so it beautifully floats in again
+                    setTimeout(() => {
+                        sec.classList.add('active');
+                    }, 20 + delay);
+                    delay += 50; // Makes multiple sections load in a staggered wave
+                } else {
+                    sec.style.display = 'none';
+                    sec.classList.remove('active');
+                }
             });
         }
         
         searchInput.addEventListener('input', applyFilter);
         
-        // Auto-Centering Filter Click Logic
         filterBtns.forEach(btn => btn.addEventListener('click', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
+            
             applyFilter();
             
+            // Auto-Centering
             if (this.dataset.filter === 'all') {
-                // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                // Scroll perfectly to the search bar
                 const searchArea = document.querySelector('.search-container');
                 const yPosition = searchArea.getBoundingClientRect().top + window.scrollY - 80;
                 window.scrollTo({ top: yPosition, behavior: 'smooth' });
