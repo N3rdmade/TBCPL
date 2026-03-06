@@ -6,7 +6,7 @@
     <script>(function(s){s.dataset.zone='10657401',s.src='https://llvpn.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
     <link rel="manifest" href="manifest.json">
     <title>TheBestCouchPotatoList</title>
-    <meta name="description" content="Free Media for all! Your streaming collection">
+    <meta name="description" content="Free Media for all! Your clean streaming collection">
 
     <meta property="og:url" content="https://tbcpl.lol">
     <meta property="og:type" content="website">
@@ -22,32 +22,8 @@
     <link rel="stylesheet" href="./ui.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <style>
-        /* Ensuring clean typography after removing the holiday fonts */
-        :root {
-            --primary-font: 'Inter', sans-serif;
-        }
-        body {
-            font-family: var(--primary-font);
-        }
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-        }
-        /* Fallback for the removed 'festive-link' class */
-        .standard-link {
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-        .standard-link:hover {
-            opacity: 0.8;
-        }
-    </style>
 </head>
 
 <body>
@@ -80,11 +56,11 @@
         <div class="warning-card">
             <p class="warning-text">
                 <strong>Before Clicking any Link</strong><br>
-                Download
+                Use
                 <a href="https://brave.com/" class="standard-link" target="_blank">
                     <img src="./assets/brave.png" alt="BRAVE Browser" class="inline-icon">
                 </a>
-                or use
+                or
                 <a href="https://ublockorigin.com/" class="standard-link" target="_blank">
                     <img src="./assets/ublock.png" alt="Ad Blocker" class="inline-icon">
                 </a>
@@ -95,12 +71,10 @@
         <div class="community-section-compact">
             <div class="community-links">
                 <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="community-link discord-link">
-                    <img src="./assets/discord.png" alt="Discord" class="community-icon">
-                    Discord
+                    <img src="./assets/discord.png" alt="Discord" class="community-icon"> Discord
                 </a>
                 <a href="https://www.reddit.com/r/TBCPL/" target="_blank" class="community-link reddit-link">
-                    <img src="./assets/reddit.png" alt="Reddit" class="community-icon">
-                    Reddit
+                    <img src="./assets/reddit.png" alt="Reddit" class="community-icon"> Reddit
                 </a>
             </div>
         </div>
@@ -132,16 +106,11 @@
 
         <footer class="footer">
             <div class="footer-links">
-                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="footer-link" title="Discord">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
+                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="footer-link"><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link"><i class="fab fa-github"></i></a>
             </div>
             <div class="footer-text">
-                <p>Curated with ❤️ by the TBCPL Team</p>
-                <p>(Share responsibly)</p>
+                <p>Curated with 💜 by the TBCPL Team</p>
                 <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
             </div>
         </footer>
@@ -149,18 +118,13 @@
 
     <script>
         // Scroll Reveal Animation Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
+                    entry.target.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
         // Load and render links from JSON
         async function loadLinks() {
@@ -171,7 +135,7 @@
 
                 data.categories.forEach(category => {
                     const sectionDiv = document.createElement('div');
-                    sectionDiv.className = 'section';
+                    sectionDiv.className = 'section reveal';
                     sectionDiv.setAttribute('data-category', category.id);
 
                     const header = document.createElement('h2');
@@ -201,101 +165,71 @@
             }
         }
 
-        // Initialize loading
         window.addEventListener('DOMContentLoaded', loadLinks);
 
         // Mobile Navigation Toggle
         const navToggle = document.getElementById('navToggle');
         const navMenu = document.getElementById('navMenu');
-        navToggle.addEventListener('click', function() {
+        navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
         });
 
-        // Sticky Navbar
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Search Functionality
+        // Search & Filter (Dynamic)
         const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const sections = document.querySelectorAll('.section[data-category]');
-            const filterButtons = document.querySelectorAll('.filter-btn');
+        const filterButtons = document.querySelectorAll('.filter-btn');
 
-            if (searchTerm !== '') {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
-            }
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+            const sections = document.querySelectorAll('.section[data-category]');
 
             sections.forEach(section => {
                 const linkCards = section.querySelectorAll('.link-card');
+                const categoryMatch = (activeFilter === 'all' || section.getAttribute('data-category') === activeFilter);
                 let hasVisibleCards = false;
 
                 linkCards.forEach(card => {
                     const name = card.getAttribute('data-name').toLowerCase();
-                    if (name.includes(searchTerm)) {
+                    if (name.includes(searchTerm) && categoryMatch) {
                         card.style.display = 'flex';
                         hasVisibleCards = true;
                     } else {
                         card.style.display = 'none';
                     }
                 });
-
-                section.style.display = (hasVisibleCards || searchTerm === '') ? 'block' : 'none';
+                section.style.display = hasVisibleCards ? 'block' : 'none';
             });
-        });
+        }
 
-        // Filter Functionality
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const filter = this.getAttribute('data-filter');
-                const sections = document.querySelectorAll('.section[data-category]');
-
-                filterButtons.forEach(btn => btn.classList.remove('active'));
+        searchInput.addEventListener('input', applyFilters);
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterButtons.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                searchInput.value = '';
-
-                sections.forEach(section => {
-                    if (filter === 'all' || section.getAttribute('data-category') === filter) {
-                        section.style.display = 'block';
-                        section.querySelectorAll('.link-card').forEach(c => c.style.display = 'flex');
-                    } else {
-                        section.style.display = 'none';
-                    }
-                });
+                applyFilters();
             });
         });
 
-        // Scroll Progress & Back to Top
+        // Scroll Progress & Navbar State
         const backToTopWrapper = document.getElementById('backToTopWrapper');
-        const backToTop = document.getElementById('backToTop');
         const progressFill = document.querySelector('.scroll-progress-fill');
+        const circumference = 2 * Math.PI * 23;
+        progressFill.style.strokeDasharray = circumference;
 
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            const scrollPercentage = scrollTop / scrollHeight;
 
-            const radius = 23;
-            const circumference = 2 * Math.PI * radius;
-            progressFill.style.strokeDashoffset = circumference - (scrollPercentage / 100) * circumference;
-
-            if (scrollTop > 300) {
-                backToTopWrapper.classList.add('show');
-            } else {
-                backToTopWrapper.classList.remove('show');
-            }
+            progressFill.style.strokeDashoffset = circumference - (scrollPercentage * circumference);
+            backToTopWrapper.classList.toggle('show', scrollTop > 300);
+            document.getElementById('navbar').classList.toggle('scrolled', scrollTop > 50);
         });
 
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     </script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
