@@ -223,7 +223,7 @@
             }
         });
 
-        // 2. The Smart Sensor Wheel Controller
+
         let slideCooldown = false;
 
         window.addEventListener('wheel', (e) => {
@@ -245,7 +245,7 @@
             const activeIdx = btns.findIndex(b => b.classList.contains('active'));
 
             if (activeIdx > 0) {
-                // Short slides
+             
                 e.preventDefault(); 
                 
                 if (e.deltaY > 30) {
@@ -261,9 +261,9 @@
                 }
             } 
             else {
-                // Movies Slide
+             
                 if (e.deltaY > 0) {
-                    // Only flip when the laser trips and sees the footer!
+                 
                     if (isAtBottom) {
                         e.preventDefault(); 
                         if (e.deltaY < 30) return;
@@ -281,4 +281,5 @@
         });
     </script>
 </body>
+
 </html>
