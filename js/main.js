@@ -1,4 +1,3 @@
-// Main JavaScript for TBCPL
 // ==========================================
 // TBCPL - Smart Presentation Engine
 // ==========================================
@@ -80,7 +79,9 @@ function applyFilter() {
     });
 }
 
-searchInput.addEventListener('input', applyFilter);
+if (searchInput) {
+    searchInput.addEventListener('input', applyFilter);
+}
 
 function triggerSlideChange(filterName) {
     filterBtns.forEach(b => b.classList.remove('active'));
@@ -171,9 +172,12 @@ window.addEventListener('wheel', (e) => {
     }
 }, { passive: false });
 
-document.getElementById('navToggle').addEventListener('click', () => {
-    document.getElementById('navMenu').classList.toggle('active');
-});
+const navToggle = document.getElementById('navToggle');
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        document.getElementById('navMenu').classList.toggle('active');
+    });
+}
 
 // ==========================================
 // DEVELOPER SIGNATURE
