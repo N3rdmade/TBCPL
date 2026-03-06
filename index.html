@@ -49,7 +49,7 @@
                 </a> 
                 or 
                 <a href="https://ublockorigin.com/" class="standard-link" target="_blank">
-                    <img src="./assets/ublock.png" alt="uBlock Origin" class="inline-icon"> Extension
+                    <img src="./assets/ublock.png" alt="uBlock Origin" class="inline-icon"> Exstension
                 </a> 
                 to stop all unwanted popups and ads!
             </p>
@@ -89,7 +89,6 @@
 
     <script src="./SmoothScroll.js"></script>
     <script>
-        // Intersection Observer for fade-in effect
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
@@ -106,7 +105,7 @@
                     sec.className = 'section';
                     sec.setAttribute('data-category', category.id);
                     
-                    // CRITICAL FIX: Added .section-header class to enable purple dashes
+                    // THIS IS THE ONLY LINE CHANGED:
                     sec.innerHTML = `<h2 class="section-header">${category.name}</h2><div class="links-grid"></div>`;
                     
                     category.sites.filter(s => s.enabled !== false).forEach(site => {
@@ -125,30 +124,22 @@
         }
         window.addEventListener('DOMContentLoaded', loadLinks);
 
-        // Search and Filter Logic
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
-        
         function applyFilter() {
             const query = searchInput.value.toLowerCase();
-            const activeBtn = document.querySelector('.filter-btn.active');
-            const filter = activeBtn ? activeBtn.dataset.filter : 'all';
-            
+            const filter = document.querySelector('.filter-btn.active').dataset.filter;
             document.querySelectorAll('.section').forEach(sec => {
                 const cards = sec.querySelectorAll('.link-card');
                 let hasVisible = false;
-                
                 cards.forEach(card => {
-                    const match = card.dataset.name.toLowerCase().includes(query) && 
-                                 (filter === 'all' || sec.dataset.category === filter);
+                    const match = card.dataset.name.toLowerCase().includes(query) && (filter === 'all' || sec.dataset.category === filter);
                     card.style.display = match ? 'flex' : 'none';
                     if (match) hasVisible = true;
                 });
-                
                 sec.style.display = hasVisible ? 'block' : 'none';
             });
         }
-
         searchInput.addEventListener('input', applyFilter);
         filterBtns.forEach(btn => btn.addEventListener('click', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -156,7 +147,6 @@
             applyFilter();
         }));
 
-        // Mobile Nav Toggle
         document.getElementById('navToggle').addEventListener('click', () => {
             document.getElementById('navMenu').classList.toggle('active');
         });
