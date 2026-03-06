@@ -146,7 +146,6 @@
             const query = searchInput.value.toLowerCase();
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
             
-            // Sync the side dots with the active pill
             slideDots.forEach(d => d.classList.remove('active'));
             document.querySelector(`.slide-dot[data-filter="${filter}"]`).classList.add('active');
 
@@ -176,17 +175,15 @@
         
         searchInput.addEventListener('input', applyFilter);
         
-        // 1. The Presentation Click (Pills & Dots)
         function triggerSlideChange(filterName) {
             filterBtns.forEach(b => b.classList.remove('active'));
             document.querySelector(`.filter-btn[data-filter="${filterName}"]`).classList.add('active');
             
             applyFilter();
             
-            // INSTANT JUMP FIX: Prevents dragging under the search bar. Snaps directly to frame.
             const anchor = document.getElementById('searchAnchor');
-            const yPosition = anchor.getBoundingClientRect().top + window.scrollY - 60;
-            window.scrollTo({ top: yPosition, behavior: 'auto' }); 
+            const lockPos = Math.floor(anchor.offsetTop - 60);
+            window.scrollTo({ top: lockPos, behavior: 'auto' }); 
         }
 
         filterBtns.forEach(btn => btn.addEventListener('click', function() {
@@ -197,7 +194,23 @@
             triggerSlideChange(this.dataset.filter);
         }));
 
-        // 2. The Speedy PowerPoint Scroll Engine
+        // ==========================================
+        // THE NEW PRESENTATION ENGINE
+        // ==========================================
+        
+        // 1. The Brick Wall: Stops the page from physically scrolling past the dock
+        window.addEventListener('scroll', () => {
+            const anchor = document.getElementById('searchAnchor');
+            if (!anchor) return;
+            const lockPos = Math.floor(anchor.offsetTop - 60);
+
+            // If the browser or user tries to scroll past the anchor, force them back!
+            if (window.scrollY > lockPos + 2) {
+                window.scrollTo({ top: lockPos, behavior: 'auto' });
+            }
+        });
+
+        // 2. The Infinite Loop Wheel Controller
         let slideCooldown = false;
 
         window.addEventListener('wheel', (e) => {
@@ -206,26 +219,32 @@
             const btns = Array.from(document.querySelectorAll('.filter-btn'));
             const activeIdx = btns.findIndex(b => b.classList.contains('active'));
 
-            const atBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 15;
             const anchor = document.getElementById('searchAnchor');
-            const anchorTop = anchor.offsetTop - 65; 
-            const isAtOrAboveAnchor = window.scrollY <= anchorTop + 5;
+            const lockPos = Math.floor(anchor.offsetTop - 60);
+            
+            // Check if the user is locked into the presentation view
+            const isAtLock = window.scrollY >= lockPos - 5; 
 
-            if (e.deltaY > 30 && atBottom) {
-                // SCROLL DOWN -> Triggers Next Slide
-                if (activeIdx < btns.length - 1) {
+            if (isAtLock) {
+                if (e.deltaY > 30) {
+                    // SCROLL DOWN -> Blocks physical scroll, triggers next slide, loops to 0!
                     e.preventDefault();
                     slideCooldown = true;
-                    triggerSlideChange(btns[activeIdx + 1].dataset.filter);
-                    setTimeout(() => slideCooldown = false, 500); // Super fast 0.5s cooldown
-                }
-            } else if (e.deltaY < -30 && isAtOrAboveAnchor) {
-                // SCROLL UP -> Triggers Previous Slide
-                if (activeIdx > 0) {
-                    e.preventDefault();
-                    slideCooldown = true;
-                    triggerSlideChange(btns[activeIdx - 1].dataset.filter);
-                    setTimeout(() => slideCooldown = false, 500); // Super fast 0.5s cooldown
+                    
+                    let nextIdx = (activeIdx + 1) % btns.length; // The magic infinite loop math
+                    triggerSlideChange(btns[nextIdx].dataset.filter);
+                    
+                    setTimeout(() => slideCooldown = false, 500);
+                } else if (e.deltaY < -30) {
+                    // SCROLL UP -> Previous slide
+                    if (activeIdx > 0) {
+                        e.preventDefault();
+                        slideCooldown = true;
+                        triggerSlideChange(btns[activeIdx - 1].dataset.filter);
+                        setTimeout(() => slideCooldown = false, 500);
+                    }
+                    // If activeIdx is 0 (Movies), we intentionally DO NOT block the scroll.
+                    // This lets you cleanly scroll back up to your header!
                 }
             }
         }, { passive: false });
