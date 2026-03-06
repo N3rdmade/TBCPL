@@ -1,6 +1,5 @@
 /* ===================================
    TBCPL - AMOLED Purple Glass
-   Restored Layout + Neon Scrollbar
    =================================== */
 
 :root {
@@ -12,6 +11,7 @@
     --accent-glow: rgba(139, 92, 246, 0.2);
     --glass-blur: blur(8px); 
     --radius-lg: 16px;
+    --radius-pill: 50px;
     --font-sans: 'Inter', sans-serif;
 }
 
@@ -20,7 +20,7 @@
 html {
     background-color: var(--background);
     color-scheme: dark !important;
-    scroll-behavior: auto !important; /* Managed by SmoothScroll.js */
+    scroll-behavior: auto !important; 
 }
 
 body {
@@ -32,9 +32,9 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* === RESTORED FLEXBOX LAYOUTS === */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; }
 
+/* === COMMUNITY SECTION (CENTERED) === */
 .community-section-compact {
     display: flex;
     justify-content: center;
@@ -45,12 +45,12 @@ body {
 
 .community-links {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     align-items: center;
 }
 
-/* === PURPLE NEON GRADIENT SCROLLBAR === */
-::-webkit-scrollbar { width: 16px !important; }
+/* === NEON GRADIENT SCROLLBAR === */
+::-webkit-scrollbar { width: 14px !important; }
 ::-webkit-scrollbar-track { background: #000 !important; }
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, var(--accent-primary) 0%, #000 100%) !important;
@@ -63,7 +63,7 @@ body {
     box-shadow: 0 0 15px var(--accent-primary);
 }
 
-/* === UI COMPONENTS === */
+/* === NAVBAR === */
 .navbar {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -92,7 +92,7 @@ body {
 .nav-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; padding: 8px 12px; transition: 0.2s; border-radius: 8px; }
 .nav-link.active, .nav-link:hover { color: var(--accent-primary); background: rgba(139, 92, 246, 0.1); }
 
-/* === WARNING & HERO === */
+/* === HERO & WARNING === */
 .hero-section { text-align: center; padding: 60px 0 30px; }
 .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -2px; }
 
@@ -106,8 +106,64 @@ body {
     backdrop-filter: var(--glass-blur);
 }
 
-.standard-link { color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; vertical-align: middle; }
+.standard-link { color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; vertical-align: middle; transition: 0.2s; }
+.standard-link:hover { color: var(--accent-hover); opacity: 0.9; }
 .inline-icon { height: 22px; width: auto; margin: 0 6px; vertical-align: middle; }
+
+/* === FILTER BUTTONS (PILL SHAPED) === */
+.filter-buttons { 
+    display: flex; 
+    justify-content: center; 
+    gap: 12px; 
+    margin-top: 25px; 
+    flex-wrap: wrap; 
+}
+
+.filter-btn {
+    padding: 10px 22px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-sans);
+}
+
+.filter-btn:hover {
+    border-color: var(--accent-primary);
+    color: #fff;
+    background: var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: white;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* === SEARCH INPUT === */
+.search-input {
+    width: 100%;
+    max-width: 650px;
+    padding: 15px 25px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border);
+    background: var(--surface-glass);
+    color: #fff;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    transition: 0.3s;
+}
+
+.search-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
 
 /* === CARDS & SECTIONS === */
 .section {
@@ -126,11 +182,16 @@ body {
 .link-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border);
-    border-radius: 10px; padding: 20px;
+    border-radius: 12px; padding: 20px;
     display: flex; align-items: center; justify-content: center;
     transition: 0.3s; min-height: 95px;
 }
-.link-card:hover { border-color: var(--accent-primary); background: var(--accent-glow); transform: translateY(-4px); }
+.link-card:hover { 
+    border-color: var(--accent-primary); 
+    background: var(--accent-glow); 
+    transform: translateY(-4px); 
+    box-shadow: 0 0 20px var(--accent-glow);
+}
 .card-logo { max-width: 100%; max-height: 45px; object-fit: contain; }
 
 /* === BACK TO TOP === */
