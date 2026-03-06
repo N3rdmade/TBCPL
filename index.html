@@ -5,53 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>(function(s){s.dataset.zone='10657401',s.src='https://llvpn.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
     <link rel="manifest" href="manifest.json">
-    <title>TheBestCouchPotatoList - Holiday Season</title>
-    <meta name="description" content="Free Media for all! Festive streaming collection">
+    <title>TheBestCouchPotatoList</title>
+    <meta name="description" content="Free Media for all! Your streaming collection">
 
-    <!-- Open Graph Meta Tags -->
     <meta property="og:url" content="https://tbcpl.lol">
     <meta property="og:type" content="website">
     <meta property="og:title" content="TheBestCouchPotatoList">
-    <meta property="og:description" content="Free Media for all! ">
+    <meta property="og:description" content="Free Media for all!">
     <meta property="og:image" content="https://tbcpl.lol/banner.png">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="420">
 
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="tbcpl.lol">
-    <meta property="twitter:url" content="https://tbcpl.lol">
-    <meta name="twitter:title" content="TheBestCouchPotatoList">
-    <meta name="twitter:description" content="Free Media for all! ">
-    <meta name="twitter:image" content="https://tbcpl.lol/banner.png">
-
-    <!-- Favicon -->
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
-    <link rel="shortcut icon" href="https://tbcpl.lol/logo.png" type="image/png">
-
-    <!-- Pace.js for page loading progress -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
 
-    <!-- Styles -->
     <link rel="stylesheet" href="./css/flash.css">
     <link rel="stylesheet" href="./ui.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* Ensuring clean typography after removing the holiday fonts */
+        :root {
+            --primary-font: 'Inter', sans-serif;
+        }
+        body {
+            font-family: var(--primary-font);
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+        /* Fallback for the removed 'festive-link' class */
+        .standard-link {
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        .standard-link:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Christmas Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="christmas-loader">
-            <img src="logo.png" alt="TBCPL Logo" class="christmas-logo">
-            <div class="loading-text">WELCOME BACK</div>
-        </div>
-    </div>
-
-    <!-- Navigation Menu -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -72,50 +71,27 @@
         </div>
     </nav>
 
-    <!-- Floating Christmas Elements -->
-    <div class="christmas-bg">
-        <div class="snowflake snowflake-1">❄️</div>
-        <div class="snowflake snowflake-2">❄️</div>
-        <div class="snowflake snowflake-3">❄️</div>
-        <div class="snowflake snowflake-4">❄️</div>
-        <div class="snowflake snowflake-5">❄️</div>
-        <div class="snowflake snowflake-6">❄️</div>
-        <div class="ornament ornament-1">🔴</div>
-        <div class="ornament ornament-2">🎄</div>
-        <div class="star star-1">⭐</div>
-    </div>
-
-    <!-- Main Container -->
     <div class="container">
-        <!-- Hero Section -->
         <div class="hero-section">
-            <h1 class="festive-title">
-                <span class="title-word">The</span>
-                <span class="title-word">Best</span>
-                <span class="title-word">Couch</span>
-                <span class="title-word">Potato</span>
-                <span class="title-word">List!</span>
-            </h1>
+            <h1 class="hero-title">The Best Couch Potato List!</h1>
             <div class="subtitle">Your Streaming Collection 🫶</div>
         </div>
 
-        <!-- Warning Section -->
         <div class="warning-card">
             <p class="warning-text">
                 <strong>Before Clicking any Link</strong><br>
                 Download
-                <a href="https://brave.com/" class="festive-link" target="_blank">
+                <a href="https://brave.com/" class="standard-link" target="_blank">
                     <img src="./assets/brave.png" alt="BRAVE Browser" class="inline-icon">
                 </a>
                 or use
-                <a href="https://ublockorigin.com/" class="festive-link" target="_blank">
+                <a href="https://ublockorigin.com/" class="standard-link" target="_blank">
                     <img src="./assets/ublock.png" alt="Ad Blocker" class="inline-icon">
                 </a>
                 to avoid unwanted popups and ads!
             </p>
         </div>
 
-        <!-- Community Section -->
         <div class="community-section-compact">
             <div class="community-links">
                 <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="community-link discord-link">
@@ -129,7 +105,6 @@
             </div>
         </div>
 
-        <!-- Search Bar -->
         <div class="search-container">
             <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search for sites...">
             <div class="filter-buttons">
@@ -143,10 +118,8 @@
             </div>
         </div>
 
-        <!-- Dynamic Categories Container -->
         <div id="categories-container"></div>
 
-        <!-- Back to Top Button with Progress Circle -->
         <div class="back-to-top-wrapper" id="backToTopWrapper">
             <svg class="scroll-progress-svg" width="50" height="50">
                 <circle class="scroll-progress-bg" cx="25" cy="25" r="23"></circle>
@@ -157,7 +130,6 @@
             </button>
         </div>
 
-        <!-- Footer -->
         <footer class="footer">
             <div class="footer-links">
                 <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="footer-link" title="Discord">
@@ -168,66 +140,15 @@
                 </a>
             </div>
             <div class="footer-text">
-                <p>Curated with ❤️ by Team</p>
+                <p>Curated with ❤️ by the TBCPL Team</p>
                 <p>(Share responsibly)</p>
                 <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
             </div>
         </footer>
     </div>
 
-    <!-- Scripts -->
     <script>
-        // Load and render links from JSON
-        async function loadLinks() {
-            try {
-                const response = await fetch('links.json');
-                const data = await response.json();
-                const container = document.getElementById('categories-container');
-
-                data.categories.forEach(category => {
-                    const sectionDiv = document.createElement('div');
-                    sectionDiv.className = 'section';
-                    sectionDiv.setAttribute('data-category', category.id);
-
-                    // Create header
-                    const header = document.createElement('h2');
-                    header.className = 'section-header';
-                    header.textContent = category.name;
-                    sectionDiv.appendChild(header);
-
-                    // Create links grid
-                    const linksGrid = document.createElement('div');
-                    linksGrid.className = 'links-grid';
-
-                    // Filter only enabled sites
-                    category.sites.filter(site => site.enabled !== false).forEach(site => {
-                        const link = document.createElement('a');
-                        link.href = site.url;
-                        link.target = '_blank';
-                        link.className = 'link-card';
-                        link.setAttribute('data-name', site.name);
-
-                        link.innerHTML = `
-                            <img src="${site.logo}" alt="${site.name}" class="card-logo">
-                        `;
-
-                        linksGrid.appendChild(link);
-                    });
-
-                    sectionDiv.appendChild(linksGrid);
-                    container.appendChild(sectionDiv);
-                });
-
-                // Observe newly created elements for reveal animation
-                document.querySelectorAll('.section, .community-card, .stat-card').forEach(el => {
-                    observer.observe(el);
-                });
-            } catch (error) {
-                console.error('Error loading links:', error);
-            }
-        }
-
-        // Scroll Reveal Animation Observer (defined early for use in loadLinks)
+        // Scroll Reveal Animation Observer
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -241,25 +162,51 @@
             });
         }, observerOptions);
 
-        // Loading Screen
-        window.addEventListener('load', function() {
-            // Load links first
-            loadLinks();
+        // Load and render links from JSON
+        async function loadLinks() {
+            try {
+                const response = await fetch('links.json');
+                const data = await response.json();
+                const container = document.getElementById('categories-container');
 
-            // Then handle loading screen
-            setTimeout(function() {
-                const loadingScreen = document.getElementById('loadingScreen');
-                loadingScreen.style.opacity = '0';
-                setTimeout(function() {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }, 1500);
-        });
+                data.categories.forEach(category => {
+                    const sectionDiv = document.createElement('div');
+                    sectionDiv.className = 'section';
+                    sectionDiv.setAttribute('data-category', category.id);
+
+                    const header = document.createElement('h2');
+                    header.className = 'section-header';
+                    header.textContent = category.name;
+                    sectionDiv.appendChild(header);
+
+                    const linksGrid = document.createElement('div');
+                    linksGrid.className = 'links-grid';
+
+                    category.sites.filter(site => site.enabled !== false).forEach(site => {
+                        const link = document.createElement('a');
+                        link.href = site.url;
+                        link.target = '_blank';
+                        link.className = 'link-card';
+                        link.setAttribute('data-name', site.name);
+                        link.innerHTML = `<img src="${site.logo}" alt="${site.name}" class="card-logo">`;
+                        linksGrid.appendChild(link);
+                    });
+
+                    sectionDiv.appendChild(linksGrid);
+                    container.appendChild(sectionDiv);
+                    observer.observe(sectionDiv);
+                });
+            } catch (error) {
+                console.error('Error loading links:', error);
+            }
+        }
+
+        // Initialize loading
+        window.addEventListener('DOMContentLoaded', loadLinks);
 
         // Mobile Navigation Toggle
         const navToggle = document.getElementById('navToggle');
         const navMenu = document.getElementById('navMenu');
-
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
@@ -267,18 +214,12 @@
 
         // Sticky Navbar
         const navbar = document.getElementById('navbar');
-        let lastScroll = 0;
-
         window.addEventListener('scroll', function() {
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll > 100) {
+            if (window.pageYOffset > 100) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-
-            lastScroll = currentScroll;
         });
 
         // Search Functionality
@@ -288,7 +229,6 @@
             const sections = document.querySelectorAll('.section[data-category]');
             const filterButtons = document.querySelectorAll('.filter-btn');
 
-            // Reset filter to "All" when user starts typing
             if (searchTerm !== '') {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
@@ -308,115 +248,56 @@
                     }
                 });
 
-                // Hide entire category if no cards match
-                if (hasVisibleCards || searchTerm === '') {
-                    section.style.display = 'block';
-                } else {
-                    section.style.display = 'none';
-                }
+                section.style.display = (hasVisibleCards || searchTerm === '') ? 'block' : 'none';
             });
         });
 
         // Filter Functionality
         const filterButtons = document.querySelectorAll('.filter-btn');
-
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const filter = this.getAttribute('data-filter');
                 const sections = document.querySelectorAll('.section[data-category]');
 
-                // Update active button
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
-
-                // Clear search
                 searchInput.value = '';
 
-                // Filter sections
-                if (filter === 'all') {
-                    sections.forEach(section => {
+                sections.forEach(section => {
+                    if (filter === 'all' || section.getAttribute('data-category') === filter) {
                         section.style.display = 'block';
-                        section.querySelectorAll('.link-card').forEach(card => {
-                            card.style.display = 'flex';
-                        });
-                    });
-                } else {
-                    sections.forEach(section => {
-                        if (section.getAttribute('data-category') === filter) {
-                            section.style.display = 'block';
-                            section.querySelectorAll('.link-card').forEach(card => {
-                                card.style.display = 'flex';
-                            });
-                        } else {
-                            section.style.display = 'none';
-                        }
-                    });
-                }
+                        section.querySelectorAll('.link-card').forEach(c => c.style.display = 'flex');
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
             });
         });
 
-        // Initial observation for static elements
-        document.querySelectorAll('.community-card, .stat-card').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Parallax effect for floating elements (desktop only)
-        if (window.innerWidth > 768) {
-            document.addEventListener('mousemove', function(e) {
-                const snowflakes = document.querySelectorAll('.snowflake');
-                const ornaments = document.querySelectorAll('.ornament');
-
-                const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
-                const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
-
-                snowflakes.forEach((snowflake, index) => {
-                    const speed = (index + 1) * 0.5;
-                    snowflake.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
-                });
-
-                ornaments.forEach((ornament, index) => {
-                    const speed = (index + 1) * 0.3;
-                    ornament.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
-                });
-            });
-        }
-
-        // Scroll Progress Circle & Back to Top
+        // Scroll Progress & Back to Top
         const backToTopWrapper = document.getElementById('backToTopWrapper');
         const backToTop = document.getElementById('backToTop');
         const progressFill = document.querySelector('.scroll-progress-fill');
 
-        function updateScrollProgress() {
+        window.addEventListener('scroll', function() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrollPercentage = (scrollTop / scrollHeight) * 100;
 
-            // Radius is 23 for 50px circle
             const radius = 23;
             const circumference = 2 * Math.PI * radius;
-            const offset = circumference - (scrollPercentage / 100) * circumference;
+            progressFill.style.strokeDashoffset = circumference - (scrollPercentage / 100) * circumference;
 
-            progressFill.style.strokeDashoffset = offset;
-
-            // Show/hide wrapper
-            if (scrollTop > 1) {
+            if (scrollTop > 300) {
                 backToTopWrapper.classList.add('show');
             } else {
                 backToTopWrapper.classList.remove('show');
             }
-        }
-
-        window.addEventListener('scroll', updateScrollProgress);
-
-        backToTop.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
         });
+
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 
-    <!-- Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -426,5 +307,3 @@
     </script>
 </body>
 </html>
-
-
