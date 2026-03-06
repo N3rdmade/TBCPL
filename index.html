@@ -131,7 +131,7 @@
             const query = searchInput.value.toLowerCase();
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
             
-            let delay = 0; // Used to stagger the float-in animation
+            let delay = 0; 
 
             document.querySelectorAll('.section').forEach(sec => {
                 const cards = sec.querySelectorAll('.link-card');
@@ -145,13 +145,11 @@
                 
                 if (hasVisible) {
                     sec.style.display = 'block';
-                    // Strip the active class so it resets
                     sec.classList.remove('active');
-                    // Add it back slightly later so it beautifully floats in again
                     setTimeout(() => {
                         sec.classList.add('active');
                     }, 20 + delay);
-                    delay += 50; // Makes multiple sections load in a staggered wave
+                    delay += 50; 
                 } else {
                     sec.style.display = 'none';
                     sec.classList.remove('active');
@@ -161,18 +159,31 @@
         
         searchInput.addEventListener('input', applyFilter);
         
-        // Auto-Centering using the global window.lenis we created in SmoothScroll.js
+        // Auto-Centering logic restored!
         filterBtns.forEach(btn => btn.addEventListener('click', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
             applyFilter();
             
-            // Glides perfectly to the top to PRESENT the newly animated list
-            if (window.lenis) {
-                window.lenis.scrollTo(0, { duration: 1.2 }); // Perfect smooth glide
+            if (this.dataset.filter === 'all') {
+                // If "All" is clicked, glide back to the very top
+                if (window.lenis) {
+                    window.lenis.scrollTo(0, { duration: 1.2 });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+                }
             } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // Fallback
+                // If a category is clicked, calculate exactly where the search bar is
+                // Subtract 80px so it perfectly clears the fixed navbar with breathing room
+                const searchArea = document.querySelector('.search-container');
+                const yPosition = searchArea.getBoundingClientRect().top + window.scrollY - 80;
+                
+                if (window.lenis) {
+                    window.lenis.scrollTo(yPosition, { duration: 1.2 });
+                } else {
+                    window.scrollTo({ top: yPosition, behavior: 'smooth' }); 
+                }
             }
         }));
 
