@@ -1,6 +1,6 @@
 /* ===================================
    TBCPL - AMOLED Purple Glass
-   Final Theme with Magnetic Snapping
+   Final Theme with Perfect Framing
    =================================== */
 
 :root {
@@ -71,26 +71,31 @@ body {
 /* === STICKY SEARCH & PILL BUTTONS === */
 .search-container {
     width: 100%;
-    max-width: 750px;
+    /* 1. MATCH THE SECTION WIDTH: Now it looks like a unified header */
+    max-width: 100%; 
     margin: 0 auto 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     
-    /* STICKY DOCK FIX: Sits right below navbar and obscures text sliding under it */
     position: sticky;
     top: 60px; 
     z-index: 900;
-    padding: 20px 20px 25px 20px;
-    background: rgba(10, 10, 10, 0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    
+    /* 2. NARROWER VERTICALLY: Slimmer top and bottom padding */
+    padding: 20px 35px; 
+    
+    /* 3. SECTION MATCHING: Blends perfectly with the sections below */
+    background: var(--surface-glass);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--border);
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.search-input { width: 100%; padding: 16px 28px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: rgba(0,0,0,0.5); color: #fff; outline: none; font-size: 1rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+/* Keeps the actual input box from stretching too ridiculously wide on big screens */
+.search-input { width: 100%; max-width: 600px; padding: 16px 28px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: rgba(0,0,0,0.5); color: #fff; outline: none; font-size: 1rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
 .search-input:focus { border-color: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow); }
 
 .filter-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 25px; flex-wrap: wrap; }
@@ -110,9 +115,9 @@ body {
     padding: 35px; margin-bottom: 40px;
     backdrop-filter: var(--glass-blur);
     
-    /* SNAPPING FIX: Snaps the section perfectly underneath the 60px navbar + ~180px sticky search container */
+    /* 4. OVERLAP FIX FOR SCROLLING: Safely clears the Navbar (60px) + the Search Dock (~160px) */
     scroll-snap-align: start;
-    scroll-margin-top: 250px; 
+    scroll-margin-top: 240px; 
     
     opacity: 0; 
     transform: translateY(40px); 
