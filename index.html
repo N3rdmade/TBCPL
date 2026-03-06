@@ -201,7 +201,6 @@
         
         // 1. The Dynamic Brick Wall
         window.addEventListener('scroll', () => {
-            // MOBILE FIX: Shuts off the aggressive scroll lock on phones!
             if (window.innerWidth <= 768) return; 
 
             const anchor = document.getElementById('searchAnchor');
@@ -211,7 +210,6 @@
             const activeBtn = document.querySelector('.filter-btn.active');
             if (!activeBtn) return;
             
-            // If NOT on movies, strictly lock the page to the dock.
             if (activeBtn.dataset.filter !== 'movies') {
                 if (Math.abs(window.scrollY - lockPos) > 3) {
                     window.scrollTo({ top: lockPos, behavior: 'auto' });
@@ -223,7 +221,6 @@
         let slideCooldown = false;
 
         window.addEventListener('wheel', (e) => {
-            // MOBILE FIX: Ignore wheel logic on touch screens
             if (window.innerWidth <= 768) return;
 
             if (slideCooldown) {
@@ -233,16 +230,17 @@
 
             const anchor = document.getElementById('searchAnchor');
             if (!anchor) return;
-            const lockPos = Math.floor(anchor.offsetTop - 60);
             
-            const isAtBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5;
+            // NEW VISUAL SENSOR: Dynamically checks if the footer has visibly appeared on your screen!
+            const footer = document.querySelector('.footer');
+            const footerRect = footer.getBoundingClientRect();
+            const isAtBottom = footerRect.bottom <= window.innerHeight + 10;
 
             const btns = Array.from(document.querySelectorAll('.filter-btn'));
             const activeIdx = btns.findIndex(b => b.classList.contains('active'));
 
             if (activeIdx > 0) {
-                // WE ARE ON A SHORT SLIDE (Anime, Manga, etc.)
-                // Completely hijack the wheel! No native scrolling allowed.
+                // Short slides
                 e.preventDefault(); 
                 
                 if (e.deltaY > 30) {
@@ -258,8 +256,9 @@
                 }
             } 
             else {
-                // WE ARE ON THE MOVIES SLIDE (activeIdx === 0)
+                // Movies Slide
                 if (e.deltaY > 0) {
+                    // Only flip when the laser trips and sees the footer!
                     if (isAtBottom) {
                         e.preventDefault(); 
                         if (e.deltaY < 30) return;

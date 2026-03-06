@@ -85,10 +85,8 @@ body {
 
 /* === POWERPOINT SCROLL ZONES === */
 #categories-container {
-    flex: 1; 
-    /* THE FIX: Calculates exact viewport height needed so footer fits perfectly at bottom */
-    min-height: calc(100vh - 320px); 
-    padding-bottom: 40px;
+    /* REMOVED flex: 1 and min-height so it perfectly wraps the grid and pulls footer up! */
+    padding-bottom: 20px;
 }
 
 .section-header { display: flex; align-items: center; justify-content: center; gap: 20px; text-align: center; font-size: 1.8rem; margin-bottom: 30px; color: #fff; text-transform: uppercase; font-weight: 800; text-shadow: 0 0 15px var(--accent-glow), 0 0 5px var(--accent-primary); }
@@ -119,4 +117,19 @@ body {
     .search-container { position: static; background: transparent; box-shadow: none; border: none; padding: 0; margin-top: 30px; } 
     .slide-indicators { display: none; } 
 }
-.footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 60px; color: rgba(255,255,255,0.5); }
+
+/* === FOOTER UPDATES === */
+.footer { 
+    text-align: center; 
+    padding: 60px 0; 
+    border-top: 1px solid var(--border); 
+    margin-top: 20px; /* Snugs it up tighter to the content */
+    color: rgba(255,255,255,0.5); 
+}
+
+@media (min-width: 769px) {
+    .footer {
+        /* Desktop ONLY: Provides invisible space below footer to let the Javascript engine lock perfectly */
+        margin-bottom: 60vh;
+    }
+}
