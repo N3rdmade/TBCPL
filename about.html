@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - TBCPL</title>
+    <meta name="description" content="Learn more about TheBestCouchPotatoList">
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
+    <link rel="stylesheet" href="./css/flash.css">
     <link rel="stylesheet" href="./ui.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -33,34 +41,70 @@
 
         <div class="section active">
             <h2 class="section-header">Our Mission</h2>
-            <div style="max-width: 800px; margin: 0 auto; text-align: center; color: rgba(255,255,255,0.8); line-height: 1.8; padding: 20px;">
-                <p>Welcome to <strong>TheBestCouchPotatoList (TBCPL)</strong> - your ultimate guide to free streaming entertainment! We've curated the most comprehensive collection of streaming sites across movies, TV shows, anime, manga, and live TV.</p>
-                <br>
-                <p>Our mission is simple: to help you discover quality entertainment without the hassle of searching through countless websites. Whether you're a movie buff, anime enthusiast, manga reader, or sports fan, we've got you covered!</p>
+            <div style="padding: 20px; text-align: center; max-width: 900px; margin: 0 auto;">
+                <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    Welcome to <strong>TheBestCouchPotatoList (TBCPL)</strong> - your ultimate guide to free streaming entertainment! We've curated the most comprehensive collection of streaming sites across movies, TV shows, anime, manga, and live TV.
+                </p>
+                <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;">
+                    Our mission is simple: to help you discover quality entertainment without the hassle of searching through countless websites. Whether you're a movie buff, anime enthusiast, manga reader, or sports fan, we've got you covered!
+                </p>
+            </div>
+        </div>
+
+        <div class="section active">
+            <h2 class="section-header">Why Choose TBCPL?</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 10px;">
+                <div class="link-card" style="flex-direction: column; text-align: center; padding: 30px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">🎯</div>
+                    <h3 style="margin-bottom: 10px;">Curated Selection</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.7;">Every site is hand-picked and tested to ensure quality and reliability.</p>
+                </div>
+                <div class="link-card" style="flex-direction: column; text-align: center; padding: 30px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">🆓</div>
+                    <h3 style="margin-bottom: 10px;">100% Free</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.7;">Access to all our resources without any subscription or hidden fees.</p>
+                </div>
+                <div class="link-card" style="flex-direction: column; text-align: center; padding: 30px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">🔄</div>
+                    <h3 style="margin-bottom: 10px;">Regular Updates</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.7;">We constantly update our list to remove dead links and add new sites.</p>
+                </div>
+                <div class="link-card" style="flex-direction: column; text-align: center; padding: 30px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">📱</div>
+                    <h3 style="margin-bottom: 10px;">Mobile Friendly</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.7;">Fully responsive design works perfectly on all your devices.</p>
+                </div>
             </div>
         </div>
 
         <div class="section active">
             <h2 class="section-header">The Team</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 10px;">
+                
                 <div class="link-card" style="flex-direction: column; text-align: center; padding: 40px;">
                     <img src="https://avatars.githubusercontent.com/u/161110729?v=4" style="width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--accent-primary); margin-bottom: 20px; box-shadow: 0 0 15px var(--accent-glow);">
                     <h3 style="font-size: 1.5rem; margin-bottom: 5px;">Hellhorde</h3>
-                    <p style="color: var(--accent-primary); font-weight: 800; font-size: 0.9rem; margin-bottom: 15px;">FOUNDER & CURATOR</p>
-                    <p style="font-size: 0.9rem; opacity: 0.7; margin-bottom: 20px;">Passionate about making entertainment accessible to everyone. Constantly hunting for the best streaming sites.</p>
+                    <p style="color: var(--accent-primary); font-weight: 800; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 15px;">FOUNDER & CURATOR</p>
+                    <p style="font-size: 0.95rem; opacity: 0.7; margin-bottom: 20px; line-height: 1.6;">Passionate about making entertainment accessible to everyone. Constantly hunting for the best streaming sites to add to the collection.</p>
                     <a href="https://github.com/N3rdmade/" target="_blank" style="color: rgba(255,255,255,0.4); transition: 0.2s;"><i class="fab fa-github fa-xl"></i></a>
                 </div>
+
                 <div class="link-card" style="flex-direction: column; text-align: center; padding: 40px;">
                     <img src="https://avatars.githubusercontent.com/u/84559232?v=4" style="width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--accent-primary); margin-bottom: 20px; box-shadow: 0 0 15px var(--accent-glow);">
                     <h3 style="font-size: 1.5rem; margin-bottom: 5px;">R</h3>
-                    <p style="color: var(--accent-primary); font-weight: 800; font-size: 0.9rem; margin-bottom: 15px;">MAINTAINER</p>
-                    <p style="font-size: 0.9rem; opacity: 0.7; margin-bottom: 20px;">Helping maintain and improve TBCPL to keep it running smoothly for the community.</p>
+                    <p style="color: var(--accent-primary); font-weight: 800; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 15px;">MAINTAINER</p>
+                    <p style="font-size: 0.95rem; opacity: 0.7; margin-bottom: 20px; line-height: 1.6;">Helping maintain and improve TBCPL to keep it running smoothly for the community.</p>
                     <a href="https://github.com/rishabnotfound" target="_blank" style="color: rgba(255,255,255,0.4); transition: 0.2s;"><i class="fab fa-github fa-xl"></i></a>
                 </div>
+
             </div>
         </div>
 
         <footer class="footer">
+            <div class="footer-links" style="display:flex; justify-content:center; gap:25px; margin-bottom:20px; font-size:1.5rem;">
+                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" style="color:inherit;"><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" style="color:inherit;"><i class="fab fa-github"></i></a>
+            </div>
             <p>Curated with 💜 by the TBCPL Team</p>
             <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
         </footer>
