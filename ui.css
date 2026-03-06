@@ -1,6 +1,6 @@
 /* ===================================
    TBCPL - AMOLED Purple Glass
-   Modern Pill-Style & Centered Layout
+   Final Alignment & Pill Button Fix
    =================================== */
 
 :root {
@@ -36,7 +36,6 @@ body {
     max-width: 1200px; 
     margin: 0 auto; 
     padding: 0 20px; 
-    position: relative; 
 }
 
 /* === NAVIGATION === */
@@ -89,43 +88,44 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
-    width: 100%;
+    margin-bottom: 35px;
 }
 
 .community-links {
     display: flex;
     gap: 30px;
-    align-items: center;
 }
 
-/* === SEARCH BAR (PILL STYLE) === */
+/* === SEARCH BAR (MODERN PILL) === */
 .search-container {
-    max-width: 650px;
+    width: 100%;
+    max-width: 700px;
     margin: 0 auto 40px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .search-input {
     width: 100%;
-    padding: 16px 25px;
+    padding: 16px 28px;
     border-radius: var(--radius-pill);
     border: 1px solid var(--border);
     background: var(--surface-glass);
     color: #fff;
     outline: none;
-    transition: all 0.3s ease;
     font-size: 1rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .search-input:focus {
     border-color: var(--accent-primary);
-    box-shadow: 0 0 15px var(--accent-glow);
-    background: rgba(25, 25, 25, 0.8);
+    box-shadow: 0 0 20px var(--accent-glow);
+    background: rgba(25, 25, 25, 0.9);
 }
 
-/* === FILTER BUTTONS (LARGE PILLS) === */
+/* === FILTER BUTTONS (CENTERED PILLS) === */
 .filter-buttons { 
     display: flex; 
     justify-content: center; 
@@ -141,7 +141,7 @@ body {
     border-radius: var(--radius-pill);
     color: rgba(255, 255, 255, 0.8);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -192,5 +192,3 @@ body {
     border-radius: 10px;
     border: 3px solid #000;
 }
-
-.footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 60px; color: rgba(255,255,255,0.5); }
