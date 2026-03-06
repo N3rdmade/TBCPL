@@ -3,35 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Request - TBCPL</title>
+    <title>Request A Site - TBCPL</title>
     <meta name="description" content="Request a site to be added to TBCPL">
 
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
-
-    <!-- Pace.js for page loading progress -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
 
     <link rel="stylesheet" href="./css/flash.css">
     <link rel="stylesheet" href="./ui.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- Navigation Menu -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <img src="logo.png" alt="TBCPL" class="nav-logo-img">
-                TBCPL
+                <img src="logo.png" alt="TBCPL" class="nav-logo-img"> TBCPL
             </a>
-            <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
@@ -41,435 +35,106 @@
         </div>
     </nav>
 
-    <!-- Floating Christmas Elements -->
-    <div class="christmas-bg">
-        <div class="snowflake snowflake-1">❄️</div>
-        <div class="snowflake snowflake-2">❄️</div>
-        <div class="snowflake snowflake-3">❄️</div>
-        <div class="ornament ornament-1">🔴</div>
-        <div class="star star-1">⭐</div>
-    </div>
-
     <div class="container">
-        <!-- Hero Section -->
         <div class="hero-section">
-            <h1 class="festive-title">
-                <span class="title-word">Request</span>
-                <span class="title-word">A</span>
-                <span class="title-word">Site</span>
-            </h1>
+            <h1 class="hero-title">Request A Site</h1>
             <div class="subtitle">Help Us Grow The Collection! 🙏</div>
         </div>
 
-        <!-- Request Form Section -->
-        <div class="section">
-            <h2 class="section-header">
-                Submit Your Request
-            </h2>
-
-            <div class="form-container-wrapper">
-                <form id="siteRequestForm" class="request-form">
-                    <div class="form-group">
-                        <label for="siteUrl" class="form-label">
-                            <i class="fas fa-link"></i>
-                            Site URL *
-                        </label>
-                        <input
-                            type="url"
-                            id="siteUrl"
-                            class="form-input"
-                            placeholder="https://example.com"
-                            required
-                        >
-                        <span class="form-hint">Enter the full URL of the site</span>
+        <div class="section active">
+            <h2 class="section-header">Submit Your Suggestion</h2>
+            <div style="max-width: 650px; margin: 0 auto; padding: 20px;">
+                <form id="siteRequestForm">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--accent-primary);"><i class="fas fa-link"></i> Site URL *</label>
+                        <input type="url" id="siteUrl" class="search-input" style="width: 100%; border-radius: 12px;" placeholder="https://example.com" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="siteName" class="form-label">
-                            <i class="fas fa-tag"></i>
-                            Site Name *
-                        </label>
-                        <input
-                            type="text"
-                            id="siteName"
-                            class="form-input"
-                            placeholder="Awesome Streaming Site"
-                            required
-                        >
-                        <span class="form-hint">What's the name of the site?</span>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--accent-primary);"><i class="fas fa-tag"></i> Site Name *</label>
+                        <input type="text" id="siteName" class="search-input" style="width: 100%; border-radius: 12px;" placeholder="Site Name" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="siteFeature" class="form-label">
-                            <i class="fas fa-star"></i>
-                            Why Should We Add It? *
-                        </label>
-                        <textarea
-                            id="siteFeature"
-                            class="form-input form-textarea"
-                            placeholder="Tell us what makes this site special... (e.g., large content library, fast streaming, mobile-friendly, etc.)"
-                            rows="5"
-                            required
-                        ></textarea>
-                        <span class="form-hint">What's your favorite feature or why do you recommend it?</span>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--accent-primary);"><i class="fas fa-star"></i> Why Should We Add It? *</label>
+                        <textarea id="siteFeature" class="search-input" style="width: 100%; border-radius: 12px; height: 120px; padding: 15px;" placeholder="Fast streaming, no ads, etc..." required></textarea>
                     </div>
 
-                    <button type="submit" class="submit-button">
-                        <i class="fas fa-paper-plane"></i>
-                        Submit Request
+                    <button type="submit" class="filter-btn active" style="width: 100%; padding: 15px; font-size: 1rem; border: none;">
+                        <i class="fas fa-paper-plane"></i> Submit Request
                     </button>
                 </form>
 
-                <!-- Success Message -->
-                <div id="successMessage" class="success-message">
-                    <div class="success-icon">✅</div>
-                    <h3>Request Sent Successfully!</h3>
-                    <p>Thank you for your submission. We'll review it and add quality sites to our list.</p>
-                </div>
-
-                <!-- Error Message -->
-                <div id="errorMessage" class="error-message">
-                    <div class="error-icon">❌</div>
-                    <h3>Oops! Something Went Wrong</h3>
-                    <p>Failed to send your request. Please try again or contact us on Discord.</p>
+                <div id="successMessage" style="display:none; text-align:center; padding: 40px; background: rgba(34, 197, 94, 0.1); border: 1px solid #22c55e; border-radius: 16px;">
+                    <h3 style="color: #22c55e; margin-bottom: 10px;">✅ Request Sent!</h3>
+                    <p>We'll review your site soon. Thank you!</p>
                 </div>
             </div>
         </div>
 
-        <!-- Guidelines Section -->
-        <div class="section">
-            <h2 class="section-header">
-                Submission Guidelines
-            </h2>
-
-            <div class="guidelines-grid">
-                <div class="guideline-card">
-                    <div class="guideline-icon">✅</div>
-                    <h3>We Look For</h3>
-                    <ul>
-                        <li>Working, active sites</li>
-                        <li>Good content library</li>
-                        <li>User-friendly interface</li>
-                        <li>Mobile compatibility</li>
-                        <li>Minimal intrusive ads</li>
-                        <li>Regular updates</li>
+        <div class="section active">
+            <h2 class="section-header">Guidelines</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px;">
+                <div class="link-card" style="flex-direction: column; text-align: left; padding: 25px;">
+                    <h3 style="color: #22c55e; margin-bottom: 15px;">✅ We Look For</h3>
+                    <ul style="list-style: none; font-size: 0.9rem; opacity: 0.8; line-height: 2;">
+                        <li>• Working, active links</li>
+                        <li>• Minimal intrusive ads</li>
+                        <li>• Mobile compatibility</li>
+                        <li>• Regular content updates</li>
                     </ul>
                 </div>
-
-                <div class="guideline-card">
-                    <div class="guideline-icon">❌</div>
-                    <h3>We Avoid</h3>
-                    <ul>
-                        <li>Broken or offline sites</li>
-                        <li>Excessive pop-ups</li>
-                        <li>Malware risks</li>
-                        <li>Poor quality content</li>
-                        <li>Scam or phishing sites</li>
-                        <li>Sites requiring payment (PAID CATEGORY EXCEPTION)</li>
+                <div class="link-card" style="flex-direction: column; text-align: left; padding: 25px;">
+                    <h3 style="color: #ef4444; margin-bottom: 15px;">❌ We Avoid</h3>
+                    <ul style="list-style: none; font-size: 0.9rem; opacity: 0.8; line-height: 2;">
+                        <li>• Dead or broken sites</li>
+                        <li>• Dangerous malware risks</li>
+                        <li>• Poor content quality</li>
+                        <li>• Phishing or scam sites</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Footer -->
         <footer class="footer">
             <div class="footer-links">
-                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="footer-link" title="Discord">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
+                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="footer-link"><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link"><i class="fab fa-github"></i></a>
             </div>
-            <div class="footer-text">
-                <p>Curated with ❤️ by Team</p>
-                <p>(Share responsibly)</p>
-                <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
-            </div>
+            <p>Curated with 💜 by Team</p>
+            <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
         </footer>
     </div>
 
     <script>
-        // Mobile Navigation Toggle
-        const navToggle = document.getElementById('navToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
-
-        // Sticky Navbar
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Form Submission
+        // Form Logic
         const form = document.getElementById('siteRequestForm');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-
-            const siteUrl = document.getElementById('siteUrl').value;
-            const siteName = document.getElementById('siteName').value;
-            const siteFeature = document.getElementById('siteFeature').value;
-
             const payload = {
-                siteUrl,
-                siteName,
-                siteFeature
+                siteUrl: document.getElementById('siteUrl').value,
+                siteName: document.getElementById('siteName').value,
+                siteFeature: document.getElementById('siteFeature').value
             };
-
             try {
-                const response = await fetch('https://api.rgshows.ru/tbcpl/site_request', {
+                const res = await fetch('https://api.rgshows.ru/tbcpl/site_request', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-
-                if (response.ok) {
+                if (res.ok) {
                     form.style.display = 'none';
-                    successMessage.style.display = 'block';
-
-                    // Reset form after 5 seconds
-                    setTimeout(() => {
-                        form.reset();
-                        form.style.display = 'block';
-                        successMessage.style.display = 'none';
-                    }, 5000);
-                } else {
-                    throw new Error('Request failed');
+                    document.getElementById('successMessage').style.display = 'block';
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                errorMessage.style.display = 'block';
-
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 5000);
-            }
+            } catch (err) { alert('Something went wrong. Try again on Discord.'); }
         });
-    </script>
 
-    <style>
-        /* Make sections visible */
-        .section {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-
-        .form-container-wrapper {
-            padding: 24px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .request-form {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 0.9375rem;
-            margin-bottom: 8px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 14px 18px;
-            background: var(--surface-elevated);
-            border: 3px solid var(--accent-primary);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            outline: none;
-            font-family: var(--font-sans);
-        }
-
-        .form-input:focus {
-            border-color: var(--accent-secondary);
-            background: var(--surface-elevated);
-            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
-        }
-
-        .form-input::placeholder {
-            color: var(--text-tertiary);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-            font-family: inherit;
-        }
-
-        .form-hint {
-            display: block;
-            color: var(--text-tertiary);
-            font-size: 0.875rem;
-            margin-top: 6px;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 12px 24px;
-            background: var(--accent-primary);
-            border: 1px solid var(--accent-primary);
-            border-radius: var(--radius-md);
-            color: white;
-            font-size: 0.9375rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .submit-button:hover {
-            background: var(--accent-secondary);
-            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .success-message,
-        .error-message {
-            display: none;
-            text-align: center;
-            padding: 32px;
-            border-radius: var(--radius-lg);
-        }
-
-        .success-message {
-            background: var(--surface-elevated);
-            border: 3px solid #22c55e;
-        }
-
-        .error-message {
-            background: var(--surface-elevated);
-            border: 3px solid #ef4444;
-        }
-
-        .success-icon,
-        .error-icon {
-            font-size: 3rem;
-            margin-bottom: 12px;
-        }
-
-        .success-message h3 {
-            color: #22c55e;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .error-message h3 {
-            color: #ef4444;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .success-message p,
-        .error-message p {
-            color: var(--text-secondary);
-            font-size: 0.9375rem;
-        }
-
-        .guidelines-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 16px;
-        }
-
-        .guideline-card {
-            background: var(--surface-elevated);
-            border: 2px solid var(--accent-primary);
-            border-radius: var(--radius-lg);
-            padding: 25px;
-            transition: all 0.2s ease;
-        }
-
-        .guideline-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-secondary);
-            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
-        }
-
-        .guideline-icon {
-            font-size: 2.0rem;
-            margin-bottom: 12px;
-            text-align: center;
-            opacity: 0.9;
-        }
-
-        .guideline-card h3 {
-            color: var(--accent-primary);
-            font-size: 1.0rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .guideline-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .guideline-card li {
-            color: var(--text-primary);
-            padding: 2px 0;
-            padding-left: 20px;
-            position: relative;
-            font-size: 1rem;
-        }
-
-        .guideline-card li::before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: var(--accent-primary);
-            font-size: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .form-container-wrapper {
-                padding: 16px;
-            }
-
-            .guidelines-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .submit-button {
-                font-size: 0.9375rem;
-            }
-        }
-    </style>
-
-    <!-- Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-TD8F20DS4V');
+        document.getElementById('navToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.pageYOffset > 50);
+        });
     </script>
 </body>
 </html>
