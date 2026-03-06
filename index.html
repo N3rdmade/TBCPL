@@ -7,11 +7,10 @@
     <link rel="manifest" href="manifest.json">
     <title>TheBestCouchPotatoList</title>
     <meta name="description" content="Free Media for all! Your clean streaming collection">
+    <meta name="color-scheme" content="dark">
 
     <meta property="og:url" content="https://tbcpl.lol">
-    <meta property="og:type" content="website">
     <meta property="og:title" content="TheBestCouchPotatoList">
-    <meta property="og:description" content="Free Media for all!">
     <meta property="og:image" content="https://tbcpl.lol/banner.png">
 
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
@@ -20,6 +19,7 @@
 
     <link rel="stylesheet" href="./css/flash.css">
     <link rel="stylesheet" href="./ui.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -30,8 +30,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <img src="logo.png" alt="TBCPL" class="nav-logo-img">
-                TBCPL
+                <img src="logo.png" alt="TBCPL" class="nav-logo-img"> TBCPL
             </a>
             <button class="nav-toggle" id="navToggle">
                 <i class="fas fa-bars"></i>
@@ -54,25 +53,17 @@
         <div class="warning-card">
             <p class="warning-text">
                 <strong>Before Clicking any Link</strong><br>
-                Use
-                <a href="https://brave.com/" class="standard-link" target="_blank">
-                    <img src="./assets/brave.png" alt="BRAVE Browser" class="inline-icon">
-                </a>
-                or
-                <a href="https://ublockorigin.com/" class="standard-link" target="_blank">
-                    <img src="./assets/ublock.png" alt="Ad Blocker" class="inline-icon">
-                </a>
-                to avoid unwanted popups and ads!
+                Use <a href="https://brave.com/" class="standard-link" target="_blank">Brave Browser</a> or <a href="https://ublockorigin.com/" class="standard-link" target="_blank">uBlock Origin</a> to stop unwanted ads!
             </p>
         </div>
 
         <div class="community-section-compact">
             <div class="community-links">
-                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="community-link discord-link">
-                    <img src="./assets/discord.png" alt="Discord" class="community-icon"> Discord
+                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="community-link">
+                    <img src="./assets/discord.png" width="20"> Discord
                 </a>
-                <a href="https://www.reddit.com/r/TBCPL/" target="_blank" class="community-link reddit-link">
-                    <img src="./assets/reddit.png" alt="Reddit" class="community-icon"> Reddit
+                <a href="https://www.reddit.com/r/TBCPL/" target="_blank" class="community-link">
+                    <img src="./assets/reddit.png" width="20"> Reddit
                 </a>
             </div>
         </div>
@@ -114,16 +105,17 @@
         </footer>
     </div>
 
+    <script src="./SmoothScroll.js"></script>
+
     <script>
-        // Updated Observer to sync with your CSS classes
+        // Reveal Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active'); // Changed to .active to trigger animation
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0.1 });
 
+        // Load JSON Links
         async function loadLinks() {
             try {
                 const response = await fetch('links.json');
@@ -131,109 +123,79 @@
                 const container = document.getElementById('categories-container');
 
                 data.categories.forEach(category => {
-                    const sectionDiv = document.createElement('div');
-                    sectionDiv.className = 'section'; // Matches CSS for glass box
-                    sectionDiv.setAttribute('data-category', category.id);
-
-                    const header = document.createElement('h2');
-                    header.className = 'section-header';
-                    header.textContent = category.name;
-                    sectionDiv.appendChild(header);
-
-                    const linksGrid = document.createElement('div');
-                    linksGrid.className = 'links-grid';
-
-                    category.sites.filter(site => site.enabled !== false).forEach(site => {
-                        const link = document.createElement('a');
-                        link.href = site.url;
-                        link.target = '_blank';
-                        link.className = 'link-card';
-                        link.setAttribute('data-name', site.name);
-                        link.innerHTML = `<img src="${site.logo}" alt="${site.name}" class="card-logo">`;
-                        linksGrid.appendChild(link);
-                    });
-
-                    sectionDiv.appendChild(linksGrid);
-                    container.appendChild(sectionDiv);
-                    observer.observe(sectionDiv);
+                    const section = document.createElement('div');
+                    section.className = 'section';
+                    section.setAttribute('data-category', category.id);
+                    section.innerHTML = `
+                        <h2 class="section-header">${category.name}</h2>
+                        <div class="links-grid">
+                            ${category.sites.filter(s => s.enabled !== false).map(s => `
+                                <a href="${s.url}" target="_blank" class="link-card" data-name="${s.name}">
+                                    <img src="${s.logo}" class="card-logo" alt="${s.name}">
+                                </a>
+                            `).join('')}
+                        </div>
+                    `;
+                    container.appendChild(section);
+                    observer.observe(section);
                 });
-            } catch (error) {
-                console.error('Error loading links:', error);
-            }
+            } catch (e) { console.error(e); }
         }
 
         window.addEventListener('DOMContentLoaded', loadLinks);
 
-        // Mobile Navigation Toggle
-        const navToggle = document.getElementById('navToggle');
-        const navMenu = document.getElementById('navMenu');
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+        // Mobile Nav Toggle
+        document.getElementById('navToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
         });
 
-        // Search & Filter (Dynamic)
+        // Search & Filter Logic
         const searchInput = document.getElementById('searchInput');
-        const filterButtons = document.querySelectorAll('.filter-btn');
+        const filterBtns = document.querySelectorAll('.filter-btn');
 
-        function applyFilters() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
-            const sections = document.querySelectorAll('.section[data-category]');
+        function filterSites() {
+            const query = searchInput.value.toLowerCase();
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            const sections = document.querySelectorAll('.section');
 
-            sections.forEach(section => {
-                const linkCards = section.querySelectorAll('.link-card');
-                const categoryMatch = (activeFilter === 'all' || section.getAttribute('data-category') === activeFilter);
-                let hasVisibleCards = false;
-
-                linkCards.forEach(card => {
-                    const name = card.getAttribute('data-name').toLowerCase();
-                    if (name.includes(searchTerm) && categoryMatch) {
-                        card.style.display = 'flex';
-                        hasVisibleCards = true;
-                    } else {
-                        card.style.display = 'none';
-                    }
+            sections.forEach(sec => {
+                const cards = sec.querySelectorAll('.link-card');
+                let visible = false;
+                cards.forEach(card => {
+                    const match = card.dataset.name.toLowerCase().includes(query) && 
+                                  (activeFilter === 'all' || sec.dataset.category === activeFilter);
+                    card.style.display = match ? 'flex' : 'none';
+                    if(match) visible = true;
                 });
-                section.style.display = hasVisibleCards ? 'block' : 'none';
+                sec.style.display = visible ? 'block' : 'none';
             });
         }
 
-        searchInput.addEventListener('input', applyFilters);
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                filterButtons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                applyFilters();
-            });
-        });
+        searchInput.addEventListener('input', filterSites);
+        filterBtns.forEach(btn => btn.addEventListener('click', function() {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            filterSites();
+        }));
 
-        // Scroll Progress & Navbar State
-        const backToTopWrapper = document.getElementById('backToTopWrapper');
-        const progressFill = document.querySelector('.scroll-progress-fill');
+        // Scroll Progress logic
         const circumference = 2 * Math.PI * 23;
-        progressFill.style.strokeDasharray = circumference;
+        const fill = document.querySelector('.scroll-progress-fill');
+        fill.style.strokeDasharray = circumference;
 
         window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercentage = scrollTop / scrollHeight;
-
-            progressFill.style.strokeDashoffset = circumference - (scrollPercentage * circumference);
-            backToTopWrapper.classList.toggle('show', scrollTop > 300);
-            document.getElementById('navbar').classList.toggle('scrolled', scrollTop > 50);
+            const top = window.pageYOffset;
+            const height = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = top / height;
+            fill.style.strokeDashoffset = circumference - (pct * circumference);
+            
+            document.getElementById('backToTopWrapper').classList.toggle('show', top > 300);
+            document.getElementById('navbar').classList.toggle('scrolled', top > 50);
         });
 
         document.getElementById('backToTop').addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-    </script>
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-TD8F20DS4V');
     </script>
 </body>
 </html>
