@@ -86,7 +86,6 @@
         </footer>
     </div>
 
-    <script src="./SmoothScroll.js"></script>
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -104,7 +103,7 @@
                     sec.className = 'section';
                     sec.setAttribute('data-category', category.id);
                     
-                    // THIS TRIGGERS THE DASHES AND THE GRID:
+                    // Injects the section-header class for the glowing dashes
                     sec.innerHTML = `<h2 class="section-header">${category.name}</h2><div class="links-grid"></div>`;
                     
                     category.sites.filter(s => s.enabled !== false).forEach(site => {
@@ -125,6 +124,7 @@
 
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
+        
         function applyFilter() {
             const query = searchInput.value.toLowerCase();
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
@@ -139,11 +139,24 @@
                 sec.style.display = hasVisible ? 'block' : 'none';
             });
         }
+        
         searchInput.addEventListener('input', applyFilter);
+        
+        // Auto-Centering Filter Click Logic
         filterBtns.forEach(btn => btn.addEventListener('click', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             applyFilter();
+            
+            if (this.dataset.filter === 'all') {
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                // Scroll perfectly to the search bar
+                const searchArea = document.querySelector('.search-container');
+                const yPosition = searchArea.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top: yPosition, behavior: 'smooth' });
+            }
         }));
 
         document.getElementById('navToggle').addEventListener('click', () => {

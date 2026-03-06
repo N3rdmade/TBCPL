@@ -1,6 +1,6 @@
 /* ===================================
    TBCPL - AMOLED Purple Glass
-   Complete Restored Theme
+   Final Unified Dynamic Theme + Firefox Fix
    =================================== */
 
 :root {
@@ -9,7 +9,7 @@
     --border: rgba(255, 255, 255, 0.08);
     --accent-primary: #8b5cf6;
     --accent-hover: #a78bfa;
-    --accent-glow: rgba(139, 92, 246, 0.3);
+    --accent-glow: rgba(139, 92, 246, 0.4);
     --glass-blur: blur(8px); 
     --radius-pill: 50px;
     --radius-lg: 16px;
@@ -21,7 +21,13 @@
 html {
     background-color: var(--background);
     color-scheme: dark !important;
-    scroll-behavior: auto !important;
+    
+    /* Native, buttery smooth scrolling */
+    scroll-behavior: smooth !important; 
+    
+    /* Firefox Scrollbar Support */
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) #000;
 }
 
 body {
@@ -66,7 +72,7 @@ body {
     display: none; 
     background: none;
     border: none;
-    color: #fff;
+    color: var(--accent-primary);
     font-size: 1.5rem;
     cursor: pointer;
 }
@@ -189,7 +195,7 @@ body {
 .link-card:hover { border-color: var(--accent-primary); background: var(--accent-glow); transform: translateY(-4px); box-shadow: 0 0 20px var(--accent-glow); }
 .card-logo { max-width: 100%; max-height: 45px; object-fit: contain; }
 
-/* === NEON GRADIENT SCROLLBAR === */
+/* === NEON GRADIENT SCROLLBAR (Chrome/Safari) === */
 ::-webkit-scrollbar { width: 14px !important; }
 ::-webkit-scrollbar-track { background: #000 !important; }
 ::-webkit-scrollbar-thumb {
