@@ -165,20 +165,18 @@
         
         searchInput.addEventListener('input', applyFilter);
         
-        // Custom Magnetic Snap Engine & Pill Click Logic
+        // Custom Presentation Snap Engine
         let isAutoScrolling = false;
         let scrollTimeout;
 
-        // The Pill Buttons (Jitter Fixed)
         filterBtns.forEach(btn => btn.addEventListener('click', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
             applyFilter();
             
-            isAutoScrolling = true; // Tell the magnetic scroll to wait while we navigate
+            isAutoScrolling = true;
 
-            // The setTimeout fixes the "jitter" by letting the DOM shift finish before moving
             setTimeout(() => {
                 if (this.dataset.filter === 'all') {
                     if (window.lenis) {
@@ -192,45 +190,57 @@
             }, 50);
         }));
 
-        // The Magnetic Scroll Snap Engine
         if (window.lenis) {
             window.lenis.on('scroll', () => {
                 if (isAutoScrolling) return;
 
                 clearTimeout(scrollTimeout);
                 
-                // When you stop scrolling for 150ms, it looks for the closest section
                 scrollTimeout = setTimeout(() => {
-                    // Don't snap if you are at the very top of the page reading the hero text
-                    if (window.scrollY < 300) return;
+                    // 1. FREE ZONE: If you scroll back up to see the top/hero text, the magnet turns off!
+                    if (window.scrollY < 400) return;
+
+                    // 2. DYNAMIC FRAMING: Find out exactly where the bottom of the sticky search bar is right now
+                    const searchDock = document.getElementById('searchContainer');
+                    const dockBottom = searchDock.getBoundingClientRect().bottom;
 
                     let closest = null;
                     let minDistance = Infinity;
-                    const snapOffset = 250; // The distance right under your sticky dock
 
                     document.querySelectorAll('.section').forEach(sec => {
                         if (sec.style.display === 'none') return;
                         
                         const rect = sec.getBoundingClientRect();
-                        const distance = Math.abs(rect.top - snapOffset);
+                        const distance = Math.abs(rect.top - dockBottom);
                         
-                        // If it's close enough, tag it to be snapped!
-                        if (distance < 350 && distance < minDistance) {
+                        // If the section is close to the search bar, tag it for snapping
+                        if (distance < 300 && distance < minDistance) {
                             minDistance = distance;
                             closest = sec;
                         }
                     });
 
-                    // Magnetically lock it into place
+                    // 3. THE PRESENTATION SNAP
                     if (closest) {
                         isAutoScrolling = true;
+                        
+                        // Mathematically lock the section 20px below the sticky search dock
+                        const exactOffset = -(dockBottom + 20); 
+                        
+                        // Temporarily hide the section so it can float back in
+                        closest.classList.remove('active');
+
                         window.lenis.scrollTo(closest, {
-                            offset: -250, 
+                            offset: exactOffset, 
                             duration: 0.8,
-                            onComplete: () => { isAutoScrolling = false; }
+                            onComplete: () => { 
+                                // Trigger the float-in animation right as it lands!
+                                closest.classList.add('active');
+                                isAutoScrolling = false; 
+                            }
                         });
                     }
-                }, 150);
+                }, 150); // Engine waits 150ms after you stop flicking the wheel
             });
         }
 
