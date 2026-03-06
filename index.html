@@ -70,8 +70,7 @@
         <div class="search-container" id="searchContainer">
             <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search for sites...">
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="movies">Movies</button>
+                <button class="filter-btn active" data-filter="movies">Movies</button>
                 <button class="filter-btn" data-filter="anime">Anime</button>
                 <button class="filter-btn" data-filter="manga">Manga</button>
                 <button class="filter-btn" data-filter="livetv">Live TV</button>
@@ -80,17 +79,13 @@
             </div>
         </div>
 
-        <div id="categories-container" style="min-height: 100vh;"></div>
+        <div id="categories-container"></div>
 
         <footer class="footer">
             <p>Curated with 💜 by the TBCPL Team</p>
             <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
         </footer>
     </div>
-
-    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
-    
-    <script src="./SmoothScroll.js"></script>
     
     <script>
         const observer = new IntersectionObserver((entries) => {
@@ -128,7 +123,11 @@
                 });
             } catch (e) { console.error(e); }
         }
-        window.addEventListener('DOMContentLoaded', loadLinks);
+        
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadLinks();
+            applyFilter(); // Forces the non-Movies sections to hide immediately on load
+        });
 
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -136,7 +135,6 @@
         function applyFilter() {
             const query = searchInput.value.toLowerCase();
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
-            
             let delay = 0; 
 
             document.querySelectorAll('.section').forEach(sec => {
@@ -144,7 +142,7 @@
                 let hasVisible = false;
                 
                 cards.forEach(card => {
-                    const match = card.dataset.name.toLowerCase().includes(query) && (filter === 'all' || sec.dataset.category === filter);
+                    const match = card.dataset.name.toLowerCase().includes(query) && (sec.dataset.category === filter);
                     card.style.display = match ? 'flex' : 'none';
                     if (match) hasVisible = true;
                 });
@@ -152,9 +150,7 @@
                 if (hasVisible) {
                     sec.style.display = 'block';
                     sec.classList.remove('active');
-                    setTimeout(() => {
-                        sec.classList.add('active');
-                    }, 20 + delay);
+                    setTimeout(() => { sec.classList.add('active'); }, 20 + delay);
                     delay += 50; 
                 } else {
                     sec.style.display = 'none';
@@ -165,84 +161,53 @@
         
         searchInput.addEventListener('input', applyFilter);
         
-        // Custom Presentation Snap Engine
-        let isAutoScrolling = false;
-        let scrollTimeout;
-
+        // 1. The Click Behavior (Perfectly frames the dock)
         filterBtns.forEach(btn => btn.addEventListener('click', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
             applyFilter();
             
-            isAutoScrolling = true;
-
-            setTimeout(() => {
-                if (this.dataset.filter === 'all') {
-                    if (window.lenis) {
-                        window.lenis.scrollTo(0, { duration: 1.2, onComplete: () => isAutoScrolling = false });
-                    }
-                } else {
-                    if (window.lenis) {
-                        window.lenis.scrollTo('#searchAnchor', { offset: -60, duration: 1.2, onComplete: () => isAutoScrolling = false });
-                    }
-                }
-            }, 50);
+            // Glides page so the Dock hits the top, framing the perfectly centered slide below it
+            const anchor = document.getElementById('searchAnchor');
+            const yPosition = anchor.getBoundingClientRect().top + window.scrollY - 60;
+            window.scrollTo({ top: yPosition, behavior: 'smooth' });
         }));
 
-        if (window.lenis) {
-            window.lenis.on('scroll', () => {
-                if (isAutoScrolling) return;
+        // 2. The Custom PowerPoint Scroll Engine
+        let slideCooldown = false;
 
-                clearTimeout(scrollTimeout);
-                
-                scrollTimeout = setTimeout(() => {
-                    // 1. FREE ZONE: If you scroll back up to see the top/hero text, the magnet turns off!
-                    if (window.scrollY < 400) return;
+        window.addEventListener('wheel', (e) => {
+            if (slideCooldown) return;
 
-                    // 2. DYNAMIC FRAMING: Find out exactly where the bottom of the sticky search bar is right now
-                    const searchDock = document.getElementById('searchContainer');
-                    const dockBottom = searchDock.getBoundingClientRect().bottom;
+            const btns = Array.from(document.querySelectorAll('.filter-btn'));
+            const activeIdx = btns.findIndex(b => b.classList.contains('active'));
 
-                    let closest = null;
-                    let minDistance = Infinity;
+            // Check boundaries: Are we at the bottom of the grid, or the top of the dock?
+            const atBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
+            
+            const anchor = document.getElementById('searchAnchor');
+            const anchorTop = anchor.offsetTop - 65; 
+            const isAtOrAboveAnchor = window.scrollY <= anchorTop + 5;
 
-                    document.querySelectorAll('.section').forEach(sec => {
-                        if (sec.style.display === 'none') return;
-                        
-                        const rect = sec.getBoundingClientRect();
-                        const distance = Math.abs(rect.top - dockBottom);
-                        
-                        // If the section is close to the search bar, tag it for snapping
-                        if (distance < 300 && distance < minDistance) {
-                            minDistance = distance;
-                            closest = sec;
-                        }
-                    });
-
-                    // 3. THE PRESENTATION SNAP
-                    if (closest) {
-                        isAutoScrolling = true;
-                        
-                        // Mathematically lock the section 20px below the sticky search dock
-                        const exactOffset = -(dockBottom + 20); 
-                        
-                        // Temporarily hide the section so it can float back in
-                        closest.classList.remove('active');
-
-                        window.lenis.scrollTo(closest, {
-                            offset: exactOffset, 
-                            duration: 0.8,
-                            onComplete: () => { 
-                                // Trigger the float-in animation right as it lands!
-                                closest.classList.add('active');
-                                isAutoScrolling = false; 
-                            }
-                        });
-                    }
-                }, 150); // Engine waits 150ms after you stop flicking the wheel
-            });
-        }
+            if (e.deltaY > 30 && atBottom) {
+                // SCROLL DOWN -> Triggers Next Slide
+                if (activeIdx < btns.length - 1) {
+                    e.preventDefault();
+                    slideCooldown = true;
+                    btns[activeIdx + 1].click(); // Mimics clicking the pill perfectly!
+                    setTimeout(() => slideCooldown = false, 1200);
+                }
+            } else if (e.deltaY < -30 && isAtOrAboveAnchor) {
+                // SCROLL UP -> Triggers Previous Slide
+                if (activeIdx > 0) {
+                    e.preventDefault();
+                    slideCooldown = true;
+                    btns[activeIdx - 1].click(); // Mimics clicking the pill perfectly!
+                    setTimeout(() => slideCooldown = false, 1200);
+                }
+            }
+        }, { passive: false });
 
         document.getElementById('navToggle').addEventListener('click', () => {
             document.getElementById('navMenu').classList.toggle('active');
