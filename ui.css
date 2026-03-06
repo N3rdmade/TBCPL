@@ -1,6 +1,6 @@
 /* ===================================
    TBCPL - AMOLED Purple Glass
-   Final Unified Theme
+   Complete Restored Theme
    =================================== */
 
 :root {
@@ -9,7 +9,7 @@
     --border: rgba(255, 255, 255, 0.08);
     --accent-primary: #8b5cf6;
     --accent-hover: #a78bfa;
-    --accent-glow: rgba(139, 92, 246, 0.2);
+    --accent-glow: rgba(139, 92, 246, 0.3);
     --glass-blur: blur(8px); 
     --radius-pill: 50px;
     --radius-lg: 16px;
@@ -21,7 +21,7 @@
 html {
     background-color: var(--background);
     color-scheme: dark !important;
-    scroll-behavior: auto !important; /* Managed by SmoothScroll.js */
+    scroll-behavior: auto !important;
 }
 
 body {
@@ -33,7 +33,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* === NAVIGATION & BURGER FIX === */
+/* === NAVIGATION === */
 .navbar {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -62,7 +62,6 @@ body {
 .nav-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; padding: 8px 12px; transition: 0.2s; border-radius: 8px; }
 .nav-link.active, .nav-link:hover { color: var(--accent-primary); background: rgba(139, 92, 246, 0.1); }
 
-/* Hide burger menu on desktop/tablets */
 .nav-toggle {
     display: none; 
     background: none;
@@ -88,7 +87,6 @@ body {
     backdrop-filter: var(--glass-blur);
 }
 
-/* === COMMUNITY SECTION (CENTERED) === */
 .community-section-compact {
     display: flex;
     justify-content: center;
@@ -142,7 +140,7 @@ body {
 .filter-btn:hover { border-color: var(--accent-primary); color: #fff; background: var(--accent-glow); transform: translateY(-2px); }
 .filter-btn.active { background: var(--accent-primary); border-color: var(--accent-primary); color: white; box-shadow: 0 0 15px var(--accent-glow); }
 
-/* === GLOWING SECTION HEADERS (NEW) === */
+/* === GLOWING SECTION HEADERS WITH DASHES === */
 .section-header {
     display: flex;
     align-items: center;
@@ -206,4 +204,13 @@ body {
     .nav-menu {
         position: fixed; top: 60px; left: 0; right: 0;
         flex-direction: column; background: #000;
-        padding: 20px; display
+        padding: 20px; display: none;
+        border-bottom: 1px solid var(--border);
+    }
+    .nav-menu.active { display: flex; }
+    
+    .section-header::before, 
+    .section-header::after { flex: 0 1 20px; }
+}
+
+.footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 60px; color: rgba(255,255,255,0.5); }

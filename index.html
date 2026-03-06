@@ -10,7 +10,6 @@
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
     
     <link rel="stylesheet" href="./ui.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -49,7 +48,7 @@
                 </a> 
                 or 
                 <a href="https://ublockorigin.com/" class="standard-link" target="_blank">
-                    <img src="./assets/ublock.png" alt="uBlock Origin" class="inline-icon"> Exstension
+                    <img src="./assets/ublock.png" alt="uBlock Origin" class="inline-icon"> Extension
                 </a> 
                 to stop all unwanted popups and ads!
             </p>
@@ -105,7 +104,7 @@
                     sec.className = 'section';
                     sec.setAttribute('data-category', category.id);
                     
-                    // THIS IS THE ONLY LINE CHANGED:
+                    // THIS TRIGGERS THE DASHES AND THE GRID:
                     sec.innerHTML = `<h2 class="section-header">${category.name}</h2><div class="links-grid"></div>`;
                     
                     category.sites.filter(s => s.enabled !== false).forEach(site => {
