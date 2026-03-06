@@ -23,10 +23,9 @@ html {
     color-scheme: dark !important;
     scrollbar-width: thin;
     scrollbar-color: var(--accent-primary) #000;
-    scroll-behavior: smooth; /* Native smooth gliding */
+    /* Removed smooth scroll here so the slide transitions feel instant like PowerPoint */
 }
 
-/* APP LAYOUT: Forces the footer to the bottom and the content to the center */
 body {
     font-family: var(--font-sans);
     background: var(--background);
@@ -41,7 +40,7 @@ body {
 
 .container { 
     max-width: 1200px; margin: 0 auto; padding: 0 20px; 
-    flex: 1; /* Pushes footer down */
+    flex: 1; 
     display: flex; flex-direction: column;
 }
 
@@ -68,8 +67,10 @@ body {
 .search-container {
     width: 100%; max-width: 100%; margin: 0 auto 40px; display: flex; flex-direction: column; align-items: center;
     position: sticky; top: 60px; z-index: 900; padding: 20px 35px; 
-    background: var(--surface-glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    
+    /* OVERLAP FIX: Made solid black so sections completely vanish when scrolled under */
+    background: var(--background); 
+    border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 .search-input { width: 100%; max-width: 600px; padding: 16px 28px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: rgba(0,0,0,0.5); color: #fff; outline: none; font-size: 1rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
 .search-input:focus { border-color: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow); }
@@ -79,12 +80,35 @@ body {
 .filter-btn:hover { border-color: var(--accent-primary); color: #fff; background: var(--accent-glow); transform: translateY(-2px); }
 .filter-btn.active { background: var(--accent-primary); border-color: var(--accent-primary); color: white; box-shadow: 0 0 15px var(--accent-glow); }
 
-/* === POWERPOINT SCREEN CENTERING === */
-#categories-container {
-    flex: 1; /* Takes up all remaining space above the footer */
+/* === VERTICAL SLIDE DOT INDICATORS === */
+.slide-indicators {
+    position: fixed;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    justify-content: center; /* MAGICAL CENTERING: Floats the active section exactly in the middle! */
+    gap: 15px;
+    z-index: 999;
+}
+.slide-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer; transition: 0.3s;
+}
+.slide-dot:hover { background: rgba(255,255,255,0.5); transform: scale(1.2); }
+.slide-dot.active {
+    background: var(--accent-primary);
+    box-shadow: 0 0 12px var(--accent-glow);
+    transform: scale(1.4);
+}
+
+/* === POWERPOINT SCREEN CENTERING === */
+#categories-container {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
     padding-bottom: 20px;
 }
 
@@ -93,7 +117,9 @@ body {
 
 .section {
     background: var(--surface-glass); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 35px; margin-bottom: 0px; backdrop-filter: var(--glass-blur);
-    opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    
+    /* DELAY FIX: Sped up animation from 0.9s to 0.4s and shortened the drop distance */
+    opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 .section.active { opacity: 1; transform: translateY(0); }
 
@@ -113,5 +139,6 @@ body {
     .nav-menu.active { display: flex; }
     .section-header::before, .section-header::after { flex: 0 1 20px; }
     .search-container { position: static; background: transparent; box-shadow: none; border: none; padding: 0; } 
+    .slide-indicators { display: none; } /* Hide dots on mobile to save screen space */
 }
 .footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 60px; color: rgba(255,255,255,0.5); }

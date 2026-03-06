@@ -33,6 +33,15 @@
         </div>
     </nav>
 
+    <div class="slide-indicators" id="slideIndicators">
+        <div class="slide-dot active" data-filter="movies" title="Movies"></div>
+        <div class="slide-dot" data-filter="anime" title="Anime"></div>
+        <div class="slide-dot" data-filter="manga" title="Manga"></div>
+        <div class="slide-dot" data-filter="livetv" title="Live TV"></div>
+        <div class="slide-dot" data-filter="paid" title="Paid"></div>
+        <div class="slide-dot" data-filter="apps" title="Apps"></div>
+    </div>
+
     <div class="container">
         <div class="hero-section">
             <h1 class="hero-title">The Best Couch Potato List!</h1>
@@ -126,15 +135,21 @@
         
         window.addEventListener('DOMContentLoaded', async () => {
             await loadLinks();
-            applyFilter(); // Forces the non-Movies sections to hide immediately on load
+            applyFilter(); 
         });
 
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
+        const slideDots = document.querySelectorAll('.slide-dot');
         
         function applyFilter() {
             const query = searchInput.value.toLowerCase();
             const filter = document.querySelector('.filter-btn.active').dataset.filter;
+            
+            // Sync the side dots with the active pill
+            slideDots.forEach(d => d.classList.remove('active'));
+            document.querySelector(`.slide-dot[data-filter="${filter}"]`).classList.add('active');
+
             let delay = 0; 
 
             document.querySelectorAll('.section').forEach(sec => {
@@ -161,20 +176,28 @@
         
         searchInput.addEventListener('input', applyFilter);
         
-        // 1. The Click Behavior (Perfectly frames the dock)
-        filterBtns.forEach(btn => btn.addEventListener('click', function() {
+        // 1. The Presentation Click (Pills & Dots)
+        function triggerSlideChange(filterName) {
             filterBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
+            document.querySelector(`.filter-btn[data-filter="${filterName}"]`).classList.add('active');
             
             applyFilter();
             
-            // Glides page so the Dock hits the top, framing the perfectly centered slide below it
+            // INSTANT JUMP FIX: Prevents dragging under the search bar. Snaps directly to frame.
             const anchor = document.getElementById('searchAnchor');
             const yPosition = anchor.getBoundingClientRect().top + window.scrollY - 60;
-            window.scrollTo({ top: yPosition, behavior: 'smooth' });
+            window.scrollTo({ top: yPosition, behavior: 'auto' }); 
+        }
+
+        filterBtns.forEach(btn => btn.addEventListener('click', function() {
+            triggerSlideChange(this.dataset.filter);
         }));
 
-        // 2. The Custom PowerPoint Scroll Engine
+        slideDots.forEach(dot => dot.addEventListener('click', function() {
+            triggerSlideChange(this.dataset.filter);
+        }));
+
+        // 2. The Speedy PowerPoint Scroll Engine
         let slideCooldown = false;
 
         window.addEventListener('wheel', (e) => {
@@ -183,9 +206,7 @@
             const btns = Array.from(document.querySelectorAll('.filter-btn'));
             const activeIdx = btns.findIndex(b => b.classList.contains('active'));
 
-            // Check boundaries: Are we at the bottom of the grid, or the top of the dock?
-            const atBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
-            
+            const atBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 15;
             const anchor = document.getElementById('searchAnchor');
             const anchorTop = anchor.offsetTop - 65; 
             const isAtOrAboveAnchor = window.scrollY <= anchorTop + 5;
@@ -195,16 +216,16 @@
                 if (activeIdx < btns.length - 1) {
                     e.preventDefault();
                     slideCooldown = true;
-                    btns[activeIdx + 1].click(); // Mimics clicking the pill perfectly!
-                    setTimeout(() => slideCooldown = false, 1200);
+                    triggerSlideChange(btns[activeIdx + 1].dataset.filter);
+                    setTimeout(() => slideCooldown = false, 500); // Super fast 0.5s cooldown
                 }
             } else if (e.deltaY < -30 && isAtOrAboveAnchor) {
                 // SCROLL UP -> Triggers Previous Slide
                 if (activeIdx > 0) {
                     e.preventDefault();
                     slideCooldown = true;
-                    btns[activeIdx - 1].click(); // Mimics clicking the pill perfectly!
-                    setTimeout(() => slideCooldown = false, 1200);
+                    triggerSlideChange(btns[activeIdx - 1].dataset.filter);
+                    setTimeout(() => slideCooldown = false, 500); // Super fast 0.5s cooldown
                 }
             }
         }, { passive: false });
