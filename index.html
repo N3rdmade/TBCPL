@@ -9,14 +9,7 @@
     <meta name="description" content="Free Media for all! Your clean streaming collection">
     <meta name="color-scheme" content="dark">
 
-    <meta property="og:url" content="https://tbcpl.lol">
-    <meta property="og:title" content="TheBestCouchPotatoList">
-    <meta property="og:image" content="https://tbcpl.lol/banner.png">
-
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
-
     <link rel="stylesheet" href="./css/flash.css">
     <link rel="stylesheet" href="./ui.css">
     
@@ -32,9 +25,7 @@
             <a href="index.html" class="nav-logo">
                 <img src="logo.png" alt="TBCPL" class="nav-logo-img"> TBCPL
             </a>
-            <button class="nav-toggle" id="navToggle">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
@@ -53,7 +44,15 @@
         <div class="warning-card">
             <p class="warning-text">
                 <strong>Before Clicking any Link</strong><br>
-                Use <a href="https://brave.com/" class="standard-link" target="_blank">Brave Browser</a> or <a href="https://ublockorigin.com/" class="standard-link" target="_blank">uBlock Origin</a> to stop unwanted ads!
+                Use 
+                <a href="https://brave.com/" class="standard-link" target="_blank">
+                    <img src="./assets/brave.png" alt="Brave" class="inline-icon">
+                </a>
+                or 
+                <a href="https://ublockorigin.com/" class="standard-link" target="_blank">
+                    <img src="./assets/ublock.png" alt="uBlock Origin" class="inline-icon">
+                </a> 
+                to avoid unwanted popups and ads!
             </p>
         </div>
 
@@ -88,9 +87,7 @@
                 <circle class="scroll-progress-bg" cx="25" cy="25" r="23"></circle>
                 <circle class="scroll-progress-fill" cx="25" cy="25" r="23"></circle>
             </svg>
-            <button class="back-to-top" id="backToTop">
-                <i class="fas fa-arrow-up"></i>
-            </button>
+            <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
         </div>
 
         <footer class="footer">
@@ -98,104 +95,81 @@
                 <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="footer-link"><i class="fab fa-discord"></i></a>
                 <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" class="footer-link"><i class="fab fa-github"></i></a>
             </div>
-            <div class="footer-text">
-                <p>Curated with 💜 by the TBCPL Team</p>
-                <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
-            </div>
+            <p>Curated with 💜 by the TBCPL Team</p>
+            <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
         </footer>
     </div>
 
     <script src="./SmoothScroll.js"></script>
 
     <script>
-        // Reveal Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
 
-        // Load JSON Links
         async function loadLinks() {
             try {
                 const response = await fetch('links.json');
                 const data = await response.json();
                 const container = document.getElementById('categories-container');
-
                 data.categories.forEach(category => {
-                    const section = document.createElement('div');
-                    section.className = 'section';
-                    section.setAttribute('data-category', category.id);
-                    section.innerHTML = `
-                        <h2 class="section-header">${category.name}</h2>
-                        <div class="links-grid">
-                            ${category.sites.filter(s => s.enabled !== false).map(s => `
-                                <a href="${s.url}" target="_blank" class="link-card" data-name="${s.name}">
-                                    <img src="${s.logo}" class="card-logo" alt="${s.name}">
-                                </a>
-                            `).join('')}
-                        </div>
-                    `;
-                    container.appendChild(section);
-                    observer.observe(section);
+                    const sec = document.createElement('div');
+                    sec.className = 'section';
+                    sec.setAttribute('data-category', category.id);
+                    sec.innerHTML = `<h2 class="section-header">${category.name}</h2><div class="links-grid"></div>`;
+                    category.sites.filter(s => s.enabled !== false).forEach(site => {
+                        const link = document.createElement('a');
+                        link.href = site.url;
+                        link.target = '_blank';
+                        link.className = 'link-card';
+                        link.setAttribute('data-name', site.name);
+                        link.innerHTML = `<img src="${site.logo}" alt="${site.name}" class="card-logo">`;
+                        sec.querySelector('.links-grid').appendChild(link);
+                    });
+                    container.appendChild(sec);
+                    observer.observe(sec);
                 });
             } catch (e) { console.error(e); }
         }
-
         window.addEventListener('DOMContentLoaded', loadLinks);
 
-        // Mobile Nav Toggle
-        document.getElementById('navToggle').addEventListener('click', () => {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
-
-        // Search & Filter Logic
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
-
-        function filterSites() {
+        function applyFilter() {
             const query = searchInput.value.toLowerCase();
-            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-            const sections = document.querySelectorAll('.section');
-
-            sections.forEach(sec => {
+            const filter = document.querySelector('.filter-btn.active').dataset.filter;
+            document.querySelectorAll('.section').forEach(sec => {
                 const cards = sec.querySelectorAll('.link-card');
-                let visible = false;
+                let hasVisible = false;
                 cards.forEach(card => {
-                    const match = card.dataset.name.toLowerCase().includes(query) && 
-                                  (activeFilter === 'all' || sec.dataset.category === activeFilter);
+                    const match = card.dataset.name.toLowerCase().includes(query) && (filter === 'all' || sec.dataset.category === filter);
                     card.style.display = match ? 'flex' : 'none';
-                    if(match) visible = true;
+                    if (match) hasVisible = true;
                 });
-                sec.style.display = visible ? 'block' : 'none';
+                sec.style.display = hasVisible ? 'block' : 'none';
             });
         }
-
-        searchInput.addEventListener('input', filterSites);
+        searchInput.addEventListener('input', applyFilter);
         filterBtns.forEach(btn => btn.addEventListener('click', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            filterSites();
+            applyFilter();
         }));
 
-        // Scroll Progress logic
-        const circumference = 2 * Math.PI * 23;
         const fill = document.querySelector('.scroll-progress-fill');
+        const circumference = 2 * Math.PI * 23;
         fill.style.strokeDasharray = circumference;
-
         window.addEventListener('scroll', () => {
             const top = window.pageYOffset;
             const height = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = top / height;
-            fill.style.strokeDashoffset = circumference - (pct * circumference);
-            
+            fill.style.strokeDashoffset = circumference - ((top / height) * circumference);
             document.getElementById('backToTopWrapper').classList.toggle('show', top > 300);
             document.getElementById('navbar').classList.toggle('scrolled', top > 50);
         });
-
-        document.getElementById('backToTop').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navMenu').classList.toggle('active'));
     </script>
 </body>
 </html>
