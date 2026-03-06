@@ -77,56 +77,11 @@ body {
 .filter-btn:hover { border-color: var(--accent-primary); color: #fff; background: var(--accent-glow); transform: translateY(-2px); }
 .filter-btn.active { background: var(--accent-primary); border-color: var(--accent-primary); color: white; box-shadow: 0 0 15px var(--accent-glow); }
 
-/* === VERTICAL TEXT INDICATORS === */
-.slide-indicators { 
-    position: fixed; 
-    right: 25px; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-end; /* Keeps everything pinned to the right edge */
-    gap: 20px; 
-    z-index: 999; 
-}
-
-.slide-dot {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers the top word over the bottom word */
-    color: rgba(255, 255, 255, 0.4); 
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.slide-dot:hover {
-    color: rgba(255, 255, 255, 0.9);
-    transform: translateX(-5px);
-}
-
-.slide-dot.active {
-    color: var(--accent-primary); 
-    text-shadow: 0 0 10px var(--accent-glow);
-    transform: translateX(-5px);
-}
-
-/* Specific styling for the stacked text */
-.dot-top {
-    padding-bottom: 3px;
-    border-bottom: 2px solid currentColor; /* Line automatically matches text/glow color */
-    width: 100%;
-    text-align: center;
-}
-
-.dot-bottom {
-    padding-top: 3px;
-    width: 100%;
-    text-align: center;
-}
+/* === VERTICAL SLIDE DOT INDICATORS (RESTORED) === */
+.slide-indicators { position: fixed; right: 25px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 15px; z-index: 999; }
+.slide-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s; }
+.slide-dot:hover { background: rgba(255,255,255,0.5); transform: scale(1.2); }
+.slide-dot.active { background: var(--accent-primary); box-shadow: 0 0 12px var(--accent-glow); transform: scale(1.4); }
 
 /* === POWERPOINT SCROLL ZONES === */
 #categories-container {
