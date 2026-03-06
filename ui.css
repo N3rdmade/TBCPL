@@ -86,7 +86,8 @@ body {
 /* === POWERPOINT SCROLL ZONES === */
 #categories-container {
     flex: 1; 
-    min-height: 100vh; 
+    /* THE FIX: Calculates exact viewport height needed so footer fits perfectly at bottom */
+    min-height: calc(100vh - 320px); 
     padding-bottom: 40px;
 }
 

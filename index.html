@@ -199,8 +199,11 @@
         // SMART PRESENTATION ENGINE (ABSOLUTE LOCK)
         // ==========================================
         
-        // 1. The Dynamic Brick Wall: Completely prevents dragging the scrollbar on short slides
+        // 1. The Dynamic Brick Wall
         window.addEventListener('scroll', () => {
+            // MOBILE FIX: Shuts off the aggressive scroll lock on phones!
+            if (window.innerWidth <= 768) return; 
+
             const anchor = document.getElementById('searchAnchor');
             if (!anchor) return;
             const lockPos = Math.floor(anchor.offsetTop - 60);
@@ -220,6 +223,9 @@
         let slideCooldown = false;
 
         window.addEventListener('wheel', (e) => {
+            // MOBILE FIX: Ignore wheel logic on touch screens
+            if (window.innerWidth <= 768) return;
+
             if (slideCooldown) {
                 e.preventDefault();
                 return;
@@ -240,14 +246,12 @@
                 e.preventDefault(); 
                 
                 if (e.deltaY > 30) {
-                    // Instantly flip to next slide
                     slideCooldown = true;
-                    let nextIdx = (activeIdx + 1) % btns.length; // Flawlessly loops Apps -> Movies
+                    let nextIdx = (activeIdx + 1) % btns.length; 
                     triggerSlideChange(btns[nextIdx].dataset.filter);
                     setTimeout(() => slideCooldown = false, 600);
                 } 
                 else if (e.deltaY < -30) {
-                    // Instantly flip to previous slide
                     slideCooldown = true;
                     triggerSlideChange(btns[activeIdx - 1].dataset.filter);
                     setTimeout(() => slideCooldown = false, 600);
@@ -256,7 +260,6 @@
             else {
                 // WE ARE ON THE MOVIES SLIDE (activeIdx === 0)
                 if (e.deltaY > 0) {
-                    // Only flip to Anime if we hit the absolute bottom of the Movies list
                     if (isAtBottom) {
                         e.preventDefault(); 
                         if (e.deltaY < 30) return;
@@ -266,7 +269,6 @@
                         setTimeout(() => slideCooldown = false, 600);
                     }
                 } 
-                // We intentionally let e.deltaY < 0 act naturally so you can scroll up to the Hero section!
             }
         }, { passive: false });
 
