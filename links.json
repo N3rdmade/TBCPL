@@ -28,6 +28,12 @@
           "logo": "./logo/movies_shows/alienflix.png",
           "enabled": true
         },
+         {
+          "name": "Cinegram",
+          "url": "https://cinegram.net/home",
+          "logo": "./logo/movies_shows/cinegram.png",
+          "enabled": true
+        },
         {
           "name": "FlickyStream",
           "url": "https://flickystream.ru/",
