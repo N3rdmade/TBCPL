@@ -165,13 +165,12 @@
             
             applyFilter();
             
-            // 3. Auto-Center using the global window.lenis we created in SmoothScroll.js
-            if (this.dataset.filter === 'all') {
-                window.lenis.scrollTo(0, { duration: 1.5 });
+            // Because the search bar travels with you, any filter click 
+            // gracefully glides you back to the top of the newly filtered list.
+            if (window.lenis) {
+                window.lenis.scrollTo(0, { duration: 1.2 });
             } else {
-                const searchArea = document.querySelector('.search-container');
-                const yPosition = searchArea.getBoundingClientRect().top + window.scrollY - 80;
-                window.lenis.scrollTo(yPosition, { duration: 1.5 });
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Fallback
             }
         }));
 

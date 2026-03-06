@@ -1,6 +1,6 @@
 /* ===================================
    TBCPL - AMOLED Purple Glass
-   Final Theme (SmoothScroll.js Compatible)
+   Final Theme with Magnetic Snapping
    =================================== */
 
 :root {
@@ -21,10 +21,11 @@
 html {
     background-color: var(--background);
     color-scheme: dark !important;
-    
-    /* Firefox Scrollbar Support */
     scrollbar-width: thin;
     scrollbar-color: var(--accent-primary) #000;
+    
+    /* NEW: Adds the magnetic pull to sections */
+    scroll-snap-type: y proximity; 
 }
 
 body {
@@ -48,61 +49,26 @@ body {
     z-index: 1000;
 }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
+.nav-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 100%; display: flex; justify-content: space-between; align-items: center; }
 .nav-logo { font-weight: 800; text-decoration: none; color: #fff; display: flex; align-items: center; gap: 10px; }
 .nav-logo-img { height: 32px; }
-
 .nav-menu { display: flex; list-style: none; gap: 10px; }
 .nav-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; padding: 8px 12px; transition: 0.2s; border-radius: 8px; }
 .nav-link.active, .nav-link:hover { color: var(--accent-primary); background: rgba(139, 92, 246, 0.1); }
-
-.nav-toggle {
-    display: none; 
-    background: none;
-    border: none;
-    color: var(--accent-primary);
-    font-size: 1.5rem;
-    cursor: pointer;
-}
+.nav-toggle { display: none; background: none; border: none; color: var(--accent-primary); font-size: 1.5rem; cursor: pointer; }
 
 /* === LAYOUT CONTAINERS === */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
 .hero-section { text-align: center; padding: 60px 0 30px; }
 .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -2px; }
 
-.warning-card {
-    background: var(--surface-glass);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--accent-primary);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 40px;
-    backdrop-filter: var(--glass-blur);
-}
-
-.community-section-compact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 35px;
-}
-
+.warning-card { background: var(--surface-glass); border: 1px solid var(--border); border-left: 4px solid var(--accent-primary); border-radius: 12px; padding: 20px; margin-bottom: 40px; backdrop-filter: var(--glass-blur); }
+.community-section-compact { display: flex; justify-content: center; align-items: center; margin-bottom: 35px; }
 .community-links { display: flex; gap: 30px; }
-
 .standard-link { color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; vertical-align: middle; }
 .inline-icon { height: 22px; width: auto; margin: 0 6px; vertical-align: middle; }
 
-/* === SEARCH & PILL BUTTONS === */
+/* === STICKY SEARCH & PILL BUTTONS === */
 .search-container {
     width: 100%;
     max-width: 700px;
@@ -110,63 +76,30 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.search-input {
-    width: 100%;
-    padding: 16px 28px;
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--border);
+    
+    /* NEW: Turns this into a floating glass dock that travels with you */
+    position: sticky;
+    top: 70px; /* Sits right under the 60px navbar */
+    z-index: 900;
+    padding: 20px;
     background: var(--surface-glass);
-    color: #fff;
-    outline: none;
-    font-size: 1rem;
-    transition: 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
+.search-input { width: 100%; padding: 16px 28px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: rgba(0,0,0,0.5); color: #fff; outline: none; font-size: 1rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
 .search-input:focus { border-color: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow); }
 
 .filter-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 25px; flex-wrap: wrap; }
-
-.filter-btn {
-    padding: 10px 24px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-pill);
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
+.filter-btn { padding: 10px 24px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); border-radius: var(--radius-pill); color: rgba(255, 255, 255, 0.8); font-weight: 600; cursor: pointer; transition: 0.3s; }
 .filter-btn:hover { border-color: var(--accent-primary); color: #fff; background: var(--accent-glow); transform: translateY(-2px); }
 .filter-btn.active { background: var(--accent-primary); border-color: var(--accent-primary); color: white; box-shadow: 0 0 15px var(--accent-glow); }
 
 /* === GLOWING SECTION HEADERS WITH DASHES === */
-.section-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 800;
-    text-shadow: 0 0 15px var(--accent-glow), 0 0 5px var(--accent-primary);
-}
-
-.section-header::before, 
-.section-header::after {
-    content: '';
-    flex: 0 1 40px;
-    height: 3px;
-    background: var(--accent-primary);
-    border-radius: var(--radius-pill);
-    box-shadow: 0 0 10px var(--accent-primary);
-}
+.section-header { display: flex; align-items: center; justify-content: center; gap: 20px; text-align: center; font-size: 1.8rem; margin-bottom: 30px; color: #fff; text-transform: uppercase; font-weight: 800; text-shadow: 0 0 15px var(--accent-glow), 0 0 5px var(--accent-primary); }
+.section-header::before, .section-header::after { content: ''; flex: 0 1 40px; height: 3px; background: var(--accent-primary); border-radius: var(--radius-pill); box-shadow: 0 0 10px var(--accent-primary); }
 
 /* === CARDS & SECTIONS === */
 .section {
@@ -176,52 +109,31 @@ body {
     padding: 35px; margin-bottom: 40px;
     backdrop-filter: var(--glass-blur);
     
-    /* THE FLOAT FIX: Slower, further down, and buttery smooth */
+    /* NEW: Tells the magnetic scroll to stop exactly beneath the sticky search bar */
+    scroll-snap-align: start;
+    scroll-margin-top: 260px; 
+    
     opacity: 0; 
     transform: translateY(40px); 
-    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), 
-                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-.section.active { 
-    opacity: 1; 
-    transform: translateY(0); 
-}
+.section.active { opacity: 1; transform: translateY(0); }
 
 .links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 18px; }
-
-.link-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px;
-    display: flex; align-items: center; justify-content: center;
-    transition: 0.3s; min-height: 95px;
-}
+.link-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; align-items: center; justify-content: center; transition: 0.3s; min-height: 95px; }
 .link-card:hover { border-color: var(--accent-primary); background: var(--accent-glow); transform: translateY(-4px); box-shadow: 0 0 20px var(--accent-glow); }
 .card-logo { max-width: 100%; max-height: 45px; object-fit: contain; }
 
-/* === NEON GRADIENT SCROLLBAR (Chrome/Safari) === */
+/* === NEON GRADIENT SCROLLBAR === */
 ::-webkit-scrollbar { width: 14px !important; }
 ::-webkit-scrollbar-track { background: #000 !important; }
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--accent-primary) 0%, #000 100%) !important;
-    border-radius: 10px;
-    border: 3px solid #000;
-}
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent-primary) 0%, #000 100%) !important; border-radius: 10px; border: 3px solid #000; }
 
-/* === MOBILE VIEW === */
 @media (max-width: 768px) {
     .nav-toggle { display: block; } 
-    .nav-menu {
-        position: fixed; top: 60px; left: 0; right: 0;
-        flex-direction: column; background: #000;
-        padding: 20px; display: none;
-        border-bottom: 1px solid var(--border);
-    }
+    .nav-menu { position: fixed; top: 60px; left: 0; right: 0; flex-direction: column; background: #000; padding: 20px; display: none; border-bottom: 1px solid var(--border); }
     .nav-menu.active { display: flex; }
-    
-    .section-header::before, 
-    .section-header::after { flex: 0 1 20px; }
+    .section-header::before, .section-header::after { flex: 0 1 20px; }
+    .search-container { position: static; } /* Keeps mobile from feeling cramped */
 }
-
 .footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 60px; color: rgba(255,255,255,0.5); }
