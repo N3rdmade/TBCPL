@@ -65,7 +65,7 @@
             </div>
         </div>
 
-        <div class="search-container">
+        <div class="search-container" id="searchContainer">
             <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search for sites...">
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All</button>
@@ -91,9 +91,14 @@
     <script src="./SmoothScroll.js"></script>
     
     <script>
+        // Updated Observer: Resets animation when section leaves screen so it animates EVERY time you scroll to it!
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active'); 
+                }
             });
         }, { threshold: 0.1 });
 
@@ -159,30 +164,21 @@
         
         searchInput.addEventListener('input', applyFilter);
         
-        // Auto-Centering logic restored!
         filterBtns.forEach(btn => btn.addEventListener('click', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
             applyFilter();
             
+            // BULLETPROOF CENTERING MATH
             if (this.dataset.filter === 'all') {
-                // If "All" is clicked, glide back to the very top
                 if (window.lenis) {
                     window.lenis.scrollTo(0, { duration: 1.2 });
-                } else {
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); 
                 }
             } else {
-                // If a category is clicked, calculate exactly where the search bar is
-                // Subtract 80px so it perfectly clears the fixed navbar with breathing room
-                const searchArea = document.querySelector('.search-container');
-                const yPosition = searchArea.getBoundingClientRect().top + window.scrollY - 80;
-                
+                // Tells Lenis to scroll perfectly to the sticky Search Bar, offset by the 60px Navbar
                 if (window.lenis) {
-                    window.lenis.scrollTo(yPosition, { duration: 1.2 });
-                } else {
-                    window.scrollTo({ top: yPosition, behavior: 'smooth' }); 
+                    window.lenis.scrollTo('.search-container', { offset: -60, duration: 1.2 });
                 }
             }
         }));

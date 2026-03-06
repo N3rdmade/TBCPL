@@ -24,7 +24,7 @@ html {
     scrollbar-width: thin;
     scrollbar-color: var(--accent-primary) #000;
     
-    /* NEW: Adds the magnetic pull to sections */
+    /* Native CSS Snapping */
     scroll-snap-type: y proximity; 
 }
 
@@ -71,22 +71,23 @@ body {
 /* === STICKY SEARCH & PILL BUTTONS === */
 .search-container {
     width: 100%;
-    max-width: 700px;
+    max-width: 750px;
     margin: 0 auto 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     
-    /* NEW: Turns this into a floating glass dock that travels with you */
+    /* STICKY DOCK FIX: Sits right below navbar and obscures text sliding under it */
     position: sticky;
-    top: 70px; /* Sits right under the 60px navbar */
+    top: 60px; 
     z-index: 900;
-    padding: 20px;
-    background: var(--surface-glass);
-    backdrop-filter: var(--glass-blur);
+    padding: 20px 20px 25px 20px;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
 }
 
 .search-input { width: 100%; padding: 16px 28px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: rgba(0,0,0,0.5); color: #fff; outline: none; font-size: 1rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
@@ -109,9 +110,9 @@ body {
     padding: 35px; margin-bottom: 40px;
     backdrop-filter: var(--glass-blur);
     
-    /* NEW: Tells the magnetic scroll to stop exactly beneath the sticky search bar */
+    /* SNAPPING FIX: Snaps the section perfectly underneath the 60px navbar + ~180px sticky search container */
     scroll-snap-align: start;
-    scroll-margin-top: 260px; 
+    scroll-margin-top: 250px; 
     
     opacity: 0; 
     transform: translateY(40px); 
@@ -134,6 +135,6 @@ body {
     .nav-menu { position: fixed; top: 60px; left: 0; right: 0; flex-direction: column; background: #000; padding: 20px; display: none; border-bottom: 1px solid var(--border); }
     .nav-menu.active { display: flex; }
     .section-header::before, .section-header::after { flex: 0 1 20px; }
-    .search-container { position: static; } /* Keeps mobile from feeling cramped */
+    .search-container { position: static; background: transparent; box-shadow: none; border: none; padding: 0; } 
 }
 .footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 60px; color: rgba(255,255,255,0.5); }
