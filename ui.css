@@ -1,15 +1,19 @@
 /* ===================================
    TBCPL - AMOLED Purple Glass
-   Final Unified Theme
+   Final Unified Dynamic Theme
    =================================== */
 
 :root {
     --background: #000000;
     --surface-glass: rgba(15, 15, 15, 0.75);
     --border: rgba(255, 255, 255, 0.08);
-    --accent-primary: #8b5cf6;
+
+    /* === MASTER THEME COLOR === */
+    /* Change this once to update the whole site */
+    --accent-primary: #8b5cf6; 
+    
     --accent-hover: #a78bfa;
-    --accent-glow: rgba(139, 92, 246, 0.2);
+    --accent-glow: rgba(139, 92, 246, 0.2); 
     --glass-blur: blur(8px); 
     --radius-pill: 50px;
     --radius-lg: 16px;
@@ -67,7 +71,7 @@ body {
     display: none; 
     background: none;
     border: none;
-    color: #fff;
+    color: var(--accent-primary); 
     font-size: 1.5rem;
     cursor: pointer;
 }
@@ -76,7 +80,12 @@ body {
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
 .hero-section { text-align: center; padding: 60px 0 30px; }
-.hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -2px; }
+.hero-title { 
+    font-size: clamp(2.5rem, 5vw, 4rem); 
+    font-weight: 800; 
+    letter-spacing: -2px;
+    text-shadow: 0 0 20px var(--accent-glow);
+}
 
 .warning-card {
     background: var(--surface-glass);
@@ -142,6 +151,32 @@ body {
 .filter-btn:hover { border-color: var(--accent-primary); color: #fff; background: var(--accent-glow); transform: translateY(-2px); }
 .filter-btn.active { background: var(--accent-primary); border-color: var(--accent-primary); color: white; box-shadow: 0 0 15px var(--accent-glow); }
 
+/* === GLOWING SECTION HEADERS WITH DASHES === */
+.section-header {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: #fff;
+    /* Soft aura behind font */
+    text-shadow: 0 0 15px var(--accent-glow), 0 0 5px var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-header::before, 
+.section-header::after {
+    content: '';
+    flex: 0 1 40px;
+    height: 3px;
+    background: var(--accent-primary);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 0 10px var(--accent-primary);
+}
+
 /* === CARDS & SECTIONS === */
 .section {
     background: var(--surface-glass);
@@ -185,6 +220,11 @@ body {
         border-bottom: 1px solid var(--border);
     }
     .nav-menu.active { display: flex; }
+    
+    .section-header::before, 
+    .section-header::after {
+        flex: 0 1 20px; /* Shorter dashes on mobile */
+    }
 }
 
 .footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 60px; color: rgba(255,255,255,0.5); }

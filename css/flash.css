@@ -28,7 +28,6 @@
     right: 0px;
     width: 100px;
     height: 100%;
-    /* Swapped red glow for purple glow */
     box-shadow: 0 0 10px #8b5cf6, 0 0 5px #8b5cf6;
     opacity: 1.0;
     -webkit-transform: rotate(3deg) translate(0px, -4px);
