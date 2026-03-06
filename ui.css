@@ -23,9 +23,6 @@ html {
     color-scheme: dark !important;
     scrollbar-width: thin;
     scrollbar-color: var(--accent-primary) #000;
-    
-    /* Native CSS Snapping */
-    scroll-snap-type: y proximity; 
 }
 
 body {
@@ -71,21 +68,15 @@ body {
 /* === STICKY SEARCH & PILL BUTTONS === */
 .search-container {
     width: 100%;
-    /* 1. MATCH THE SECTION WIDTH: Now it looks like a unified header */
     max-width: 100%; 
     margin: 0 auto 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
     position: sticky;
     top: 60px; 
     z-index: 900;
-    
-    /* 2. NARROWER VERTICALLY: Slimmer top and bottom padding */
     padding: 20px 35px; 
-    
-    /* 3. SECTION MATCHING: Blends perfectly with the sections below */
     background: var(--surface-glass);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
@@ -94,7 +85,6 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Keeps the actual input box from stretching too ridiculously wide on big screens */
 .search-input { width: 100%; max-width: 600px; padding: 16px 28px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: rgba(0,0,0,0.5); color: #fff; outline: none; font-size: 1rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
 .search-input:focus { border-color: var(--accent-primary); box-shadow: 0 0 20px var(--accent-glow); }
 
@@ -114,11 +104,6 @@ body {
     border-radius: var(--radius-lg);
     padding: 35px; margin-bottom: 40px;
     backdrop-filter: var(--glass-blur);
-    
-    /* 4. OVERLAP FIX FOR SCROLLING: Safely clears the Navbar (60px) + the Search Dock (~160px) */
-    scroll-snap-align: start;
-    scroll-margin-top: 240px; 
-    
     opacity: 0; 
     transform: translateY(40px); 
     transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
@@ -131,7 +116,7 @@ body {
 .card-logo { max-width: 100%; max-height: 45px; object-fit: contain; }
 
 /* === NEON GRADIENT SCROLLBAR === */
-::-webkit-scrollbar { width: 14px !important; }
+::-webkit-scrollbar { width: 16px !important; }
 ::-webkit-scrollbar-track { background: #000 !important; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent-primary) 0%, #000 100%) !important; border-radius: 10px; border: 3px solid #000; }
 

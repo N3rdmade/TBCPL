@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <div id="categories-container"></div>
+        <div id="categories-container" style="min-height: 100vh;"></div>
 
         <footer class="footer">
             <p>Curated with 💜 by the TBCPL Team</p>
@@ -165,24 +165,74 @@
         
         searchInput.addEventListener('input', applyFilter);
         
+        // Custom Magnetic Snap Engine & Pill Click Logic
+        let isAutoScrolling = false;
+        let scrollTimeout;
+
+        // The Pill Buttons (Jitter Fixed)
         filterBtns.forEach(btn => btn.addEventListener('click', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
             applyFilter();
             
-            // BULLETPROOF CENTERING MATH: Uses the invisible anchor
-            if (this.dataset.filter === 'all') {
-                if (window.lenis) {
-                    window.lenis.scrollTo(0, { duration: 1.2 });
+            isAutoScrolling = true; // Tell the magnetic scroll to wait while we navigate
+
+            // The setTimeout fixes the "jitter" by letting the DOM shift finish before moving
+            setTimeout(() => {
+                if (this.dataset.filter === 'all') {
+                    if (window.lenis) {
+                        window.lenis.scrollTo(0, { duration: 1.2, onComplete: () => isAutoScrolling = false });
+                    }
+                } else {
+                    if (window.lenis) {
+                        window.lenis.scrollTo('#searchAnchor', { offset: -60, duration: 1.2, onComplete: () => isAutoScrolling = false });
+                    }
                 }
-            } else {
-                if (window.lenis) {
-                    // Scrolls to the exact invisible anchor point to avoid sticky collapse overlap!
-                    window.lenis.scrollTo('#searchAnchor', { offset: -60, duration: 1.2 });
-                }
-            }
+            }, 50);
         }));
+
+        // The Magnetic Scroll Snap Engine
+        if (window.lenis) {
+            window.lenis.on('scroll', () => {
+                if (isAutoScrolling) return;
+
+                clearTimeout(scrollTimeout);
+                
+                // When you stop scrolling for 150ms, it looks for the closest section
+                scrollTimeout = setTimeout(() => {
+                    // Don't snap if you are at the very top of the page reading the hero text
+                    if (window.scrollY < 300) return;
+
+                    let closest = null;
+                    let minDistance = Infinity;
+                    const snapOffset = 250; // The distance right under your sticky dock
+
+                    document.querySelectorAll('.section').forEach(sec => {
+                        if (sec.style.display === 'none') return;
+                        
+                        const rect = sec.getBoundingClientRect();
+                        const distance = Math.abs(rect.top - snapOffset);
+                        
+                        // If it's close enough, tag it to be snapped!
+                        if (distance < 350 && distance < minDistance) {
+                            minDistance = distance;
+                            closest = sec;
+                        }
+                    });
+
+                    // Magnetically lock it into place
+                    if (closest) {
+                        isAutoScrolling = true;
+                        window.lenis.scrollTo(closest, {
+                            offset: -250, 
+                            duration: 0.8,
+                            onComplete: () => { isAutoScrolling = false; }
+                        });
+                    }
+                }, 150);
+            });
+        }
 
         document.getElementById('navToggle').addEventListener('click', () => {
             document.getElementById('navMenu').classList.toggle('active');
