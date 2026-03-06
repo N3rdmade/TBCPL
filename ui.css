@@ -175,10 +175,18 @@ body {
     border-radius: var(--radius-lg);
     padding: 35px; margin-bottom: 40px;
     backdrop-filter: var(--glass-blur);
-    opacity: 0; transform: translateY(15px);
-    transition: 0.5s ease-out;
+    
+    /* THE FLOAT FIX: Slower, further down, and buttery smooth */
+    opacity: 0; 
+    transform: translateY(40px); 
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.section.active { opacity: 1; transform: translateY(0); }
+
+.section.active { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
 
 .links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 18px; }
 
