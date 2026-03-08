@@ -1,66 +1,19 @@
 // Main JavaScript for TBCPL
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Device detection for scroll engine
+    // 1. Core Elements
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const slideDots = document.querySelectorAll('.slide-dot');
+    const categoriesContainer = document.getElementById('categories-container');
+    const searchAnchor = document.getElementById('searchAnchor');
+    const footer = document.querySelector('.footer');
+    const menuToggle = document.querySelector('.menu-toggle') || document.getElementById('navToggle');
+    const nav = document.querySelector('.nav') || document.getElementById('navMenu');
+
+    // 2. Device Detection
     const isDesktop = !('ontouchstart' in window) && window.innerWidth > 1024;
 
-    // 2. Mobile menu functionality
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav');
-
-    if (menuToggle && nav) {
-        menuToggle.addEventListener('click', function() {
-            menuToggle.classList.toggle('active');
-            nav.classList.toggle('active');
-        });
-
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                menuToggle.classList.remove('active');
-                nav.classList.remove('active');
-            });
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!menuToggle.contains(e.target) && !nav.contains(e.target)) {
-                menuToggle.classList.remove('active');
-                nav.classList.remove('active');
-            }
-        });
-    }
-
-    // 3. QR Code modal functionality
-    const qrTrigger = document.getElementById('qr-trigger');
-    const qrModal = document.getElementById('qr-modal');
-    const modalClose = document.querySelector('.modal-close');
-
-    if (qrTrigger && qrModal && modalClose) {
-        qrTrigger.addEventListener('click', function() {
-            qrModal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        });
-
-        modalClose.addEventListener('click', function() {
-            qrModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-
-        qrModal.addEventListener('click', function(e) {
-            if (e.target === qrModal) {
-                qrModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && qrModal.style.display === 'block') {
-                qrModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-    }
-
-    // 4. Content Loading and Scroll Engine
+    // 3. Reveal Animation Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -69,18 +22,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, { threshold: 0.1 });
 
-    const searchInput = document.getElementById('searchInput');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const slideDots = document.querySelectorAll('.slide-dot');
-    const categoriesContainer = document.getElementById('categories-container');
-    const searchAnchor = document.getElementById('searchAnchor');
-    const footer = document.querySelector('.footer');
-
+    // 4. Content Loading Engine (The Fix)
     async function loadLinks() {
         try {
             const response = await fetch('links.json');
             const data = await response.json();
-            if (!categoriesContainer) return;
+            
+            if (!categoriesContainer) {
+                console.error("Categories container not found!");
+                return;
+            }
+
+            // Clear container before loading to prevent duplicates
+            categoriesContainer.innerHTML = '';
 
             data.categories.forEach(category => {
                 const sec = document.createElement('div');
@@ -100,12 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 categoriesContainer.appendChild(sec);
                 observer.observe(sec);
             });
+            
+            // Apply initial filter state
             applyFilter();
         } catch (e) {
             console.error("Error loading links:", e);
         }
     }
 
+    // 5. Filtering & Presentation Logic
     function applyFilter() {
         if (!searchInput) return;
         const query = searchInput.value.toLowerCase();
@@ -146,19 +103,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    if (searchInput) {
-        searchInput.addEventListener('input', applyFilter);
-    }
+    // 6. Event Listeners
+    if (searchInput) searchInput.addEventListener('input', applyFilter);
+    filterBtns.forEach(btn => btn.addEventListener('click', () => triggerSlideChange(btn.dataset.filter)));
+    slideDots.forEach(dot => dot.addEventListener('click', () => triggerSlideChange(dot.dataset.filter)));
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => triggerSlideChange(btn.dataset.filter));
-    });
-
-    slideDots.forEach(dot => {
-        dot.addEventListener('click', () => triggerSlideChange(dot.dataset.filter));
-    });
-
-    // 5. Desktop Presentation Logic
+    // 7. Desktop Presentation Mode
     if (isDesktop) {
         window.addEventListener('scroll', () => {
             const activeBtn = document.querySelector('.filter-btn.active');
@@ -172,10 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let slideCooldown = false;
         window.addEventListener('wheel', (e) => {
-            if (slideCooldown) {
-                e.preventDefault();
-                return;
-            }
+            if (slideCooldown) { e.preventDefault(); return; }
 
             const isAtBottom = footer && footer.getBoundingClientRect().bottom <= window.innerHeight + 50;
             const btns = Array.from(document.querySelectorAll('.filter-btn'));
@@ -184,12 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (activeIdx > 0) {
                 e.preventDefault(); 
                 if (Math.abs(e.deltaY) < 30) return;
-
                 slideCooldown = true;
                 let nextIdx = e.deltaY > 0 ? (activeIdx + 1) : (activeIdx - 1);
-                if (nextIdx >= 0 && nextIdx < btns.length) {
-                    triggerSlideChange(btns[nextIdx].dataset.filter);
-                }
+                if (nextIdx >= 0 && nextIdx < btns.length) triggerSlideChange(btns[nextIdx].dataset.filter);
                 setTimeout(() => slideCooldown = false, 700);
             } else if (isAtBottom && e.deltaY > 30) {
                 e.preventDefault();
@@ -200,7 +144,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { passive: false });
     }
 
-    // 6. Console message for developers
+    // 8. Mobile Menu & Modal (Original Features)
+    if (menuToggle && nav) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+    }
+
+    const qrTrigger = document.getElementById('qr-trigger');
+    const qrModal = document.getElementById('qr-modal');
+    if (qrTrigger && qrModal) {
+        qrTrigger.addEventListener('click', () => {
+            qrModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+        document.querySelector('.modal-close')?.addEventListener('click', () => {
+            qrModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    // 9. Original Console Branding
     console.log(`
     ╔══════════════════════════════════════════════════════════════╗
     ║                            TBCPL                             ║
@@ -220,40 +185,25 @@ document.addEventListener('DOMContentLoaded', function() {
     ╚══════════════════════════════════════════════════════════════╝
     `);
 
-    // 7. Performance tracking
+    // 10. Performance & Service Worker
     function trackPerformance() {
         if ('performance' in window) {
-            window.addEventListener('load', function() {
+            window.addEventListener('load', () => {
                 setTimeout(() => {
                     const perfData = performance.getEntriesByType('navigation')[0];
-                    if (perfData) {
-                        console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-                        console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart, 'ms');
-                    }
+                    if (perfData) console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
                 }, 1000);
             });
         }
     }
     trackPerformance();
 
-    // 8. Error handling
-    window.addEventListener('error', function(e) {
-        console.warn('An error occurred:', e.error);
-    });
-
-    // 9. Service Worker registration
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/sw.js')
-                .then(registration => {
-                    console.log('SW registered: ', registration);
-                })
-                .catch(err => {
-                    console.log('SW registration failed: ', err);
-                });
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW failed:', err));
         });
     }
 
-    // 10. Start Loading Links
+    // Initialize content
     loadLinks();
 });
