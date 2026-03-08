@@ -11,7 +11,7 @@
 }
 
 .pace .pace-progress {
-    /* Pulls the purple color directly from ui.css */
+    /* Pulls the purple color directly from style.css */
     background: var(--accent-primary); 
     position: fixed;
     z-index: 2000;
@@ -19,7 +19,7 @@
     right: 100%;
     width: 100%;
     height: 3px; 
-    /* Pulls the transparent glow directly from ui.css */
+    /* Pulls the transparent glow directly from style.css */
     box-shadow: 0 0 8px var(--accent-glow);
 }
 
