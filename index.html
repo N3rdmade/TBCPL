@@ -8,6 +8,7 @@
     <title>TheBestCouchPotatoList</title>
     <meta name="color-scheme" content="dark">
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
+    
     <link rel="stylesheet" href="./ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -18,9 +19,11 @@
             <a href="index.html" class="nav-logo">
                 <img src="logo.png" alt="TBCPL" class="nav-logo-img"> TBCPL
             </a>
+            
             <button class="nav-toggle" id="navToggle">
                 <i class="fas fa-bars"></i>
             </button>
+
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
@@ -54,14 +57,26 @@
         <div class="warning-card">
             <p class="warning-text">
                 <strong>PLEASE! Before Clicking any Link</strong><br>
-                Use <a href="https://brave.com/" class="standard-link" target="_blank">Brave Browser</a> or <a href="https://ublockorigin.com/" class="standard-link" target="_blank">uBlock Origin</a> to stop ads!
+                Use 
+                <a href="https://brave.com/" class="standard-link" target="_blank">
+                    <img src="./assets/brave.png" alt="Brave" class="inline-icon"> Browser
+                </a> 
+                or 
+                <a href="https://ublockorigin.com/" class="standard-link" target="_blank">
+                    <img src="./assets/ublock.png" alt="uBlock Origin" class="inline-icon"> Extension
+                </a> 
+                to stop all unwanted popups and ads!
             </p>
         </div>
 
         <div class="community-section-compact">
             <div class="community-links">
-                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="standard-link">Discord</a>
-                <a href="https://www.reddit.com/r/TBCPL/" target="_blank" class="standard-link">Reddit</a>
+                <a href="https://discord.gg/BPxzYVY5UU" target="_blank" class="standard-link" style="color:#8b5cf6;">
+                    <img src="./assets/discord.png" width="22" style="margin-right:8px;"> Discord
+                </a>
+                <a href="https://www.reddit.com/r/TBCPL/" target="_blank" class="standard-link" style="color:#FF4500;">
+                    <img src="./assets/reddit.png" width="22" style="margin-right:8px;"> Reddit
+                </a>
             </div>
         </div>
 
@@ -87,6 +102,183 @@
         </footer>
     </div>
     
-    <script src="./main.js"></script>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active'); 
+                }
+            });
+        }, { threshold: 0.1 });
+
+        async function loadLinks() {
+            try {
+                const response = await fetch('links.json');
+                const data = await response.json();
+                const container = document.getElementById('categories-container');
+                data.categories.forEach(category => {
+                    const sec = document.createElement('div');
+                    sec.className = 'section';
+                    sec.setAttribute('data-category', category.id);
+                    sec.innerHTML = `<h2 class="section-header">${category.name}</h2><div class="links-grid"></div>`;
+                    
+                    category.sites.filter(s => s.enabled !== false).forEach(site => {
+                        const link = document.createElement('a');
+                        link.href = site.url;
+                        link.target = '_blank';
+                        link.className = 'link-card';
+                        link.setAttribute('data-name', site.name);
+                        link.innerHTML = `<img src="${site.logo}" class="card-logo" alt="${site.name}">`;
+                        sec.querySelector('.links-grid').appendChild(link);
+                    });
+                    container.appendChild(sec);
+                    observer.observe(sec);
+                });
+            } catch (e) { console.error(e); }
+        }
+        
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadLinks();
+            applyFilter(); 
+        });
+
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const slideDots = document.querySelectorAll('.slide-dot');
+        
+        function applyFilter() {
+            const query = searchInput.value.toLowerCase();
+            const filter = document.querySelector('.filter-btn.active').dataset.filter;
+            
+            // Sync side dots
+            slideDots.forEach(d => d.classList.remove('active'));
+            document.querySelector(`.slide-dot[data-filter="${filter}"]`).classList.add('active');
+
+            let delay = 0; 
+
+            document.querySelectorAll('.section').forEach(sec => {
+                const cards = sec.querySelectorAll('.link-card');
+                let hasVisible = false;
+                
+                cards.forEach(card => {
+                    const match = card.dataset.name.toLowerCase().includes(query) && (sec.dataset.category === filter);
+                    card.style.display = match ? 'flex' : 'none';
+                    if (match) hasVisible = true;
+                });
+                
+                if (hasVisible) {
+                    sec.style.display = 'block';
+                    sec.classList.remove('active');
+                    setTimeout(() => { sec.classList.add('active'); }, 20 + delay);
+                    delay += 50; 
+                } else {
+                    sec.style.display = 'none';
+                    sec.classList.remove('active');
+                }
+            });
+        }
+        
+        searchInput.addEventListener('input', applyFilter);
+        
+        function triggerSlideChange(filterName) {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            document.querySelector(`.filter-btn[data-filter="${filterName}"]`).classList.add('active');
+            
+            applyFilter();
+            
+            const anchor = document.getElementById('searchAnchor');
+            const lockPos = Math.floor(anchor.offsetTop - 60);
+            window.scrollTo({ top: lockPos, behavior: 'auto' }); 
+        }
+
+        filterBtns.forEach(btn => btn.addEventListener('click', function() {
+            triggerSlideChange(this.dataset.filter);
+        }));
+
+        slideDots.forEach(dot => dot.addEventListener('click', function() {
+            triggerSlideChange(this.dataset.filter);
+        }));
+
+        // ==========================================
+        // SMART PRESENTATION ENGINE (ABSOLUTE LOCK)
+        // ==========================================
+        
+        // 1. The Dynamic Brick Wall
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth <= 768) return; 
+
+            const anchor = document.getElementById('searchAnchor');
+            if (!anchor) return;
+            const lockPos = Math.floor(anchor.offsetTop - 60);
+
+            const activeBtn = document.querySelector('.filter-btn.active');
+            if (!activeBtn) return;
+            
+            if (activeBtn.dataset.filter !== 'movies') {
+                if (Math.abs(window.scrollY - lockPos) > 3) {
+                    window.scrollTo({ top: lockPos, behavior: 'auto' });
+                }
+            }
+        });
+
+        // 2. The Smart Sensor Wheel Controller
+        let slideCooldown = false;
+
+        window.addEventListener('wheel', (e) => {
+            if (window.innerWidth <= 768) return;
+
+            if (slideCooldown) {
+                e.preventDefault();
+                return;
+            }
+
+            const anchor = document.getElementById('searchAnchor');
+            if (!anchor) return;
+            
+            const footer = document.querySelector('.footer');
+            const footerRect = footer.getBoundingClientRect();
+            const isAtBottom = footerRect.bottom <= window.innerHeight + 10;
+
+            const btns = Array.from(document.querySelectorAll('.filter-btn'));
+            const activeIdx = btns.findIndex(b => b.classList.contains('active'));
+
+            if (activeIdx > 0) {
+                // Short slides
+                e.preventDefault(); 
+                
+                if (e.deltaY > 30) {
+                    slideCooldown = true;
+                    let nextIdx = (activeIdx + 1) % btns.length; 
+                    triggerSlideChange(btns[nextIdx].dataset.filter);
+                    setTimeout(() => slideCooldown = false, 600);
+                } 
+                else if (e.deltaY < -30) {
+                    slideCooldown = true;
+                    triggerSlideChange(btns[activeIdx - 1].dataset.filter);
+                    setTimeout(() => slideCooldown = false, 600);
+                }
+            } 
+            else {
+                // Movies Slide
+                if (e.deltaY > 0) {
+                    // Only flip when the laser trips and sees the footer!
+                    if (isAtBottom) {
+                        e.preventDefault(); 
+                        if (e.deltaY < 30) return;
+                        
+                        slideCooldown = true;
+                        triggerSlideChange(btns[1].dataset.filter);
+                        setTimeout(() => slideCooldown = false, 600);
+                    }
+                } 
+            }
+        }, { passive: false });
+
+        document.getElementById('navToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
