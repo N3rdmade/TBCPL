@@ -8,11 +8,11 @@
     <title>TheBestCouchPotatoList</title>
     <meta name="color-scheme" content="dark">
     <link rel="icon" href="https://tbcpl.lol/logo.png" type="image/png">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
+    <link rel="stylesheet" href="./css/flash.css">
     <link rel="stylesheet" href="./ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
     <nav class="navbar">
         <div class="nav-container">
@@ -33,14 +33,6 @@
         </div>
     </nav>
 
-    <div class="slide-indicators" id="slideIndicators">
-        <div class="slide-dot active" data-filter="movies" title="Movies / TV Shows"></div>
-        <div class="slide-dot" data-filter="anime" title="Anime"></div>
-        <div class="slide-dot" data-filter="manga" title="Manga"></div>
-        <div class="slide-dot" data-filter="livetv" title="Live TV / Sports"></div>
-        <div class="slide-dot" data-filter="paid" title="Paid"></div>
-        <div class="slide-dot" data-filter="apps" title="Apps"></div>
-    </div>
 
     <div class="container">
         <div class="hero-section">
@@ -80,12 +72,11 @@
             </div>
         </div>
 
-        <div id="searchAnchor"></div>
-        
-        <div class="search-container" id="searchContainer">
-            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search for sites...">
+        <div class="search-wrapper">
+            <input type="text" class="search-pill" id="searchInput" placeholder="Search for sites...">
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="movies">Movies / TV Shows</button>
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="movies">Movies / TV</button>
                 <button class="filter-btn" data-filter="anime">Anime</button>
                 <button class="filter-btn" data-filter="manga">Manga</button>
                 <button class="filter-btn" data-filter="livetv">Live TV / Sports</button>
@@ -101,18 +92,16 @@
             <p class="copyright">&copy; 2026 TBCPL. All rights reserved.</p>
         </footer>
     </div>
+
+    <button class="scroll-top-btn" id="scrollTopBtn">
+        <svg viewBox="0 0 50 50">
+            <circle class="progress-bg" cx="25" cy="25" r="22"></circle>
+            <circle class="progress-ring" id="progressRing" cx="25" cy="25" r="22"></circle>
+        </svg>
+        <i class="fas fa-arrow-up arrow"></i>
+    </button>
     
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                } else {
-                    entry.target.classList.remove('active'); 
-                }
-            });
-        }, { threshold: 0.1 });
-
         async function loadLinks() {
             try {
                 const response = await fetch('links.json');
@@ -123,7 +112,7 @@
                     sec.className = 'section';
                     sec.setAttribute('data-category', category.id);
                     sec.innerHTML = `<h2 class="section-header">${category.name}</h2><div class="links-grid"></div>`;
-                    
+
                     category.sites.filter(s => s.enabled !== false).forEach(site => {
                         const link = document.createElement('a');
                         link.href = site.url;
@@ -134,151 +123,95 @@
                         sec.querySelector('.links-grid').appendChild(link);
                     });
                     container.appendChild(sec);
-                    observer.observe(sec);
                 });
             } catch (e) { console.error(e); }
         }
         
         window.addEventListener('DOMContentLoaded', async () => {
             await loadLinks();
-            applyFilter(); 
         });
 
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
-        const slideDots = document.querySelectorAll('.slide-dot');
-        
-        function applyFilter() {
-            const query = searchInput.value.toLowerCase();
-            const filter = document.querySelector('.filter-btn.active').dataset.filter;
-            
-            // Sync side dots
-            slideDots.forEach(d => d.classList.remove('active'));
-            document.querySelector(`.slide-dot[data-filter="${filter}"]`).classList.add('active');
+        let activeFilter = 'all';
 
-            let delay = 0; 
+        function applyFilters() {
+            const query = searchInput.value.toLowerCase();
 
             document.querySelectorAll('.section').forEach(sec => {
+                const category = sec.dataset.category;
                 const cards = sec.querySelectorAll('.link-card');
                 let hasVisible = false;
-                
+
+                // Check if section matches filter
+                const filterMatch = activeFilter === 'all' || category === activeFilter;
+
                 cards.forEach(card => {
-                    const match = card.dataset.name.toLowerCase().includes(query) && (sec.dataset.category === filter);
-                    card.style.display = match ? 'flex' : 'none';
-                    if (match) hasVisible = true;
+                    const nameMatch = card.dataset.name.toLowerCase().includes(query);
+                    const show = filterMatch && nameMatch;
+                    card.style.display = show ? 'flex' : 'none';
+                    if (show) hasVisible = true;
                 });
-                
-                if (hasVisible) {
-                    sec.style.display = 'block';
-                    sec.classList.remove('active');
-                    setTimeout(() => { sec.classList.add('active'); }, 20 + delay);
-                    delay += 50; 
-                } else {
-                    sec.style.display = 'none';
-                    sec.classList.remove('active');
-                }
+
+                sec.style.display = (filterMatch && hasVisible) ? 'block' : 'none';
             });
         }
-        
-        searchInput.addEventListener('input', applyFilter);
-        
-        function triggerSlideChange(filterName) {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            document.querySelector(`.filter-btn[data-filter="${filterName}"]`).classList.add('active');
-            
-            applyFilter();
-            
-            const anchor = document.getElementById('searchAnchor');
-            const lockPos = Math.floor(anchor.offsetTop - 60);
-            window.scrollTo({ top: lockPos, behavior: 'auto' }); 
-        }
 
-        filterBtns.forEach(btn => btn.addEventListener('click', function() {
-            triggerSlideChange(this.dataset.filter);
-        }));
+        searchInput.addEventListener('input', applyFilters);
 
-        slideDots.forEach(dot => dot.addEventListener('click', function() {
-            triggerSlideChange(this.dataset.filter);
-        }));
-
-        // ==========================================
-        // SMART PRESENTATION ENGINE (ABSOLUTE LOCK)
-        // ==========================================
-        
-        // 1. The Dynamic Brick Wall
-        window.addEventListener('scroll', () => {
-            if (window.innerWidth <= 768) return; 
-
-            const anchor = document.getElementById('searchAnchor');
-            if (!anchor) return;
-            const lockPos = Math.floor(anchor.offsetTop - 60);
-
-            const activeBtn = document.querySelector('.filter-btn.active');
-            if (!activeBtn) return;
-            
-            if (activeBtn.dataset.filter !== 'movies') {
-                if (Math.abs(window.scrollY - lockPos) > 3) {
-                    window.scrollTo({ top: lockPos, behavior: 'auto' });
-                }
-            }
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                activeFilter = this.dataset.filter;
+                applyFilters();
+            });
         });
-
-        // 2. The Smart Sensor Wheel Controller
-        let slideCooldown = false;
-
-        window.addEventListener('wheel', (e) => {
-            if (window.innerWidth <= 768) return;
-
-            if (slideCooldown) {
-                e.preventDefault();
-                return;
-            }
-
-            const anchor = document.getElementById('searchAnchor');
-            if (!anchor) return;
-            
-            const footer = document.querySelector('.footer');
-            const footerRect = footer.getBoundingClientRect();
-            const isAtBottom = footerRect.bottom <= window.innerHeight + 10;
-
-            const btns = Array.from(document.querySelectorAll('.filter-btn'));
-            const activeIdx = btns.findIndex(b => b.classList.contains('active'));
-
-            if (activeIdx > 0) {
-                // Short slides
-                e.preventDefault(); 
-                
-                if (e.deltaY > 30) {
-                    slideCooldown = true;
-                    let nextIdx = (activeIdx + 1) % btns.length; 
-                    triggerSlideChange(btns[nextIdx].dataset.filter);
-                    setTimeout(() => slideCooldown = false, 600);
-                } 
-                else if (e.deltaY < -30) {
-                    slideCooldown = true;
-                    triggerSlideChange(btns[activeIdx - 1].dataset.filter);
-                    setTimeout(() => slideCooldown = false, 600);
-                }
-            } 
-            else {
-                // Movies Slide
-                if (e.deltaY > 0) {
-                    // Only flip when the laser trips and sees the footer!
-                    if (isAtBottom) {
-                        e.preventDefault(); 
-                        if (e.deltaY < 30) return;
-                        
-                        slideCooldown = true;
-                        triggerSlideChange(btns[1].dataset.filter);
-                        setTimeout(() => slideCooldown = false, 600);
-                    }
-                } 
-            }
-        }, { passive: false });
 
         document.getElementById('navToggle').addEventListener('click', () => {
             document.getElementById('navMenu').classList.toggle('active');
         });
+
+        // Scroll to top button with progress ring
+        (function() {
+            const btn = document.getElementById('scrollTopBtn');
+            const ring = document.getElementById('progressRing');
+            const circumference = 2 * Math.PI * 22;
+
+            ring.style.strokeDasharray = circumference;
+            ring.style.strokeDashoffset = circumference;
+
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+                // Update progress ring
+                if (docHeight > 0) {
+                    const percent = Math.min(scrollTop / docHeight, 1);
+                    ring.style.strokeDashoffset = circumference - (percent * circumference);
+                }
+
+                // Show/hide button after 200px scroll
+                if (scrollTop > 200) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            });
+
+            btn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
     </script>
 </body>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TD8F20DS4V');
+</script>
 </html>

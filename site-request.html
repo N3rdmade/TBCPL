@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="./css/flash.css">
     <link rel="stylesheet" href="./ui.css">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -38,62 +38,65 @@
     <div class="container">
         <div class="hero-section">
             <h1 class="hero-title">Request A Site</h1>
-            <div class="subtitle">Help Us Grow The Collection! 🙏</div>
+            <div class="subtitle">Help Us Grow The Collection!</div>
         </div>
 
-        <div class="section active">
-            <h2 class="section-header">Submit Your Request</h2>
-            <div style="max-width: 700px; margin: 0 auto; padding: 20px;">
+        <div class="page-content">
+            <div class="form-section">
+                <h2 class="section-header">Submit Your Request</h2>
+
                 <form id="siteRequestForm">
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--accent-primary);"><i class="fas fa-link"></i> Site URL *</label>
-                        <input type="url" id="siteUrl" class="search-input" placeholder="https://example.com" required style="width: 100%; border-radius: 12px;">
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-link"></i> Site URL</label>
+                        <input type="url" id="siteUrl" class="form-input" placeholder="https://example.com" required>
                     </div>
 
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--accent-primary);"><i class="fas fa-tag"></i> Site Name *</label>
-                        <input type="text" id="siteName" class="search-input" placeholder="Awesome Streaming Site" required style="width: 100%; border-radius: 12px;">
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-tag"></i> Site Name</label>
+                        <input type="text" id="siteName" class="form-input" placeholder="Awesome Streaming Site" required>
                     </div>
 
-                    <div style="margin-bottom: 25px;">
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--accent-primary);"><i class="fas fa-star"></i> Why Should We Add It? *</label>
-                        <textarea id="siteFeature" class="search-input" style="width: 100%; border-radius: 12px; height: 120px; padding-top: 15px;" placeholder="Tell us what makes this site special... (e.g., large content library, fast streaming, mobile-friendly, etc.)" required></textarea>
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-star"></i> Why Should We Add It?</label>
+                        <textarea id="siteFeature" class="form-input" placeholder="Tell us what makes this site special... (e.g., large content library, fast streaming, mobile-friendly, etc.)" required></textarea>
                     </div>
 
-                    <button type="submit" class="filter-btn active" style="width: 100%; padding: 15px; font-size: 1rem; border: none; font-weight: 800;">
-                        <i class="fas fa-paper-plane"></i> SUBMIT REQUEST
+                    <button type="submit" class="form-submit">
+                        <i class="fas fa-paper-plane"></i> Submit Request
                     </button>
                 </form>
 
-                <div id="successMessage" style="display:none; text-align:center; padding: 30px; border: 1px solid #22c55e; border-radius: 16px; background: rgba(34, 197, 94, 0.05);">
-                    <div style="font-size: 3rem; margin-bottom: 10px;">✅</div>
-                    <h3 style="color: #22c55e; margin-bottom: 10px;">Request Sent Successfully!</h3>
-                    <p style="opacity: 0.8;">Thank you for your submission. We'll review it and add quality sites to our list.</p>
+                <div id="successMessage" class="success-message">
+                    <div class="icon">✅</div>
+                    <h3>Request Sent Successfully!</h3>
+                    <p>Thank you for your submission. We'll review it and add quality sites to our list.</p>
                 </div>
             </div>
-        </div>
 
-        <div class="section active">
-            <h2 class="section-header">Submission Guidelines</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 10px;">
-                <div class="link-card" style="flex-direction: column; text-align: left; align-items: flex-start; padding: 30px;">
-                    <h3 style="color: #22c55e; margin-bottom: 15px; font-size: 1.2rem;">✅ We Look For</h3>
-                    <ul style="list-style: none; line-height: 2; opacity: 0.9;">
-                        <li><i class="fas fa-caret-right" style="color:var(--accent-primary); margin-right:8px;"></i> Working, active sites</li>
-                        <li><i class="fas fa-caret-right" style="color:var(--accent-primary); margin-right:8px;"></i> Good content library</li>
-                        <li><i class="fas fa-caret-right" style="color:var(--accent-primary); margin-right:8px;"></i> User-friendly interface</li>
-                        <li><i class="fas fa-caret-right" style="color:var(--accent-primary); margin-right:8px;"></i> Mobile compatibility</li>
-                        <li><i class="fas fa-caret-right" style="color:var(--accent-primary); margin-right:8px;"></i> Minimal intrusive ads</li>
-                    </ul>
-                </div>
-                <div class="link-card" style="flex-direction: column; text-align: left; align-items: flex-start; padding: 30px;">
-                    <h3 style="color: #ef4444; margin-bottom: 15px; font-size: 1.2rem;">❌ We Avoid</h3>
-                    <ul style="list-style: none; line-height: 2; opacity: 0.9;">
-                        <li><i class="fas fa-caret-right" style="color:var(--accent-primary); margin-right:8px;"></i> Broken or offline sites</li>
-                        <li><i class="fas fa-caret-right" style="color:var(--accent-primary); margin-right:8px;"></i> Excessive pop-ups / Malware</li>
-                        <li><i class="fas fa-caret-right" style="color:var(--accent-primary); margin-right:8px;"></i> Scam or phishing sites</li>
-                        <li><i class="fas fa-caret-right" style="color:var(--accent-primary); margin-right:8px;"></i> Paid sites (Exceptions apply)</li>
-                    </ul>
+            <div class="form-section">
+                <h2 class="section-header">Submission Guidelines</h2>
+
+                <div class="guidelines-grid">
+                    <div class="guideline-card">
+                        <h3 class="positive"><i class="fas fa-check-circle"></i> We Look For</h3>
+                        <ul class="guideline-list">
+                            <li><i class="fas fa-caret-right"></i> Working, active sites</li>
+                            <li><i class="fas fa-caret-right"></i> Good content library</li>
+                            <li><i class="fas fa-caret-right"></i> User-friendly interface</li>
+                            <li><i class="fas fa-caret-right"></i> Mobile compatibility</li>
+                            <li><i class="fas fa-caret-right"></i> Minimal intrusive ads</li>
+                        </ul>
+                    </div>
+
+                    <div class="guideline-card">
+                        <h3 class="negative"><i class="fas fa-times-circle"></i> We Avoid</h3>
+                        <ul class="guideline-list">
+                            <li><i class="fas fa-caret-right"></i> Broken or offline sites</li>
+                            <li><i class="fas fa-caret-right"></i> Excessive pop-ups / Malware</li>
+                            <li><i class="fas fa-caret-right"></i> Scam or phishing sites</li>
+                            <li><i class="fas fa-caret-right"></i> Paid sites (Exceptions apply)</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -138,4 +141,13 @@
         });
     </script>
 </body>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TD8F20DS4V');
+</script>
 </html>
