@@ -1,16 +1,33 @@
-// Main JavaScript for TBCPL
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu functionality
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav');
+    // 1. Device Detection
+    const isDesktop = !('ontouchstart' in window) && window.innerWidth > 1024;
 
+    // 2. Elements
+    const menuToggle = document.querySelector('.menu-toggle') || document.getElementById('navToggle');
+    const nav = document.querySelector('.nav') || document.getElementById('navMenu');
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const slideDots = document.querySelectorAll('.slide-dot');
+    const categoriesContainer = document.getElementById('categories-container');
+    const searchAnchor = document.getElementById('searchAnchor');
+    const footer = document.querySelector('.footer');
+
+    // 3. Reveal Animation Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // 4. Mobile Menu Logic
     if (menuToggle && nav) {
         menuToggle.addEventListener('click', function() {
             menuToggle.classList.toggle('active');
             nav.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on nav links
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
@@ -19,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {
             if (!menuToggle.contains(e.target) && !nav.contains(e.target)) {
                 menuToggle.classList.remove('active');
@@ -28,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // QR Code modal functionality
+    // 5. QR Code Modal Logic
     const qrTrigger = document.getElementById('qr-trigger');
     const qrModal = document.getElementById('qr-modal');
     const modalClose = document.querySelector('.modal-close');
@@ -36,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (qrTrigger && qrModal && modalClose) {
         qrTrigger.addEventListener('click', function() {
             qrModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         });
 
         modalClose.addEventListener('click', function() {
@@ -44,195 +60,142 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'auto';
         });
 
-        // Close modal when clicking outside
-        qrModal.addEventListener('click', function(e) {
+        window.addEventListener('click', function(e) {
             if (e.target === qrModal) {
                 qrModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
         });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && qrModal.style.display === 'block') {
-                qrModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
     }
 
-    // Smooth scroll for navigation links
-    const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
-    smoothScrollLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
+    // 6. Content Loader
+    async function loadLinks() {
+        try {
+            const response = await fetch('links.json');
+            const data = await response.json();
+            if (!categoriesContainer) return;
 
-            if (targetElement) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight - 20;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
+            data.categories.forEach(category => {
+                const sec = document.createElement('div');
+                sec.className = 'section';
+                sec.setAttribute('data-category', category.id);
+                sec.innerHTML = `<h2 class="section-header">${category.name}</h2><div class="links-grid"></div>`;
+                
+                category.sites.filter(s => s.enabled !== false).forEach(site => {
+                    const link = document.createElement('a');
+                    link.href = site.url;
+                    link.target = '_blank';
+                    link.className = 'link-card';
+                    link.setAttribute('data-name', site.name);
+                    link.innerHTML = `<img src="${site.logo}" class="card-logo" alt="${site.name}">`;
+                    sec.querySelector('.links-grid').appendChild(link);
                 });
+                categoriesContainer.appendChild(sec);
+                observer.observe(sec);
+            });
+            applyFilter();
+        } catch (e) {
+            console.error("Error loading links:", e);
+        }
+    }
+
+    // 7. Filter & Slide Logic
+    function applyFilter() {
+        if (!searchInput) return;
+        const query = searchInput.value.toLowerCase();
+        const activeBtn = document.querySelector('.filter-btn.active');
+        if (!activeBtn) return;
+        const filter = activeBtn.dataset.filter;
+        
+        slideDots.forEach(d => d.classList.toggle('active', d.dataset.filter === filter));
+
+        document.querySelectorAll('.section').forEach(sec => {
+            const cards = sec.querySelectorAll('.link-card');
+            let hasVisible = false;
+            
+            cards.forEach(card => {
+                const name = card.dataset.name ? card.dataset.name.toLowerCase() : "";
+                const match = name.includes(query) && (sec.dataset.category === filter);
+                card.style.display = match ? 'flex' : 'none';
+                if (match) hasVisible = true;
+            });
+            
+            sec.style.display = hasVisible ? 'block' : 'none';
+            if (hasVisible) {
+                setTimeout(() => sec.classList.add('active'), 10);
             }
         });
+    }
+
+    function triggerSlideChange(filterName) {
+        filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === filterName));
+        applyFilter();
+        
+        if (searchAnchor) {
+            const lockPos = Math.floor(searchAnchor.offsetTop - 60);
+            window.scrollTo({ 
+                top: lockPos, 
+                behavior: isDesktop ? 'auto' : 'smooth' 
+            });
+        }
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('input', applyFilter);
+    }
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => triggerSlideChange(btn.dataset.filter));
     });
 
-    // Intersection Observer for animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    slideDots.forEach(dot => {
+        dot.addEventListener('click', () => triggerSlideChange(dot.dataset.filter));
+    });
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
+    // 8. DESKTOP-ONLY SCROLL ENGINE
+    if (isDesktop) {
+        window.addEventListener('scroll', () => {
+            const activeBtn = document.querySelector('.filter-btn.active');
+            if (!searchAnchor || !activeBtn || activeBtn.dataset.filter === 'movies') return;
 
-                // Add staggered animation to site cards
-                if (entry.target.classList.contains('sites-grid')) {
-                    const cards = entry.target.querySelectorAll('.site-card');
-                    cards.forEach((card, index) => {
-                        setTimeout(() => {
-                            card.classList.add('animate-in');
-                        }, index * 50); // Stagger by 50ms
-                    });
+            const lockPos = Math.floor(searchAnchor.offsetTop - 60);
+            if (Math.abs(window.scrollY - lockPos) > 5) {
+                window.scrollTo({ top: lockPos, behavior: 'auto' });
+            }
+        });
+
+        let slideCooldown = false;
+        window.addEventListener('wheel', (e) => {
+            if (slideCooldown) { e.preventDefault(); return; }
+
+            const isAtBottom = footer && footer.getBoundingClientRect().bottom <= window.innerHeight + 50;
+            const btns = Array.from(document.querySelectorAll('.filter-btn'));
+            const activeIdx = btns.findIndex(b => b.classList.contains('active'));
+
+            if (activeIdx > 0) {
+                e.preventDefault(); 
+                if (Math.abs(e.deltaY) < 30) return;
+
+                slideCooldown = true;
+                let nextIdx = e.deltaY > 0 ? (activeIdx + 1) : (activeIdx - 1);
+                if (nextIdx >= 0 && nextIdx < btns.length) {
+                    triggerSlideChange(btns[nextIdx].dataset.filter);
                 }
+                setTimeout(() => slideCooldown = false, 700);
+            } else if (isAtBottom && e.deltaY > 30) {
+                e.preventDefault();
+                slideCooldown = true;
+                triggerSlideChange(btns[1].dataset.filter);
+                setTimeout(() => slideCooldown = false, 700);
             }
-        });
-    }, observerOptions);
-
-    // Observe sections for scroll animations
-    const sections = document.querySelectorAll('.section, .hero');
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-
-    // Add CSS animation keyframes dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .site-card {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .site-card.animate-in {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Header scroll effect
-    let lastScrollTop = 0;
-    const header = document.querySelector('.header');
-
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // Scrolling down
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            // Scrolling up
-            header.style.transform = 'translateY(0)';
-        }
-
-        lastScrollTop = scrollTop;
-    }, { passive: true });
-
-    // Add loading states for images
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        if (img.complete) {
-            img.classList.add('loaded');
-        } else {
-            img.addEventListener('load', function() {
-                this.classList.add('loaded');
-            });
-            img.addEventListener('error', function() {
-                this.classList.add('error');
-                // Optionally add a fallback image or placeholder
-            });
-        }
-    });
-
-    // Performance optimization: Lazy loading for images
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                        imageObserver.unobserve(img);
-                    }
-                }
-            });
-        });
-
-        // For future lazy loading implementation
-        const lazyImages = document.querySelectorAll('img[data-src]');
-        lazyImages.forEach(img => imageObserver.observe(img));
+        }, { passive: false });
     }
 
-    // Add search functionality (future enhancement)
-    function addSearchFunctionality() {
-        const searchInput = document.querySelector('.search-input');
-        const siteCards = document.querySelectorAll('.site-card');
-
-        if (searchInput) {
-            searchInput.addEventListener('input', function(e) {
-                const searchTerm = e.target.value.toLowerCase();
-
-                siteCards.forEach(card => {
-                    const siteName = card.querySelector('.site-name').textContent.toLowerCase();
-                    if (siteName.includes(searchTerm)) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        }
-    }
-
-    // Theme switching functionality (for future use)
-    function addThemeToggle() {
-        const themeToggle = document.querySelector('.theme-toggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('light-theme');
-                localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
-            });
-        }
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-theme');
-        }
-    }
-
-    // Console message for developers
+    // 9. Console Branding
     console.log(`
     ╔══════════════════════════════════════════════════════════════╗
     ║                            TBCPL                             ║
-    ║                  The Best Couch Potato List                  ║
+    ║                   The Best Couch Potato List                 ║
     ║                                                              ║
     ║  Built with ❤️ by Hellhorde                                  ║
     ║  Optimized for performance and accessibility                 ║
@@ -248,37 +211,36 @@ document.addEventListener('DOMContentLoaded', function() {
     ╚══════════════════════════════════════════════════════════════╝
     `);
 
-    // Analytics and performance tracking (if needed)
+    // 10. Performance Tracking
     function trackPerformance() {
         if ('performance' in window) {
             window.addEventListener('load', function() {
                 setTimeout(() => {
                     const perfData = performance.getEntriesByType('navigation')[0];
-                    console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-                    console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart, 'ms');
+                    if (perfData) {
+                        console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+                        console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart, 'ms');
+                    }
                 }, 1000);
             });
         }
     }
-
     trackPerformance();
 
-    // Error handling for any uncaught errors
+    // 11. Global Error Handler
     window.addEventListener('error', function(e) {
         console.warn('An error occurred:', e.error);
-        // Optionally send to error tracking service
     });
 
-    // Service Worker registration (for future PWA features)
+    // 12. Service Worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
             navigator.serviceWorker.register('/sw.js')
-                .then(registration => {
-                    console.log('SW registered: ', registration);
-                })
-                .catch(registrationError => {
-                    console.log('SW registration failed: ', registrationError);
-                });
+                .then(registration => { console.log('SW registered'); })
+                .catch(err => { console.log('SW failed', err); });
         });
     }
+
+    // Start
+    loadLinks();
 });
