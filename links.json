@@ -264,6 +264,12 @@
           "enabled": true
         },
         {
+          "name": "Onisaga",
+          "url": "https://onisaga.com/",
+          "logo": "./logo/manga/onisaga.png",
+          "enabled": true
+        },
+        {
           "name": "Comick",
           "url": "https://comick.dev/",
           "logo": "./logo/manga/comick.png",
