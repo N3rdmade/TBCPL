@@ -192,6 +192,12 @@
           "enabled": true
         },
         {
+          "name": "yenime",
+          "url": "https://yenime.net",
+          "logo": "./logo/anime/yenime.png",
+          "enabled": true
+        },
+        {
           "name": "9anime",
           "url": "https://www.9animetv.to",
           "logo": "./logo/anime/9anime.png",
