@@ -421,6 +421,18 @@
       "name": "Live TV & Sports",
       "sites": [
         {
+          "name": "TimStreams",
+          "url": "https://timstreams.net/",
+          "logo": "/logo/livetv/timstreams.png",
+          "enabled": true
+        },
+        {
+          "name": "BuffStreams",
+          "url": "https://buffstreams.plus/",
+          "logo": "/logo/livetv/buffstreams.png",
+          "enabled": true
+        },
+        {
           "name": "TheTvApp",
           "url": "https://thetvapp.to",
           "logo": "./logo/livetv/tvappto.png",
@@ -622,6 +634,12 @@
           "name": "CineTV",
           "url": "/assets/cinetv.apk",
           "logo": "./logo/apps/cinetv.jpg",
+          "enabled": true
+        },
+        {
+          "name": "HDStreamz",
+          "url": "https://hdstreamz.com.in/",
+          "logo": "./logo/apps/hdstreamz.png",
           "enabled": true
         },
         {
