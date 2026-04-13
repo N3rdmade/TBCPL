@@ -1,6 +1,42 @@
 {
   "categories": [
     {
+      "id": "goats",
+      "name": "GOATs (All in One)",
+      "sites": [
+        {
+          "name": "NetMirror",
+          "url": "https://net22.cc/home",
+          "logo": "/logo/goats/netmirror.png",
+          "enabled": true
+        },
+        {
+          "name": "MapplTV",
+          "url": "https://mappl.tv/",
+          "logo": "/logo/goats/mappletv.png",
+          "enabled": true
+        },
+        {
+          "name": "Cineby",
+          "url": "https://www.cineby.sc/",
+          "logo": "./logo/goats/cineby.png",
+          "enabled": true
+        },
+        {
+          "name": "PopcornMovies",
+          "url": "https://popcornmovies.org/home",
+          "logo": "./logo/goats/popcornmovies.png",
+          "enabled": true
+        },
+        {
+          "name": "Cinegram",
+          "url": "https://cinegram.net/home",
+          "logo": "./logo/goats/cinegram.png",
+          "enabled": true
+        }
+      ]
+    },
+    {
       "id": "movies",
       "name": "Movies & Shows",
       "sites": [
@@ -22,18 +58,18 @@
           "logo": "./logo/movies_shows/rgshows.png",
           "enabled": true
         },
-         {
+        {
           "name": "AlienFlix",
           "url": "https://alienflix.net/",
           "logo": "./logo/movies_shows/alienflix.png",
           "enabled": true
-        },     
+        },
         {
           "name": "FlickyStream",
           "url": "https://flickystream.ru/",
           "logo": "./logo/movies_shows/flickystream.png",
           "enabled": true
-        },   
+        },
         {
           "name": "Wooflix",
           "url": "https://cinebytv.com/",
@@ -69,13 +105,13 @@
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
           "enabled": true
-        },         
+        },
         {
           "name": "Cinegram",
           "url": "https://cinegram.net/home",
           "logo": "./logo/movies_shows/cinegram.png",
           "enabled": true
-        },        
+        },
         {
           "name": "Bcine",
           "url": "https://bcine.app/",
@@ -159,6 +195,12 @@
           "name": "Flixway",
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png",
+          "enabled": true
+        },
+        {
+          "name": "AttackerTV",
+          "url": "https://attackertv.stream/",
+          "logo": "./logo/movies_shows/attackertv.png",
           "enabled": true
         }
       ]
@@ -475,45 +517,9 @@
       "name": "Paid Services",
       "sites": [
         {
-          "name": "Disney+",
-          "url": "https://www.disneyplus.com/identity/login/",
-          "logo": "./logo/paid_apps/disney+.png",
-          "enabled": true
-        },
-        {
-          "name": "Shudder",
-          "url": "https://www.shudder.com/",
-          "logo": "./logo/paid_apps/shudder.png",
-          "enabled": true
-        },
-        {
-          "name": "Hulu",
-          "url": "https://auth.hulu.com/web/login/",
-          "logo": "./logo/paid_apps/hulu.png",
-          "enabled": true
-        },
-        {
           "name": "Netflix",
           "url": "https://www.netflix.com/",
           "logo": "./logo/paid_apps/netflix.png",
-          "enabled": true
-        },
-        {
-          "name": "Viki",
-          "url": "https://www.viki.com/",
-          "logo": "./logo/paid_apps/viki.png",
-          "enabled": true
-        },
-        {
-          "name": "MAX",
-          "url": "https://www.max.com/",
-          "logo": "https://www.hbomax.com/img/hbomax/logo_nav_bar.png",
-          "enabled": true
-        },
-        {
-          "name": "Apple TV+",
-          "url": "https://tv.apple.com/",
-          "logo": "./logo/paid_apps/appletv.png",
           "enabled": true
         },
         {
@@ -523,9 +529,27 @@
           "enabled": true
         },
         {
-          "name": "Paramount+",
-          "url": "https://www.paramountplus.com/account/signin/",
-          "logo": "https://wwwimage-us.pplusstatic.com/base/files/cbs_page_attribute/pplus_logo_white.svg?v=1.0",
+          "name": "Disney+",
+          "url": "https://www.disneyplus.com/identity/login/",
+          "logo": "./logo/paid_apps/disney+.png",
+          "enabled": true
+        },
+        {
+          "name": "Hotstar",
+          "url": "https://www.hotstar.com/in/home",
+          "logo": "/logo/paid_apps/hotstar.png",
+          "enabled": true
+        },
+        {
+          "name": "Zee5",
+          "url": "https://www.zee5.com/",
+          "logo": "./logo/paid_apps/zee5.png",
+          "enabled": true
+        },
+        {
+          "name": "Apple TV+",
+          "url": "https://tv.apple.com/",
+          "logo": "./logo/paid_apps/appletv.png",
           "enabled": true
         },
         {
@@ -535,15 +559,45 @@
           "enabled": true
         },
         {
-          "name": "MGM+",
-          "url": "https://www.mgmplus.com/",
-          "logo": "./logo/paid_apps/mgm+.png",
+          "name": "MAX",
+          "url": "https://www.max.com/",
+          "logo": "https://www.hbomax.com/img/hbomax/logo_nav_bar.png",
           "enabled": true
         },
         {
           "name": "Peacock",
           "url": "https://www.peacocktv.com/start",
           "logo": "./logo/paid_apps/Peacock.png",
+          "enabled": true
+        },
+        {
+          "name": "Hulu",
+          "url": "https://auth.hulu.com/web/login/",
+          "logo": "./logo/paid_apps/hulu.png",
+          "enabled": true
+        },
+        {
+          "name": "Shudder",
+          "url": "https://www.shudder.com/",
+          "logo": "./logo/paid_apps/shudder.png",
+          "enabled": true
+        },
+        {
+          "name": "Viki",
+          "url": "https://www.viki.com/",
+          "logo": "./logo/paid_apps/viki.png",
+          "enabled": true
+        },
+        {
+          "name": "Paramount+",
+          "url": "https://www.paramountplus.com/account/signin/",
+          "logo": "https://wwwimage-us.pplusstatic.com/base/files/cbs_page_attribute/pplus_logo_white.svg?v=1.0",
+          "enabled": true
+        },
+        {
+          "name": "MGM+",
+          "url": "https://www.mgmplus.com/",
+          "logo": "./logo/paid_apps/mgm+.png",
           "enabled": true
         },
         {
@@ -558,6 +612,30 @@
       "id": "apps",
       "name": "Apps",
       "sites": [
+        {
+          "name": "NetMirror",
+          "url": "https://netmirror.gg/2/en",
+          "logo": "./logo/apps/netmirror.png",
+          "enabled": true
+        },
+        {
+          "name": "CineTV",
+          "url": "/assets/cinetv.apk",
+          "logo": "./logo/apps/cinetv.jpg",
+          "enabled": true
+        },
+        {
+          "name": "MovieBox",
+          "url": "https://themoviebox.org/download-app",
+          "logo": "./logo/apps/moviebox.png",
+          "enabled": true
+        },
+        {
+          "name": "PikaShow",
+          "url": "https://pikashowtv.in/",
+          "logo": "./logo/apps/pikashow.png",
+          "enabled": true
+        },
         {
           "name": "Playtorrio",
           "url": "https://playtorrio.pages.dev/",
@@ -580,24 +658,6 @@
           "name": "BeeTV",
           "url": "https://beetv.download/",
           "logo": "./logo/apps/beetv.png",
-          "enabled": true
-        },
-        {
-          "name": "MovieBox",
-          "url": "https://themoviebox.org/download-app",
-          "logo": "./logo/apps/moviebox.png",
-          "enabled": true
-        },
-        {
-          "name": "NetMirror",
-          "url": "https://netmirror.gg/2/en",
-          "logo": "./logo/apps/netmirror.png",
-          "enabled": true
-        },
-        {
-          "name": "PikaShow",
-          "url": "https://pikashowtv.in/",
-          "logo": "./logo/apps/pikashow.png",
           "enabled": true
         }
       ]
