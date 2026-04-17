@@ -22,18 +22,18 @@
           "logo": "./logo/movies_shows/rgshows.png",
           "enabled": true
         },
-         {
+        {
           "name": "AlienFlix",
           "url": "https://alienflix.net/",
           "logo": "./logo/movies_shows/alienflix.png",
           "enabled": true
-        },     
+        },
         {
           "name": "FlickyStream",
           "url": "https://flickystream.ru/",
           "logo": "./logo/movies_shows/flickystream.png",
           "enabled": true
-        },   
+        },
         {
           "name": "Wooflix",
           "url": "https://cinebytv.com/",
@@ -69,13 +69,13 @@
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
           "enabled": true
-        },         
+        },
         {
           "name": "Cinegram",
           "url": "https://cinegram.net/home",
           "logo": "./logo/movies_shows/cinegram.png",
           "enabled": true
-        },        
+        },
         {
           "name": "Bcine",
           "url": "https://bcine.app/",
@@ -195,6 +195,12 @@
           "name": "yenime",
           "url": "https://yenime.net",
           "logo": "./logo/anime/yenime.png",
+          "enabled": true
+        },
+        {
+          "name": "AniStream",
+          "url": "https://anistream.one",
+          "logo": "./logo/anime/anistream.png",
           "enabled": true
         },
         {
