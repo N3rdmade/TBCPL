@@ -211,7 +211,7 @@
         },
         {
           "name": "animepahe",
-          "url": "https://animepahe.si/",
+          "url": "https://animepahe.pw/",
           "logo": "./logo/anime/animepahe.png",
           "enabled": true
         },
@@ -348,12 +348,6 @@
           "enabled": true
         },
         {
-          "name": "MangaPark",
-          "url": "https://mangapark.io/",
-          "logo": "./logo/manga/mangapark.png",
-          "enabled": true
-        },
-        {
           "name": "WeebCentral",
           "url": "https://weebcentral.com/",
           "logo": "./logo/manga/weebcentral.png",
@@ -404,7 +398,7 @@
         },
         {
           "name": "DaddyHD",
-          "url": "https://daddylive.cv/",
+          "url": "https://daddylive.pw/",
           "logo": "./logo/livetv/daddyhd.png",
           "enabled": true
         },
@@ -531,7 +525,7 @@
         {
           "name": "Paramount+",
           "url": "https://www.paramountplus.com/account/signin/",
-          "logo": "https://wwwimage-us.pplusstatic.com/base/files/cbs_page_attribute/pplus_logo_white.svg?v=1.0",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Paramount_Plus.svg/1920px-Paramount_Plus.svg.png?_=20210312064352",
           "enabled": true
         },
         {
@@ -590,7 +584,7 @@
         },
         {
           "name": "MovieBox",
-          "url": "https://themoviebox.org/download-app",
+          "url": "https://www.moviesbox.com.co/home/",
           "logo": "./logo/apps/moviebox.png",
           "enabled": true
         },
