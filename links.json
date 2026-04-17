@@ -198,7 +198,7 @@
           "enabled": true
         },
         {
-          "name": "AniStream",
+          "name": "Anistream",
           "url": "https://anistream.one",
           "logo": "./logo/anime/anistream.png",
           "enabled": true
