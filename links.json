@@ -101,10 +101,16 @@
           "enabled": true
         },
         {
+          "name": "Donkey",
+          "url": "https://donkey.to/
+          "logo": "./logo/movies_shows/Donkey Logo.png",
+          "enabled": true
+        },
+		{
           "name": "MyFlixerz",
           "url": "https://myflixerz.to/",
           "logo": "./logo/movies_shows/myflixerz.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "Willow",
@@ -168,10 +174,40 @@
       "name": "Anime",
       "sites": [
         {
+          "name": "Anikage",
+          "url": "https://anikage.cc/home",
+          "logo": "./logo/anime/Anikage Logo.png",
+          "enabled": true
+        },
+		{
+          "name": "AniDap",
+          "url": "https://anidap.se/home",
+          "logo": "./logo/anime/AniDap Logo.png",
+          "enabled": true
+        },
+		{
+          "name": "Animex",
+          "url": "https://animex.one/home",
+          "logo": "./logo/anime/Animex Logo.png",
+          "enabled": true
+        },
+		{
+          "name": "Anime Nexus",
+          "url": "https://anime.nexus/",
+          "logo": "./logo/anime/Anime Nexus Logo.png",
+          "enabled": true
+        },
+		{
+          "name": "1Anime",
+          "url": "https://1anime.app/discover",
+          "logo": "./logo/anime/1Anime Logo.png",
+          "enabled": true
+        },
+		{
           "name": "Aniwatch",
           "url": "https://aniwatchtv.to/home",
           "logo": "./logo/anime/aniwatch.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "Enma",
@@ -183,7 +219,7 @@
           "name": "Kaido",
           "url": "https://kaido.to/home",
           "logo": "./logo/anime/kaido.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "Miruro",
@@ -207,7 +243,7 @@
           "name": "9anime",
           "url": "https://www.9animetv.to",
           "logo": "./logo/anime/9anime.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "animepahe",
@@ -225,7 +261,7 @@
           "name": "Anicrush",
           "url": "https://anicrush.to/home",
           "logo": "./logo/anime/anicrush.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "KickAssAnime",
@@ -457,10 +493,16 @@
           "enabled": true
         },
         {
+          "name": "Sportsbite",
+          "url": "https://livetv.moviebite.cc/",
+          "logo": "./logo/movies_shows/Sportsbite Logo.png",
+          "enabled": true
+        },
+		{
           "name": "1Flex Live",
           "url": "https://www.1flex.ru/live-tv",
           "logo": "./logo/movies_shows/1flex.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "GlobeTV",
