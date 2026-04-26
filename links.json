@@ -179,41 +179,41 @@
           "logo": "./logo/anime/Anikage Logo.png",
           "enabled": true
         },
-		{
+		    {
           "name": "AniDap",
           "url": "https://anidap.se/home",
           "logo": "./logo/anime/AniDap Logo v2.png",
           "enabled": true
-        },
-		{
-          "name": "Animex",
-          "url": "https://animex.one/home",
-          "logo": "./logo/anime/Animex Logo.png",
-          "enabled": true
-        },
-		{
-          "name": "Anime Nexus",
-          "url": "https://anime.nexus/",
-          "logo": "./logo/anime/Anime Nexus Logo v2.png",
-          "enabled": true
-        },
-		{
-          "name": "1Anime",
-          "url": "https://1anime.app/discover",
-          "logo": "./logo/anime/1Anime Logo.png",
-          "enabled": true
-        },
-		{
-          "name": "Aniwatch",
-          "url": "https://aniwatchtv.to/home",
-          "logo": "./logo/anime/aniwatch.png",
-          "enabled": false
         },
         {
           "name": "Enma",
           "url": "https://www.enma.lol",
           "logo": "./logo/anime/enma.png",
           "enabled": true
+        },
+		    {
+          "name": "Animex",
+          "url": "https://animex.one/home",
+          "logo": "./logo/anime/Animex Logo.png",
+          "enabled": true
+        },
+		    {
+          "name": "Anime Nexus",
+          "url": "https://anime.nexus/",
+          "logo": "./logo/anime/Anime Nexus Logo v2.png",
+          "enabled": true
+        },
+		    {
+          "name": "1Anime",
+          "url": "https://1anime.app/discover",
+          "logo": "./logo/anime/1Anime Logo.png",
+          "enabled": true
+        },
+		    {
+          "name": "Aniwatch",
+          "url": "https://aniwatchtv.to/home",
+          "logo": "./logo/anime/aniwatch.png",
+          "enabled": false
         },
         {
           "name": "Kaido",
@@ -422,7 +422,7 @@
         },
         {
           "name": "TV247",
-          "url": "https://tv247.us/all-channels/",
+          "url": "https://tv247.us",
           "logo": "./logo/livetv/tv247.png",
           "enabled": true
         },
@@ -434,7 +434,7 @@
         },
         {
           "name": "DaddyHD",
-          "url": "https://daddylive.pw/",
+          "url": "https://daddylive.lol/",
           "logo": "./logo/livetv/daddyhd.png",
           "enabled": true
         },
