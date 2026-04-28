@@ -12,6 +12,36 @@
     <link rel="stylesheet" href="./css/flash.css">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* === COUNTRY SELECTOR === */
+        .country-selector-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .country-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background: rgba(0, 0, 0, 0.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238b5cf6' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 16px center;
+            border: 2px solid rgba(139, 92, 246, 0.25);
+            border-radius: 50px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            padding: 12px 44px 12px 20px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            min-width: 220px;
+            text-align: center;
+        }
+
+        .country-select:hover { border-color: #8b5cf6; }
+        .country-select:focus { border-color: #8b5cf6; box-shadow: 0 0 25px rgba(139, 92, 246, 0.4); }
+        .country-select option { background: #0f0f0f; color: #fff; font-weight: 600; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -79,6 +109,26 @@
         </div>
 
         <div class="search-wrapper">
+            <div class="country-selector-wrapper">
+                <select class="country-select" id="countrySelect">
+                    <option value="USA">🇺🇸 United States</option>
+                    <option value="INDIA">🇮🇳 India</option>
+                    <option value="RUSSIA">🇷🇺 Russia</option>
+                    <option value="GERMANY">🇩🇪 Germany</option>
+                    <option value="FRANCE">🇫🇷 France</option>
+                    <option value="BRAZIL">🇧🇷 Brazil</option>
+                    <option value="JAPAN">🇯🇵 Japan</option>
+                    <option value="SOUTHKOREA">🇰🇷 South Korea</option>
+                    <option value="SPAIN">🇪🇸 Spain</option>
+                    <option value="ITALY">🇮🇹 Italy</option>
+                    <option value="CANADA">🇨🇦 Canada</option>
+                    <option value="AUSTRALIA">🇦🇺 Australia</option>
+                    <option value="POLAND">🇵🇱 Poland</option>
+                    <option value="NETHERLANDS">🇳🇱 Netherlands</option>
+                    <option value="PORTUGAL">🇵🇹 Portugal</option>
+                </select>
+            </div>
+
             <input type="text" class="search-pill" id="searchInput" placeholder="Search for sites...">
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All</button>
@@ -113,11 +163,20 @@
         <i class="fas fa-arrow-up arrow"></i>
     </button>
     <script>
-        async function loadLinks() {
+        async function loadLinks(country) {
             try {
-                const response = await fetch('links.json');
+                let response;
+                if (country === 'USA') {
+                    response = await fetch('Region-Links/links.json');
+                } else {
+                    response = await fetch(`Region-Links/links.${country}.json`);
+                    if (!response.ok) response = await fetch('Region-Links/links.json');
+                }
+
                 const data = await response.json();
                 const container = document.getElementById('categories-container');
+                container.innerHTML = '';
+
                 data.categories.forEach(category => {
                     const sec = document.createElement('div');
                     sec.className = 'section';
@@ -135,13 +194,11 @@
                     });
                     container.appendChild(sec);
                 });
+
+                applyFilters();
             } catch (e) { console.error(e); }
         }
         
-        window.addEventListener('DOMContentLoaded', async () => {
-            await loadLinks();
-        });
-
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
         let activeFilter = 'all';
@@ -154,7 +211,6 @@
                 const cards = sec.querySelectorAll('.link-card');
                 let hasVisible = false;
 
-                // Check if section matches filter
                 const filterMatch = activeFilter === 'all' || category === activeFilter;
 
                 cards.forEach(card => {
@@ -179,6 +235,14 @@
             });
         });
 
+        document.getElementById('countrySelect').addEventListener('change', function() {
+            searchInput.value = '';
+            filterBtns.forEach(b => b.classList.remove('active'));
+            filterBtns[0].classList.add('active');
+            activeFilter = 'all';
+            loadLinks(this.value);
+        });
+
         document.getElementById('navToggle').addEventListener('click', () => {
             document.getElementById('navMenu').classList.toggle('active');
         });
@@ -196,13 +260,11 @@
                 const scrollTop = window.scrollY;
                 const docHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-                // Update progress ring
                 if (docHeight > 0) {
                     const percent = Math.min(scrollTop / docHeight, 1);
                     ring.style.strokeDashoffset = circumference - (percent * circumference);
                 }
 
-                // Show/hide button after 200px scroll
                 if (scrollTop > 200) {
                     btn.classList.add('visible');
                 } else {
@@ -214,6 +276,10 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         })();
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadLinks(document.getElementById('countrySelect').value);
+        });
     </script>
 </body>
 <!-- Google tag (gtag.js) -->
