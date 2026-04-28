@@ -5,7 +5,7 @@
       "name": "Movies & Shows",
       "sites": [
         {
-          "name": "More coming soon - add a suggestion here!",
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
@@ -23,7 +23,7 @@
           "enabled": true
         },
         {
-          "name": "More coming soon - add a suggestion here!",
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
@@ -35,7 +35,7 @@
       "name": "Manga",
       "sites": [
         {
-          "name": "More coming soon - add a suggestion here!",
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
@@ -47,7 +47,7 @@
       "name": "Live TV & Sports",
       "sites": [
         {
-          "name": "More coming soon - add a suggestion here!",
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
@@ -135,12 +135,6 @@
           "url": "https://www.amcplus.com/login",
           "logo": "./logo/paid_apps/amc+.png",
           "enabled": true
-        },
-        {
-          "name": "More coming soon - add a suggestion here!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": true
         }
       ]
     },
@@ -188,12 +182,6 @@
           "name": "PikaShow",
           "url": "https://pikashowtv.in/",
           "logo": "./logo/apps/pikashow.png",
-          "enabled": true
-        },
-        {
-          "name": "More coming soon - add a suggestion here!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
           "enabled": true
         }
       ]
