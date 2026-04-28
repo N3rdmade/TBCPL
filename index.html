@@ -109,6 +109,7 @@
         </div>
 
         <div class="search-wrapper">
+            <!-- Country Selector -->
             <div class="country-selector-wrapper">
                 <select class="country-select" id="countrySelect">
                     <option value="USA">🇺🇸 United States</option>
@@ -167,10 +168,10 @@
             try {
                 let response;
                 if (country === 'USA') {
-                    response = await fetch('Region-Links/links.json');
+                    response = await fetch('links.json');
                 } else {
                     response = await fetch(`Region-Links/links.${country}.json`);
-                    if (!response.ok) response = await fetch('Region-Links/links.json');
+                    if (!response.ok) response = await fetch('links.json');
                 }
 
                 const data = await response.json();
