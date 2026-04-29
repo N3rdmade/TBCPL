@@ -5,6 +5,12 @@
       "name": "Movies & Shows",
       "sites": [
         {
+          "name": "OnlyKDrama",
+          "url": "https://onlykdrama.top/",
+          "enabled": true,
+          "logo": ""
+        },
+        {
           "name": "곧 더 추가됩니다 — 제안을 추가해 주세요!",
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
