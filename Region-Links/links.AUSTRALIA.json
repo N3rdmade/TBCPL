@@ -137,12 +137,6 @@
           "enabled": true
         },
         {
-          "name": "MyFlixerz",
-          "url": "https://myflixerz.to/",
-          "logo": "./logo/movies_shows/myflixerz.png",
-          "enabled": false
-        },
-        {
           "name": "Xprime",
           "url": "https://xprime.stream/",
           "logo": "./logo/movies_shows/xprime.png",
@@ -159,6 +153,12 @@
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png",
           "enabled": true
+        },
+        {
+          "name": "MyFlixerz",
+          "url": "https://myflixerz.to/",
+          "logo": "./logo/movies_shows/myflixerz.png",
+          "enabled": false
         },
         {
           "name": "Vexo",
