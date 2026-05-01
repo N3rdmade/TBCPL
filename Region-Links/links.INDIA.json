@@ -23,16 +23,16 @@
           "enabled": true
         },
         {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": false
-        },
-        {
           "name": "Zee5",
           "url": "https://www.zee5.com/global",
           "logo": "./logo/movies_shows/Zee5 Logo.png",
           "enabled": true
+        },
+        {
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "logo": "",
+          "enabled": false
         }
       ]
     },
