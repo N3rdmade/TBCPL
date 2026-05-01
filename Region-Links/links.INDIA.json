@@ -27,6 +27,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": false
+        },
+        {
+          "name": "Zee5",
+          "url": "https://www.zee5.com/global",
+          "logo": "./logo/movies_shows/Zee5 Logo.png",
+          "enabled": true
         }
       ]
     },
