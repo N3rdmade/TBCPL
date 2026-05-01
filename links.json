@@ -396,17 +396,17 @@
           "enabled": true
         },
         {
+          "name": "AnimeZ",
+          "url": "https://likemanga.ink/",
+          "logo": "./logo/anime/animez.png",
+          "enabled": true
+        },
+        {
           "name": "Vexo Manga",
           "url": "https://vexo.to/search?tab=manga",
           "logo": "./logo/movies_shows/vexo.png",
           "enabled": false,
           "reason": "they left"
-        },
-        {
-          "name": "AnimeZ",
-          "url": "https://likemanga.ink/",
-          "logo": "./logo/anime/animez.png",
-          "enabled": true
         }
       ]
     },
