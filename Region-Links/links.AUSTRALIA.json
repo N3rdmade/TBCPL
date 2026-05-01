@@ -143,13 +143,6 @@
           "enabled": false
         },
         {
-          "name": "Vexo",
-          "url": "https://vexo.to/",
-          "logo": "./logo/movies_shows/vexo.png",
-          "enabled": false,
-          "reason": "they left"
-        },
-        {
           "name": "Xprime",
           "url": "https://xprime.stream/",
           "logo": "./logo/movies_shows/xprime.png",
@@ -166,6 +159,13 @@
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png",
           "enabled": true
+        },
+        {
+          "name": "Vexo",
+          "url": "https://vexo.to/",
+          "logo": "./logo/movies_shows/vexo.png",
+          "enabled": false,
+          "reason": "they left"
         }
       ]
     },
