@@ -41,16 +41,16 @@
       "name": "Live TV & Sports",
       "sites": [
         {
-          "name": "Wkrótce więcej — dodaj sugestię!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "TV.Eddit.Me",
           "url": "https://tv.eddit.me/",
           "logo": "./logo/livetv/TV Eddit Logo.png",
           "enabled": true
+        },
+        {
+          "name": "Wkrótce więcej — dodaj sugestię!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "enabled": true,
+          "logo": ""
         }
       ]
     },
