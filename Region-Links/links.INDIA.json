@@ -29,16 +29,16 @@
           "enabled": true
         },
         {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": false
-        },
-        {
           "name": "Sony Liv",
           "url": "https://www.sonyliv.com/",
           "logo": "./logo/movies_shows/Sony Liv Logo.png",
           "enabled": true
+        },
+        {
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "logo": "",
+          "enabled": false
         }
       ]
     },
