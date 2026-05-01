@@ -15,6 +15,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "Kiss KH",
+          "url": "https://kisskh.co/",
+          "logo": "./logo/movies_shows/Kiss KH Logo.png",
+          "enabled": true
         }
       ]
     },
