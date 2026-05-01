@@ -39,12 +39,6 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
-        },
-        {
-          "name": "TestTest",
-          "url": "https://store.steampowered.com/app/2667690/TEST_TEST_TEST/",
-          "logo": "./logo/anime/TESTEST.png",
-          "enabled": true
         }
       ]
     },
