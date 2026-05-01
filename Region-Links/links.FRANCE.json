@@ -23,10 +23,10 @@
           "logo": "./logo/anime/Voir Anime Logo.png"
         },
         {
-          "name": "Bientôt plus — ajoutez une suggestion !",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "AnimesUltra",
+          "url": "https://ww.animesultra.org/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/anime/AnimesUltra Logo.png"
         },
         {
           "name": "VostFree",
