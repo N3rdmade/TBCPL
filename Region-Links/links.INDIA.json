@@ -35,9 +35,9 @@
           "enabled": true
         },
         {
-          "name": "Bollyflix.",
+          "name": "Bollyflix",
           "url": "https://bollyflix.moda/",
-          "logo": "",
+          "logo": "./logo/movies_shows/Bollyflix-movies.png",
           "enabled": true
         },
         {
