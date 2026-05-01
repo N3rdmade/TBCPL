@@ -71,6 +71,12 @@
           "enabled": true
         },
         {
+          "name": "Disney+ HotStar",
+          "url": "https://www.hotstar.com/in",
+          "logo": "./logo/paid_apps/Disney Hotstar Logo.png",
+          "enabled": true
+        },
+        {
           "name": "Shudder",
           "url": "https://www.shudder.com/",
           "logo": "./logo/paid_apps/shudder.png",
