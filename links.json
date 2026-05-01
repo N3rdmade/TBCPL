@@ -210,12 +210,6 @@
           "enabled": true
         },
         {
-          "name": "Kaido",
-          "url": "https://kaido.to/home",
-          "logo": "./logo/anime/kaido.png",
-          "enabled": false
-        },
-        {
           "name": "Miruro",
           "url": "https://www.miruro.to",
           "logo": "./logo/anime/miruro.png",
@@ -280,6 +274,12 @@
           "url": "https://hianime.cv/home",
           "logo": "./logo/anime/hianime.png",
           "enabled": true
+        },
+        {
+          "name": "Kaido",
+          "url": "https://kaido.to/home",
+          "logo": "./logo/anime/kaido.png",
+          "enabled": false
         },
         {
           "name": "Aniwatch",
