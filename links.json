@@ -210,12 +210,6 @@
           "enabled": true
         },
         {
-          "name": "Aniwatch",
-          "url": "https://aniwatchtv.to/home",
-          "logo": "./logo/anime/aniwatch.png",
-          "enabled": false
-        },
-        {
           "name": "Kaido",
           "url": "https://kaido.to/home",
           "logo": "./logo/anime/kaido.png",
@@ -286,6 +280,12 @@
           "url": "https://hianime.cv/home",
           "logo": "./logo/anime/hianime.png",
           "enabled": true
+        },
+        {
+          "name": "Aniwatch",
+          "url": "https://aniwatchtv.to/home",
+          "logo": "./logo/anime/aniwatch.png",
+          "enabled": false
         }
       ]
     },
