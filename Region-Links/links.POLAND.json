@@ -9,6 +9,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "Filman",
+          "url": "https://filman.cc/",
+          "logo": "./logo/movies_shows/Filman Logo.png",
+          "enabled": true
         }
       ]
     },
