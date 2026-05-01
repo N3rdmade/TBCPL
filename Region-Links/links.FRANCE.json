@@ -27,6 +27,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "VostFree",
+          "url": "https://vostfree.ws/",
+          "enabled": true,
+          "logo": "./logo/anime/VostFree Logo.png"
         }
       ]
     },
