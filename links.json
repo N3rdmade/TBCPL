@@ -499,16 +499,16 @@
           "enabled": true
         },
         {
-          "name": "1Flex Live",
-          "url": "https://www.1flex.ru/live-tv",
-          "logo": "./logo/movies_shows/1flex.png",
-          "enabled": false
-        },
-        {
           "name": "GlobeTV",
           "url": "https://globetv.app/",
           "logo": "./logo/livetv/globetv.png",
           "enabled": true
+        },
+        {
+          "name": "1Flex Live",
+          "url": "https://www.1flex.ru/live-tv",
+          "logo": "./logo/movies_shows/1flex.png",
+          "enabled": false
         }
       ]
     },
