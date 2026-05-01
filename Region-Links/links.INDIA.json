@@ -16,7 +16,7 @@
           "logo": "./logo/movies_shows/Movies Bazar Logo v2.png",
           "enabled": true
         },
-                {
+        {
           "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
@@ -38,6 +38,12 @@
           "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
+          "enabled": true
+        },
+        {
+          "name": "TestTest",
+          "url": "https://store.steampowered.com/app/2667690/TEST_TEST_TEST/",
+          "logo": "./logo/anime/TESTEST.png",
           "enabled": true
         }
       ]
