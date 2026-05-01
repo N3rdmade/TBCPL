@@ -21,6 +21,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": false
+        },
+        {
+          "name": "Tulnit",
+          "url": "https://tulnit.com/",
+          "logo": "./logo/movies_shows/Tulnit Logo.png",
+          "enabled": true
         }
       ]
     },
