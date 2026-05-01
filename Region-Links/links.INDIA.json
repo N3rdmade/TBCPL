@@ -17,16 +17,16 @@
           "enabled": true
         },
         {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": false
-        },
-        {
           "name": "Tulnit",
           "url": "https://tulnit.com/",
           "logo": "./logo/movies_shows/Tulnit Logo.png",
           "enabled": true
+        },
+        {
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "logo": "",
+          "enabled": false
         }
       ]
     },
