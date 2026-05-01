@@ -246,12 +246,6 @@
           "enabled": true
         },
         {
-          "name": "Anicrush",
-          "url": "https://anicrush.to/home",
-          "logo": "./logo/anime/anicrush.png",
-          "enabled": false
-        },
-        {
           "name": "KickAssAnime",
           "url": "https://kaa.to/",
           "logo": "./logo/anime/kickassanime.png",
@@ -274,6 +268,12 @@
           "url": "https://hianime.cv/home",
           "logo": "./logo/anime/hianime.png",
           "enabled": true
+        },
+        {
+          "name": "Anicrush",
+          "url": "https://anicrush.to/home",
+          "logo": "./logo/anime/anicrush.png",
+          "enabled": false
         },
         {
           "name": "Kaido",
