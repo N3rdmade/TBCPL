@@ -15,6 +15,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "yablom",
+          "url": "https://yablom.com/euvcw7/home/yablom",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
