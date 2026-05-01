@@ -17,6 +17,12 @@
       "name": "Anime",
       "sites": [
         {
+          "name": "VoirAnime",
+          "url": "https://voir-anime.to/",
+          "enabled": true,
+          "logo": "./logo/anime/Voir Anime Logo.png"
+        },
+        {
           "name": "Bientôt plus — ajoutez une suggestion !",
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
