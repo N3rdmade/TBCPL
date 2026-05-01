@@ -33,6 +33,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": false
+        },
+        {
+          "name": "Sony Liv",
+          "url": "https://www.sonyliv.com/",
+          "logo": "./logo/movies_shows/Sony Liv Logo.png",
+          "enabled": true
         }
       ]
     },
