@@ -5,16 +5,16 @@
       "name": "Movies & Shows",
       "sites": [
         {
-          "name": "Bientôt plus — ajoutez une suggestion !",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "tv5mondeplus",
           "url": "https://www.tv5mondeplus.com/",
           "logo": "./logo/movies_shows/tv5mondeplus Logo.png",
           "enabled": true
+        },
+        {
+          "name": "Bientôt plus — ajoutez une suggestion !",
+          "url": "https://tbcpl.lol/site-request.html",
+          "enabled": true,
+          "logo": ""
         }
       ]
     },
