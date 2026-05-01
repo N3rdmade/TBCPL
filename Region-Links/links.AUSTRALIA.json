@@ -106,12 +106,6 @@
           "logo": "./logo/movies_shows/Donkey Logo.png",
           "enabled": true
         },
-		{
-          "name": "MyFlixerz",
-          "url": "https://myflixerz.to/",
-          "logo": "./logo/movies_shows/myflixerz.png",
-          "enabled": false
-        },
         {
           "name": "Willow",
           "url": "https://willow.arlen.icu/",
@@ -141,6 +135,12 @@
           "url": "https://67movies.net/",
           "logo": "./logo/movies_shows/67movies.png",
           "enabled": true
+        },
+        {
+          "name": "MyFlixerz",
+          "url": "https://myflixerz.to/",
+          "logo": "./logo/movies_shows/myflixerz.png",
+          "enabled": false
         },
         {
           "name": "Vexo",
@@ -179,7 +179,7 @@
           "logo": "./logo/anime/Anikage Logo.png",
           "enabled": true
         },
-		    {
+        {
           "name": "AniDap",
           "url": "https://anidap.se/home",
           "logo": "./logo/anime/AniDap Logo v2.png",
@@ -191,25 +191,25 @@
           "logo": "./logo/anime/enma.png",
           "enabled": true
         },
-		    {
+        {
           "name": "Animex",
           "url": "https://animex.one/home",
           "logo": "./logo/anime/Animex Logo.png",
           "enabled": true
         },
-		    {
+        {
           "name": "Anime Nexus",
           "url": "https://anime.nexus/",
           "logo": "./logo/anime/Anime Nexus Logo v2.png",
           "enabled": true
         },
-		    {
+        {
           "name": "1Anime",
           "url": "https://1anime.app/discover",
           "logo": "./logo/anime/1Anime Logo.png",
           "enabled": true
         },
-		    {
+        {
           "name": "Aniwatch",
           "url": "https://aniwatchtv.to/home",
           "logo": "./logo/anime/aniwatch.png",
@@ -498,7 +498,7 @@
           "logo": "./logo/livetv/Sportsbite Logo.png",
           "enabled": true
         },
-		{
+        {
           "name": "1Flex Live",
           "url": "https://www.1flex.ru/live-tv",
           "logo": "./logo/movies_shows/1flex.png",
