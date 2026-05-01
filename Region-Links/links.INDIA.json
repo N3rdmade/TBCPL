@@ -35,16 +35,16 @@
           "enabled": true
         },
         {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": false
-        },
-        {
           "name": "Bollyflix.",
           "url": "https://bollyflix.moda/",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "logo": "",
+          "enabled": false
         }
       ]
     },
