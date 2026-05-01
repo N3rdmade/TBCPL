@@ -121,7 +121,7 @@
                 siteFeature: document.getElementById('siteFeature').value
             };
             try {
-                const res = await fetch('https://api.rgshows.ru/tbcpl/site_request', {
+                const res = await fetch('https://api.vidsrc.wtf/tbcpl/site_request', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)

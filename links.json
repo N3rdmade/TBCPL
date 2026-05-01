@@ -17,9 +17,9 @@
           "enabled": true
         },
         {
-          "name": "RgShows",
-          "url": "https://www.rgshows.ru/",
-          "logo": "./logo/movies_shows/rgshows.png",
+          "name": "1Tube",
+          "url": "https://www.1tube.org/",
+          "logo": "./logo/movies_shows/1tube.png",
           "enabled": true
         },
         {

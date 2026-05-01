@@ -17,10 +17,22 @@
       "name": "Anime",
       "sites": [
         {
-          "name": "Bientôt plus — ajoutez une suggestion !",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "VoirAnime",
+          "url": "https://voir-anime.to/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/anime/Voir Anime Logo.png"
+        },
+        {
+          "name": "AnimesUltra",
+          "url": "https://ww.animesultra.org/",
+          "enabled": true,
+          "logo": "./logo/anime/AnimesUltra Logo.png"
+        },
+        {
+          "name": "VostFree",
+          "url": "https://vostfree.ws/",
+          "enabled": true,
+          "logo": "./logo/anime/VostFree Logo.png"
         }
       ]
     },
