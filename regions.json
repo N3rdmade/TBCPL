@@ -95,6 +95,12 @@
       "name": "Finland",
       "flag": "🇫🇮",
       "enabled": true
+    },
+    {
+      "code": "EGYPT",
+      "name": "Egypt",
+      "flag": "🇪🇬",
+      "enabled": true
     }
   ]
 }
