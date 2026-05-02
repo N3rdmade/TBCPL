@@ -89,6 +89,12 @@
       "name": "Portugal",
       "flag": "🇵🇹",
       "enabled": true
+    },
+    {
+      "code": "FINLAND",
+      "name": "Finland",
+      "flag": "🇫🇮",
+      "enabled": true
     }
   ]
 }
