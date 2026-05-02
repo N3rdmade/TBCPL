@@ -9,6 +9,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "Moflix",
+          "url": "https://moflix-stream.xyz/",
+          "logo": "./logo/movies_shows/Moflix.png",
+          "enabled": true
         }
       ]
     },
