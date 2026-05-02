@@ -166,12 +166,13 @@
     <script>
         async function loadLinks(country) {
             try {
+                const bust = '?v=' + Date.now();
                 let response;
                 if (country === 'USA') {
-                    response = await fetch('links.json');
+                    response = await fetch('links.json' + bust, { cache: 'no-store' });
                 } else {
-                    response = await fetch(`Region-Links/links.${country}.json`);
-                    if (!response.ok) response = await fetch('links.json');
+                    response = await fetch(`Region-Links/links.${country}.json` + bust, { cache: 'no-store' });
+                    if (!response.ok) response = await fetch('links.json' + bust, { cache: 'no-store' });
                 }
 
                 const data = await response.json();
