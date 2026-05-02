@@ -17,6 +17,38 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* Match the country dropdown on index.html */
+        .form-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background: rgba(0, 0, 0, 0.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238b5cf6' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 16px center;
+            border: 2px solid rgba(139, 92, 246, 0.25);
+            border-radius: 12px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            padding: 12px 44px 12px 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+        .form-select:hover { border-color: #8b5cf6; }
+        .form-select:focus { border-color: #8b5cf6; box-shadow: 0 0 25px rgba(139, 92, 246, 0.4); }
+        .form-select option { background: #0f0f0f; color: #fff; font-weight: 500; }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        @media (max-width: 600px) {
+            .form-row-2 { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 
 <body>
@@ -54,6 +86,28 @@
                     <div class="form-group">
                         <label class="form-label"><i class="fas fa-tag"></i> Site Name</label>
                         <input type="text" id="siteName" class="form-input" placeholder="Awesome Streaming Site" required>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-globe"></i> Region</label>
+                            <select id="siteRegion" class="form-select" required>
+                                <option value="">Loading regions…</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-folder"></i> Section</label>
+                            <select id="siteCategory" class="form-select" required>
+                                <option value="">Select section</option>
+                                <option value="movies">🎬 Movies & Shows</option>
+                                <option value="anime">⛩️ Anime</option>
+                                <option value="manga">📚 Manga / Comics</option>
+                                <option value="livetv">📺 Live TV & Sports</option>
+                                <option value="paid">💳 Paid Services</option>
+                                <option value="apps">📱 Apps</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -112,13 +166,60 @@
     </div>
 
     <script>
+        // Load regions dynamically from regions.json (same source as index.html)
+        async function loadRegionsForForm() {
+            const select = document.getElementById('siteRegion');
+            try {
+                const bust = '?v=' + Date.now();
+                const r = await fetch('regions.json' + bust, { cache: 'no-store' });
+                if (!r.ok) throw new Error('not found');
+                const cfg = await r.json();
+                select.innerHTML = '<option value="">Select region</option>';
+                cfg.regions.filter(rg => rg.enabled !== false).forEach(rg => {
+                    const opt = document.createElement('option');
+                    opt.value = rg.code;
+                    opt.textContent = (rg.flag || '') + ' ' + (rg.name || rg.code);
+                    select.appendChild(opt);
+                });
+            } catch (e) {
+                // Fallback hardcoded list if regions.json doesn't exist yet
+                const fallback = [
+                    {c:'USA',f:'🇺🇸',n:'United States'},
+                    {c:'INDIA',f:'🇮🇳',n:'India'},
+                    {c:'RUSSIA',f:'🇷🇺',n:'Russia'},
+                    {c:'GERMANY',f:'🇩🇪',n:'Germany'},
+                    {c:'FRANCE',f:'🇫🇷',n:'France'},
+                    {c:'BRAZIL',f:'🇧🇷',n:'Brazil'},
+                    {c:'JAPAN',f:'🇯🇵',n:'Japan'},
+                    {c:'SOUTHKOREA',f:'🇰🇷',n:'South Korea'},
+                    {c:'SPAIN',f:'🇪🇸',n:'Spain'},
+                    {c:'ITALY',f:'🇮🇹',n:'Italy'},
+                    {c:'CANADA',f:'🇨🇦',n:'Canada'},
+                    {c:'AUSTRALIA',f:'🇦🇺',n:'Australia'},
+                    {c:'POLAND',f:'🇵🇱',n:'Poland'},
+                    {c:'NETHERLANDS',f:'🇳🇱',n:'Netherlands'},
+                    {c:'PORTUGAL',f:'🇵🇹',n:'Portugal'},
+                ];
+                select.innerHTML = '<option value="">Select region</option>';
+                fallback.forEach(rg => {
+                    const opt = document.createElement('option');
+                    opt.value = rg.c;
+                    opt.textContent = rg.f + ' ' + rg.n;
+                    select.appendChild(opt);
+                });
+            }
+        }
+
         const form = document.getElementById('siteRequestForm');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const payload = {
                 siteUrl: document.getElementById('siteUrl').value,
                 siteName: document.getElementById('siteName').value,
-                siteFeature: document.getElementById('siteFeature').value
+                siteFeature: document.getElementById('siteFeature').value,
+                region: document.getElementById('siteRegion').value,
+                category: document.getElementById('siteCategory').value,
+                submittedAt: new Date().toISOString()
             };
             try {
                 const res = await fetch('https://api.vidsrc.wtf/tbcpl/site_request', {
@@ -139,6 +240,9 @@
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
+
+        // Load regions on page load
+        loadRegionsForForm();
     </script>
 </body>
 <!-- Google tag (gtag.js) -->
