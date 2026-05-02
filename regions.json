@@ -7,6 +7,12 @@
       "enabled": true
     },
     {
+      "code": "CANADA",
+      "name": "Canada",
+      "flag": "🇨🇦",
+      "enabled": true
+    },
+    {
       "code": "INDIA",
       "name": "India",
       "flag": "🇮🇳",
@@ -58,12 +64,6 @@
       "code": "ITALY",
       "name": "Italy",
       "flag": "🇮🇹",
-      "enabled": true
-    },
-    {
-      "code": "CANADA",
-      "name": "Canada",
-      "flag": "🇨🇦",
       "enabled": true
     },
     {
