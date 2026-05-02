@@ -11,16 +11,16 @@
           "enabled": true
         },
         {
-          "name": "Bald mehr — füge einen Vorschlag hinzu!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "S.to",
           "url": "https://s.to/",
           "logo": "./logo/movies_shows/S.to Logo.png",
           "enabled": true
+        },
+        {
+          "name": "Bald mehr — füge einen Vorschlag hinzu!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "enabled": true,
+          "logo": ""
         }
       ]
     },
