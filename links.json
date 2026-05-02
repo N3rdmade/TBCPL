@@ -607,12 +607,6 @@
           "enabled": true
         },
         {
-          "name": "OnStream APKs",
-          "url": "https://onstreamapks.app/",
-          "logo": "./logo/apps/onstream.png",
-          "enabled": true
-        },
-        {
           "name": "HDO Box",
           "url": "https://hdobox.net/",
           "logo": "./logo/apps/hdobox.png",
@@ -634,6 +628,12 @@
           "name": "NetMirror",
           "url": "https://netmirror.gg/2/en",
           "logo": "./logo/apps/netmirror.png",
+          "enabled": true
+        },
+        {
+          "name": "OnStream APKs",
+          "url": "https://onstreamapks.app/",
+          "logo": "./logo/apps/onstream.png",
           "enabled": true
         },
         {
