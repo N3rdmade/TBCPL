@@ -18,7 +18,14 @@
     {
       "id": "livetv",
       "name": "Live TV & Sports",
-      "sites": []
+      "sites": [
+        {
+          "name": "Arabic TV Watch",
+          "url": "https://arabictvwatch.tv/",
+          "logo": "./logo/livetv/Arabic TV Logo.png",
+          "enabled": true
+        }
+      ]
     },
     {
       "id": "paid",
