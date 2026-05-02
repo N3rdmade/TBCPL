@@ -155,17 +155,17 @@
           "enabled": true
         },
         {
+          "name": "MyFlixerz",
+          "url": "https://myflixerz.to/",
+          "logo": "./logo/movies_shows/myflixerz.png",
+          "enabled": false
+        },
+        {
           "name": "Vexo",
           "url": "https://vexo.to/",
           "logo": "./logo/movies_shows/vexo.png",
           "enabled": false,
           "reason": "they left"
-        },
-        {
-          "name": "MyFlixerz",
-          "url": "https://myflixerz.to/",
-          "logo": "./logo/movies_shows/myflixerz.png",
-          "enabled": false
         }
       ]
     },
