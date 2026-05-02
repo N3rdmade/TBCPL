@@ -1,0 +1,94 @@
+{
+  "regions": [
+    {
+      "code": "USA",
+      "name": "United States",
+      "flag": "🇺🇸",
+      "enabled": true
+    },
+    {
+      "code": "INDIA",
+      "name": "India",
+      "flag": "🇮🇳",
+      "enabled": true
+    },
+    {
+      "code": "RUSSIA",
+      "name": "Russia",
+      "flag": "🇷🇺",
+      "enabled": true
+    },
+    {
+      "code": "GERMANY",
+      "name": "Germany",
+      "flag": "🇩🇪",
+      "enabled": true
+    },
+    {
+      "code": "FRANCE",
+      "name": "France",
+      "flag": "🇫🇷",
+      "enabled": true
+    },
+    {
+      "code": "BRAZIL",
+      "name": "Brazil",
+      "flag": "🇧🇷",
+      "enabled": true
+    },
+    {
+      "code": "JAPAN",
+      "name": "Japan",
+      "flag": "🇯🇵",
+      "enabled": true
+    },
+    {
+      "code": "SOUTHKOREA",
+      "name": "South Korea",
+      "flag": "🇰🇷",
+      "enabled": true
+    },
+    {
+      "code": "SPAIN",
+      "name": "Spain",
+      "flag": "🇪🇸",
+      "enabled": true
+    },
+    {
+      "code": "ITALY",
+      "name": "Italy",
+      "flag": "🇮🇹",
+      "enabled": true
+    },
+    {
+      "code": "CANADA",
+      "name": "Canada",
+      "flag": "🇨🇦",
+      "enabled": true
+    },
+    {
+      "code": "AUSTRALIA",
+      "name": "Australia",
+      "flag": "🇦🇺",
+      "enabled": true
+    },
+    {
+      "code": "POLAND",
+      "name": "Poland",
+      "flag": "🇵🇱",
+      "enabled": true
+    },
+    {
+      "code": "NETHERLANDS",
+      "name": "Netherlands",
+      "flag": "🇳🇱",
+      "enabled": true
+    },
+    {
+      "code": "PORTUGAL",
+      "name": "Portugal",
+      "flag": "🇵🇹",
+      "enabled": true
+    }
+  ]
+}
