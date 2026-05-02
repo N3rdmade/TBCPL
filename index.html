@@ -112,21 +112,7 @@
             <!-- Country Selector -->
             <div class="country-selector-wrapper">
                 <select class="country-select" id="countrySelect">
-                    <option value="USA">🇺🇸 United States</option>
-                    <option value="INDIA">🇮🇳 India</option>
-                    <option value="RUSSIA">🇷🇺 Russia</option>
-                    <option value="GERMANY">🇩🇪 Germany</option>
-                    <option value="FRANCE">🇫🇷 France</option>
-                    <option value="BRAZIL">🇧🇷 Brazil</option>
-                    <option value="JAPAN">🇯🇵 Japan</option>
-                    <option value="SOUTHKOREA">🇰🇷 South Korea</option>
-                    <option value="SPAIN">🇪🇸 Spain</option>
-                    <option value="ITALY">🇮🇹 Italy</option>
-                    <option value="CANADA">🇨🇦 Canada</option>
-                    <option value="AUSTRALIA">🇦🇺 Australia</option>
-                    <option value="POLAND">🇵🇱 Poland</option>
-                    <option value="NETHERLANDS">🇳🇱 Netherlands</option>
-                    <option value="PORTUGAL">🇵🇹 Portugal</option>
+                    <!-- options injected from regions.json -->
                 </select>
             </div>
 
@@ -164,6 +150,25 @@
         <i class="fas fa-arrow-up arrow"></i>
     </button>
     <script>
+        
+        // REGIONS_DYNAMIC_LOADED
+        async function loadRegions() {
+            try {
+                const bust = '?v=' + Date.now();
+                const r = await fetch('regions.json' + bust, { cache: 'no-store' });
+                if (!r.ok) return;
+                const cfg = await r.json();
+                const sel = document.getElementById('countrySelect');
+                sel.innerHTML = '';
+                cfg.regions.filter(rg => rg.enabled !== false).forEach(rg => {
+                    const opt = document.createElement('option');
+                    opt.value = rg.code;
+                    opt.textContent = (rg.flag || '') + ' ' + rg.name;
+                    sel.appendChild(opt);
+                });
+            } catch (e) { console.error('Failed to load regions:', e); }
+        }
+
         async function loadLinks(country) {
             try {
                 const bust = '?v=' + Date.now();
@@ -279,7 +284,8 @@
             });
         })();
 
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadRegions();
             loadLinks(document.getElementById('countrySelect').value);
         });
     </script>
