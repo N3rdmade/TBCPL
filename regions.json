@@ -13,6 +13,12 @@
       "enabled": true
     },
     {
+      "code": "AUSTRALIA",
+      "name": "Australia",
+      "flag": "🇦🇺",
+      "enabled": true
+    },
+    {
       "code": "INDIA",
       "name": "India",
       "flag": "🇮🇳",
@@ -64,12 +70,6 @@
       "code": "ITALY",
       "name": "Italy",
       "flag": "🇮🇹",
-      "enabled": true
-    },
-    {
-      "code": "AUSTRALIA",
-      "name": "Australia",
-      "flag": "🇦🇺",
       "enabled": true
     },
     {
