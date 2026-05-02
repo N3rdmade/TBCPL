@@ -3,7 +3,14 @@
     {
       "id": "movies",
       "name": "Movies & Shows",
-      "sites": []
+      "sites": [
+        {
+          "name": "EgyBest",
+          "url": "https://egyybes.autos/home",
+          "logo": "./logo/movies_shows/EgyBest Logo.png",
+          "enabled": true
+        }
+      ]
     },
     {
       "id": "anime",
