@@ -25,15 +25,15 @@
       "enabled": true
     },
     {
-      "code": "RUSSIA",
-      "name": "Russia",
-      "flag": "🇷🇺",
-      "enabled": true
-    },
-    {
       "code": "GERMANY",
       "name": "Germany",
       "flag": "🇩🇪",
+      "enabled": true
+    },
+    {
+      "code": "RUSSIA",
+      "name": "Russia",
+      "flag": "🇷🇺",
       "enabled": true
     },
     {
