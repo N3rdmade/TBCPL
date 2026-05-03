@@ -166,6 +166,12 @@
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
           "enabled": false
+        },
+        {
+          "name": "Filmytime",
+          "url": "https://filmytime.site",
+          "logo": "./logo/movies_shows/24d009bd-6c1b-4fe2-ae57-f41cb8cbb197.png",
+          "enabled": true
         }
       ]
     },
