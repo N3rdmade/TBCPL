@@ -65,12 +65,6 @@
           "enabled": true
         },
         {
-          "name": "Corsflix",
-          "url": "https://watch.corsflix.net/",
-          "logo": "./logo/movies_shows/corsflix.png",
-          "enabled": false
-        },
-        {
           "name": "Cinegram",
           "url": "https://cinegram.net/home",
           "logo": "./logo/movies_shows/cinegram.png",
@@ -166,6 +160,12 @@
           "logo": "./logo/movies_shows/vexo.png",
           "enabled": false,
           "reason": "they left"
+        },
+        {
+          "name": "Corsflix",
+          "url": "https://watch.corsflix.net/",
+          "logo": "./logo/movies_shows/corsflix.png",
+          "enabled": false
         }
       ]
     },
