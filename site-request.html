@@ -222,7 +222,7 @@
                 submittedAt: new Date().toISOString()
             };
             try {
-                const res = await fetch('https://api.vidsrc.wtf/tbcpl/site_request', {
+                const res = await fetch('https://admin.tbcpl.lol/api/public-submit', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -230,8 +230,11 @@
                 if (res.ok) {
                     form.style.display = 'none';
                     document.getElementById('successMessage').style.display = 'block';
-                } else { throw new Error(); }
-            } catch (err) { alert('Error sending request. Please contact us on Discord.'); }
+                } else {
+                    const j = await res.json().catch(() => ({}));
+                    throw new Error(j.error || 'Submission failed');
+                }
+            } catch (err) { alert('Error sending request: ' + (err.message || 'unknown') + '. Please contact us on Discord.'); }
         });
 
         document.getElementById('navToggle').addEventListener('click', () => {
