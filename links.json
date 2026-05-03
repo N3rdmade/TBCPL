@@ -83,12 +83,6 @@
           "enabled": true
         },
         {
-          "name": "Cinezo",
-          "url": "https://www.cinezo.net/",
-          "logo": "./logo/movies_shows/cinezo.png",
-          "enabled": false
-        },
-        {
           "name": "Cineby",
           "url": "https://www.cineby.gd/",
           "logo": "./logo/movies_shows/cineby.png",
@@ -147,6 +141,12 @@
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png",
           "enabled": true
+        },
+        {
+          "name": "Cinezo",
+          "url": "https://www.cinezo.net/",
+          "logo": "./logo/movies_shows/cinezo.png",
+          "enabled": false
         },
         {
           "name": "MyFlixerz",
