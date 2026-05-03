@@ -68,7 +68,7 @@
           "name": "Corsflix",
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "Cinegram",
