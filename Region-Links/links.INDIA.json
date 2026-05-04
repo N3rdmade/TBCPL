@@ -197,6 +197,12 @@
           "enabled": true
         },
         {
+          "name": "star sports",
+          "url": "https://uvotv.com/blog/indian-and-pakistani-tv-channels/",
+          "logo": "./logo/apps/uvo-logo.svg",
+          "enabled": true
+        },
+        {
           "name": "HDO Box",
           "url": "https://hdobox.net/",
           "logo": "./logo/apps/hdobox.png",
@@ -224,12 +230,6 @@
           "name": "PikaShow",
           "url": "https://pikashowtv.in/",
           "logo": "./logo/apps/pikashow.png",
-          "enabled": true
-        },
-        {
-          "name": "star sports",
-          "url": "https://uvotv.com/blog/indian-and-pakistani-tv-channels/",
-          "logo": "./logo/apps/uvo-logo.svg",
           "enabled": true
         }
       ]
