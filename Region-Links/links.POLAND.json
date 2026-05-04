@@ -15,6 +15,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "CDA-HD",
+          "url": "https://cda-hd.cc",
+          "logo": "./logo/movies_shows/CDA-HD Logo.png",
+          "enabled": true
         }
       ]
     },
