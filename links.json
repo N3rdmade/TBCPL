@@ -273,7 +273,7 @@
           "name": "9anime",
           "url": "https://www.9animetv.to",
           "logo": "./logo/anime/9anime.png",
-          "enabled": false
+          "enabled": true
         },
         {
           "name": "Anicrush",
