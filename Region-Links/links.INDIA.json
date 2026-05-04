@@ -177,6 +177,12 @@
           "url": "https://www.amcplus.com/login",
           "logo": "./logo/paid_apps/amc+.png",
           "enabled": true
+        },
+        {
+          "name": "yupptytv.com",
+          "url": "https://www.yupptv.com/channels",
+          "logo": "./logo/paid_apps/YuppTV Logo.svg",
+          "enabled": true
         }
       ]
     },
