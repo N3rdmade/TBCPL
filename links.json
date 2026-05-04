@@ -125,6 +125,12 @@
           "enabled": true
         },
         {
+          "name": "Filmytime",
+          "url": "https://filmytime.site",
+          "logo": "./logo/movies_shows/24d009bd-6c1b-4fe2-ae57-f41cb8cbb197.png",
+          "enabled": true
+        },
+        {
           "name": "Xprime",
           "url": "https://xprime.stream/",
           "logo": "./logo/movies_shows/xprime.png",
@@ -140,12 +146,6 @@
           "name": "Flixway",
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png",
-          "enabled": true
-        },
-        {
-          "name": "Filmytime",
-          "url": "https://filmytime.site",
-          "logo": "./logo/movies_shows/24d009bd-6c1b-4fe2-ae57-f41cb8cbb197.png",
           "enabled": true
         },
         {
