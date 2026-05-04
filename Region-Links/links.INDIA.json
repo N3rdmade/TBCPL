@@ -225,6 +225,12 @@
           "url": "https://pikashowtv.in/",
           "logo": "./logo/apps/pikashow.png",
           "enabled": true
+        },
+        {
+          "name": "star sports",
+          "url": "https://uvotv.com/blog/indian-and-pakistani-tv-channels/",
+          "logo": "./logo/apps/uvo-logo.svg",
+          "enabled": true
         }
       ]
     }
