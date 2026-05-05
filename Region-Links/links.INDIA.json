@@ -75,6 +75,12 @@
           "url": "https://animelok.xyz/",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "AG48 ANIME",
+          "url": "https://www.ag48anime.site/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
