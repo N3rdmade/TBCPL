@@ -63,6 +63,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "Anime Salt",
+          "url": "https://animesalt.ac/",
+          "logo": "./logo/anime/AnimeSalt Logo.png",
+          "enabled": true
         }
       ]
     },
