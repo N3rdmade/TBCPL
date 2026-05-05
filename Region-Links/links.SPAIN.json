@@ -5,16 +5,16 @@
       "name": "Movies & Shows",
       "sites": [
         {
-          "name": "Próximamente más — ¡agrega una sugerencia!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "pelisplus21",
           "url": "https://pelisplus21.com/",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "Próximamente más — ¡agrega una sugerencia!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "enabled": true,
+          "logo": ""
         }
       ]
     },
