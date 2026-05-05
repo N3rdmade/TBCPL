@@ -69,6 +69,12 @@
           "url": "https://animesalt.ac/",
           "logo": "./logo/anime/AnimeSalt Logo.png",
           "enabled": true
+        },
+        {
+          "name": "Anime Lok",
+          "url": "https://animelok.xyz/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
