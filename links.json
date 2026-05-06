@@ -298,6 +298,12 @@
           "url": "https://aniwatchtv.to/home",
           "logo": "./logo/anime/aniwatch.png",
           "enabled": false
+        },
+        {
+          "name": "ReAnime",
+          "url": "https://reanime.to/home",
+          "logo": "./logo/anime/ReAnime Logo.png",
+          "enabled": true
         }
       ]
     },
