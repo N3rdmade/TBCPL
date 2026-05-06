@@ -48,6 +48,44 @@
         @media (max-width: 600px) {
             .form-row-2 { grid-template-columns: 1fr; }
         }
+        /* Multi-target rows on the public form */
+        .target-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 10px;
+            align-items: stretch;
+            margin-bottom: 10px;
+        }
+        .target-row .target-rm {
+            background: rgba(248,81,73,.15);
+            color: #f85149;
+            border: 1px solid rgba(248,81,73,.3);
+            border-radius: 8px;
+            cursor: pointer;
+            width: 44px;
+            font-size: 1.1rem;
+            transition: background .2s;
+        }
+        .target-row .target-rm:disabled { opacity: .35; cursor: not-allowed; }
+        .target-row .target-rm:not(:disabled):hover { background: rgba(248,81,73,.3); }
+        .add-target-btn {
+            background: rgba(139,92,246,.15);
+            color: #8b5cf6;
+            border: 1px dashed rgba(139,92,246,.45);
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: .85rem;
+            font-weight: 600;
+            padding: 9px 14px;
+            transition: all .2s;
+            width: 100%;
+        }
+        .add-target-btn:hover { background: rgba(139,92,246,.25); border-style: solid; }
+        @media (max-width: 600px) {
+            .target-row { grid-template-columns: 1fr 1fr; }
+            .target-row .target-rm { grid-column: 1 / -1; height: 38px; width: 100%; }
+        }
     </style>
 </head>
 
@@ -88,26 +126,12 @@
                         <input type="text" id="siteName" class="form-input" placeholder="Awesome Streaming Site" required>
                     </div>
 
-                    <div class="form-row-2">
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-globe"></i> Region</label>
-                            <select id="siteRegion" class="form-select" required>
-                                <option value="">Loading regions…</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label"><i class="fas fa-folder"></i> Section</label>
-                            <select id="siteCategory" class="form-select" required>
-                                <option value="">Select section</option>
-                                <option value="movies">🎬 Movies & Shows</option>
-                                <option value="anime">⛩️ Anime</option>
-                                <option value="manga">📚 Manga / Comics</option>
-                                <option value="livetv">📺 Live TV & Sports</option>
-                                <option value="paid">💳 Paid Services</option>
-                                <option value="apps">📱 Apps</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-bullseye"></i> Where should it go? <span style="opacity:.6;font-weight:400">(add as many region+section pairs as you'd like)</span></label>
+                        <div id="targetsContainer"></div>
+                        <button type="button" class="add-target-btn" id="addTargetBtn">
+                            <i class="fas fa-plus"></i> Add another region/section
+                        </button>
                     </div>
 
                     <div class="form-group">
@@ -166,59 +190,136 @@
     </div>
 
     <script>
-        // Load regions dynamically from regions.json (same source as index.html)
-        async function loadRegionsForForm() {
-            const select = document.getElementById('siteRegion');
+        // Cached region list — loaded once, reused for every target-row added by the user.
+        let REGIONS_CACHE = [];
+        const FALLBACK_REGIONS = [
+            {c:'USA',f:'🇺🇸',n:'United States'},
+            {c:'INDIA',f:'🇮🇳',n:'India'},
+            {c:'RUSSIA',f:'🇷🇺',n:'Russia'},
+            {c:'GERMANY',f:'🇩🇪',n:'Germany'},
+            {c:'FRANCE',f:'🇫🇷',n:'France'},
+            {c:'BRAZIL',f:'🇧🇷',n:'Brazil'},
+            {c:'JAPAN',f:'🇯🇵',n:'Japan'},
+            {c:'SOUTHKOREA',f:'🇰🇷',n:'South Korea'},
+            {c:'SPAIN',f:'🇪🇸',n:'Spain'},
+            {c:'ITALY',f:'🇮🇹',n:'Italy'},
+            {c:'CANADA',f:'🇨🇦',n:'Canada'},
+            {c:'AUSTRALIA',f:'🇦🇺',n:'Australia'},
+            {c:'POLAND',f:'🇵🇱',n:'Poland'},
+            {c:'NETHERLANDS',f:'🇳🇱',n:'Netherlands'},
+            {c:'PORTUGAL',f:'🇵🇹',n:'Portugal'},
+        ];
+        const CATEGORIES = [
+            ['movies','🎬 Movies & Shows'],
+            ['anime','⛩️ Anime'],
+            ['manga','📚 Manga / Comics'],
+            ['livetv','📺 Live TV & Sports'],
+            ['paid','💳 Paid Services'],
+            ['apps','📱 Apps'],
+        ];
+
+        async function loadRegions() {
             try {
                 const bust = '?v=' + Date.now();
                 const r = await fetch('regions.json' + bust, { cache: 'no-store' });
                 if (!r.ok) throw new Error('not found');
                 const cfg = await r.json();
-                select.innerHTML = '<option value="">Select region</option>';
-                cfg.regions.filter(rg => rg.enabled !== false).forEach(rg => {
-                    const opt = document.createElement('option');
-                    opt.value = rg.code;
-                    opt.textContent = (rg.flag || '') + ' ' + (rg.name || rg.code);
-                    select.appendChild(opt);
-                });
+                REGIONS_CACHE = cfg.regions
+                    .filter(rg => rg.enabled !== false)
+                    .map(rg => ({ c: rg.code, f: rg.flag || '', n: rg.name || rg.code }));
             } catch (e) {
-                // Fallback hardcoded list if regions.json doesn't exist yet
-                const fallback = [
-                    {c:'USA',f:'🇺🇸',n:'United States'},
-                    {c:'INDIA',f:'🇮🇳',n:'India'},
-                    {c:'RUSSIA',f:'🇷🇺',n:'Russia'},
-                    {c:'GERMANY',f:'🇩🇪',n:'Germany'},
-                    {c:'FRANCE',f:'🇫🇷',n:'France'},
-                    {c:'BRAZIL',f:'🇧🇷',n:'Brazil'},
-                    {c:'JAPAN',f:'🇯🇵',n:'Japan'},
-                    {c:'SOUTHKOREA',f:'🇰🇷',n:'South Korea'},
-                    {c:'SPAIN',f:'🇪🇸',n:'Spain'},
-                    {c:'ITALY',f:'🇮🇹',n:'Italy'},
-                    {c:'CANADA',f:'🇨🇦',n:'Canada'},
-                    {c:'AUSTRALIA',f:'🇦🇺',n:'Australia'},
-                    {c:'POLAND',f:'🇵🇱',n:'Poland'},
-                    {c:'NETHERLANDS',f:'🇳🇱',n:'Netherlands'},
-                    {c:'PORTUGAL',f:'🇵🇹',n:'Portugal'},
-                ];
-                select.innerHTML = '<option value="">Select region</option>';
-                fallback.forEach(rg => {
-                    const opt = document.createElement('option');
-                    opt.value = rg.c;
-                    opt.textContent = rg.f + ' ' + rg.n;
-                    select.appendChild(opt);
-                });
+                REGIONS_CACHE = FALLBACK_REGIONS;
             }
         }
+
+        // Build a single region+section row. The first row hides its remove button so the
+        // form always has at least one target.
+        function buildTargetRow() {
+            const row = document.createElement('div');
+            row.className = 'target-row';
+
+            const regionSel = document.createElement('select');
+            regionSel.className = 'form-select target-region';
+            regionSel.required = true;
+            const placeholderR = document.createElement('option');
+            placeholderR.value = '';
+            placeholderR.textContent = 'Select region';
+            regionSel.appendChild(placeholderR);
+            REGIONS_CACHE.forEach(rg => {
+                const opt = document.createElement('option');
+                opt.value = rg.c;
+                opt.textContent = (rg.f ? rg.f + ' ' : '') + rg.n;
+                regionSel.appendChild(opt);
+            });
+
+            const catSel = document.createElement('select');
+            catSel.className = 'form-select target-category';
+            catSel.required = true;
+            const placeholderC = document.createElement('option');
+            placeholderC.value = '';
+            placeholderC.textContent = 'Select section';
+            catSel.appendChild(placeholderC);
+            CATEGORIES.forEach(([v, l]) => {
+                const opt = document.createElement('option');
+                opt.value = v;
+                opt.textContent = l;
+                catSel.appendChild(opt);
+            });
+
+            const rm = document.createElement('button');
+            rm.type = 'button';
+            rm.className = 'target-rm';
+            rm.title = 'Remove this target';
+            rm.innerHTML = '<i class="fas fa-times"></i>';
+            rm.addEventListener('click', () => {
+                row.remove();
+                syncRemoveButtons();
+            });
+
+            row.appendChild(regionSel);
+            row.appendChild(catSel);
+            row.appendChild(rm);
+            return row;
+        }
+
+        function syncRemoveButtons() {
+            const rows = document.querySelectorAll('#targetsContainer .target-row');
+            rows.forEach(r => {
+                const btn = r.querySelector('.target-rm');
+                if (btn) btn.disabled = rows.length <= 1;
+            });
+        }
+
+        function addTargetRow() {
+            document.getElementById('targetsContainer').appendChild(buildTargetRow());
+            syncRemoveButtons();
+        }
+
+        function collectTargets() {
+            const out = [];
+            document.querySelectorAll('#targetsContainer .target-row').forEach(r => {
+                const region = r.querySelector('.target-region').value;
+                const category = r.querySelector('.target-category').value;
+                if (region && category) out.push({ region, categoryId: category });
+            });
+            return out;
+        }
+
+        document.getElementById('addTargetBtn').addEventListener('click', addTargetRow);
 
         const form = document.getElementById('siteRequestForm');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const targets = collectTargets();
+            if (!targets.length) {
+                alert('Please pick at least one region + section.');
+                return;
+            }
             const payload = {
                 siteUrl: document.getElementById('siteUrl').value,
                 siteName: document.getElementById('siteName').value,
                 siteFeature: document.getElementById('siteFeature').value,
-                region: document.getElementById('siteRegion').value,
-                category: document.getElementById('siteCategory').value,
+                targets,
                 submittedAt: new Date().toISOString()
             };
             try {
@@ -244,8 +345,11 @@
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Load regions on page load
-        loadRegionsForForm();
+        // Load regions, then seed the form with one target row.
+        (async () => {
+            await loadRegions();
+            addTargetRow();
+        })();
     </script>
 </body>
 <!-- Google tag (gtag.js) -->
