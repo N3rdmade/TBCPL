@@ -23,6 +23,12 @@
           "enabled": true
         },
         {
+          "name": "shuttletv",
+          "url": "https://shuttletv.su/",
+          "logo": "./logo/movies_shows/logo.webp",
+          "enabled": true
+        },
+        {
           "name": "AlienFlix",
           "url": "https://alienflix.net/",
           "logo": "./logo/movies_shows/alienflix.png",
@@ -172,12 +178,6 @@
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
           "enabled": false
-        },
-        {
-          "name": "shuttletv",
-          "url": "https://shuttletv.su/",
-          "logo": "./logo/movies_shows/logo.webp",
-          "enabled": true
         }
       ]
     },
