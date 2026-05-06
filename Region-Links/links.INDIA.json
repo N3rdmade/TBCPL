@@ -41,15 +41,15 @@
           "enabled": true
         },
         {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": true
-        },
-        {
           "name": "NETNINJA",
           "url": "https://netnaija.video/search-result?keyword=Kunchacko+Boban",
           "logo": "./logo/movies_shows/Netnaija Logo.png",
+          "enabled": true
+        },
+        {
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "logo": "",
           "enabled": true
         }
       ]
