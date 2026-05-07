@@ -93,6 +93,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "Voidanime",
+          "url": "https://www.voidanime.tech/home#/",
+          "logo": "./logo/anime/voidanime.png",
+          "enabled": true
         }
       ]
     },
