@@ -157,7 +157,7 @@
         {
           "name": "Lunastream",
           "url": "https://lunastream.click/",
-          "logo": "",
+          "logo": "./logo/movies_shows/lunastream.png",
           "enabled": true
         },
         {
