@@ -51,6 +51,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "MovieRulz",
+          "url": "https://www.5movierulz.camera",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
