@@ -31,7 +31,7 @@
         {
           "name": "anime ninja",
           "url": "https://ww3.animeonline.ninja/",
-          "logo": "",
+          "logo": "./logo/anime/anime-ninja.svg",
           "enabled": true
         },
         {
