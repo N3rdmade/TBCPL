@@ -161,12 +161,6 @@
           "enabled": false
         },
         {
-          "name": "7Reels",
-          "url": "https://7reels.cc/",
-          "logo": "./logo/movies_shows/7reels.svg",
-          "enabled": false
-        },
-        {
           "name": "MyFlixerz",
           "url": "https://myflixerz.to/",
           "logo": "./logo/movies_shows/myflixerz.png",
