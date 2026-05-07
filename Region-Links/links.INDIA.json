@@ -49,7 +49,7 @@
         {
           "name": "MovieRulz",
           "url": "https://www.5movierulz.camera",
-          "logo": "",
+          "logo": "./logo/movies_shows/movierulz.png",
           "enabled": true
         },
         {
