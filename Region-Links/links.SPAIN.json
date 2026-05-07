@@ -25,7 +25,7 @@
         {
           "name": "animeav",
           "url": "https://animeav1.com",
-          "logo": "",
+          "logo": "./logo/anime/animeav.svg",
           "enabled": true
         },
         {
