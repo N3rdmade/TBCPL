@@ -48,7 +48,7 @@
         },
         {
           "name": "RiveStream",
-          "url": "https://rivestream.org/",
+          "url": "https://rivestream.ru/",
           "logo": "./logo/movies_shows/rivestream.png",
           "enabled": true
         },
