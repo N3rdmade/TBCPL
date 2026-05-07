@@ -35,12 +35,6 @@
           "enabled": true
         },
         {
-          "name": "Lunastream",
-          "url": "https://lunastream.click/",
-          "logo": "./logo/movies_shows/lunastream.png",
-          "enabled": false
-        },
-        {
           "name": "AlienFlix",
           "url": "https://ishowmovies.org/",
           "logo": "./logo/movies_shows/alienflix.png",
@@ -170,6 +164,12 @@
           "name": "Cinezo",
           "url": "https://www.cinezo.net/",
           "logo": "./logo/movies_shows/cinezo.png",
+          "enabled": false
+        },
+        {
+          "name": "Lunastream",
+          "url": "https://lunastream.click/",
+          "logo": "./logo/movies_shows/lunastream.png",
           "enabled": false
         },
         {
