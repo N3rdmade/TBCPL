@@ -155,6 +155,12 @@
           "enabled": true
         },
         {
+          "name": "Lunastream",
+          "url": "https://lunastream.click/",
+          "logo": "",
+          "enabled": true
+        },
+        {
           "name": "Cinezo",
           "url": "https://www.cinezo.net/",
           "logo": "./logo/movies_shows/cinezo.png",
@@ -178,12 +184,6 @@
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
           "enabled": false
-        },
-        {
-          "name": "Lunastream",
-          "url": "https://lunastream.click/",
-          "logo": "",
-          "enabled": true
         }
       ]
     },
