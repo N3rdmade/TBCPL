@@ -33,6 +33,12 @@
           "url": "https://animeav1.com",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "anime ninja",
+          "url": "https://ww3.animeonline.ninja/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
