@@ -27,6 +27,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "animeav",
+          "url": "https://animeav1.com",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
