@@ -433,12 +433,6 @@
       "name": "Live TV & Sports",
       "sites": [
         {
-          "name": "TheTvApp",
-          "url": "https://thetvapp.to",
-          "logo": "./logo/livetv/tvappto.png",
-          "enabled": true
-        },
-        {
           "name": "TV247",
           "url": "https://tv247.us",
           "logo": "./logo/livetv/tv247.png",
@@ -448,7 +442,7 @@
           "name": "TheDaddy",
           "url": "https://dlhd.dad/",
           "logo": "./logo/livetv/thedaddy.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "DaddyHD",
@@ -611,7 +605,13 @@
           "url": "https://www.amcplus.com/login",
           "logo": "./logo/paid_apps/amc+.png",
           "enabled": true
-        }
+        },
+        {
+          "name": "TheTvApp",
+          "url": "https://thetvapp.to",
+          "logo": "./logo/livetv/tvappto.png",
+          "enabled": true
+        },
       ]
     },
     {
