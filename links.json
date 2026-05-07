@@ -507,7 +507,7 @@
           "name": "RiveStream Sports",
           "url": "https://rivestream.ru/livesports/",
           "logo": "./logo/movies_shows/rivestream.png",
-          "enabled": false
+          "enabled": true
         },
         {
           "name": "Sportsbite",
