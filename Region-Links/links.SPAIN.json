@@ -23,12 +23,6 @@
       "name": "Anime",
       "sites": [
         {
-          "name": "Próximamente más — ¡agrega una sugerencia!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "animeav",
           "url": "https://animeav1.com",
           "logo": "",
@@ -39,6 +33,12 @@
           "url": "https://ww3.animeonline.ninja/",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "Próximamente más — ¡agrega una sugerencia!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "enabled": true,
+          "logo": ""
         }
       ]
     },
