@@ -96,7 +96,7 @@
         },
         {
           "name": "Netflix",
-          "url": "https://www.netflix.com/",
+          "url": "https://www.netflix.com/browse/genre/100378",
           "logo": "./logo/paid_apps/netflix.png",
           "enabled": true
         },
