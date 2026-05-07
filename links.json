@@ -35,15 +35,15 @@
           "enabled": true
         },
         {
-          "name": "AlienFlix",
-          "url": "https://ishowmovies.org/",
-          "logo": "./logo/movies_shows/alienflix.png",
-          "enabled": true
-        },
-        {
           "name": "Lunastream",
           "url": "https://lunastream.click/",
           "logo": "./logo/movies_shows/lunastream.png",
+          "enabled": true
+        },
+        {
+          "name": "AlienFlix",
+          "url": "https://ishowmovies.org/",
+          "logo": "./logo/movies_shows/alienflix.png",
           "enabled": true
         },
         {
