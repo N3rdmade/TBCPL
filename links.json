@@ -35,6 +35,12 @@
           "enabled": true
         },
         {
+          "name": "Lunastream",
+          "url": "https://lunastream.click/",
+          "logo": "./logo/movies_shows/lunastream.png",
+          "enabled": true
+        },
+        {
           "name": "FlickyStream",
           "url": "https://flickystream.ru/",
           "logo": "./logo/movies_shows/flickystream.png",
@@ -152,12 +158,6 @@
           "name": "Flixway",
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png",
-          "enabled": true
-        },
-        {
-          "name": "Lunastream",
-          "url": "https://lunastream.click/",
-          "logo": "./logo/movies_shows/lunastream.png",
           "enabled": true
         },
         {
