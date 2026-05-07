@@ -38,7 +38,7 @@
           "name": "Lunastream",
           "url": "https://lunastream.click/",
           "logo": "./logo/movies_shows/lunastream.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "AlienFlix",
