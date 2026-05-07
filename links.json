@@ -178,6 +178,12 @@
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
           "enabled": false
+        },
+        {
+          "name": "Lunastream",
+          "url": "https://lunastream.click/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
