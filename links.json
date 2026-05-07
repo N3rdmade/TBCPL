@@ -294,6 +294,12 @@
           "enabled": true
         },
         {
+          "name": "Voidanime",
+          "url": "https://www.voidanime.tech/home#/",
+          "logo": "./logo/anime/voidanime.png",
+          "enabled": true
+        },
+        {
           "name": "Anicrush",
           "url": "https://anicrush.to/home",
           "logo": "./logo/anime/anicrush.png",
@@ -310,12 +316,6 @@
           "url": "https://aniwatchtv.to/home",
           "logo": "./logo/anime/aniwatch.png",
           "enabled": false
-        },
-        {
-          "name": "Voidanime",
-          "url": "https://www.voidanime.tech/home#/",
-          "logo": "./logo/anime/voidanime.png",
-          "enabled": true
         }
       ]
     },
