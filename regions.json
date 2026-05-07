@@ -10,7 +10,7 @@
       "code": "CANADA",
       "name": "Canada",
       "flag": "🇨🇦",
-      "enabled": true
+      "enabled": false
     },
     {
       "code": "AUSTRALIA",
