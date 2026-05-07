@@ -77,6 +77,12 @@
           "enabled": true
         },
         {
+          "name": "Cinezo",
+          "url": "https://www.cinezo.net/",
+          "logo": "./logo/movies_shows/cinezo.png",
+          "enabled": true
+        },
+        {
           "name": "Bcine",
           "url": "https://bcine.app/",
           "logo": "./logo/movies_shows/bcine.png",
@@ -152,12 +158,6 @@
           "name": "Flixway",
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png",
-          "enabled": true
-        },
-        {
-          "name": "Cinezo",
-          "url": "https://www.cinezo.net/",
-          "logo": "./logo/movies_shows/cinezo.png",
           "enabled": true
         },
         {
