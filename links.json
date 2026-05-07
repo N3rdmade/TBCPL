@@ -167,13 +167,6 @@
           "enabled": false
         },
         {
-          "name": "Vexo",
-          "url": "https://vexo.to/",
-          "logo": "./logo/movies_shows/vexo.png",
-          "enabled": false,
-          "reason": "they left"
-        },
-        {
           "name": "Corsflix",
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
