@@ -23,6 +23,12 @@
           "enabled": true
         },
         {
+          "name": "7Reels",
+          "url": "https://7reels.cc/",
+          "logo": "./logo/movies_shows/7reels.svg",
+          "enabled": true
+        },
+        {
           "name": "shuttletv",
           "url": "https://shuttletv.su/",
           "logo": "./logo/movies_shows/logo.webp",
@@ -158,12 +164,6 @@
           "name": "Flixway",
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png",
-          "enabled": true
-        },
-        {
-          "name": "7Reels",
-          "url": "https://7reels.cc/",
-          "logo": "./logo/movies_shows/7reels.svg",
           "enabled": true
         },
         {
