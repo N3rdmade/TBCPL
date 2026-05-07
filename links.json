@@ -184,6 +184,12 @@
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
           "enabled": false
+        },
+        {
+          "name": "7Reels",
+          "url": "https://7reels.cc/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
