@@ -11,16 +11,16 @@
           "enabled": true
         },
         {
-          "name": "Próximamente más — ¡agrega una sugerencia!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "Movies",
           "url": "https://inkapelis.cyou/",
           "logo": "./logo/movies_shows/movies.png",
           "enabled": true
+        },
+        {
+          "name": "Próximamente más — ¡agrega una sugerencia!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "enabled": true,
+          "logo": ""
         }
       ]
     },
