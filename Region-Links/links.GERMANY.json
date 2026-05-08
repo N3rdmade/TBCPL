@@ -33,6 +33,12 @@
           "url": "https://www.zdf.de/",
           "logo": "./logo/movies_shows/zdf.png",
           "enabled": true
+        },
+        {
+          "name": "ARD Media",
+          "url": "https://www.ardmediathek.de/",
+          "logo": "./logo/movies_shows/ard-media.png",
+          "enabled": true
         }
       ]
     },
