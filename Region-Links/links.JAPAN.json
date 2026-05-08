@@ -177,6 +177,12 @@
           "url": "https://pikashowtv.in/",
           "logo": "./logo/apps/pikashow.png",
           "enabled": true
+        },
+        {
+          "name": "Mihon",
+          "url": "https://mihon.app/",
+          "logo": "./logo/apps/mihon.png",
+          "enabled": true
         }
       ]
     }
