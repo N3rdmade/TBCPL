@@ -101,15 +101,15 @@
           "enabled": true
         },
         {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": true
-        },
-        {
           "name": "RARE TOONS INDIA",
           "url": "https://rareanimes.buzz/",
           "logo": "./logo/anime/rare-toons-india.png",
+          "enabled": true
+        },
+        {
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "logo": "",
           "enabled": true
         }
       ]
