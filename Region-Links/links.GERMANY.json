@@ -23,10 +23,10 @@
           "enabled": true
         },
         {
-          "name": "Bald mehr — füge einen Vorschlag hinzu!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "StreamKiste",
+          "url": "https://streamkiste.life/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/movies_shows/streamkiste.png"
         }
       ]
     },
