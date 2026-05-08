@@ -57,6 +57,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "awesome streaming site",
+          "url": "https://7reels.cc/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
