@@ -17,10 +17,10 @@
           "enabled": true
         },
         {
-          "name": "Bientôt plus — ajoutez une suggestion !",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "Tf1",
+          "url": "https://www.tf1.fr/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/movies_shows/tf1.svg"
         }
       ]
     },
