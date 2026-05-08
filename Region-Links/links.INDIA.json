@@ -61,7 +61,7 @@
         {
           "name": "awesome streaming site",
           "url": "https://7reels.cc/",
-          "logo": "",
+          "logo": "./logo/movies_shows/awesome-streaming-site.svg",
           "enabled": true
         }
       ]
