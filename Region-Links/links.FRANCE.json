@@ -71,10 +71,10 @@
       "name": "Live TV & Sports",
       "sites": [
         {
-          "name": "Bientôt plus — ajoutez une suggestion !",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "Arte TV",
+          "url": "https://www.arte.tv/en/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/livetv/arte-tv.png"
         }
       ]
     },
