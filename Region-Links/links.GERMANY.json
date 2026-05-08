@@ -53,10 +53,10 @@
       "name": "Anime",
       "sites": [
         {
-          "name": "Bald mehr — füge einen Vorschlag hinzu!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "Aniworld",
+          "url": "https://aniworld.to/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/anime/aniworld.jpg"
         }
       ]
     },
