@@ -1,0 +1,38 @@
+<svg width="1280" height="320" viewBox="0 0 1280 320" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<style>
+.an-word { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 84px; letter-spacing: 3px; }
+.an-word-light { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; font-weight: 300; font-size: 84px; letter-spacing: 8px; }
+.an-tag { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 20px; letter-spacing: 12px; }
+</style>
+<radialGradient id="ninjaGrad" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#bc002d"/>
+<stop offset="60%" stop-color="#a30025"/>
+<stop offset="100%" stop-color="#7a001b"/>
+</radialGradient>
+</defs>
+
+<!-- Tan/cream background with deep red border -->
+<rect x="0" y="0" width="1280" height="320" rx="28" fill="#f5e6c8" stroke="#bc002d" stroke-width="6"/>
+
+<!-- Ninja head silhouette -->
+<g transform="translate(200, 160)">
+  <!-- Outer dashed ring -->
+  <circle cx="0" cy="0" r="108" fill="none" stroke="#bc002d" stroke-width="1.5" opacity="0.5" stroke-dasharray="4 8"/>
+  <!-- Head circle - red hinomaru style -->
+  <circle cx="0" cy="0" r="92" fill="url(#ninjaGrad)" stroke="#7a001b" stroke-width="5"/>
+  <!-- Mask band - tan/cream -->
+  <rect x="-78" y="-18" width="156" height="36" fill="#f5e6c8"/>
+  <!-- Eye slit -->
+  <rect x="-40" y="-6" width="80" height="12" fill="#7a001b"/>
+  <!-- Sharp eye accent -->
+  <polygon points="-40,-6 -20,-6 -28,2" fill="#f5e6c8" opacity="0.95"/>
+  <polygon points="40,-6 20,-6 28,2" fill="#f5e6c8" opacity="0.95"/>
+</g>
+
+<line x1="360" y1="80" x2="360" y2="240" stroke="#bc002d" stroke-width="2" opacity="0.5"/>
+
+<text x="420" y="170" class="an-word" fill="#bc002d">Anime<tspan class="an-word-light" fill="#7a001b">Ninja</tspan></text>
+
+<text x="420" y="220" class="an-tag" fill="#7a001b" opacity="0.75">EL CAMINO DEL ANIME</text>
+</svg>

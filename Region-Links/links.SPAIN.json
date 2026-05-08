@@ -11,6 +11,12 @@
           "enabled": true
         },
         {
+          "name": "Movies",
+          "url": "https://inkapelis.cyou/",
+          "logo": "./logo/movies_shows/movies.png",
+          "enabled": true
+        },
+        {
           "name": "Próximamente más — ¡agrega una sugerencia!",
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
@@ -22,6 +28,18 @@
       "id": "anime",
       "name": "Anime",
       "sites": [
+        {
+          "name": "animeav",
+          "url": "https://animeav1.com",
+          "logo": "./logo/anime/animeav.svg",
+          "enabled": true
+        },
+        {
+          "name": "anime ninja",
+          "url": "https://ww3.animeonline.ninja/",
+          "logo": "./logo/anime/anime-ninja.svg",
+          "enabled": true
+        },
         {
           "name": "Próximamente más — ¡agrega una sugerencia!",
           "url": "https://tbcpl.lol/site-request.html",

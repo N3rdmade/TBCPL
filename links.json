@@ -30,7 +30,7 @@
         },
         {
           "name": "AlienFlix",
-          "url": "https://alienflix.net/",
+          "url": "https://ishowmovies.org/",
           "logo": "./logo/movies_shows/alienflix.png",
           "enabled": true
         },
@@ -48,7 +48,7 @@
         },
         {
           "name": "RiveStream",
-          "url": "https://rivestream.org/",
+          "url": "https://rivestream.ru/",
           "logo": "./logo/movies_shows/rivestream.png",
           "enabled": true
         },
@@ -74,6 +74,12 @@
           "name": "Cinegram",
           "url": "https://cinegram.net/home",
           "logo": "./logo/movies_shows/cinegram.png",
+          "enabled": true
+        },
+        {
+          "name": "Cinezo",
+          "url": "https://www.cinezo.net/",
+          "logo": "./logo/movies_shows/cinezo.png",
           "enabled": true
         },
         {
@@ -155,23 +161,10 @@
           "enabled": true
         },
         {
-          "name": "Cinezo",
-          "url": "https://www.cinezo.net/",
-          "logo": "./logo/movies_shows/cinezo.png",
-          "enabled": false
-        },
-        {
           "name": "MyFlixerz",
           "url": "https://myflixerz.to/",
           "logo": "./logo/movies_shows/myflixerz.png",
           "enabled": false
-        },
-        {
-          "name": "Vexo",
-          "url": "https://vexo.to/",
-          "logo": "./logo/movies_shows/vexo.png",
-          "enabled": false,
-          "reason": "they left"
         },
         {
           "name": "Corsflix",
@@ -285,6 +278,12 @@
           "name": "9anime",
           "url": "https://9anime.cl/",
           "logo": "./logo/anime/9anime.png",
+          "enabled": true
+        },
+        {
+          "name": "Voidanime",
+          "url": "https://www.voidanime.tech/home#/",
+          "logo": "./logo/anime/voidanime.png",
           "enabled": true
         },
         {
@@ -500,7 +499,7 @@
         },
         {
           "name": "RiveStream Sports",
-          "url": "https://rivestream.org/livesports/",
+          "url": "https://rivestream.ru/livesports/",
           "logo": "./logo/movies_shows/rivestream.png",
           "enabled": true
         },

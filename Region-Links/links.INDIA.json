@@ -47,6 +47,18 @@
           "enabled": true
         },
         {
+          "name": "MovieRulz",
+          "url": "https://www.5movierulz.camera",
+          "logo": "./logo/movies_shows/movierulz.png",
+          "enabled": true
+        },
+        {
+          "name": "awesome streaming site",
+          "url": "https://7reels.cc/",
+          "logo": "./logo/movies_shows/awesome-streaming-site.svg",
+          "enabled": true
+        },
+        {
           "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
@@ -59,15 +71,15 @@
       "name": "Anime",
       "sites": [
         {
-          "name": "WatchAnimeWorld",
-          "url": "https://watchanimeworld.net/",
-          "logo": "./logo/anime/watchanimeworld.png",
+          "name": "AG48 ANIME",
+          "url": "https://www.ag48anime.site/",
+          "logo": "./logo/anime/AG48 Anime Logo.png",
           "enabled": true
         },
         {
-          "name": "Anime Salt",
-          "url": "https://animesalt.ac/",
-          "logo": "./logo/anime/AnimeSalt Logo.png",
+          "name": "WatchAnimeWorld",
+          "url": "https://watchanimeworld.net/",
+          "logo": "./logo/anime/watchanimeworld.png",
           "enabled": true
         },
         {
@@ -77,9 +89,27 @@
           "enabled": true
         },
         {
-          "name": "AG48 ANIME",
-          "url": "https://www.ag48anime.site/",
-          "logo": "./logo/anime/AG48 Anime Logo.png",
+          "name": "Anime Salt",
+          "url": "https://animesalt.ac/",
+          "logo": "./logo/anime/AnimeSalt Logo.png",
+          "enabled": true
+        },
+        {
+          "name": "Voidanime",
+          "url": "https://www.voidanime.tech/home#/",
+          "logo": "./logo/anime/voidanime.png",
+          "enabled": true
+        },
+        {
+          "name": "Animepahe",
+          "url": "https://animepahe.pw/",
+          "logo": "./logo/anime/animepahe.svg",
+          "enabled": true
+        },
+        {
+          "name": "RARE TOONS INDIA",
+          "url": "https://rareanimes.buzz/",
+          "logo": "./logo/anime/rare-toons-india.png",
           "enabled": true
         },
         {
@@ -107,6 +137,12 @@
       "name": "Live TV & Sports",
       "sites": [
         {
+          "name": "Taranga Plus",
+          "url": "https://tarangplus.in/",
+          "logo": "./logo/livetv/taranga-plus.png",
+          "enabled": true
+        },
+        {
           "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
@@ -119,15 +155,15 @@
       "name": "Paid Services",
       "sites": [
         {
-          "name": "Disney+",
-          "url": "https://www.disneyplus.com/identity/login/",
-          "logo": "./logo/paid_apps/disney+.png",
-          "enabled": true
-        },
-        {
           "name": "Disney+ HotStar",
           "url": "https://www.hotstar.com/in",
           "logo": "./logo/paid_apps/Disney Hotstar Logo.png",
+          "enabled": true
+        },
+        {
+          "name": "yupptytv.com",
+          "url": "https://www.yupptv.com/channels",
+          "logo": "./logo/paid_apps/YuppTV Logo.svg",
           "enabled": true
         },
         {
@@ -200,12 +236,6 @@
           "name": "AMC+",
           "url": "https://www.amcplus.com/login",
           "logo": "./logo/paid_apps/amc+.png",
-          "enabled": true
-        },
-        {
-          "name": "yupptytv.com",
-          "url": "https://www.yupptv.com/channels",
-          "logo": "./logo/paid_apps/YuppTV Logo.svg",
           "enabled": true
         }
       ]
