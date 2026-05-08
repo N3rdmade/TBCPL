@@ -105,6 +105,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "RARE TOONS INDIA",
+          "url": "https://rareanimes.buzz/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
