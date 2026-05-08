@@ -53,15 +53,15 @@
           "enabled": true
         },
         {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": true
-        },
-        {
           "name": "awesome streaming site",
           "url": "https://7reels.cc/",
           "logo": "./logo/movies_shows/awesome-streaming-site.svg",
+          "enabled": true
+        },
+        {
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "logo": "",
           "enabled": true
         }
       ]
