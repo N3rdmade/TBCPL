@@ -161,6 +161,12 @@
           "enabled": true
         },
         {
+          "name": "yupptytv.com",
+          "url": "https://www.yupptv.com/channels",
+          "logo": "./logo/paid_apps/YuppTV Logo.svg",
+          "enabled": true
+        },
+        {
           "name": "Shudder",
           "url": "https://www.shudder.com/",
           "logo": "./logo/paid_apps/shudder.png",
@@ -230,12 +236,6 @@
           "name": "AMC+",
           "url": "https://www.amcplus.com/login",
           "logo": "./logo/paid_apps/amc+.png",
-          "enabled": true
-        },
-        {
-          "name": "yupptytv.com",
-          "url": "https://www.yupptv.com/channels",
-          "logo": "./logo/paid_apps/YuppTV Logo.svg",
           "enabled": true
         }
       ]
