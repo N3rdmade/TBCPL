@@ -77,15 +77,15 @@
           "enabled": true
         },
         {
-          "name": "Anime Salt",
-          "url": "https://animesalt.ac/",
-          "logo": "./logo/anime/AnimeSalt Logo.png",
-          "enabled": true
-        },
-        {
           "name": "Anime Lok",
           "url": "https://animelok.xyz/",
           "logo": "./logo/anime/Animelok Logo.png",
+          "enabled": true
+        },
+        {
+          "name": "Anime Salt",
+          "url": "https://animesalt.ac/",
+          "logo": "./logo/anime/AnimeSalt Logo.png",
           "enabled": true
         },
         {
