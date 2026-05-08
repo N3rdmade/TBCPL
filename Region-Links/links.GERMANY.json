@@ -171,6 +171,12 @@
           "url": "https://www.amcplus.com/login",
           "logo": "./logo/paid_apps/amc+.png",
           "enabled": true
+        },
+        {
+          "name": "Sky",
+          "url": "https://www.sky.de/",
+          "logo": "./logo/paid_apps/sky.png",
+          "enabled": true
         }
       ]
     },
