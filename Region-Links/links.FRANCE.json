@@ -21,6 +21,12 @@
           "url": "https://www.tf1.fr/",
           "enabled": true,
           "logo": "./logo/movies_shows/tf1.svg"
+        },
+        {
+          "name": "Fawesome",
+          "url": "https://fawesome.tv/category/82798/french",
+          "logo": "./logo/movies_shows/fawesome.webp",
+          "enabled": true
         }
       ]
     },
