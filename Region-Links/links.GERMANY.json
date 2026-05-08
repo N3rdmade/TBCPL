@@ -39,6 +39,12 @@
           "url": "https://www.ardmediathek.de/",
           "logo": "./logo/movies_shows/ard-media.png",
           "enabled": true
+        },
+        {
+          "name": "FilmPalast",
+          "url": "https://filmpalast.to/",
+          "logo": "./logo/movies_shows/filmpalast.png",
+          "enabled": true
         }
       ]
     },
