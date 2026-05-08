@@ -81,6 +81,12 @@
           "url": "https://www.sportschau.de/",
           "enabled": true,
           "logo": "./logo/livetv/sportschau.png"
+        },
+        {
+          "name": "S.to",
+          "url": "https://s.to/",
+          "logo": "./logo/livetv/s-to.svg",
+          "enabled": true
         }
       ]
     },
