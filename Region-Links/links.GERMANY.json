@@ -21,6 +21,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "Netzkino",
+          "url": "https://www.netzkino.de/",
+          "logo": "./logo/movies_shows/netzkino.png",
+          "enabled": true
         }
       ]
     },
