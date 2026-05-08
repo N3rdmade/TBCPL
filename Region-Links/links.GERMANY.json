@@ -83,9 +83,9 @@
           "logo": "./logo/livetv/sportschau.png"
         },
         {
-          "name": "S.to",
-          "url": "https://s.to/",
-          "logo": "./logo/livetv/s-to.svg",
+          "name": "3Sat",
+          "url": "https://www.3sat.de/programm",
+          "logo": "./logo/livetv/3sat.svg",
           "enabled": true
         }
       ]
