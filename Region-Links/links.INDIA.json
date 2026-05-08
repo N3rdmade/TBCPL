@@ -149,12 +149,6 @@
       "name": "Paid Services",
       "sites": [
         {
-          "name": "Disney+",
-          "url": "https://www.disneyplus.com/identity/login/",
-          "logo": "./logo/paid_apps/disney+.png",
-          "enabled": true
-        },
-        {
           "name": "Disney+ HotStar",
           "url": "https://www.hotstar.com/in",
           "logo": "./logo/paid_apps/Disney Hotstar Logo.png",
