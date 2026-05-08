@@ -27,6 +27,12 @@
           "url": "https://streamkiste.life/",
           "enabled": true,
           "logo": "./logo/movies_shows/streamkiste.png"
+        },
+        {
+          "name": "ZDF",
+          "url": "https://www.zdf.de/",
+          "logo": "./logo/movies_shows/zdf.png",
+          "enabled": true
         }
       ]
     },
