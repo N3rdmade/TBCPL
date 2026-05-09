@@ -75,6 +75,12 @@
           "url": "https://manga-scantrad.io/",
           "logo": "./logo/manga/manga-scantrad.png",
           "enabled": true
+        },
+        {
+          "name": "Manga Origines",
+          "url": "https://mangas-origines.fr/",
+          "logo": "./logo/manga/manga-origines.png",
+          "enabled": true
         }
       ]
     },
