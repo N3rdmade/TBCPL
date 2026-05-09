@@ -65,10 +65,10 @@
       "name": "Manga",
       "sites": [
         {
-          "name": "Bientôt plus — ajoutez une suggestion !",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "Sushiscan",
+          "url": "https://sushiscan.net/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/manga/sushiscan.webp"
         }
       ]
     },
