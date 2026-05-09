@@ -81,6 +81,12 @@
           "url": "https://mangas-origines.fr/",
           "logo": "./logo/manga/manga-origines.png",
           "enabled": true
+        },
+        {
+          "name": "Phenix Scans",
+          "url": "https://phenix-scans.co/",
+          "logo": "./logo/manga/phenix-scans.png",
+          "enabled": true
         }
       ]
     },
