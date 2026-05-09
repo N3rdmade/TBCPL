@@ -67,7 +67,7 @@
         {
           "name": "Mappl",
           "url": "https://mappl.tv",
-          "logo": "",
+          "logo": "./logo/movies_shows/mappl.png",
           "enabled": true
         },
         {
