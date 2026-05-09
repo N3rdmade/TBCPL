@@ -5,16 +5,16 @@
       "name": "Movies & Shows",
       "sites": [
         {
-          "name": "Prossimamente — aggiungi un suggerimento!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "Cineblog01",
           "url": "https://cineblog001.forum/",
           "logo": "./logo/movies_shows/cineblog01.png",
           "enabled": true
+        },
+        {
+          "name": "Prossimamente — aggiungi un suggerimento!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "enabled": true,
+          "logo": ""
         }
       ]
     },
