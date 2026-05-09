@@ -57,6 +57,12 @@
           "url": "https://sekai.one/?v=15",
           "logo": "./logo/anime/sekai.png",
           "enabled": true
+        },
+        {
+          "name": "Anime Sama",
+          "url": "https://anime-sama.to/",
+          "logo": "./logo/anime/anime-sama.png",
+          "enabled": true
         }
       ]
     },
