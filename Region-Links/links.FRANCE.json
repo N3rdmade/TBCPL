@@ -69,6 +69,12 @@
           "url": "https://sushiscan.net/",
           "enabled": true,
           "logo": "./logo/manga/sushiscan.webp"
+        },
+        {
+          "name": "Manga Scantrad",
+          "url": "https://manga-scantrad.io/",
+          "logo": "./logo/manga/manga-scantrad.png",
+          "enabled": true
         }
       ]
     },
