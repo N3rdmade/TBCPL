@@ -63,6 +63,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "Vegamovies",
+          "url": "https://vegamovies.global/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
