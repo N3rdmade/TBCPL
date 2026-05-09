@@ -87,6 +87,12 @@
           "url": "https://phenix-scans.co/",
           "logo": "./logo/manga/phenix-scans.png",
           "enabled": true
+        },
+        {
+          "name": "Lelmanga",
+          "url": "https://www.lelmanga.com/",
+          "logo": "./logo/manga/lelmanga.png",
+          "enabled": true
         }
       ]
     },
