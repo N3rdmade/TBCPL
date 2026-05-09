@@ -189,6 +189,12 @@
           "url": "https://pikashowtv.in/",
           "logo": "./logo/apps/pikashow.png",
           "enabled": true
+        },
+        {
+          "name": "Tving",
+          "url": "http://www.tving.com/",
+          "logo": "./logo/apps/tving.webp",
+          "enabled": true
         }
       ]
     }
