@@ -15,6 +15,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "Altadefinizione",
+          "url": "https://altadefinizionegratis.living/",
+          "logo": "./logo/movies_shows/altadefinizione.png",
+          "enabled": true
         }
       ]
     },
