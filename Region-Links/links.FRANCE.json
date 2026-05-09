@@ -51,6 +51,12 @@
           "url": "https://vostfree.ws/",
           "enabled": true,
           "logo": "./logo/anime/VostFree Logo.png"
+        },
+        {
+          "name": "Sekai",
+          "url": "https://sekai.one/?v=15",
+          "logo": "./logo/anime/sekai.png",
+          "enabled": true
         }
       ]
     },
