@@ -61,7 +61,7 @@
         {
           "name": "Vegamovies",
           "url": "https://vegamovies.global/",
-          "logo": "",
+          "logo": "./logo/movies_shows/vegamovies.png",
           "enabled": true
         },
         {
