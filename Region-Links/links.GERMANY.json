@@ -91,7 +91,7 @@
         {
           "name": "VIPBox",
           "url": "https://www.vipbox.sc/football-live",
-          "logo": "",
+          "logo": "./logo/livetv/vipbox.png",
           "enabled": true
         }
       ]
