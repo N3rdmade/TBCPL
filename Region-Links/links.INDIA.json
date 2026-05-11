@@ -87,6 +87,12 @@
           "url": "https://multimovies.fyi/",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "Velora",
+          "url": "https://www.veloratv.in/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
