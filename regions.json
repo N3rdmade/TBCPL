@@ -79,12 +79,6 @@
       "enabled": true
     },
     {
-      "code": "CANADA",
-      "name": "Canada",
-      "flag": "🇨🇦",
-      "enabled": false
-    },
-    {
       "code": "PORTUGAL",
       "name": "Portugal",
       "flag": "🇵🇹",
@@ -101,6 +95,12 @@
       "name": "Egypt",
       "flag": "🇪🇬",
       "enabled": true
+    },
+    {
+      "code": "CANADA",
+      "name": "Canada",
+      "flag": "🇨🇦",
+      "enabled": false
     }
   ]
 }
