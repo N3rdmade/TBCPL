@@ -151,7 +151,7 @@
         {
           "name": "AnimeSuge",
           "url": "https://animesuge.cz/",
-          "logo": "",
+          "logo": "./logo/anime/animesuge.png",
           "enabled": true
         }
       ]
