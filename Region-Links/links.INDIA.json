@@ -77,6 +77,12 @@
           "enabled": true
         },
         {
+          "name": "Velora",
+          "url": "https://www.veloratv.in/",
+          "logo": "./logo/movies_shows/velora.png",
+          "enabled": true
+        },
+        {
           "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
@@ -86,12 +92,6 @@
           "name": "Multi movies",
           "url": "https://multimovies.fyi/",
           "logo": "",
-          "enabled": true
-        },
-        {
-          "name": "Velora",
-          "url": "https://www.veloratv.in/",
-          "logo": "./logo/movies_shows/velora.png",
           "enabled": true
         }
       ]
