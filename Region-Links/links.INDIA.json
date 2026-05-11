@@ -91,7 +91,7 @@
         {
           "name": "Velora",
           "url": "https://www.veloratv.in/",
-          "logo": "",
+          "logo": "./logo/movies_shows/velora.png",
           "enabled": true
         }
       ]
