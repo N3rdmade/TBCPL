@@ -99,6 +99,12 @@
           "url": "https://kmmovies.life/",
           "logo": "./logo/movies_shows/kmmovies.png",
           "enabled": true
+        },
+        {
+          "name": "PR MOVIES",
+          "url": "https://prmovies.health/",
+          "logo": "./logo/movies_shows/pr-movies.png",
+          "enabled": true
         }
       ]
     },
