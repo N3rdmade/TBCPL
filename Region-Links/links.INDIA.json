@@ -147,6 +147,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "AnimeSuge",
+          "url": "https://animesuge.cz/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
