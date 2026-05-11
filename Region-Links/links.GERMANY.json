@@ -87,6 +87,12 @@
           "url": "https://www.3sat.de/programm",
           "logo": "./logo/livetv/3sat.svg",
           "enabled": true
+        },
+        {
+          "name": "VIPBox",
+          "url": "https://www.vipbox.sc/football-live",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
