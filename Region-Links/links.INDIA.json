@@ -81,6 +81,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "Multi movies",
+          "url": "https://multimovies.fyi/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
