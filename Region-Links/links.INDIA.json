@@ -91,7 +91,7 @@
         {
           "name": "Multi movies",
           "url": "https://multimovies.fyi/",
-          "logo": "",
+          "logo": "./logo/movies_shows/multi-movies.jpg",
           "enabled": true
         }
       ]
