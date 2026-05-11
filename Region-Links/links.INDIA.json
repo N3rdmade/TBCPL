@@ -93,6 +93,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "KMMovies",
+          "url": "https://kmmovies.life/",
+          "logo": "./logo/movies_shows/kmmovies.png",
+          "enabled": true
         }
       ]
     },
