@@ -33,6 +33,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "Oglądaj Anime",
+          "url": "https://ogladajanime.pl",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
