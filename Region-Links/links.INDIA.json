@@ -103,7 +103,7 @@
         {
           "name": "MobiFlix",
           "url": "https://mobiflix.tv/",
-          "logo": "",
+          "logo": "./logo/movies_shows/mobiflix.png",
           "enabled": true
         },
         {
