@@ -25,7 +25,7 @@
         {
           "name": "ishowmovies",
           "url": "https://ishowmovies.org/",
-          "logo": "./logo/movies_shows/vidjoy.png",
+          "logo": "./logo/movies_shows/ishowmovies.png",
           "enabled": true
         }
       ]
