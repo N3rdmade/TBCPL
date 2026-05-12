@@ -45,6 +45,12 @@
           "url": "https://filmpalast.to/",
           "logo": "./logo/movies_shows/filmpalast.png",
           "enabled": true
+        },
+        {
+          "name": "MobiFlix",
+          "url": "https://mobiflix.tv/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
