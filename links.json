@@ -158,7 +158,7 @@
           "name": "Flixway",
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "MyFlixerz",
