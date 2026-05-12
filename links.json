@@ -165,6 +165,12 @@
           "url": "https://watch.corsflix.net/",
           "logo": "./logo/movies_shows/corsflix.png",
           "enabled": false
+        },
+        {
+          "name": "1Shows",
+          "url": "https://www.1shows.org/",
+          "logo": "./logo/movies_shows/1shows.png",
+          "enabled": true
         }
       ]
     },
