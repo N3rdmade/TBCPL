@@ -105,12 +105,6 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
-        },
-        {
-          "name": "1Shows",
-          "url": "https://www.1shows.org/",
-          "logo": "./logo/movies_shows/1shows.png",
-          "enabled": true
         }
       ]
     },
