@@ -21,6 +21,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "ishowmovies",
+          "url": "https://ishowmovies.org/",
+          "logo": "./logo/movies_shows/vidjoy.png",
+          "enabled": true
         }
       ]
     },
