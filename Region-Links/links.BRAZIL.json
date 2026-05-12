@@ -9,6 +9,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "MobiFlix",
+          "url": "https://mobiflix.tv/",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
