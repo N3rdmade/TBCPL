@@ -662,7 +662,7 @@
         {
           "name": "MobiFlix",
           "url": "https://mobiflix.tv/",
-          "logo": "",
+          "logo": "./logo/apps/mobiflix.png",
           "enabled": true
         }
       ]
