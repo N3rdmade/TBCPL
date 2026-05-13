@@ -303,6 +303,12 @@
           "url": "https://aniwatchtv.to/home",
           "logo": "./logo/anime/aniwatch.png",
           "enabled": false
+        },
+        {
+          "name": "Justanime",
+          "url": "https://justanime.to/",
+          "logo": "./logo/anime/justanime.png",
+          "enabled": true
         }
       ]
     },
