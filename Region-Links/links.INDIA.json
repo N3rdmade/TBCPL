@@ -101,15 +101,15 @@
           "enabled": true
         },
         {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": true
-        },
-        {
           "name": "hdhub4u",
           "url": "https://new1.hdhub4u.limo/?utm=mn1",
           "logo": "./logo/movies_shows/hdhub4u.png",
+          "enabled": true
+        },
+        {
+          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
+          "url": "https://tbcpl.lol/site-request.html",
+          "logo": "",
           "enabled": true
         }
       ]
