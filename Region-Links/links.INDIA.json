@@ -111,6 +111,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "orld4u",
+          "url": "https://world4ufree.tw/",
+          "logo": "./logo/movies_shows/orld4u.png",
+          "enabled": true
         }
       ]
     },
