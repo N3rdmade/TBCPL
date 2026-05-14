@@ -175,7 +175,7 @@
         {
           "name": "Animekai",
           "url": "https://anikai.to/home",
-          "logo": "",
+          "logo": "./logo/anime/animekai.png",
           "enabled": true
         },
         {
