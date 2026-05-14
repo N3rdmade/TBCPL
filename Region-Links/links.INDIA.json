@@ -107,12 +107,6 @@
           "enabled": true
         },
         {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": true
-        },
-        {
           "name": "orld4u",
           "url": "https://world4ufree.tw/",
           "logo": "./logo/movies_shows/orld4u.png",
@@ -179,9 +173,9 @@
           "enabled": true
         },
         {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
+          "name": "Anime Sogo",
+          "url": "https://animesogo.to/home",
+          "logo": "./logo/anime/anime-sogo.png",
           "enabled": true
         }
       ]
@@ -189,14 +183,7 @@
     {
       "id": "manga",
       "name": "Manga",
-      "sites": [
-        {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
-          "enabled": true
-        }
-      ]
+      "sites": []
     },
     {
       "id": "livetv",
@@ -206,12 +193,6 @@
           "name": "Taranga Plus",
           "url": "https://tarangplus.in/",
           "logo": "./logo/livetv/taranga-plus.png",
-          "enabled": true
-        },
-        {
-          "name": "और भी जल्द आ रहा है – यहाँ सुझाव दें!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "logo": "",
           "enabled": true
         }
       ]
