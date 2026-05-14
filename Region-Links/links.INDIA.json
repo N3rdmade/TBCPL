@@ -171,6 +171,12 @@
           "url": "https://tbcpl.lol/site-request.html",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "Animekai",
+          "url": "https://anikai.to/home",
+          "logo": "",
+          "enabled": true
         }
       ]
     },
