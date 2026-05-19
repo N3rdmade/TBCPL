@@ -622,7 +622,7 @@
           "url": "https://thetvapp.to",
           "logo": "./logo/livetv/tvappto.png",
           "enabled": true
-        },
+        }
       ]
     },
     {
