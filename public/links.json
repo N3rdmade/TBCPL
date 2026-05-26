@@ -166,6 +166,12 @@
           "logo": "./logo/movies_shows/reezli.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "test not accept",
+          "url": "https://google.com",
+          "logo": "./logo/movies/",
+          "status": "new"
         }
       ]
     },
