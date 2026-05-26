@@ -15,3 +15,6 @@ export function middleware(req: NextRequest) {
 export const config = {
   matcher: ["/api/admin/:path*"],
 };
+
+
+//no cache
