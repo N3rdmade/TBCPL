@@ -17,4 +17,4 @@ export const config = {
 };
 
 
-//no cache for api
+//no cache for api, its done finally
