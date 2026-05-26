@@ -33,7 +33,7 @@ function sanitizeSite(s: unknown): Site | null {
 
   const site: Site = { name: o.name.trim(), url: o.url.trim(), logo: o.logo };
   if (typeof o.description === "string" && o.description) site.description = o.description;
-  if (o.enabled === false) site.enabled = false;
+  if (typeof o.enabled === "boolean") site.enabled = o.enabled;
   if (Array.isArray(o.tags)) {
     const tags = o.tags.filter((t): t is string => typeof t === "string" && t.length > 0);
     if (tags.length) site.tags = tags;

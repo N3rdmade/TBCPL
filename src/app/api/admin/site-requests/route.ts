@@ -65,10 +65,30 @@ export async function GET(req: Request) {
   return NextResponse.json({ items });
 }
 
+interface LogoInput {
+  // Pre-existing path in the repo, e.g. "./logo/movies_shows/sflix.png"
+  existingPath?: string;
+  // New upload — committed alongside the links.json change
+  upload?: {
+    fileName: string;        // base file name only, e.g. "sflix.png"
+    contentBase64: string;   // raw image bytes, base64-encoded
+    categoryHint?: string;   // if omitted, falls back to first target's categoryId
+  };
+}
+
+function sanitizeFileName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9._-]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80) || "logo.png";
+}
+
 async function appendSiteToRegions(
   token: string,
   doc: RequestDoc,
-): Promise<{ commitSha: string; commitUrl: string; addedTo: number; skipped: string[] }> {
+  logo: LogoInput | undefined,
+): Promise<{ commitSha: string; commitUrl: string; addedTo: number; skipped: string[]; logoPath: string | null }> {
   // Group targets by region so we make one file edit per region (multiple categories collapse).
   const byRegion = new Map<string, string[]>();
   for (const t of doc.targets) {
@@ -81,6 +101,26 @@ async function appendSiteToRegions(
   const changes: FileChange[] = [];
   const skipped: string[] = [];
   let addedTo = 0;
+
+  // Resolve logo path. If an upload was provided, queue the binary file change
+  // into the same commit. Otherwise use existingPath if given, or fall back to
+  // the category folder placeholder.
+  let logoPath: string | null = null;
+  const firstCategoryId = doc.targets[0]?.categoryId;
+  if (logo?.upload && firstCategoryId) {
+    const cat = (logo.upload.categoryHint ?? firstCategoryId).toLowerCase();
+    const file = sanitizeFileName(logo.upload.fileName);
+    logoPath = `./logo/${cat}/${file}`;
+    changes.push({
+      path: `public/logo/${cat}/${file}`,
+      content: logo.upload.contentBase64,
+      encoding: "base64",
+    });
+  } else if (logo?.existingPath) {
+    logoPath = logo.existingPath.startsWith("./logo/")
+      ? logo.existingPath
+      : `./logo/${logo.existingPath.replace(/^\/?logo\//, "")}`;
+  }
 
   for (const [region, categoryIds] of byRegion) {
     const filePath = linksPathForRegion(region);
@@ -118,8 +158,9 @@ async function appendSiteToRegions(
       const newSite: Site = {
         name: doc.siteName,
         url: doc.siteUrl,
-        logo: `./logo/${categoryId}/`,
+        logo: logoPath ?? `./logo/${categoryId}/`,
         status: "new",
+        enabled: true,
       };
       cat.sites.push(newSite);
       mutated = true;
@@ -143,21 +184,21 @@ async function appendSiteToRegions(
 
   const message = `admin: approve "${doc.siteName}" (${addedTo} target${addedTo === 1 ? "" : "s"})`;
   const result = await commitChanges({ token, message, changes });
-  return { commitSha: result.commitSha, commitUrl: result.url, addedTo, skipped };
+  return { commitSha: result.commitSha, commitUrl: result.url, addedTo, skipped, logoPath };
 }
 
 export async function PATCH(req: Request) {
   const auth = await requireAdmin();
   if (!auth.ok) return auth.res;
 
-  let body: { id?: string; status?: string };
+  let body: { id?: string; status?: string; logo?: LogoInput };
   try {
-    body = (await req.json()) as { id?: string; status?: string };
+    body = (await req.json()) as { id?: string; status?: string; logo?: LogoInput };
   } catch {
     return NextResponse.json({ error: "invalid_json" }, { status: 400 });
   }
 
-  const { id, status } = body;
+  const { id, status, logo } = body;
   if (!id || !status) return NextResponse.json({ error: "missing_fields" }, { status: 400 });
   if (!(VALID_STATUSES as readonly string[]).includes(status)) {
     return NextResponse.json({ error: "invalid_status" }, { status: 400 });
@@ -185,7 +226,7 @@ export async function PATCH(req: Request) {
     const token = await getSessionToken();
     if (!token) return NextResponse.json({ error: "no_token" }, { status: 401 });
     try {
-      const r = await appendSiteToRegions(token, doc);
+      const r = await appendSiteToRegions(token, doc, logo);
       commitSha = r.commitSha;
       commitUrl = r.commitUrl;
       addedTo = r.addedTo;
