@@ -116,7 +116,9 @@
           "name": "SFlix",
           "url": "https://sflix.fi/",
           "logo": "./logo/movies_shows/sflix.png",
-          "enabled": true
+          "description": "site datacenters got burned rip",
+          "enabled": false,
+          "status": "down"
         },
         {
           "name": "Nepu",
@@ -164,8 +166,8 @@
           "name": "reezli",
           "url": "https://stream.reezli.vc/",
           "logo": "./logo/movies_shows/reezli.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
