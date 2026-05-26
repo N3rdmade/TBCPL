@@ -1,2 +1,24 @@
-.claude
+# OS / editor
 .DS_Store
+.claude
+
+# Node / Next
+node_modules
+.next
+out
+next-env.d.ts
+
+# Logs / env
+*.log
+.env*.local
+.env
+.env.development
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+
+# Backup of legacy static site (kept in branch legacy-static-site)
+.legacy-backup
