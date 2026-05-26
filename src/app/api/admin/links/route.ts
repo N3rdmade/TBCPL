@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth/require-admin";
-import { getLinksForRegion, getRegions } from "@/lib/data";
+import { getAllLinksForRegion, getRegions } from "@/lib/data";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -18,6 +18,6 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "unknown_region" }, { status: 404 });
   }
 
-  const data = await getLinksForRegion(region);
+  const data = await getAllLinksForRegion(region);
   return NextResponse.json({ region, categories: data.categories });
 }

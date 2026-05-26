@@ -57,6 +57,13 @@ export async function getLinksForRegion(
   };
 }
 
+// Unfiltered — for the admin editor so disabled sites are still visible/editable.
+export async function getAllLinksForRegion(
+  regionCode: string,
+): Promise<LinksData> {
+  return loadLinksFile(regionCode);
+}
+
 export async function getCategory(
   regionCode: string,
   categoryId: string,

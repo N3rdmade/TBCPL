@@ -214,7 +214,7 @@ export function SitesEditor({ regions, initialRegion }: SitesEditorProps) {
     setEditing(null);
   }, []);
 
-  const toggleSiteStatus = useCallback((categoryId: string, idx: number) => {
+  const toggleSiteEnabled = useCallback((categoryId: string, idx: number) => {
     setCategories((prev) =>
       prev?.map((c) => {
         if (c.id !== categoryId) return c;
@@ -222,14 +222,27 @@ export function SitesEditor({ regions, initialRegion }: SitesEditorProps) {
           ...c,
           sites: c.sites.map((s, i) => {
             if (i !== idx) return s;
-            const current = s.status ?? "ok";
-            const next: SiteStatus = current === "down" ? "ok" : "down";
-            return { ...s, status: next };
+            const next = s.enabled === false ? true : false;
+            return { ...s, enabled: next };
           }),
         };
       }) ?? null,
     );
   }, []);
+
+  const bulkSetEnabled = useCallback(
+    (enabled: boolean) => {
+      setCategories((prev) =>
+        prev?.map((c) => ({
+          ...c,
+          sites: c.sites.map((s, i) =>
+            selected.has(`${c.id}::${i}`) ? { ...s, enabled } : s,
+          ),
+        })) ?? null,
+      );
+    },
+    [selected],
+  );
 
   const bulkSetStatus = useCallback(
     (status: SiteStatus) => {
@@ -495,7 +508,7 @@ export function SitesEditor({ regions, initialRegion }: SitesEditorProps) {
                   onSitesReorder={(sites) => setSites(cat.id, sites)}
                   onAddSite={() => addSite(cat.id)}
                   onEditSite={(idx) => setEditing({ categoryId: cat.id, siteIndex: idx })}
-                  onToggleStatus={(idx) => toggleSiteStatus(cat.id, idx)}
+                  onToggleStatus={(idx) => toggleSiteEnabled(cat.id, idx)}
                   selectMode={selectMode}
                   selected={selected}
                   onToggleSelect={toggleSelected}
@@ -513,14 +526,14 @@ export function SitesEditor({ regions, initialRegion }: SitesEditorProps) {
         >
           <span className="text-sm font-semibold">{selected.size} selected</span>
           <button
-            onClick={() => bulkSetStatus("ok")}
+            onClick={() => bulkSetEnabled(true)}
             className="inline-flex h-8 items-center gap-1 rounded-lg border px-3 text-xs hover:bg-[var(--bg-card-hover)]"
             style={{ borderColor: "var(--border)" }}
           >
             <Power size={12} /> Enable
           </button>
           <button
-            onClick={() => bulkSetStatus("down")}
+            onClick={() => bulkSetEnabled(false)}
             className="inline-flex h-8 items-center gap-1 rounded-lg border px-3 text-xs hover:bg-[var(--bg-card-hover)]"
             style={{ borderColor: "var(--border)" }}
           >
@@ -756,6 +769,7 @@ function SiteCardEditable({
   };
 
   const status = STATUSES.find((s) => s.value === (site.status ?? "ok"));
+  const isDisabled = site.enabled === false;
   const logoSrc = site.logo.startsWith("pending://") ? null : normalizeAsset(site.logo);
   const isPlaceholder = site.logo.startsWith("pending://") || !site.logo || site.logo.endsWith("/");
 
@@ -764,10 +778,11 @@ function SiteCardEditable({
       ref={setNodeRef}
       style={{
         ...style,
-        borderColor: isSelected ? "var(--accent)" : "var(--border)",
+        borderColor: isSelected ? "var(--accent)" : isDisabled ? "var(--danger, #f87171)" : "var(--border)",
         background: isSelected
           ? "color-mix(in oklab, var(--accent) 14%, var(--bg-elev))"
           : "var(--bg-elev)",
+        opacity: isDisabled ? (isDragging ? 0.25 : 0.5) : style.opacity,
       }}
       className="group relative flex min-h-[110px] cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border p-3 transition hover:border-[var(--accent)] hover:bg-[var(--bg-card-hover)]"
       onClick={onClick}
@@ -791,23 +806,25 @@ function SiteCardEditable({
         </button>
       )}
 
-      {status && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            if (!selectMode) onToggleStatus();
-          }}
-          disabled={selectMode}
-          aria-label={`Status: ${status.label} — click to toggle`}
-          title={`${status.label} — click to toggle online/down`}
-          className="absolute right-1.5 top-1.5 rounded-full p-1 transition hover:scale-125 disabled:cursor-default disabled:hover:scale-100"
-        >
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          if (!selectMode) onToggleStatus();
+        }}
+        disabled={selectMode}
+        aria-label={isDisabled ? "Disabled — click to enable" : "Enabled — click to disable"}
+        title={isDisabled ? "Disabled (hidden on site) — click to enable" : "Enabled — click to disable"}
+        className="absolute right-1.5 top-1.5 rounded-full p-1 transition hover:scale-125 disabled:cursor-default disabled:hover:scale-100"
+      >
+        {isDisabled ? (
+          <PowerOff size={12} className="text-[var(--danger,#f87171)]" />
+        ) : (
           <span
             className="block h-2 w-2 rounded-full"
-            style={{ background: status.color }}
+            style={{ background: status?.color ?? "var(--fg-muted)" }}
           />
-        </button>
-      )}
+        )}
+      </button>
 
       <div className="relative h-10 w-10 overflow-hidden rounded-lg" style={{ background: "var(--bg)" }}>
         {logoSrc && !isPlaceholder ? (
@@ -1040,6 +1057,33 @@ function EditDrawer({
               className="h-9 w-full rounded-lg border bg-transparent px-3 font-mono text-xs"
               style={{ borderColor: "var(--border)" }}
             />
+          </Field>
+
+          <Field label="Visibility">
+            <button
+              type="button"
+              onClick={() => onChange({ enabled: site.enabled === false ? true : false })}
+              className="inline-flex h-9 items-center gap-2 rounded-full border px-3 text-sm transition hover:bg-[var(--bg-card-hover)]"
+              style={{
+                borderColor: site.enabled === false ? "var(--danger, #f87171)" : "var(--accent)",
+                background:
+                  site.enabled === false
+                    ? "color-mix(in oklab, var(--danger, #f87171) 14%, transparent)"
+                    : "color-mix(in oklab, var(--accent) 14%, transparent)",
+              }}
+            >
+              {site.enabled === false ? (
+                <>
+                  <PowerOff size={14} className="text-[var(--danger,#f87171)]" />
+                  Disabled — hidden on public site
+                </>
+              ) : (
+                <>
+                  <Power size={14} className="text-[var(--accent)]" />
+                  Enabled — shown on public site
+                </>
+              )}
+            </button>
           </Field>
 
           <Field label="Status">
