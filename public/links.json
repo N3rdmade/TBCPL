@@ -133,6 +133,12 @@
           "name": "Flixway",
           "url": "https://flixway.pro/",
           "logo": "./logo/movies_shows/flixway.png"
+        },
+        {
+          "name": "stream.reezli",
+          "url": "https://stream.reezli.vc/",
+          "logo": "./logo/movies/",
+          "status": "new"
         }
       ]
     },
@@ -239,6 +245,12 @@
           "name": "Animesuge",
           "url": "https://animesuge.cz/",
           "logo": "./logo/anime/animesuge.png"
+        },
+        {
+          "name": "stream.reezli",
+          "url": "https://stream.reezli.vc/",
+          "logo": "./logo/anime/",
+          "status": "new"
         }
       ]
     },
