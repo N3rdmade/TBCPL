@@ -17,4 +17,4 @@ export const config = {
 };
 
 
-//no cache for cf
+//no cache api
