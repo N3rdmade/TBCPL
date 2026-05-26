@@ -74,7 +74,7 @@ export function LiveUsers() {
         />
       </span>
       <span className="tabular-nums text-[var(--fg)]">{count.toLocaleString()}</span>
-      <span>Users in Real-Time using TBCPL </span>
+      <span>Users in Real-Time using TBCPL :)</span>
     </div>
   );
 }
