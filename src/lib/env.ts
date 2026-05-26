@@ -18,4 +18,5 @@ export const env = {
   REPO_NAME: () => opt("GITHUB_REPO_NAME", "TBCPL"),
   REPO_BRANCH: () => opt("GITHUB_REPO_BRANCH", "main"),
   SITE_URL: () => opt("SITE_URL", "http://localhost:3000"),
+  REDIS_URL: () => opt("REDIS_URL", ""),
 };
