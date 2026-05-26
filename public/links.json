@@ -7,170 +7,139 @@
         {
           "name": "1Shows",
           "url": "https://www.1shows.org/",
-          "logo": "./logo/movies_shows/1shows.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/1shows.png"
         },
         {
           "name": "1Flex",
           "url": "https://www.1flex.org/",
-          "logo": "./logo/movies_shows/1flex.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/1flex.png"
         },
         {
           "name": "1Tube",
           "url": "https://www.1tube.org/",
-          "logo": "./logo/movies_shows/1tube.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/1tube.png"
         },
         {
           "name": "shuttletv",
           "url": "https://shuttletv.su/",
-          "logo": "./logo/movies_shows/logo.webp",
-          "enabled": true
+          "logo": "./logo/movies_shows/logo.webp"
         },
         {
           "name": "AlienFlix",
           "url": "https://ishowmovies.org/",
-          "logo": "./logo/movies_shows/alienflix.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/alienflix.png"
         },
         {
           "name": "FlickyStream",
           "url": "https://flickystream.ru/",
-          "logo": "./logo/movies_shows/flickystream.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/flickystream.png"
         },
         {
           "name": "Wooflix",
           "url": "https://cinebytv.com/",
-          "logo": "./logo/movies_shows/wooflix.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/wooflix.png"
         },
         {
           "name": "RiveStream",
           "url": "https://rivestream.ru/",
-          "logo": "./logo/movies_shows/rivestream.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/rivestream.png"
         },
         {
           "name": "CinemaBZ",
           "url": "https://cinema.bz/",
-          "logo": "./logo/movies_shows/cinemabz.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/cinemabz.png"
         },
         {
           "name": "Spenflix",
           "url": "https://watch.spencerdevs.xyz/",
-          "logo": "./logo/movies_shows/spenflix.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/spenflix.png"
         },
         {
           "name": "FilmCave",
           "url": "https://filmcave.ru/",
-          "logo": "./logo/movies_shows/filmcave.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/filmcave.png"
         },
         {
           "name": "Cinegram",
           "url": "https://cinegram.tv/home",
-          "logo": "./logo/movies_shows/cinegram.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/cinegram.png"
         },
         {
           "name": "Cinezo",
           "url": "https://www.cinezo.net/",
-          "logo": "./logo/movies_shows/cinezo.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/cinezo.png"
         },
         {
           "name": "Bcine",
           "url": "https://bcine.app/",
-          "logo": "./logo/movies_shows/bcine.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/bcine.png"
         },
         {
           "name": "StreamX",
           "url": "https://streamex.net/",
-          "logo": "./logo/movies_shows/streamx.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/streamx.png"
         },
         {
           "name": "Cineby",
           "url": "https://www.cineby.gd/",
-          "logo": "./logo/movies_shows/cineby.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/cineby.png"
         },
         {
           "name": "Donkey",
           "url": "https://donkey.to/",
-          "logo": "./logo/movies_shows/Donkey Logo.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/Donkey Logo.png"
         },
         {
           "name": "Willow",
           "url": "https://willow.arlen.icu/",
-          "logo": "./logo/movies_shows/willow.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/willow.png"
         },
         {
           "name": "SFlix",
           "url": "https://sflix.fi/",
           "logo": "./logo/movies_shows/sflix.png",
-          "enabled": true
+          "enabled": false,
+          "status": "down"
         },
         {
           "name": "Nepu",
           "url": "https://nepu.to/",
-          "logo": "./logo/movies_shows/nepu.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/nepu.png"
         },
         {
           "name": "FMovies",
           "url": "https://fmovies-hd.to/home/",
-          "logo": "./logo/movies_shows/fmovies.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/fmovies.png"
         },
         {
           "name": "67Movies",
           "url": "https://67movies.net/",
-          "logo": "./logo/movies_shows/67movies.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/67movies.png"
         },
         {
           "name": "Filmytime",
           "url": "https://filmytime.site",
-          "logo": "./logo/movies_shows/24d009bd-6c1b-4fe2-ae57-f41cb8cbb197.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/24d009bd-6c1b-4fe2-ae57-f41cb8cbb197.png"
         },
         {
           "name": "Xprime",
           "url": "https://xprime.stream/",
-          "logo": "./logo/movies_shows/xprime.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/xprime.png"
         },
         {
           "name": "SmashyStream",
           "url": "https://smashystream.xyz/",
-          "logo": "./logo/movies_shows/smashystream.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/smashystream.png"
         },
         {
           "name": "Flixway",
           "url": "https://flixway.pro/",
-          "logo": "./logo/movies_shows/flixway.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/flixway.png"
         },
         {
           "name": "reezli",
           "url": "https://stream.reezli.vc/",
           "logo": "./logo/movies_shows/reezli.png",
-          "status": "new",
-          "enabled": true
-        },
-        {
-          "name": "test not accept",
-          "url": "https://google.com",
-          "logo": "./logo/movies/",
           "status": "new"
         }
       ]
@@ -182,122 +151,102 @@
         {
           "name": "ReAnime",
           "url": "https://reanime.to/home",
-          "logo": "./logo/anime/ReAnime Logo.png",
-          "enabled": true
+          "logo": "./logo/anime/ReAnime Logo.png"
         },
         {
           "name": "Anikage",
           "url": "https://anikage.cc/home",
-          "logo": "./logo/anime/Anikage Logo.png",
-          "enabled": true
+          "logo": "./logo/anime/Anikage Logo.png"
         },
         {
           "name": "AniDap",
           "url": "https://anidap.se/home",
-          "logo": "./logo/anime/AniDap Logo v2.png",
-          "enabled": true
+          "logo": "./logo/anime/AniDap Logo v2.png"
         },
         {
           "name": "Enma",
           "url": "https://www.enma.lol",
-          "logo": "./logo/anime/enma.png",
-          "enabled": true
+          "logo": "./logo/anime/enma.png"
         },
         {
           "name": "Animex",
           "url": "https://animex.one/home",
-          "logo": "./logo/anime/Animex Logo.png",
-          "enabled": true
+          "logo": "./logo/anime/Animex Logo.png"
         },
         {
           "name": "Anime Nexus",
           "url": "https://anime.nexus/",
-          "logo": "./logo/anime/Anime Nexus Logo v2.png",
-          "enabled": true
+          "logo": "./logo/anime/Anime Nexus Logo v2.png"
         },
         {
           "name": "1Anime",
           "url": "https://1anime.app/discover",
-          "logo": "./logo/anime/1Anime Logo.png",
-          "enabled": true
+          "logo": "./logo/anime/1Anime Logo.png"
         },
         {
           "name": "Miruro",
           "url": "https://www.miruro.to",
-          "logo": "./logo/anime/miruro.png",
-          "enabled": true
+          "logo": "./logo/anime/miruro.png"
         },
         {
           "name": "yenime",
           "url": "https://yenime.net",
-          "logo": "./logo/anime/yenime.png",
-          "enabled": true
+          "logo": "./logo/anime/yenime.png"
         },
         {
           "name": "Anistream",
           "url": "https://anistream.one",
-          "logo": "./logo/anime/anistream.png",
-          "enabled": true
+          "logo": "./logo/anime/anistream.png"
         },
         {
           "name": "animepahe",
           "url": "https://animepahe.pw/",
-          "logo": "./logo/anime/animepahe.png",
-          "enabled": true
+          "logo": "./logo/anime/animepahe.png"
         },
         {
           "name": "Animetsu",
           "url": "https://animetsu.bz",
-          "logo": "./logo/anime/animetsu.png",
-          "enabled": true
+          "logo": "./logo/anime/animetsu.png"
         },
         {
           "name": "KickAssAnime",
           "url": "https://kaa.to/",
-          "logo": "./logo/anime/kickassanime.png",
-          "enabled": true
+          "logo": "./logo/anime/kickassanime.png"
         },
         {
           "name": "AnimeKai",
           "url": "https://animekai.to/home",
-          "logo": "./logo/anime/animekai.png",
-          "enabled": true
+          "logo": "./logo/anime/animekai.png"
         },
         {
           "name": "FAnime",
           "url": "https://fanime.tv/",
-          "logo": "./logo/anime/fanime.png",
-          "enabled": true
+          "logo": "./logo/anime/fanime.png"
         },
         {
           "name": "HiAnime",
           "url": "https://hianime.cv/home",
-          "logo": "./logo/anime/hianime.png",
-          "enabled": true
+          "logo": "./logo/anime/hianime.png"
         },
         {
           "name": "9anime",
           "url": "https://9anime.cl/",
-          "logo": "./logo/anime/9anime.png",
-          "enabled": true
+          "logo": "./logo/anime/9anime.png"
         },
         {
           "name": "Voidanime",
           "url": "https://www.voidanime.tech/home#/",
-          "logo": "./logo/anime/voidanime.png",
-          "enabled": true
+          "logo": "./logo/anime/voidanime.png"
         },
         {
           "name": "Justanime",
           "url": "https://justanime.to/",
-          "logo": "./logo/anime/justanime.png",
-          "enabled": true
+          "logo": "./logo/anime/justanime.png"
         },
         {
           "name": "Animesuge",
           "url": "https://animesuge.cz/",
-          "logo": "./logo/anime/animesuge.png",
-          "enabled": true
+          "logo": "./logo/anime/animesuge.png"
         }
       ]
     },
@@ -308,110 +257,92 @@
         {
           "name": "MangaBall",
           "url": "https://mangaball.net/",
-          "logo": "./logo/manga/mangaball.png",
-          "enabled": true
+          "logo": "./logo/manga/mangaball.png"
         },
         {
           "name": "Atsu",
           "url": "https://atsu.moe/",
-          "logo": "./logo/manga/atsumaru.png",
-          "enabled": true
+          "logo": "./logo/manga/atsumaru.png"
         },
         {
           "name": "Kagane",
           "url": "https://kagane.org/",
-          "logo": "./logo/manga/kagane.png",
-          "enabled": true
+          "logo": "./logo/manga/kagane.png"
         },
         {
           "name": "Onisaga",
           "url": "https://onisaga.com/",
-          "logo": "./logo/manga/onisaga.png",
-          "enabled": true
+          "logo": "./logo/manga/onisaga.png"
         },
         {
           "name": "Comick",
           "url": "https://comick.dev/",
-          "logo": "./logo/manga/comick.png",
-          "enabled": true
+          "logo": "./logo/manga/comick.png"
         },
         {
           "name": "Comix",
           "url": "https://comix.to/",
-          "logo": "./logo/manga/comix.png",
-          "enabled": true
+          "logo": "./logo/manga/comix.png"
         },
         {
           "name": "Qtoon",
           "url": "https://qtoon.net/",
-          "logo": "./logo/manga/qtoon.png",
-          "enabled": true
+          "logo": "./logo/manga/qtoon.png"
         },
         {
           "name": "MangaDex",
           "url": "https://mangadex.org/",
-          "logo": "./logo/manga/mangadex.png",
-          "enabled": true
+          "logo": "./logo/manga/mangadex.png"
         },
         {
           "name": "Mangago",
           "url": "https://mangago.me/",
-          "logo": "./logo/manga/mangago.png",
-          "enabled": true
+          "logo": "./logo/manga/mangago.png"
         },
         {
           "name": "MangaFire",
           "url": "https://mangafire.to/home",
-          "logo": "./logo/manga/mangafire.png",
-          "enabled": true
+          "logo": "./logo/manga/mangafire.png"
         },
         {
           "name": "AllManga",
           "url": "https://allmanga.to/manga?cty=ALL",
-          "logo": "./logo/manga/allmanga.png",
-          "enabled": true
+          "logo": "./logo/manga/allmanga.png"
         },
         {
           "name": "MangaKakalot",
           "url": "https://www.mangakakalot.gg/",
-          "logo": "./logo/manga/mangakakalot.png",
-          "enabled": true
+          "logo": "./logo/manga/mangakakalot.png"
         },
         {
           "name": "AsuraComic",
           "url": "https://asuracomic.net/",
-          "logo": "./logo/manga/asuracomic.png",
-          "enabled": true
+          "logo": "./logo/manga/asuracomic.png"
         },
         {
           "name": "ReadComicOnline",
           "url": "https://readcomiconline.li/",
-          "logo": "./logo/manga/readcomiconline.png",
-          "enabled": true
+          "logo": "./logo/manga/readcomiconline.png"
         },
         {
           "name": "MangaHub",
           "url": "https://mangahub.io/",
-          "logo": "./logo/manga/mangahub.png",
-          "enabled": true
+          "logo": "./logo/manga/mangahub.png"
         },
         {
           "name": "WeebCentral",
           "url": "https://weebcentral.com/",
-          "logo": "./logo/manga/weebcentral.png",
-          "enabled": true
+          "logo": "./logo/manga/weebcentral.png"
         },
         {
           "name": "MangaKatana",
           "url": "https://mangakatana.com/",
-          "logo": "./logo/manga/mangakatana.png",
-          "enabled": true
+          "logo": "./logo/manga/mangakatana.png"
         },
         {
           "name": "AnimeZ",
           "url": "https://likemanga.ink/",
-          "logo": "./logo/anime/animez.png",
-          "enabled": true
+          "logo": "./logo/anime/animez.png"
         }
       ]
     },
@@ -422,80 +353,67 @@
         {
           "name": "TV247",
           "url": "https://tv247.us",
-          "logo": "./logo/livetv/tv247.png",
-          "enabled": true
+          "logo": "./logo/livetv/tv247.png"
         },
         {
           "name": "DaddyHD",
           "url": "https://daddylive.org/",
-          "logo": "./logo/livetv/daddyhd.png",
-          "enabled": true
+          "logo": "./logo/livetv/daddyhd.png"
         },
         {
           "name": "NTVStream",
           "url": "https://ntv.cx",
-          "logo": "./logo/livetv/ntvstream.png",
-          "enabled": true
+          "logo": "./logo/livetv/ntvstream.png"
         },
         {
           "name": "PublicIPTV",
           "url": "https://publiciptv.com/",
-          "logo": "./logo/livetv/publiciptv.png",
-          "enabled": true
+          "logo": "./logo/livetv/publiciptv.png"
         },
         {
           "name": "Sport+",
           "url": "https://en12.sportplus.live/",
-          "logo": "https://cdn.apigodata.com/sp-imgs/logo.svg",
-          "enabled": true
+          "logo": "https://cdn.apigodata.com/sp-imgs/logo.svg"
         },
         {
           "name": "StreamEast",
           "url": "https://xstreameast.com/",
-          "logo": "./logo/livetv/streameast.png",
-          "enabled": true
+          "logo": "./logo/livetv/streameast.png"
         },
         {
           "name": "iStreamEast",
           "url": "https://istreameast.app/",
-          "logo": "./logo/livetv/istreameast.png",
-          "enabled": true
+          "logo": "./logo/livetv/istreameast.png"
         },
         {
           "name": "SportSurge",
           "url": "https://v2.sportsurge.net/",
-          "logo": "./logo/livetv/streamsurge.png",
-          "enabled": true
+          "logo": "./logo/livetv/streamsurge.png"
         },
         {
           "name": "TV Garden",
           "url": "https://tv.garden/",
-          "logo": "./logo/livetv/tvgarden.png",
-          "enabled": true
+          "logo": "./logo/livetv/tvgarden.png"
         },
         {
           "name": "TOTV",
           "url": "http://totv.org/tv/usa/",
-          "logo": "./logo/livetv/totv.png",
-          "enabled": true
+          "logo": "./logo/livetv/totv.png"
         },
         {
           "name": "RiveStream Sports",
           "url": "https://rivestream.ru/livesports/",
-          "logo": "./logo/movies_shows/rivestream.png",
-          "enabled": true
+          "logo": "./logo/movies_shows/rivestream.png"
         },
         {
           "name": "Sportsbite",
           "url": "https://livetv.moviebite.cc/",
-          "logo": "./logo/livetv/Sportsbite Logo.png",
-          "enabled": true
+          "logo": "./logo/livetv/Sportsbite Logo.png"
         },
         {
           "name": "GlobeTV",
           "url": "https://globetv.app/",
-          "logo": "./logo/livetv/globetv.png",
-          "enabled": true
+          "logo": "./logo/livetv/globetv.png"
         }
       ]
     },
@@ -506,86 +424,72 @@
         {
           "name": "Disney+",
           "url": "https://www.disneyplus.com/identity/login/",
-          "logo": "./logo/paid_apps/disney+.png",
-          "enabled": true
+          "logo": "./logo/paid_apps/disney+.png"
         },
         {
           "name": "Shudder",
           "url": "https://www.shudder.com/",
-          "logo": "./logo/paid_apps/shudder.png",
-          "enabled": true
+          "logo": "./logo/paid_apps/shudder.png"
         },
         {
           "name": "Hulu",
           "url": "https://auth.hulu.com/web/login/",
-          "logo": "./logo/paid_apps/hulu.png",
-          "enabled": true
+          "logo": "./logo/paid_apps/hulu.png"
         },
         {
           "name": "Netflix",
           "url": "https://www.netflix.com/",
-          "logo": "./logo/paid_apps/netflix.png",
-          "enabled": true
+          "logo": "./logo/paid_apps/netflix.png"
         },
         {
           "name": "Viki",
           "url": "https://www.viki.com/",
-          "logo": "./logo/paid_apps/viki.png",
-          "enabled": true
+          "logo": "./logo/paid_apps/viki.png"
         },
         {
           "name": "MAX",
           "url": "https://www.max.com/",
-          "logo": "https://www.hbomax.com/img/hbomax/logo_nav_bar.png",
-          "enabled": true
+          "logo": "https://www.hbomax.com/img/hbomax/logo_nav_bar.png"
         },
         {
           "name": "Apple TV+",
           "url": "https://tv.apple.com/",
-          "logo": "./logo/paid_apps/appletv.png",
-          "enabled": true
+          "logo": "./logo/paid_apps/appletv.png"
         },
         {
           "name": "Amazon Prime",
           "url": "https://www.amazon.com/gp/video/collection/IncludedwithPrime",
-          "logo": "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg",
-          "enabled": true
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg"
         },
         {
           "name": "Paramount+",
           "url": "https://www.paramountplus.com/account/signin/",
-          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Paramount_Plus.svg/1920px-Paramount_Plus.svg.png?_=20210312064352",
-          "enabled": true
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Paramount_Plus.svg/1920px-Paramount_Plus.svg.png?_=20210312064352"
         },
         {
           "name": "Crunchyroll",
           "url": "https://sso.crunchyroll.com/login",
-          "logo": "./logo/paid_apps/cruncyroll.png",
-          "enabled": true
+          "logo": "./logo/paid_apps/cruncyroll.png"
         },
         {
           "name": "MGM+",
           "url": "https://www.mgmplus.com/",
-          "logo": "./logo/paid_apps/mgm+.png",
-          "enabled": true
+          "logo": "./logo/paid_apps/mgm+.png"
         },
         {
           "name": "Peacock",
           "url": "https://www.peacocktv.com/start",
-          "logo": "./logo/paid_apps/Peacock.png",
-          "enabled": true
+          "logo": "./logo/paid_apps/Peacock.png"
         },
         {
           "name": "AMC+",
           "url": "https://www.amcplus.com/login",
-          "logo": "./logo/paid_apps/amc+.png",
-          "enabled": true
+          "logo": "./logo/paid_apps/amc+.png"
         },
         {
           "name": "TheTvApp",
           "url": "https://thetvapp.to",
-          "logo": "./logo/livetv/tvappto.png",
-          "enabled": true
+          "logo": "./logo/livetv/tvappto.png"
         }
       ]
     },
@@ -596,50 +500,42 @@
         {
           "name": "Playtorrio",
           "url": "https://playtorrio.pages.dev/",
-          "logo": "./logo/apps/playtorrio.png",
-          "enabled": true
+          "logo": "./logo/apps/playtorrio.png"
         },
         {
           "name": "OnStream APKs",
           "url": "https://onstreamapks.app/",
-          "logo": "./logo/apps/onstream.png",
-          "enabled": true
+          "logo": "./logo/apps/onstream.png"
         },
         {
           "name": "BeeTV",
           "url": "https://beetv.download/",
-          "logo": "./logo/apps/beetv.png",
-          "enabled": true
+          "logo": "./logo/apps/beetv.png"
         },
         {
           "name": "HDO Box",
           "url": "https://hdobox.net/",
-          "logo": "./logo/apps/hdobox.png",
-          "enabled": true
+          "logo": "./logo/apps/hdobox.png"
         },
         {
           "name": "MovieBox",
           "url": "https://www.moviesbox.com.co/home/",
-          "logo": "./logo/apps/moviebox.png",
-          "enabled": true
+          "logo": "./logo/apps/moviebox.png"
         },
         {
           "name": "NetMirror",
           "url": "https://netmirror.gg/2/en",
-          "logo": "./logo/apps/netmirror.png",
-          "enabled": true
+          "logo": "./logo/apps/netmirror.png"
         },
         {
           "name": "PikaShow",
           "url": "https://pikashowtv.in/",
-          "logo": "./logo/apps/pikashow.png",
-          "enabled": true
+          "logo": "./logo/apps/pikashow.png"
         },
         {
           "name": "MobiFlix",
           "url": "https://mobiflix.tv/",
-          "logo": "./logo/apps/mobiflix.png",
-          "enabled": true
+          "logo": "./logo/apps/mobiflix.png"
         }
       ]
     }
