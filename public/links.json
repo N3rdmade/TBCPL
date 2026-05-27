@@ -653,6 +653,13 @@
           "url": "https://mobiflix.tv/",
           "logo": "./logo/apps/mobiflix.png",
           "enabled": true
+        },
+        {
+          "name": "YouCine",
+          "url": "https://youcineapkpro.com/",
+          "logo": "./logo/livetv/youcine.webp",
+          "status": "new",
+          "enabled": true
         }
       ]
     }

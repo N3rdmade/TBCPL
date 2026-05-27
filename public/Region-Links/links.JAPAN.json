@@ -183,6 +183,13 @@
           "url": "https://mihon.app/",
           "logo": "./logo/apps/mihon.png",
           "enabled": true
+        },
+        {
+          "name": "YouCine",
+          "url": "https://youcineapkpro.com/",
+          "logo": "./logo/livetv/youcine.webp",
+          "status": "new",
+          "enabled": true
         }
       ]
     }

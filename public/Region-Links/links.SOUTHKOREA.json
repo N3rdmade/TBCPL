@@ -195,6 +195,13 @@
           "url": "http://www.tving.com/",
           "logo": "./logo/apps/tving.webp",
           "enabled": true
+        },
+        {
+          "name": "YouCine",
+          "url": "https://youcineapkpro.com/",
+          "logo": "./logo/livetv/youcine.webp",
+          "status": "new",
+          "enabled": true
         }
       ]
     }

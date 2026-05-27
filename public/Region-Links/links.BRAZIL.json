@@ -11,7 +11,7 @@
           "logo": ""
         }
       ]
-    },  
+    },
     {
       "id": "anime",
       "name": "Anime",
@@ -176,6 +176,13 @@
           "name": "PikaShow",
           "url": "https://pikashowtv.in/",
           "logo": "./logo/apps/pikashow.png",
+          "enabled": true
+        },
+        {
+          "name": "YouCine",
+          "url": "https://youcineapkpro.com/",
+          "logo": "./logo/livetv/youcine.webp",
+          "status": "new",
           "enabled": true
         }
       ]
