@@ -21,21 +21,21 @@ const AVOID = [
 
 export default function RequestPage() {
   return (
-    <main className="mx-auto max-w-5xl px-4 py-12 md:px-6">
-      <header className="mb-10 text-center">
-        <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">Request a Site</h1>
-        <p className="mt-2 text-[var(--fg-muted)]">Help us grow the collection.</p>
+    <main className="mx-auto max-w-5xl px-3 py-6 sm:px-4 sm:py-10 md:px-6 md:py-12">
+      <header className="mb-6 text-center sm:mb-10">
+        <h1 className="text-2xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">Request a Site</h1>
+        <p className="mt-2 text-sm text-[var(--fg-muted)] sm:text-base">Help us grow the collection.</p>
       </header>
 
-      <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-        <section className="tbcpl-card p-6 md:p-8">
-          <h2 className="mb-4 text-lg font-bold">Submit your request</h2>
+      <div className="grid gap-5 sm:gap-8 lg:grid-cols-[1.4fr_1fr]">
+        <section className="tbcpl-card p-4 sm:p-6 md:p-8">
+          <h2 className="mb-4 text-base font-bold sm:text-lg">Submit your request</h2>
           <RequestForm />
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-lg font-bold">Submission guidelines</h2>
-          <div className="tbcpl-card p-5">
+          <h2 className="text-base font-bold sm:text-lg">Submission guidelines</h2>
+          <div className="tbcpl-card p-4 sm:p-5">
             <h3 className="mb-3 flex items-center gap-2 font-semibold" style={{ color: "var(--success)" }}>
               <CheckCircle2 size={16} /> We look for
             </h3>
@@ -48,7 +48,7 @@ export default function RequestPage() {
               ))}
             </ul>
           </div>
-          <div className="tbcpl-card p-5">
+          <div className="tbcpl-card p-4 sm:p-5">
             <h3 className="mb-3 flex items-center gap-2 font-semibold" style={{ color: "var(--danger)" }}>
               <XCircle size={16} /> We avoid
             </h3>

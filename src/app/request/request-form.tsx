@@ -107,38 +107,40 @@ export function RequestForm() {
         </Label>
         <div className="space-y-2">
           {targets.map((row) => (
-            <div key={row.id} className="flex gap-2">
+            <div key={row.id} className="flex flex-col gap-2 sm:flex-row">
               <select
                 required
                 value={row.region}
                 onChange={(e) => updateTarget(row.id, "region", e.target.value)}
-                className="tbcpl-card flex-1 bg-[var(--bg-elev)] px-3 py-2.5 text-sm outline-none focus:border-[var(--border-strong)]"
+                className="tbcpl-card min-w-0 flex-1 bg-[var(--bg-elev)] px-3 py-2.5 text-sm outline-none focus:border-[var(--border-strong)]"
               >
                 <option value="">Select region</option>
                 {regions.map((r) => (
                   <option key={r.code} value={r.code}>{r.flag} {r.name}</option>
                 ))}
               </select>
-              <select
-                required
-                value={row.category}
-                onChange={(e) => updateTarget(row.id, "category", e.target.value)}
-                className="tbcpl-card flex-1 bg-[var(--bg-elev)] px-3 py-2.5 text-sm outline-none focus:border-[var(--border-strong)]"
-              >
-                <option value="">Select section</option>
-                {Object.entries(CATEGORY_META).map(([id, m]) => (
-                  <option key={id} value={id}>{m.icon} {m.label}</option>
-                ))}
-              </select>
-              <button
-                type="button"
-                aria-label="Remove"
-                disabled={targets.length <= 1}
-                onClick={() => removeTarget(row.id)}
-                className="tbcpl-pill h-auto px-3 disabled:opacity-30"
-              >
-                <X size={14} />
-              </button>
+              <div className="flex gap-2">
+                <select
+                  required
+                  value={row.category}
+                  onChange={(e) => updateTarget(row.id, "category", e.target.value)}
+                  className="tbcpl-card min-w-0 flex-1 bg-[var(--bg-elev)] px-3 py-2.5 text-sm outline-none focus:border-[var(--border-strong)]"
+                >
+                  <option value="">Select section</option>
+                  {Object.entries(CATEGORY_META).map(([id, m]) => (
+                    <option key={id} value={id}>{m.icon} {m.label}</option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  aria-label="Remove"
+                  disabled={targets.length <= 1}
+                  onClick={() => removeTarget(row.id)}
+                  className="tbcpl-pill h-auto shrink-0 px-3 disabled:opacity-30"
+                >
+                  <X size={14} />
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -171,7 +173,7 @@ export function RequestForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold disabled:opacity-50"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold disabled:opacity-50 sm:w-auto"
         style={{ background: "var(--accent)", color: "var(--accent-fg)" }}
       >
         <Send size={14} /> {submitting ? "Submitting…" : "Submit request"}
