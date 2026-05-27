@@ -171,6 +171,13 @@
           "description": "site datacenters got burned rip",
           "enabled": false,
           "status": "down"
+        },
+        {
+          "name": "Awesome Streeaming Site",
+          "url": "https://cinemaos.live",
+          "logo": "./logo/movies/cinemaos.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
