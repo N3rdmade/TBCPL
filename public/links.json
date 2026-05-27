@@ -8,19 +8,22 @@
           "name": "1Shows",
           "url": "https://www.1shows.org/",
           "logo": "./logo/movies_shows/1shows.png",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "1Flex",
           "url": "https://www.1flex.org/",
           "logo": "./logo/movies_shows/1flex.png",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "1Tube",
           "url": "https://www.1tube.org/",
           "logo": "./logo/movies_shows/1tube.png",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "shuttletv",
