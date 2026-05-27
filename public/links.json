@@ -161,7 +161,7 @@
           "name": "reezli",
           "url": "https://stream.reezli.vc/",
           "logo": "./logo/movies_shows/reezli.png",
-          "enabled": true,
+          "enabled": false,
           "status": "new"
         },
         {
@@ -173,9 +173,9 @@
           "status": "down"
         },
         {
-          "name": "Awesome Streeaming Site",
+          "name": "Cinemaos",
           "url": "https://cinemaos.live",
-          "logo": "./logo/movies/cinemaos.png",
+          "logo": "./logo/movies_shows/cinemaos.png",
           "status": "new",
           "enabled": true
         }
@@ -207,6 +207,13 @@
           "name": "Enma",
           "url": "https://www.enma.lol",
           "logo": "./logo/anime/enma.png",
+          "enabled": true
+        },
+        {
+          "name": "Senpaiflix",
+          "url": "https://senpaiflix.fun",
+          "logo": "./logo/anime/senpaiflix.png",
+          "status": "new",
           "enabled": true
         },
         {
@@ -303,13 +310,6 @@
           "name": "Animesuge",
           "url": "https://animesuge.cz/",
           "logo": "./logo/anime/animesuge.png",
-          "enabled": true
-        },
-        {
-          "name": "Senpaiflix",
-          "url": "https://senpaiflix.fun",
-          "logo": "./logo/anime/senpaiflix.png",
-          "status": "new",
           "enabled": true
         }
       ]

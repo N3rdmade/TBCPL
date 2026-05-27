@@ -386,6 +386,13 @@ function ApproveModal({
   }, []);
 
   const firstCategoryId = targets[0]?.categoryId ?? "";
+  // categoryId in links.json uses short keys ("movies") but the on-disk logo
+  // folder is the longer alias ("movies_shows"). Map known aliases here.
+  const LOGO_FOLDER_ALIAS: Record<string, string> = {
+    movies: "movies_shows",
+    paid: "paid_apps",
+  };
+  const defaultLogoFolder = LOGO_FOLDER_ALIAS[firstCategoryId] ?? firstCategoryId;
   const [tab, setTab] = useState<"pick" | "upload" | "url" | "skip">("pick");
   const [logos, setLogos] = useState<LogoEntry[] | null>(null);
   const [logosLoading, setLogosLoading] = useState(false);
@@ -393,7 +400,7 @@ function ApproveModal({
   const [pickedPath, setPickedPath] = useState<string | null>(null);
 
   const [uploadFile, setUploadFile] = useState<{ name: string; base64: string; preview: string } | null>(null);
-  const [uploadCategory, setUploadCategory] = useState(firstCategoryId);
+  const [uploadCategory, setUploadCategory] = useState(defaultLogoFolder);
 
   const [fetchUrl, setFetchUrl] = useState("");
   const [fetching, setFetching] = useState(false);

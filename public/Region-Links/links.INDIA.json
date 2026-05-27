@@ -184,13 +184,6 @@
           "url": "https://animesogo.to/home",
           "logo": "./logo/anime/anime-sogo.png",
           "enabled": true
-        },
-        {
-          "name": "Senpaiflix",
-          "url": "https://senpaiflix.fun",
-          "logo": "./logo/anime/senpaiflix.png",
-          "status": "new",
-          "enabled": true
         }
       ]
     },
