@@ -65,6 +65,37 @@ export async function GET(req: Request) {
   return NextResponse.json({ items });
 }
 
+interface RequestOverrides {
+  siteName?: string;
+  siteUrl?: string;
+  siteFeature?: string;
+  targets?: Target[];
+}
+
+function applyOverrides(doc: RequestDoc, ov: RequestOverrides | undefined): RequestDoc {
+  if (!ov) return doc;
+  const next: RequestDoc = { ...doc };
+  if (typeof ov.siteName === "string" && ov.siteName.trim()) next.siteName = ov.siteName.trim();
+  if (typeof ov.siteUrl === "string" && ov.siteUrl.trim()) next.siteUrl = ov.siteUrl.trim();
+  if (typeof ov.siteFeature === "string") next.siteFeature = ov.siteFeature;
+  if (Array.isArray(ov.targets)) {
+    const clean: Target[] = [];
+    const seen = new Set<string>();
+    for (const t of ov.targets) {
+      if (!t || typeof t.region !== "string" || typeof t.categoryId !== "string") continue;
+      const region = t.region.trim().toUpperCase();
+      const categoryId = t.categoryId.trim().toLowerCase();
+      if (!region || !categoryId) continue;
+      const key = `${region}::${categoryId}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      clean.push({ region, categoryId });
+    }
+    if (clean.length) next.targets = clean;
+  }
+  return next;
+}
+
 interface LogoInput {
   // Pre-existing path in the repo, e.g. "./logo/movies_shows/sflix.png"
   existingPath?: string;
@@ -191,14 +222,19 @@ export async function PATCH(req: Request) {
   const auth = await requireAdmin();
   if (!auth.ok) return auth.res;
 
-  let body: { id?: string; status?: string; logo?: LogoInput };
+  let body: { id?: string; status?: string; logo?: LogoInput; overrides?: RequestOverrides };
   try {
-    body = (await req.json()) as { id?: string; status?: string; logo?: LogoInput };
+    body = (await req.json()) as {
+      id?: string;
+      status?: string;
+      logo?: LogoInput;
+      overrides?: RequestOverrides;
+    };
   } catch {
     return NextResponse.json({ error: "invalid_json" }, { status: 400 });
   }
 
-  const { id, status, logo } = body;
+  const { id, status, logo, overrides } = body;
   if (!id || !status) return NextResponse.json({ error: "missing_fields" }, { status: 400 });
   if (!(VALID_STATUSES as readonly string[]).includes(status)) {
     return NextResponse.json({ error: "invalid_status" }, { status: 400 });
@@ -222,11 +258,16 @@ export async function PATCH(req: Request) {
   let addedTo = 0;
   let skipped: string[] = [];
 
+  const effectiveDoc = applyOverrides(doc, overrides);
+
   if (status === "approved") {
     const token = await getSessionToken();
     if (!token) return NextResponse.json({ error: "no_token" }, { status: 401 });
+    if (!effectiveDoc.targets || effectiveDoc.targets.length === 0) {
+      return NextResponse.json({ error: "no_targets" }, { status: 400 });
+    }
     try {
-      const r = await appendSiteToRegions(token, doc, logo);
+      const r = await appendSiteToRegions(token, effectiveDoc, logo);
       commitSha = r.commitSha;
       commitUrl = r.commitUrl;
       addedTo = r.addedTo;
@@ -242,6 +283,13 @@ export async function PATCH(req: Request) {
     reviewedBy: auth.session.githubLogin,
     reviewedAt: new Date(),
   };
+  if (overrides) {
+    // Persist admin edits onto the request doc so the inbox shows the final state.
+    if (effectiveDoc.siteName !== doc.siteName) setFields.siteName = effectiveDoc.siteName;
+    if (effectiveDoc.siteUrl !== doc.siteUrl) setFields.siteUrl = effectiveDoc.siteUrl;
+    if (effectiveDoc.siteFeature !== doc.siteFeature) setFields.siteFeature = effectiveDoc.siteFeature;
+    if (effectiveDoc.targets !== doc.targets) setFields.targets = effectiveDoc.targets;
+  }
   if (commitSha) setFields.commitSha = commitSha;
   if (commitUrl) setFields.commitUrl = commitUrl;
   if (skipped.length) setFields.skipped = skipped;

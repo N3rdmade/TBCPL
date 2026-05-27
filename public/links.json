@@ -139,9 +139,9 @@
           "enabled": true
         },
         {
-          "name": "Filmytime",
-          "url": "https://filmytime.site",
-          "logo": "./logo/movies_shows/24d009bd-6c1b-4fe2-ae57-f41cb8cbb197.png",
+          "name": "WatchOTT",
+          "url": "https://watchott.ru",
+          "logo": "./logo/movies_shows/watchott.png",
           "enabled": true
         },
         {

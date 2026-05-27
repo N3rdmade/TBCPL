@@ -4,10 +4,18 @@ import { getSessionToken } from "@/lib/auth/session";
 import { commitChanges } from "@/lib/github/repo";
 import { regionsJsonPath } from "@/lib/admin/paths";
 import { db, COLLECTIONS } from "@/lib/db";
+import { getAllRegions } from "@/lib/data";
 import type { Region } from "@/lib/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+export async function GET() {
+  const auth = await requireAdmin();
+  if (!auth.ok) return auth.res;
+  const regions = await getAllRegions();
+  return NextResponse.json({ regions });
+}
 
 function sanitize(r: unknown): Region | null {
   if (!r || typeof r !== "object") return null;

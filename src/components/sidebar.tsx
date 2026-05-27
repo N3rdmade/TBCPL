@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -12,7 +12,7 @@ interface Props {
   categories: { id: string; name: string; count: number }[];
 }
 
-export function Sidebar({ regionCode, categories }: Props) {
+export function Sidebar({ categories }: Props) {
   const [active, setActive] = useState<string | null>(null);
   const { items: favs, mounted } = useFavorites();
 
@@ -36,8 +36,6 @@ export function Sidebar({ regionCode, categories }: Props) {
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
   }, [categories, favs.length]);
-
-  const regionPath = regionCode === "USA" ? "" : `/${regionCode.toLowerCase()}`;
 
   return (
     <aside className="hidden lg:block lg:w-56 lg:shrink-0">
@@ -95,23 +93,40 @@ export function Sidebar({ regionCode, categories }: Props) {
         })}
 
         <div className="mt-5 px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--fg-muted)]">
-          Pages
+          Join us
         </div>
-        <Link
-          href={`${regionPath}/`}
-          className="block rounded-lg px-3 py-2 text-sm text-[var(--fg-muted)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--fg)]"
-        >
-          All categories
-        </Link>
-        {categories.map((c) => (
-          <Link
-            key={c.id}
-            href={`${regionPath}/${c.id}`}
-            className="block rounded-lg px-3 py-2 text-sm text-[var(--fg-muted)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--fg)]"
+        <div className="px-3 pt-1">
+          <a
+            href="https://discord.gg/BPxzYVY5UU"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="mb-2 block overflow-hidden rounded-md transition hover:opacity-90"
           >
-            {CATEGORY_META[c.id]?.label ?? c.name} →
-          </Link>
-        ))}
+            <Image
+              src="/socials/discord.png"
+              alt="Join our Discord"
+              width={400}
+              height={120}
+              className="h-auto w-full max-w-[160px]"
+              unoptimized
+            />
+          </a>
+          <a
+            href="https://www.reddit.com/r/tbcpl/"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="block overflow-hidden rounded-md transition hover:opacity-90"
+          >
+            <Image
+              src="/socials/reddit.png"
+              alt="Join our subreddit"
+              width={400}
+              height={120}
+              className="h-auto w-full max-w-[160px]"
+              unoptimized
+            />
+          </a>
+        </div>
       </div>
     </aside>
   );

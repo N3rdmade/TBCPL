@@ -14,7 +14,7 @@ export function GoFundMeBanner() {
   }, []);
 
   if (!show) return null;
-  return (
+  return (  
     <div
       className="relative flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-10 py-2 text-center text-xs font-medium text-white sm:text-sm"
       style={{ background: "linear-gradient(135deg, #ff6b6b, #ee5a24)" }}

@@ -12,7 +12,6 @@ export function Footer() {
           <Link href="/request" className="hover:text-[var(--fg)]">Request</Link>
           <Link href="/dmca" className="hover:text-[var(--fg)]">DMCA</Link>
           <a href="https://github.com/N3rdmade/TBCPL/" target="_blank" rel="noreferrer" className="hover:text-[var(--fg)]">GitHub</a>
-          <a href="https://discord.gg/BPxzYVY5UU" target="_blank" rel="noreferrer" className="hover:text-[var(--fg)]">Discord</a>
         </div>
         <div className="flex flex-col items-center gap-2 text-center md:items-end md:text-right">
           <div>Curated with 💜 by the TBCPL Team</div>

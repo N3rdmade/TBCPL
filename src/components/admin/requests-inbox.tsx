@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import {
   Check,
@@ -16,6 +17,12 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import { CATEGORY_META } from "@/lib/constants";
+
+interface RegionLite {
+  code: string;
+  name: string;
+  flag: string;
+}
 
 type Status = "pending" | "approved" | "rejected" | "spam";
 
@@ -50,6 +57,13 @@ interface ApprovePayload {
   upload?: { fileName: string; contentBase64: string; categoryHint?: string };
 }
 
+interface ApproveOverrides {
+  siteName?: string;
+  siteUrl?: string;
+  siteFeature?: string;
+  targets?: Target[];
+}
+
 const FILTERS: { value: Status | "all"; label: string }[] = [
   { value: "pending", label: "Pending" },
   { value: "approved", label: "Approved" },
@@ -65,6 +79,14 @@ export function RequestsInbox() {
   const [error, setError] = useState<string | null>(null);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [approving, setApproving] = useState<RequestItem | null>(null);
+  const [regions, setRegions] = useState<RegionLite[]>([]);
+
+  useEffect(() => {
+    fetch("/api/admin/regions", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : { regions: [] }))
+      .then((j: { regions?: RegionLite[] }) => setRegions(j.regions ?? []))
+      .catch(() => setRegions([]));
+  }, []);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -86,13 +108,18 @@ export function RequestsInbox() {
     void load();
   }, [load]);
 
-  const setStatus = async (id: string, status: Status, logo?: ApprovePayload) => {
+  const setStatus = async (
+    id: string,
+    status: Status,
+    logo?: ApprovePayload,
+    overrides?: ApproveOverrides,
+  ) => {
     setUpdatingId(id);
     try {
       const r = await fetch("/api/admin/site-requests", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, status, logo }),
+        body: JSON.stringify({ id, status, logo, overrides }),
       });
       const j = (await r.json()) as {
         ok?: boolean;
@@ -201,9 +228,10 @@ export function RequestsInbox() {
       {approving && (
         <ApproveModal
           item={approving}
+          regions={regions}
           onCancel={() => setApproving(null)}
           submitting={updatingId === approving.id}
-          onConfirm={(logo) => setStatus(approving.id, "approved", logo)}
+          onConfirm={(logo, overrides) => setStatus(approving.id, "approved", logo, overrides)}
         />
       )}
     </div>
@@ -332,16 +360,32 @@ function StatusBadge({ status }: { status: Status }) {
 
 function ApproveModal({
   item,
+  regions,
   submitting,
   onCancel,
   onConfirm,
 }: {
   item: RequestItem;
+  regions: RegionLite[];
   submitting: boolean;
   onCancel: () => void;
-  onConfirm: (logo?: ApprovePayload) => void;
+  onConfirm: (logo: ApprovePayload | undefined, overrides: ApproveOverrides) => void;
 }) {
-  const firstCategoryId = item.targets[0]?.categoryId ?? "";
+  // Editable copies of the request fields. siteFeature is kept in state (so the
+  // override is correctly computed) but not shown — it's an admin-only note.
+  const [siteName, setSiteName] = useState(item.siteName);
+  const [siteUrl, setSiteUrl] = useState(item.siteUrl);
+  const [siteFeature] = useState(item.siteFeature ?? "");
+  const [targets, setTargets] = useState<Target[]>(item.targets);
+  const [newRegion, setNewRegion] = useState("");
+  const [newCategory, setNewCategory] = useState("");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const firstCategoryId = targets[0]?.categoryId ?? "";
   const [tab, setTab] = useState<"pick" | "upload" | "url" | "skip">("pick");
   const [logos, setLogos] = useState<LogoEntry[] | null>(null);
   const [logosLoading, setLogosLoading] = useState(false);
@@ -425,32 +469,62 @@ function ApproveModal({
     }
   };
 
+  const overrides: ApproveOverrides = {
+    siteName: siteName.trim() !== item.siteName ? siteName : undefined,
+    siteUrl: siteUrl.trim() !== item.siteUrl ? siteUrl : undefined,
+    siteFeature: siteFeature !== (item.siteFeature ?? "") ? siteFeature : undefined,
+    targets:
+      JSON.stringify(targets) !== JSON.stringify(item.targets) ? targets : undefined,
+  };
+
   const confirm = () => {
+    let logo: ApprovePayload | undefined;
     if (tab === "pick" && pickedPath) {
-      onConfirm({ existingPath: pickedPath });
+      logo = { existingPath: pickedPath };
     } else if (tab === "upload" && uploadFile) {
-      onConfirm({
+      logo = {
         upload: {
           fileName: uploadFile.name,
           contentBase64: uploadFile.base64,
           categoryHint: uploadCategory || firstCategoryId,
         },
-      });
-    } else {
-      // Skip → use category-folder placeholder
-      onConfirm(undefined);
+      };
     }
+    onConfirm(logo, overrides);
+  };
+
+  const removeTarget = (idx: number) => {
+    setTargets((prev) => prev.filter((_, i) => i !== idx));
+  };
+
+  const addTarget = () => {
+    if (!newRegion || !newCategory) return;
+    const region = newRegion.toUpperCase();
+    const categoryId = newCategory.toLowerCase();
+    setTargets((prev) =>
+      prev.some((t) => t.region === region && t.categoryId === categoryId)
+        ? prev
+        : [...prev, { region, categoryId }],
+    );
+    setNewRegion("");
+    setNewCategory("");
   };
 
   const canConfirm =
-    tab === "skip" ||
-    (tab === "pick" && !!pickedPath) ||
-    (tab === "upload" && !!uploadFile);
+    targets.length > 0 &&
+    !!siteName.trim() &&
+    !!siteUrl.trim() &&
+    (tab === "skip" || (tab === "pick" && !!pickedPath) || (tab === "upload" && !!uploadFile));
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-0 sm:items-center sm:p-4" onClick={onCancel}>
+  if (!mounted) return null;
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[100] flex items-end justify-center bg-black/70 p-0 sm:items-center sm:p-4"
+      onClick={onCancel}
+    >
       <div
-        className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border sm:rounded-2xl"
+        className="flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl border shadow-2xl sm:rounded-2xl"
         style={{ borderColor: "var(--border)", background: "var(--bg-elev)" }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -463,6 +537,97 @@ function ApproveModal({
           <button onClick={onCancel} aria-label="Close" className="rounded-lg p-1 hover:bg-[var(--bg-card-hover)]">
             <X size={16} />
           </button>
+        </div>
+
+        {/* Editable request details */}
+        <div className="space-y-3 border-b px-4 py-3" style={{ borderColor: "var(--border)" }}>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <label className="block">
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-[var(--fg-muted)]">Site name</span>
+              <input
+                value={siteName}
+                onChange={(e) => setSiteName(e.target.value)}
+                className="mt-1 h-9 w-full rounded-lg border bg-transparent px-3 text-sm"
+                style={{ borderColor: "var(--border)" }}
+              />
+            </label>
+            <label className="block">
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-[var(--fg-muted)]">Site URL</span>
+              <input
+                value={siteUrl}
+                onChange={(e) => setSiteUrl(e.target.value)}
+                className="mt-1 h-9 w-full rounded-lg border bg-transparent px-3 text-sm"
+                style={{ borderColor: "var(--border)" }}
+              />
+            </label>
+          </div>
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-wide text-[var(--fg-muted)]">
+              Targets ({targets.length})
+            </div>
+            <div className="mt-1 flex flex-wrap gap-1">
+              {targets.length === 0 && (
+                <span className="text-xs text-[var(--danger,#f87171)]">No targets — add at least one to approve.</span>
+              )}
+              {targets.map((t, i) => {
+                const cat = CATEGORY_META[t.categoryId];
+                return (
+                  <span
+                    key={`${t.region}::${t.categoryId}::${i}`}
+                    className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px]"
+                    style={{ borderColor: "var(--border)", background: "var(--bg)" }}
+                  >
+                    <span className="font-mono">{t.region}</span>
+                    <span className="text-[var(--fg-muted)]">·</span>
+                    <span>{cat ? `${cat.icon} ${cat.label}` : t.categoryId}</span>
+                    <button
+                      onClick={() => removeTarget(i)}
+                      aria-label="Remove target"
+                      className="ml-1 rounded-full p-0.5 hover:bg-[var(--bg-card-hover)]"
+                    >
+                      <X size={10} />
+                    </button>
+                  </span>
+                );
+              })}
+            </div>
+            <div className="mt-2 flex flex-wrap items-center gap-1.5">
+              <select
+                value={newRegion}
+                onChange={(e) => setNewRegion(e.target.value)}
+                className="h-8 rounded-lg border bg-transparent px-2 text-xs"
+                style={{ borderColor: "var(--border)" }}
+              >
+                <option value="">Region…</option>
+                {regions.map((r) => (
+                  <option key={r.code} value={r.code}>
+                    {r.flag} {r.name} ({r.code})
+                  </option>
+                ))}
+              </select>
+              <select
+                value={newCategory}
+                onChange={(e) => setNewCategory(e.target.value)}
+                className="h-8 rounded-lg border bg-transparent px-2 text-xs"
+                style={{ borderColor: "var(--border)" }}
+              >
+                <option value="">Category…</option>
+                {Object.entries(CATEGORY_META).map(([id, meta]) => (
+                  <option key={id} value={id}>
+                    {meta.icon} {meta.label}
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={addTarget}
+                disabled={!newRegion || !newCategory}
+                className="inline-flex h-8 items-center gap-1 rounded-lg border px-2.5 text-xs hover:bg-[var(--bg-card-hover)] disabled:opacity-40"
+                style={{ borderColor: "var(--border)" }}
+              >
+                Add target
+              </button>
+            </div>
+          </div>
         </div>
 
         <div className="flex gap-1 border-b px-3 py-2" style={{ borderColor: "var(--border)" }}>
@@ -639,6 +804,7 @@ function ApproveModal({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

@@ -55,8 +55,8 @@
         {
           "name": "awesome streaming site",
           "url": "https://7reels.cc/",
-          "logo": "./logo/movies_shows/awesome-streaming-site.svg",
-          "enabled": true
+          "logo": "./logo/movies_shows/7reels.svg",
+          "enabled": false
         },
         {
           "name": "Vegamovies",
@@ -68,7 +68,7 @@
           "name": "Mappl",
           "url": "https://mappl.tv",
           "logo": "./logo/movies_shows/mappl.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "HINDILINKS4U",

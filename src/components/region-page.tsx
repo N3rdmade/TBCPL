@@ -7,6 +7,7 @@ import { RecentlyVisited } from "./recently-visited";
 import { CategorySection } from "./category-section";
 import { FavoritesSection } from "./favorites-section";
 import { MobileCategoryBar } from "./mobile-category-bar";
+import { CountrySelect } from "./country-select";
 
 interface Props {
   region: Region;
@@ -31,6 +32,9 @@ export async function RegionPage({ region, onlyCategoryId }: Props) {
   return (
     <main className="mx-auto max-w-[1600px] px-3 pb-16 pt-4 sm:px-4 md:px-6 md:pt-6 2xl:px-8">
       <Hero regionFlag={region.flag} regionName={region.name} stats={stats} />
+      <div className="mb-4 flex justify-center md:hidden">
+        <CountrySelect />
+      </div>
       <div className="flex gap-8">
         <Sidebar regionCode={region.code} categories={cats} />
         <div className="min-w-0 flex-1">
