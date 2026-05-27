@@ -87,7 +87,7 @@
         },
         {
           "name": "Bcine",
-          "url": "https://bcine.app/",
+          "url": "https://bcine.ru/",
           "logo": "./logo/movies_shows/bcine.png",
           "enabled": true
         },
@@ -114,14 +114,6 @@
           "url": "https://willow.arlen.icu/",
           "logo": "./logo/movies_shows/willow.png",
           "enabled": true
-        },
-        {
-          "name": "SFlix",
-          "url": "https://sflix.fi/",
-          "logo": "./logo/movies_shows/sflix.png",
-          "description": "site datacenters got burned rip",
-          "enabled": false,
-          "status": "down"
         },
         {
           "name": "Nepu",
@@ -171,6 +163,14 @@
           "logo": "./logo/movies_shows/reezli.png",
           "enabled": true,
           "status": "new"
+        },
+        {
+          "name": "SFlix",
+          "url": "https://sflix.fi/",
+          "logo": "./logo/movies_shows/sflix.png",
+          "description": "site datacenters got burned rip",
+          "enabled": false,
+          "status": "down"
         }
       ]
     },
