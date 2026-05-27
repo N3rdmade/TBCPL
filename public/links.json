@@ -297,6 +297,13 @@
           "url": "https://animesuge.cz/",
           "logo": "./logo/anime/animesuge.png",
           "enabled": true
+        },
+        {
+          "name": "Senpaiflix",
+          "url": "https://senpaiflix.fun",
+          "logo": "./logo/anime/senpaiflix.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
