@@ -184,6 +184,13 @@
           "url": "https://animesogo.to/home",
           "logo": "./logo/anime/anime-sogo.png",
           "enabled": true
+        },
+        {
+          "name": "AniWaves",
+          "url": "https://aniwaves.ru",
+          "logo": "./logo/anime/aniwave.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
