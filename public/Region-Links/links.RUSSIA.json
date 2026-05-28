@@ -9,6 +9,13 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "REZKA",
+          "url": "https://rezka.ag/",
+          "logo": "./logo/movies_shows/rezka.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
