@@ -5,12 +5,6 @@
       "name": "Movies & Shows",
       "sites": [
         {
-          "name": "Скоро больше — добавьте предложение!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "REZKA",
           "url": "https://rezka.ag/",
           "logo": "./logo/movies_shows/rezka.png",

@@ -270,12 +270,6 @@
           "enabled": true
         },
         {
-          "name": "AnimeKai",
-          "url": "https://animekai.to/home",
-          "logo": "./logo/anime/animekai.png",
-          "enabled": true
-        },
-        {
           "name": "FAnime",
           "url": "https://fanime.tv/",
           "logo": "./logo/anime/fanime.png",

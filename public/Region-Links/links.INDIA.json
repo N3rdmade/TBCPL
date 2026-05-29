@@ -111,13 +111,6 @@
           "url": "https://world4ufree.tw/",
           "logo": "./logo/movies_shows/orld4u.png",
           "enabled": true
-        },
-        {
-          "name": "Awesome Streeaming Site",
-          "url": "https://cinemaos.live",
-          "logo": "./logo/movies/cinemaos.png",
-          "status": "new",
-          "enabled": true
         }
       ]
     },
@@ -171,12 +164,6 @@
           "name": "AnimeSuge",
           "url": "https://animesuge.cz/",
           "logo": "./logo/anime/animesuge.png",
-          "enabled": true
-        },
-        {
-          "name": "Animekai",
-          "url": "https://anikai.to/home",
-          "logo": "./logo/anime/animekai.png",
           "enabled": true
         },
         {

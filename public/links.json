@@ -44,10 +44,11 @@
           "enabled": true
         },
         {
-          "name": "Wooflix",
-          "url": "https://cinebytv.com/",
-          "logo": "./logo/movies_shows/wooflix.png",
-          "enabled": true
+          "name": "MeowTV",
+          "url": "https://meowtv.ru/",
+          "logo": "./logo/movies_shows/meowtv.png",
+          "enabled": true,
+          "status": "new"
         },
         {
           "name": "RiveStream",
@@ -65,7 +66,8 @@
           "name": "Spenflix",
           "url": "https://watch.spencerdevs.xyz/",
           "logo": "./logo/movies_shows/spenflix.png",
-          "enabled": true
+          "enabled": true,
+          "status": "down"
         },
         {
           "name": "FilmCave",
@@ -141,7 +143,7 @@
         },
         {
           "name": "Xprime",
-          "url": "https://xprime.stream/",
+          "url": "https://xprime.su/",
           "logo": "./logo/movies_shows/xprime.png",
           "enabled": true
         },
@@ -176,7 +178,6 @@
           "name": "Cinemaos",
           "url": "https://cinemaos.live",
           "logo": "./logo/movies_shows/cinemaos.png",
-          "status": "new",
           "enabled": true
         }
       ]
@@ -268,12 +269,6 @@
           "name": "KickAssAnime",
           "url": "https://kaa.to/",
           "logo": "./logo/anime/kickassanime.png",
-          "enabled": true
-        },
-        {
-          "name": "AnimeKai",
-          "url": "https://animekai.to/home",
-          "logo": "./logo/anime/animekai.png",
           "enabled": true
         },
         {
