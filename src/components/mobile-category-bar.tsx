@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { LayoutGrid, X } from "lucide-react";
 import { CATEGORY_META } from "@/lib/constants";
+import { CategoryIcon } from "./category-icon";
 
 interface Props {
   categories: { id: string; name: string; count: number }[];
@@ -75,7 +76,7 @@ export function MobileCategoryBar({ categories }: Props) {
                     className="tbcpl-card flex items-center justify-between gap-2 px-3 py-3 text-sm"
                   >
                     <span className="flex items-center gap-2">
-                      <span aria-hidden>{meta?.icon}</span>
+                      <CategoryIcon id={c.id} size={18} />
                       <span>{meta?.label ?? c.name}</span>
                     </span>
                     <span className="rounded px-1.5 text-[10px] font-mono" style={{ background: "var(--bg)", color: "var(--fg-muted)" }}>

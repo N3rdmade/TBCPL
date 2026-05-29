@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CATEGORY_META } from "@/lib/constants";
+import { CategoryIcon } from "./category-icon";
 import { useFavorites } from "@/lib/favorites";
 
 interface Props {
@@ -79,7 +80,7 @@ export function Sidebar({ categories }: Props) {
               )}
             >
               <span className="flex items-center gap-2">
-                <span aria-hidden>{meta?.icon ?? "•"}</span>
+                <CategoryIcon id={c.id} size={16} />
                 <span>{meta?.label ?? c.name}</span>
               </span>
               <span

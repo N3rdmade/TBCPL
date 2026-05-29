@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Search, X } from "lucide-react";
 import { CATEGORY_META } from "@/lib/constants";
+import { CategoryIcon } from "./category-icon";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -93,7 +94,7 @@ export function FilterChips({ categories }: Props) {
                 onClick={() => toggle(c.id)}
                 className={cn("tbcpl-pill inline-flex h-8 shrink-0 items-center gap-1.5 px-3 text-xs font-semibold")}
               >
-                <span aria-hidden>{meta?.icon}</span>
+                <CategoryIcon id={c.id} size={14} />
                 {meta?.label ?? c.name}
               </button>
             );

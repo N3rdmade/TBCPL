@@ -1,6 +1,7 @@
 import { CATEGORY_META } from "@/lib/constants";
 import type { Category } from "@/lib/types";
 import { SiteCard } from "./site-card";
+import { CategoryIcon } from "./category-icon";
 
 export function CategorySection({ category }: { category: Category }) {
   const meta = CATEGORY_META[category.id];
@@ -8,7 +9,7 @@ export function CategorySection({ category }: { category: Category }) {
     <section id={`cat-${category.id}`} data-category={category.id} className="scroll-mt-32">
       <div className="mb-3 flex items-baseline justify-between md:mb-4">
         <h2 className="flex items-center gap-2 text-lg font-bold sm:text-xl md:text-2xl">
-          <span aria-hidden>{meta?.icon}</span>
+          <CategoryIcon id={category.id} size={22} />
           {meta?.label ?? category.name}
           <span
             className="ml-1.5 rounded-full px-2 py-0.5 text-[10px] font-semibold md:text-xs"
