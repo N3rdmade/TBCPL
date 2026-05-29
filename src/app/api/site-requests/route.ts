@@ -43,7 +43,7 @@ function isValidUrl(u: string): boolean {
 }
 
 export async function POST(req: Request) {
-  const h = await headers();
+  const h = headers();
   const ip =
     h.get("x-forwarded-for")?.split(",")[0].trim() ?? h.get("x-real-ip") ?? "unknown";
 

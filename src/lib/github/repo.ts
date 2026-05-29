@@ -1,5 +1,5 @@
 import "server-only";
-import { Octokit } from "@octokit/rest";
+import { getOctokit } from "./client";
 import { env } from "../env";
 
 export interface FileChange {
@@ -23,7 +23,7 @@ export async function commitChanges(opts: {
 }): Promise<CommitResult> {
   if (opts.changes.length === 0) throw new Error("No changes to commit");
 
-  const octo = new Octokit({ auth: opts.token });
+  const octo = getOctokit(opts.token);
   const owner = env.REPO_OWNER();
   const repo = env.REPO_NAME();
   const branch = env.REPO_BRANCH();
@@ -92,7 +92,7 @@ export async function commitChanges(opts: {
 }
 
 export async function getRepoFile(opts: { token: string; path: string }): Promise<string | null> {
-  const octo = new Octokit({ auth: opts.token });
+  const octo = getOctokit(opts.token);
   try {
     const res = await octo.repos.getContent({
       owner: env.REPO_OWNER(),

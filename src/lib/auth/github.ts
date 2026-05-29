@@ -1,5 +1,5 @@
 import "server-only";
-import { Octokit } from "@octokit/rest";
+import { getOctokit } from "../github/client";
 import { env } from "../env";
 
 export interface GithubUser {
@@ -31,7 +31,7 @@ export async function exchangeCodeForToken(code: string): Promise<OAuthExchange>
 }
 
 export async function getCurrentUser(token: string): Promise<GithubUser> {
-  const octo = new Octokit({ auth: token });
+  const octo = getOctokit(token);
   const { data } = await octo.users.getAuthenticated();
   return { login: data.login, id: data.id, avatar_url: data.avatar_url };
 }
@@ -39,7 +39,7 @@ export async function getCurrentUser(token: string): Promise<GithubUser> {
 export type RepoPermission = "admin" | "maintain" | "write" | "triage" | "read" | "none";
 
 export async function getRepoPermission(token: string, username: string): Promise<RepoPermission> {
-  const octo = new Octokit({ auth: token });
+  const octo = getOctokit(token);
   const owner = env.REPO_OWNER();
   const repo = env.REPO_NAME();
   try {

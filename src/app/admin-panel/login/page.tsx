@@ -21,12 +21,12 @@ const ERROR_MESSAGES: Record<string, string> = {
 export default async function AdminLoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string }>;
+  searchParams: { error?: string };
 }) {
   const user = await getSessionUser();
   if (user) redirect("/admin-panel");
 
-  const { error } = await searchParams;
+  const { error } = searchParams;
   const message = error ? (ERROR_MESSAGES[error] ?? `Login error: ${error}`) : null;
 
   return (

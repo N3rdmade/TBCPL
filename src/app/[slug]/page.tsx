@@ -20,8 +20,8 @@ export async function generateStaticParams() {
   return params;
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const { slug } = params;
   if (CATEGORY_META[slug]) {
     const m = CATEGORY_META[slug];
     return { title: `${m.label} — USA`, description: m.blurb };
@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {};
 }
 
-export default async function SlugRoute({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function SlugRoute({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   if (RESERVED.has(slug)) notFound();
 
   // Category under default region

@@ -22,9 +22,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string; category: string }>;
+  params: { slug: string; category: string };
 }): Promise<Metadata> {
-  const { slug, category } = await params;
+  const { slug, category } = params;
   const r = await getRegionByCode(slug);
   const meta = CATEGORY_META[category];
   if (!r || !meta) return {};
@@ -34,9 +34,9 @@ export async function generateMetadata({
 export default async function RegionCategoryRoute({
   params,
 }: {
-  params: Promise<{ slug: string; category: string }>;
+  params: { slug: string; category: string };
 }) {
-  const { slug, category } = await params;
+  const { slug, category } = params;
   const region = await getRegionByCode(slug);
   if (!region) notFound();
   if (!CATEGORY_META[category]) notFound();

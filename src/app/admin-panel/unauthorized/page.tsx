@@ -13,9 +13,9 @@ export const dynamic = "force-dynamic";
 export default async function UnauthorizedPage({
   searchParams,
 }: {
-  searchParams: Promise<{ login?: string }>;
+  searchParams: { login?: string };
 }) {
-  const { login } = await searchParams;
+  const { login } = searchParams;
   const repo = `${env.REPO_OWNER()}/${env.REPO_NAME()}`;
 
   return (

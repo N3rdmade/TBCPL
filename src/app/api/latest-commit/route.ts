@@ -76,9 +76,7 @@ export async function GET() {
   try {
     if (!inflight) {
       inflight = fetchFromGithub().finally(() => {
-        setTimeout(() => {
-          inflight = null;
-        }, 0);
+        inflight = null;
       });
     }
     const data = await inflight;

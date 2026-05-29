@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const PING_INTERVAL_MS = 30_000;
+const PING_INTERVAL_MS = 60_000;
 
 interface PingResponse {
   online: number;

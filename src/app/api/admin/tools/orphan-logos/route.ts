@@ -117,9 +117,9 @@ export async function DELETE(req: Request) {
   if (paths.length === 0) return NextResponse.json({ error: "no_paths" }, { status: 400 });
 
   // Mark blobs as deleted via createTree with sha:null
-  const { Octokit } = await import("@octokit/rest");
+  const { getOctokit } = await import("@/lib/github/client");
   const { env } = await import("@/lib/env");
-  const octo = new Octokit({ auth: token });
+  const octo = getOctokit(token);
   const owner = env.REPO_OWNER();
   const repo = env.REPO_NAME();
   const branch = env.REPO_BRANCH();

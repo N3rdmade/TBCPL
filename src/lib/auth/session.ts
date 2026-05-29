@@ -46,7 +46,7 @@ export async function createSession(input: {
     expiresAt,
   });
 
-  const jar = await cookies();
+  const jar = cookies();
   jar.set({
     name: COOKIE,
     value: sid,
@@ -60,7 +60,7 @@ export async function createSession(input: {
 }
 
 export async function getSession(): Promise<SessionRecord | null> {
-  const jar = await cookies();
+  const jar = cookies();
   const sid = jar.get(COOKIE)?.value;
   if (!sid) return null;
   const d = await db();
@@ -90,7 +90,7 @@ export async function getSessionToken(): Promise<string | null> {
 }
 
 export async function destroySession() {
-  const jar = await cookies();
+  const jar = cookies();
   const sid = jar.get(COOKIE)?.value;
   if (sid) {
     const d = await db();
@@ -102,7 +102,7 @@ export async function destroySession() {
 const STATE_COOKIE = "tbcpl_oauth_state";
 
 export async function setOAuthState(state: string) {
-  const jar = await cookies();
+  const jar = cookies();
   jar.set({
     name: STATE_COOKIE,
     value: state,
@@ -115,7 +115,7 @@ export async function setOAuthState(state: string) {
 }
 
 export async function consumeOAuthState(received: string): Promise<boolean> {
-  const jar = await cookies();
+  const jar = cookies();
   const expected = jar.get(STATE_COOKIE)?.value;
   jar.delete(STATE_COOKIE);
   return !!expected && expected === received;
