@@ -39,6 +39,13 @@
           "url": "https://ogladajanime.pl",
           "logo": "",
           "enabled": true
+        },
+        {
+          "name": "docchi",
+          "url": "https://docchi.pl/",
+          "logo": "./logo/anime/docchi.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
