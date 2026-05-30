@@ -67,7 +67,7 @@
           "url": "https://watch.spencerdevs.xyz/",
           "logo": "./logo/movies_shows/spenflix.png",
           "enabled": true,
-          "status": "down"
+          "status": "ok"
         },
         {
           "name": "FilmCave",
@@ -214,8 +214,8 @@
           "name": "Senpaiflix",
           "url": "https://senpaiflix.fun",
           "logo": "./logo/anime/senpaiflix.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         },
         {
           "name": "Animex",
@@ -311,8 +311,8 @@
           "name": "AniWaves",
           "url": "https://aniwaves.ru",
           "logo": "./logo/anime/aniwave.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
@@ -660,8 +660,8 @@
           "name": "YouCine",
           "url": "https://youcineapkpro.com/",
           "logo": "./logo/livetv/youcine.webp",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     }
