@@ -47,8 +47,7 @@
           "name": "MeowTV",
           "url": "https://meowtv.ru/",
           "logo": "./logo/movies_shows/meowtv.png",
-          "enabled": true,
-          "status": "new"
+          "enabled": true
         },
         {
           "name": "RiveStream",
@@ -214,8 +213,7 @@
           "name": "Senpaiflix",
           "url": "https://senpaiflix.fun",
           "logo": "./logo/anime/senpaiflix.png",
-          "enabled": true,
-          "status": "new"
+          "enabled": true
         },
         {
           "name": "Animex",
@@ -311,8 +309,7 @@
           "name": "AniWaves",
           "url": "https://aniwaves.ru",
           "logo": "./logo/anime/aniwave.png",
-          "enabled": true,
-          "status": "new"
+          "enabled": true
         },
         {
           "name": "AG48ANIME",
