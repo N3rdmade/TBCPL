@@ -313,6 +313,13 @@
           "logo": "./logo/anime/aniwave.png",
           "enabled": true,
           "status": "new"
+        },
+        {
+          "name": "AG48ANIME",
+          "url": "https://ag48-network.vercel.app",
+          "logo": "./logo/anime/ag48anime.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
