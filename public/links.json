@@ -427,6 +427,13 @@
           "url": "https://likemanga.ink/",
           "logo": "./logo/anime/animez.png",
           "enabled": true
+        },
+        {
+          "name": "Mangaxo",
+          "url": "https://mangaxo.com/home",
+          "logo": "./logo/manga/mangaxo.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
