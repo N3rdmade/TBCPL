@@ -12,7 +12,7 @@
         },
         {
           "name": "Kiss KH",
-          "url": "https://kisskh.co/",
+          "url": "https://kisskh.do/",
           "logo": "./logo/movies_shows/Kiss KH Logo.png",
           "enabled": true
         },
@@ -28,11 +28,11 @@
       "id": "anime",
       "name": "Anime",
       "sites": [
-        {
-          "name": "곧 더 추가됩니다 — 제안을 추가해 주세요!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
+       {
+          "name": "Kiss KH",
+          "url": "https://kisskh.do/",
+          "logo": "./logo/movies_shows/Kiss KH Logo.png",
+          "enabled": true
         }
       ]
     },
