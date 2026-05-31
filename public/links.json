@@ -518,6 +518,13 @@
           "url": "https://globetv.app/",
           "logo": "./logo/livetv/globetv.png",
           "enabled": true
+        },
+        {
+          "name": "DaddyLive",
+          "url": "https://dlhd.pk/",
+          "logo": "./logo/livetv/daddylive.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
