@@ -21,6 +21,13 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "streamingcommunityz",
+          "url": "https://streamingcommunityz.company/",
+          "logo": "./logo/movies_shows/streamingcommunityz.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
