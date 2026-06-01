@@ -21,6 +21,13 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "SoloLatino",
+          "url": "https://sololatino.net/",
+          "logo": "./logo/movies_shows/sololatino",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
