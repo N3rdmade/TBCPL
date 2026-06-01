@@ -317,6 +317,13 @@
           "logo": "./logo/anime/ag48anime.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Anikoto",
+          "url": "https://anikototv.to",
+          "logo": "./logo/anime/anikoto.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
