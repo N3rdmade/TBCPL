@@ -111,6 +111,13 @@
           "url": "https://world4ufree.tw/",
           "logo": "./logo/movies_shows/orld4u.png",
           "enabled": true
+        },
+        {
+          "name": "netmirror",
+          "url": "https://net11.cc/home",
+          "logo": "./logo/movies_shows/netmirror.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
