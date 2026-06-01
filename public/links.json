@@ -315,15 +315,15 @@
           "name": "AG48ANIME",
           "url": "https://ag48-network.vercel.app",
           "logo": "./logo/anime/ag48anime.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         },
         {
           "name": "Anikoto",
           "url": "https://anikototv.to",
           "logo": "./logo/anime/anikoto.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
@@ -411,7 +411,7 @@
         },
         {
           "name": "ReadComicOnline",
-          "url": "https://readcomiconline.li/",
+          "url": "https://rcostation.xyz/",
           "logo": "./logo/manga/readcomiconline.png",
           "enabled": true
         },
@@ -443,8 +443,8 @@
           "name": "Mangaxo",
           "url": "https://mangaxo.com/home",
           "logo": "./logo/manga/mangaxo.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
@@ -534,15 +534,15 @@
           "name": "DaddyLive",
           "url": "https://dlhd.pk/",
           "logo": "./logo/livetv/daddylive.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         },
         {
           "name": "tvpass",
           "url": "https://tvpass.org",
           "logo": "./logo/livetv/tvpass.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
