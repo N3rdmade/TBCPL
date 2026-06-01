@@ -536,6 +536,13 @@
           "logo": "./logo/livetv/daddylive.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "tvpass",
+          "url": "https://tvpass.org",
+          "logo": "./logo/livetv/tvpass.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
