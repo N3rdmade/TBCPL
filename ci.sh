@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH=/snap/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 cd /root/TBCPL || exit 1
 
@@ -18,9 +18,9 @@ NEW=$(git rev-parse HEAD)
 if [ "$OLD" != "$NEW" ]; then
     echo "[$(date)] Update detected: $OLD -> $NEW"
 
-    docker compose up -d --build || { echo "[$(date)] docker build failed"; exit 1; }
+    /snap/bin/docker compose up -d --build || { echo "[$(date)] docker build failed"; exit 1; }
 
-    docker image prune -f
+    /snap/bin/docker image prune -f
 
     echo "[$(date)] Deploy completed"
 fi
