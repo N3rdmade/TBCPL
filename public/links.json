@@ -178,13 +178,6 @@
           "url": "https://cinemaos.live",
           "logo": "./logo/movies_shows/cinemaos.png",
           "enabled": true
-        },
-        {
-          "name": "Overlook",
-          "url": "https://overlook.to/",
-          "logo": "./logo/movies_shows/overlook.png",
-          "status": "new",
-          "enabled": true
         }
       ]
     },
