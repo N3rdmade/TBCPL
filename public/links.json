@@ -543,6 +543,13 @@
           "logo": "./logo/livetv/tvpass.png",
           "enabled": true,
           "status": "new"
+        },
+        {
+          "name": "Stmify",
+          "url": "https://stmify.com/",
+          "logo": "./logo/livetv/stmify.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
