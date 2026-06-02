@@ -550,6 +550,13 @@
           "logo": "./logo/livetv/stmify.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "ppv.to",
+          "url": "https://ppv.to/",
+          "logo": "./logo/livetv/stmify.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
