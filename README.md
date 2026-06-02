@@ -24,12 +24,3 @@ we'll take a look if its good then sure..
 ## Socials
 
 [Discord](https://discord.com/invite/BPxzYVY5UU)
-
-## CI with CRON
-
-```
-chmod +x /root/TBCPL/ci.sh
-```
-```
-(crontab -l 2>/dev/null; echo '* * * * * /root/TBCPL/ci.sh') | crontab -
-```
