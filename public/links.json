@@ -554,7 +554,7 @@
         {
           "name": "ppv.to",
           "url": "https://ppv.to/",
-          "logo": "./logo/livetv/stmify.png",
+          "logo": "./logo/livetv/ppv.png",
           "status": "new",
           "enabled": true
         }

@@ -432,6 +432,10 @@ function ApproveModal({
 
   const onFileChange = (f: File | null) => {
     if (!f) return;
+    if (f.size > 10 * 1024 * 1024) {
+      window.alert(`Logo too large (${(f.size / (1024 * 1024)).toFixed(1)}MB). Max is 10MB.`);
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => {
       const result = reader.result as string;

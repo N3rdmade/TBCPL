@@ -7,10 +7,12 @@ import {
   Loader2,
   ExternalLink,
   AlertTriangle,
-  Activity,
   Replace,
   Sparkles,
   ScanSearch,
+  Cloud,
+  Search,
+  Copy,
 } from "lucide-react";
 import type { Region } from "@/lib/types";
 
@@ -31,18 +33,6 @@ interface UrlHit {
   siteName: string;
   currentUrl: string;
 }
-interface HealthResult {
-  region: string;
-  categoryId: string;
-  siteName: string;
-  url: string;
-  status: number | null;
-  ok: boolean;
-  severity: "ok" | "warn" | "error";
-  note: string;
-  ms: number;
-}
-
 export function ToolsPanel({ regions }: { regions: Region[] }) {
   return (
     <div className="space-y-6">
@@ -52,11 +42,148 @@ export function ToolsPanel({ regions }: { regions: Region[] }) {
           Repo-wide actions. Every one writes a single atomic commit to GitHub.
         </p>
       </div>
+      <PurgeCacheTool />
+      <SiteSearchTool regions={regions} />
+      <DuplicateDetectorTool />
       <OrphanLogosTool />
       <UrlReplaceTool />
-      <HealthCheckTool regions={regions} />
       <FillEmptyTool />
     </div>
+  );
+}
+
+/* ---------------- Purge Cloudflare cache ---------------- */
+
+function PurgeCacheTool() {
+  const [scope, setScope] = useState<"everything" | "urls">("everything");
+  const [urlsText, setUrlsText] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<{ scope: string; purged: number | string; cfRequestId: string | null } | null>(null);
+
+  const run = async () => {
+    const urls = urlsText
+      .split(/[\n,]/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    if (scope === "urls" && urls.length === 0) {
+      setError("Add at least one URL.");
+      return;
+    }
+    if (scope === "urls" && urls.length > 30) {
+      setError("Cloudflare allows up to 30 URLs per call.");
+      return;
+    }
+    if (scope === "everything" && !window.confirm("Purge the entire Cloudflare cache for this zone? This will briefly increase origin load.")) {
+      return;
+    }
+
+    setBusy(true);
+    setError(null);
+    setResult(null);
+    try {
+      const r = await fetch("/api/admin/tools/purge-cache", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(scope === "urls" ? { scope, urls } : { scope }),
+      });
+      const j = (await r.json()) as {
+        ok?: boolean;
+        scope?: string;
+        purged?: number | string;
+        cfRequestId?: string | null;
+        error?: string;
+        detail?: string;
+      };
+      if (!r.ok || !j.ok) {
+        throw new Error(j.detail ?? j.error ?? "purge_failed");
+      }
+      setResult({
+        scope: j.scope ?? scope,
+        purged: j.purged ?? "—",
+        cfRequestId: j.cfRequestId ?? null,
+      });
+      if (scope === "urls") setUrlsText("");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "purge failed");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <Section
+      icon={<Cloud size={18} />}
+      title="Purge Cloudflare cache"
+      desc="Flush the CDN cache after a content update so visitors see new data immediately."
+    >
+      <div className="flex flex-wrap items-center gap-2">
+        <div className="flex rounded-lg border" style={{ borderColor: "var(--border)" }}>
+          <button
+            onClick={() => setScope("everything")}
+            className="rounded-l-lg px-3 py-1.5 text-xs"
+            style={{
+              background: scope === "everything" ? "var(--accent)" : "transparent",
+              color: scope === "everything" ? "white" : "var(--fg-muted)",
+            }}
+          >
+            Everything
+          </button>
+          <button
+            onClick={() => setScope("urls")}
+            className="rounded-r-lg border-l px-3 py-1.5 text-xs"
+            style={{
+              borderColor: "var(--border)",
+              background: scope === "urls" ? "var(--accent)" : "transparent",
+              color: scope === "urls" ? "white" : "var(--fg-muted)",
+            }}
+          >
+            Specific URLs
+          </button>
+        </div>
+        <button
+          onClick={run}
+          disabled={busy}
+          className="inline-flex h-9 items-center gap-1 rounded-lg bg-[var(--accent)] px-3 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-50"
+        >
+          {busy ? <Loader2 size={14} className="animate-spin" /> : <Cloud size={14} />}
+          {scope === "everything" ? "Purge all" : "Purge URLs"}
+        </button>
+      </div>
+
+      {scope === "urls" && (
+        <div className="mt-3">
+          <textarea
+            value={urlsText}
+            onChange={(e) => setUrlsText(e.target.value)}
+            rows={4}
+            placeholder={"https://tbcpl.lol/\nhttps://tbcpl.lol/links/USA.json\nhttps://tbcpl.lol/logo/movies/foo.png"}
+            className="w-full resize-y rounded-lg border bg-transparent px-3 py-2 font-mono text-xs"
+            style={{ borderColor: "var(--border)" }}
+          />
+          <p className="mt-1 text-[10px] text-[var(--fg-muted)]">
+            One URL per line (or comma-separated). Up to 30 per call.
+          </p>
+        </div>
+      )}
+
+      <Err msg={error} />
+      {result && (
+        <div className="mt-3 text-xs text-[var(--fg-muted)]">
+          ✓ Purged{" "}
+          {result.scope === "everything"
+            ? "entire zone"
+            : `${typeof result.purged === "number" ? result.purged : result.purged} URL${result.purged === 1 ? "" : "s"}`}
+          {result.cfRequestId && (
+            <>
+              {" · "}
+              <span className="font-mono text-[10px]">{result.cfRequestId}</span>
+            </>
+          )}
+        </div>
+      )}
+    </Section>
   );
 }
 
@@ -425,174 +552,6 @@ function UrlReplaceTool() {
   );
 }
 
-/* ---------------- Health check ---------------- */
-
-function HealthCheckTool({ regions }: { regions: Region[] }) {
-  const [scope, setScope] = useState<"all" | "region">("region");
-  const [region, setRegion] = useState("USA");
-  const [running, setRunning] = useState(false);
-  const [results, setResults] = useState<HealthResult[] | null>(null);
-  const [summary, setSummary] = useState<{ total: number; ok: number; warn: number; error: number } | null>(null);
-  const [filter, setFilter] = useState<"all" | "errors" | "warnings">("all");
-  const [error, setError] = useState<string | null>(null);
-
-  const run = async () => {
-    setRunning(true);
-    setError(null);
-    setResults(null);
-    setSummary(null);
-    try {
-      const r = await fetch("/api/admin/tools/health-check", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ scope, region: scope === "region" ? region : undefined }),
-      });
-      const j = (await r.json()) as { results?: HealthResult[]; summary?: typeof summary; error?: string };
-      if (!r.ok) throw new Error(j.error ?? "check_failed");
-      setResults(j.results ?? []);
-      setSummary(j.summary ?? null);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "check failed");
-    } finally {
-      setRunning(false);
-    }
-  };
-
-  const visible = !results
-    ? []
-    : filter === "errors"
-      ? results.filter((r) => r.severity === "error")
-      : filter === "warnings"
-        ? results.filter((r) => r.severity === "warn" || r.severity === "error")
-        : results;
-
-  return (
-    <Section
-      icon={<Activity size={18} />}
-      title="Site health check"
-      desc="Batch-fetch every site URL. Surface 404s, timeouts, Cloudflare blocks, dead domains."
-    >
-      <div className="flex flex-wrap items-center gap-2">
-        <div className="flex rounded-lg border" style={{ borderColor: "var(--border)" }}>
-          <button
-            onClick={() => setScope("region")}
-            className="rounded-l-lg px-3 py-1.5 text-xs"
-            style={{
-              background: scope === "region" ? "var(--accent)" : "transparent",
-              color: scope === "region" ? "white" : "var(--fg-muted)",
-            }}
-          >
-            One region
-          </button>
-          <button
-            onClick={() => setScope("all")}
-            className="rounded-r-lg border-l px-3 py-1.5 text-xs"
-            style={{
-              borderColor: "var(--border)",
-              background: scope === "all" ? "var(--accent)" : "transparent",
-              color: scope === "all" ? "white" : "var(--fg-muted)",
-            }}
-          >
-            All regions (slow)
-          </button>
-        </div>
-        {scope === "region" && (
-          <select
-            value={region}
-            onChange={(e) => setRegion(e.target.value)}
-            className="h-9 rounded-lg border px-2 text-sm"
-            style={{ borderColor: "var(--border)", background: "var(--bg-elev)" }}
-          >
-            {regions.map((r) => (
-              <option key={r.code} value={r.code}>{r.flag} {r.name} ({r.code})</option>
-            ))}
-          </select>
-        )}
-        <button
-          onClick={run}
-          disabled={running}
-          className="inline-flex h-9 items-center gap-1 rounded-lg bg-[var(--accent)] px-3 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-50"
-        >
-          {running ? <Loader2 size={14} className="animate-spin" /> : <Activity size={14} />}
-          Run check
-        </button>
-        {summary && (
-          <div className="ml-auto flex items-center gap-3 text-xs">
-            <span className="text-[var(--fg-muted)]">{summary.total} total</span>
-            <span className="text-[var(--success,#22c55e)]">{summary.ok} ok</span>
-            <span className="text-amber-400">{summary.warn} warn</span>
-            <span className="text-[var(--danger,#f87171)]">{summary.error} error</span>
-          </div>
-        )}
-      </div>
-      <Err msg={error} />
-      {results && results.length > 0 && (
-        <>
-          <div className="mt-3 flex gap-1">
-            {(["all", "warnings", "errors"] as const).map((f) => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className="rounded-full border px-3 py-1 text-xs"
-                style={{
-                  borderColor: filter === f ? "var(--accent)" : "var(--border)",
-                  background: filter === f ? "var(--accent)" : "transparent",
-                  color: filter === f ? "white" : "var(--fg)",
-                }}
-              >
-                {f === "all" ? "All" : f === "errors" ? "Errors only" : "Warnings + errors"}
-              </button>
-            ))}
-          </div>
-          <div className="mt-3 max-h-96 overflow-y-auto">
-            <table className="w-full text-xs">
-              <thead style={{ background: "var(--bg-elev)" }}>
-                <tr className="text-left">
-                  <th className="px-2 py-1">Region/Cat</th>
-                  <th className="px-2 py-1">Site</th>
-                  <th className="px-2 py-1">URL</th>
-                  <th className="px-2 py-1 text-right">Status</th>
-                  <th className="px-2 py-1">Note</th>
-                  <th className="px-2 py-1 text-right">ms</th>
-                </tr>
-              </thead>
-              <tbody>
-                {visible.map((r, i) => (
-                  <tr key={i} className="border-t" style={{ borderColor: "var(--border)" }}>
-                    <td className="px-2 py-1 font-mono text-[10px]">{r.region}/{r.categoryId}</td>
-                    <td className="px-2 py-1">{r.siteName}</td>
-                    <td className="px-2 py-1">
-                      <a href={r.url} target="_blank" rel="noreferrer" className="break-all text-[var(--accent)] hover:underline">{r.url}</a>
-                    </td>
-                    <td className="px-2 py-1 text-right tabular-nums">{r.status ?? "—"}</td>
-                    <td
-                      className="px-2 py-1"
-                      style={{
-                        color:
-                          r.severity === "error"
-                            ? "var(--danger,#f87171)"
-                            : r.severity === "warn"
-                              ? "#fbbf24"
-                              : "var(--fg-muted)",
-                      }}
-                    >
-                      {r.note}
-                    </td>
-                    <td className="px-2 py-1 text-right tabular-nums text-[var(--fg-muted)]">{r.ms}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </>
-      )}
-      {results && results.length === 0 && (
-        <div className="mt-3 text-xs text-[var(--fg-muted)]">No URLs to check.</div>
-      )}
-    </Section>
-  );
-}
-
 /* ---------------- Fill empty categories ---------------- */
 
 function FillEmptyTool() {
@@ -661,6 +620,356 @@ function FillEmptyTool() {
               <AlertTriangle size={12} /> {result.message ?? "Nothing to seed — no empty categories found."}
             </span>
           )}
+        </div>
+      )}
+    </Section>
+  );
+}
+
+/* ---------------- Site search ---------------- */
+
+interface SearchHit {
+  region: string;
+  categoryId: string;
+  siteName: string;
+  url: string;
+  logo: string;
+  enabled: boolean;
+}
+
+function SiteSearchTool({ regions }: { regions: Region[] }) {
+  const [q, setQ] = useState("");
+  const [field, setField] = useState<"any" | "name" | "url">("any");
+  const [filterRegion, setFilterRegion] = useState<string>("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<{
+    hits: SearchHit[];
+    totalHits: number;
+    totalRegionsScanned: number;
+  } | null>(null);
+
+  const search = async () => {
+    const query = q.trim();
+    if (query.length < 2) {
+      setError("Type at least 2 characters.");
+      return;
+    }
+    setBusy(true);
+    setError(null);
+    setResult(null);
+    try {
+      const r = await fetch(
+        `/api/admin/tools/site-search?q=${encodeURIComponent(query)}&field=${field}`,
+        { cache: "no-store" },
+      );
+      const j = (await r.json()) as {
+        ok?: boolean;
+        hits?: SearchHit[];
+        totalHits?: number;
+        totalRegionsScanned?: number;
+        error?: string;
+      };
+      if (!r.ok || !j.ok) throw new Error(j.error ?? "search_failed");
+      setResult({
+        hits: j.hits ?? [],
+        totalHits: j.totalHits ?? 0,
+        totalRegionsScanned: j.totalRegionsScanned ?? 0,
+      });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "search failed");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const visible = result
+    ? filterRegion
+      ? result.hits.filter((h) => h.region === filterRegion)
+      : result.hits
+    : [];
+  const regionsInHits = result
+    ? Array.from(new Set(result.hits.map((h) => h.region))).sort()
+    : [];
+
+  return (
+    <Section
+      icon={<Search size={18} />}
+      title="Search across all regions"
+      desc="Find a site by name or URL across every region — no more flipping tabs."
+    >
+      <div className="flex flex-wrap items-center gap-2">
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") void search();
+          }}
+          placeholder="netflix, hianime.to, …"
+          className="h-9 min-w-[16rem] flex-1 rounded-lg border bg-transparent px-3 text-sm"
+          style={{ borderColor: "var(--border)" }}
+        />
+        <div className="flex rounded-lg border" style={{ borderColor: "var(--border)" }}>
+          {(["any", "name", "url"] as const).map((f) => (
+            <button
+              key={f}
+              onClick={() => setField(f)}
+              className="px-3 py-1.5 text-xs first:rounded-l-lg last:rounded-r-lg [&:not(:first-child)]:border-l"
+              style={{
+                borderColor: "var(--border)",
+                background: field === f ? "var(--accent)" : "transparent",
+                color: field === f ? "white" : "var(--fg-muted)",
+              }}
+            >
+              {f === "any" ? "Name or URL" : f === "name" ? "Name only" : "URL only"}
+            </button>
+          ))}
+        </div>
+        <button
+          onClick={search}
+          disabled={busy || q.trim().length < 2}
+          className="inline-flex h-9 items-center gap-1 rounded-lg bg-[var(--accent)] px-3 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-50"
+        >
+          {busy ? <Loader2 size={14} className="animate-spin" /> : <Search size={14} />}
+          Search
+        </button>
+      </div>
+      <Err msg={error} />
+      {result && (
+        <div className="mt-3 space-y-2">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <span className="text-[var(--fg-muted)]">
+              {result.totalHits} hit{result.totalHits === 1 ? "" : "s"} across {regionsInHits.length} region{regionsInHits.length === 1 ? "" : "s"} · scanned {result.totalRegionsScanned}
+            </span>
+            {regionsInHits.length > 1 && (
+              <div className="flex flex-wrap gap-1">
+                <button
+                  onClick={() => setFilterRegion("")}
+                  className="rounded-full border px-2 py-0.5 text-[10px]"
+                  style={{
+                    borderColor: filterRegion === "" ? "var(--accent)" : "var(--border)",
+                    background: filterRegion === "" ? "color-mix(in oklab, var(--accent) 14%, transparent)" : "transparent",
+                  }}
+                >
+                  All
+                </button>
+                {regionsInHits.map((r) => {
+                  const meta = regions.find((x) => x.code === r);
+                  return (
+                    <button
+                      key={r}
+                      onClick={() => setFilterRegion(r)}
+                      className="rounded-full border px-2 py-0.5 text-[10px]"
+                      style={{
+                        borderColor: filterRegion === r ? "var(--accent)" : "var(--border)",
+                        background: filterRegion === r ? "color-mix(in oklab, var(--accent) 14%, transparent)" : "transparent",
+                      }}
+                    >
+                      {meta?.flag ?? ""} {r}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+          {visible.length > 0 ? (
+            <div className="max-h-96 overflow-y-auto">
+              <table className="w-full text-xs">
+                <thead style={{ background: "var(--bg-elev)" }}>
+                  <tr className="text-left">
+                    <th className="px-2 py-1">Region/Cat</th>
+                    <th className="px-2 py-1">Site</th>
+                    <th className="px-2 py-1">URL</th>
+                    <th className="px-2 py-1">Status</th>
+                    <th className="px-2 py-1 text-right">Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {visible.map((h, i) => (
+                    <tr key={i} className="border-t" style={{ borderColor: "var(--border)" }}>
+                      <td className="px-2 py-1 font-mono text-[10px]">{h.region}/{h.categoryId}</td>
+                      <td className="px-2 py-1">{h.siteName}</td>
+                      <td className="px-2 py-1">
+                        <a href={h.url} target="_blank" rel="noreferrer" className="break-all text-[var(--accent)] hover:underline">{h.url}</a>
+                      </td>
+                      <td className="px-2 py-1 text-[10px]">
+                        {h.enabled ? (
+                          <span className="text-[var(--success,#22c55e)]">enabled</span>
+                        ) : (
+                          <span className="text-[var(--danger,#f87171)]">disabled</span>
+                        )}
+                      </td>
+                      <td className="px-2 py-1 text-right">
+                        <a
+                          href={`/admin-panel/sites?region=${h.region}`}
+                          className="inline-flex items-center gap-1 text-[10px] text-[var(--accent)] hover:underline"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          open <ExternalLink size={10} />
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="text-xs text-[var(--fg-muted)]">No matches.</div>
+          )}
+        </div>
+      )}
+    </Section>
+  );
+}
+
+/* ---------------- Duplicate detector ---------------- */
+
+interface DupGroup {
+  key: string;
+  reason: "exact_url" | "host_only" | "name";
+  occurrences: { region: string; categoryId: string; siteName: string; url: string }[];
+}
+
+function DuplicateDetectorTool() {
+  const [mode, setMode] = useState<"host" | "exact" | "name">("host");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<{
+    duplicates: DupGroup[];
+    totalGroups: number;
+    totalOccurrences: number;
+    totalRegionsScanned: number;
+  } | null>(null);
+
+  const run = async () => {
+    setBusy(true);
+    setError(null);
+    setResult(null);
+    try {
+      const r = await fetch(`/api/admin/tools/find-duplicates?mode=${mode}`, { cache: "no-store" });
+      const j = (await r.json()) as {
+        ok?: boolean;
+        duplicates?: DupGroup[];
+        totalGroups?: number;
+        totalOccurrences?: number;
+        totalRegionsScanned?: number;
+        error?: string;
+      };
+      if (!r.ok || !j.ok) throw new Error(j.error ?? "scan_failed");
+      setResult({
+        duplicates: j.duplicates ?? [],
+        totalGroups: j.totalGroups ?? 0,
+        totalOccurrences: j.totalOccurrences ?? 0,
+        totalRegionsScanned: j.totalRegionsScanned ?? 0,
+      });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "scan failed");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const copy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      // best-effort
+    }
+  };
+
+  return (
+    <Section
+      icon={<Copy size={18} />}
+      title="Duplicate detector"
+      desc="Find sites that appear in more than one region or category. Pick the matching strategy."
+    >
+      <div className="flex flex-wrap items-center gap-2">
+        <div className="flex rounded-lg border" style={{ borderColor: "var(--border)" }}>
+          {(["host", "exact", "name"] as const).map((m) => (
+            <button
+              key={m}
+              onClick={() => setMode(m)}
+              className="px-3 py-1.5 text-xs first:rounded-l-lg last:rounded-r-lg [&:not(:first-child)]:border-l"
+              style={{
+                borderColor: "var(--border)",
+                background: mode === m ? "var(--accent)" : "transparent",
+                color: mode === m ? "white" : "var(--fg-muted)",
+              }}
+              title={
+                m === "host"
+                  ? "Match by hostname only (recommended — catches www., paths)"
+                  : m === "exact"
+                    ? "Match by full URL exactly"
+                    : "Match by site name (case-insensitive)"
+              }
+            >
+              {m === "host" ? "By host" : m === "exact" ? "By exact URL" : "By name"}
+            </button>
+          ))}
+        </div>
+        <button
+          onClick={run}
+          disabled={busy}
+          className="inline-flex h-9 items-center gap-1 rounded-lg bg-[var(--accent)] px-3 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-50"
+        >
+          {busy ? <Loader2 size={14} className="animate-spin" /> : <Copy size={14} />}
+          Scan for duplicates
+        </button>
+        {result && (
+          <span className="text-xs text-[var(--fg-muted)]">
+            {result.totalGroups} group{result.totalGroups === 1 ? "" : "s"} · {result.totalOccurrences} occurrence{result.totalOccurrences === 1 ? "" : "s"} · scanned {result.totalRegionsScanned} region{result.totalRegionsScanned === 1 ? "" : "s"}
+          </span>
+        )}
+      </div>
+      <Err msg={error} />
+      {result && result.duplicates.length === 0 && (
+        <div className="mt-3 text-xs text-[var(--fg-muted)]">No duplicates found in this mode.</div>
+      )}
+      {result && result.duplicates.length > 0 && (
+        <div className="mt-3 max-h-[28rem] space-y-2 overflow-y-auto">
+          {result.duplicates.map((g, i) => (
+            <div
+              key={i}
+              className="rounded-lg border p-2"
+              style={{ borderColor: "var(--border)", background: "var(--bg-elev)" }}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <code className="break-all font-mono text-[11px] text-[var(--fg)]">{g.key}</code>
+                <div className="flex shrink-0 items-center gap-2">
+                  <span className="rounded-full border px-2 py-0.5 text-[10px] text-[var(--fg-muted)]" style={{ borderColor: "var(--border)" }}>
+                    ×{g.occurrences.length}
+                  </span>
+                  <button
+                    onClick={() => copy(g.key)}
+                    className="rounded-md border px-1.5 py-0.5 text-[10px] text-[var(--fg-muted)] hover:bg-[var(--bg-card-hover)]"
+                    style={{ borderColor: "var(--border)" }}
+                  >
+                    copy
+                  </button>
+                </div>
+              </div>
+              <ul className="mt-1.5 space-y-0.5 text-[11px]">
+                {g.occurrences.map((o, j) => (
+                  <li key={j} className="flex items-center justify-between gap-2">
+                    <span>
+                      <span className="font-mono text-[10px] text-[var(--fg-muted)]">{o.region}/{o.categoryId}</span>{" "}
+                      · {o.siteName}{" "}
+                      <a href={o.url} target="_blank" rel="noreferrer" className="break-all text-[var(--accent)] hover:underline">{o.url}</a>
+                    </span>
+                    <a
+                      href={`/admin-panel/sites?region=${o.region}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex shrink-0 items-center gap-1 text-[10px] text-[var(--accent)] hover:underline"
+                    >
+                      open <ExternalLink size={10} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       )}
     </Section>

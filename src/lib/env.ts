@@ -19,4 +19,6 @@ export const env = {
   REPO_BRANCH: () => opt("GITHUB_REPO_BRANCH", "main"),
   SITE_URL: () => opt("SITE_URL", "http://localhost:3000"),
   REDIS_URL: () => opt("REDIS_URL", ""),
+  CF_DOMAIN_ZONE: () => opt("CF_DOMAIN_ZONE", ""),
+  CF_ACCOUNT_TOKEN: () => opt("CF_ACCOUNT_TOKEN", ""),
 };

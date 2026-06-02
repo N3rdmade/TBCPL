@@ -350,6 +350,9 @@ export function SitesEditor({ regions, initialRegion }: SitesEditorProps) {
       file: File,
       siteCtx: { name?: string; url?: string },
     ): Promise<string> => {
+      if (file.size > 10 * 1024 * 1024) {
+        throw new Error(`Logo too large (${(file.size / (1024 * 1024)).toFixed(1)}MB). Max is 10MB.`);
+      }
       const buf = await file.arrayBuffer();
       const b64 = Buffer.from(buf).toString("base64");
       const fileName = deriveLogoFilename({
@@ -379,8 +382,88 @@ export function SitesEditor({ regions, initialRegion }: SitesEditorProps) {
     [],
   );
 
+  const [previewOpen, setPreviewOpen] = useState(false);
+
+  const publishDiff = useMemo(() => {
+    if (!categories) return null;
+    let parsedOriginal: Category[] = [];
+    try {
+      parsedOriginal = JSON.parse(original || "[]") as Category[];
+    } catch {
+      parsedOriginal = [];
+    }
+    const byIdOld = new Map(parsedOriginal.map((c) => [c.id, c]));
+    const byIdNew = new Map(categories.map((c) => [c.id, c]));
+
+    const addedCategories: string[] = [];
+    const removedCategories: string[] = [];
+    const renamedCategories: { id: string; from: string; to: string }[] = [];
+    const siteChanges: {
+      categoryId: string;
+      added: string[];
+      removed: string[];
+      modified: { name: string; fields: string[] }[];
+    }[] = [];
+
+    for (const [id, cat] of byIdNew) {
+      if (!byIdOld.has(id)) addedCategories.push(id);
+    }
+    for (const [id, cat] of byIdOld) {
+      if (!byIdNew.has(id)) removedCategories.push(id);
+    }
+    for (const [id, newCat] of byIdNew) {
+      const oldCat = byIdOld.get(id);
+      if (!oldCat) continue;
+      if (oldCat.name !== newCat.name) {
+        renamedCategories.push({ id, from: oldCat.name, to: newCat.name });
+      }
+      const oldSitesByUrl = new Map(oldCat.sites.map((s) => [s.url, s]));
+      const newSitesByUrl = new Map(newCat.sites.map((s) => [s.url, s]));
+      const added: string[] = [];
+      const removed: string[] = [];
+      const modified: { name: string; fields: string[] }[] = [];
+      for (const [url, s] of newSitesByUrl) {
+        if (!oldSitesByUrl.has(url)) added.push(s.name);
+      }
+      for (const [url, s] of oldSitesByUrl) {
+        if (!newSitesByUrl.has(url)) removed.push(s.name);
+      }
+      for (const [url, newSite] of newSitesByUrl) {
+        const oldSite = oldSitesByUrl.get(url);
+        if (!oldSite) continue;
+        const fields: string[] = [];
+        if (oldSite.name !== newSite.name) fields.push("name");
+        if (oldSite.logo !== newSite.logo) fields.push("logo");
+        if ((oldSite.status ?? "ok") !== (newSite.status ?? "ok")) fields.push("status");
+        if ((oldSite.enabled !== false) !== (newSite.enabled !== false)) fields.push("enabled");
+        if ((oldSite.description ?? "") !== (newSite.description ?? "")) fields.push("description");
+        if (JSON.stringify(oldSite.tags ?? []) !== JSON.stringify(newSite.tags ?? [])) fields.push("tags");
+        if (fields.length > 0) modified.push({ name: newSite.name, fields });
+      }
+      if (added.length || removed.length || modified.length) {
+        siteChanges.push({ categoryId: id, added, removed, modified });
+      }
+    }
+
+    const totalChanges =
+      addedCategories.length +
+      removedCategories.length +
+      renamedCategories.length +
+      siteChanges.reduce((a, c) => a + c.added.length + c.removed.length + c.modified.length, 0);
+
+    return {
+      addedCategories,
+      removedCategories,
+      renamedCategories,
+      siteChanges,
+      logoUploadCount: pendingLogos.current.size,
+      totalChanges,
+    };
+  }, [categories, original]);
+
   const handlePublish = useCallback(async () => {
     if (!categories) return;
+    setPreviewOpen(false);
     setSaving(true);
     setError(null);
     setLastResult(null);
@@ -575,14 +658,25 @@ export function SitesEditor({ regions, initialRegion }: SitesEditorProps) {
           style={{ borderColor: "var(--border)", background: "var(--bg-elev)" }}
         />
         <button
-          onClick={handlePublish}
+          onClick={() => setPreviewOpen(true)}
           disabled={!dirty || saving}
           className="inline-flex h-9 items-center gap-2 rounded-full bg-[var(--accent)] px-4 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-50"
         >
           {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
-          {saving ? "Publishing…" : "Publish to GitHub"}
+          {saving ? "Publishing…" : "Review & publish"}
         </button>
       </div>
+
+      {previewOpen && publishDiff && (
+        <PublishPreviewModal
+          region={region}
+          message={message}
+          diff={publishDiff}
+          saving={saving}
+          onCancel={() => setPreviewOpen(false)}
+          onConfirm={handlePublish}
+        />
+      )}
 
       {editing && editingSite && (
         <EditDrawer
@@ -1669,5 +1763,185 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       </span>
       {children}
     </label>
+  );
+}
+
+interface PublishDiff {
+  addedCategories: string[];
+  removedCategories: string[];
+  renamedCategories: { id: string; from: string; to: string }[];
+  siteChanges: {
+    categoryId: string;
+    added: string[];
+    removed: string[];
+    modified: { name: string; fields: string[] }[];
+  }[];
+  logoUploadCount: number;
+  totalChanges: number;
+}
+
+function PublishPreviewModal({
+  region,
+  message,
+  diff,
+  saving,
+  onCancel,
+  onConfirm,
+}: {
+  region: string;
+  message: string;
+  diff: PublishDiff;
+  saving: boolean;
+  onCancel: () => void;
+  onConfirm: () => void;
+}) {
+  const empty =
+    diff.totalChanges === 0 && diff.logoUploadCount === 0;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+      onClick={onCancel}
+    >
+      <div
+        className="relative flex max-h-[90vh] w-full max-w-2xl flex-col rounded-2xl border shadow-2xl"
+        style={{ background: "var(--bg-elev)", borderColor: "var(--border)" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between border-b p-4" style={{ borderColor: "var(--border)" }}>
+          <div>
+            <h2 className="text-base font-bold">Review changes to <span className="font-mono">{region}</span></h2>
+            <p className="text-xs text-[var(--fg-muted)]">
+              {diff.totalChanges} change{diff.totalChanges === 1 ? "" : "s"}
+              {diff.logoUploadCount > 0 && ` · ${diff.logoUploadCount} new logo${diff.logoUploadCount === 1 ? "" : "s"}`}
+            </p>
+          </div>
+          <button
+            onClick={onCancel}
+            aria-label="Close"
+            className="rounded-lg p-1.5 text-[var(--fg-muted)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--fg)]"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        <div className="flex-1 space-y-3 overflow-y-auto p-4 text-sm">
+          {empty && (
+            <div className="text-xs text-[var(--fg-muted)]">No detectable changes. Publishing anyway will still create a commit.</div>
+          )}
+
+          {diff.addedCategories.length > 0 && (
+            <div>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--success,#22c55e)]">
+                + Added categories ({diff.addedCategories.length})
+              </div>
+              <ul className="mt-1 ml-3 list-disc text-xs">
+                {diff.addedCategories.map((id) => (
+                  <li key={id} className="font-mono">{id}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {diff.removedCategories.length > 0 && (
+            <div>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--danger,#f87171)]">
+                − Removed categories ({diff.removedCategories.length})
+              </div>
+              <ul className="mt-1 ml-3 list-disc text-xs">
+                {diff.removedCategories.map((id) => (
+                  <li key={id} className="font-mono">{id}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {diff.renamedCategories.length > 0 && (
+            <div>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
+                Renamed categories ({diff.renamedCategories.length})
+              </div>
+              <ul className="mt-1 ml-3 list-disc text-xs">
+                {diff.renamedCategories.map((c) => (
+                  <li key={c.id}>
+                    <span className="font-mono">{c.id}</span>: {c.from} → {c.to}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {diff.siteChanges.map((sc) => (
+            <div
+              key={sc.categoryId}
+              className="rounded-lg border p-2"
+              style={{ borderColor: "var(--border)", background: "var(--bg)" }}
+            >
+              <div className="text-xs font-semibold">
+                <span className="font-mono">{sc.categoryId}</span>
+                <span className="ml-2 text-[10px] font-normal text-[var(--fg-muted)]">
+                  +{sc.added.length} / −{sc.removed.length} / ~{sc.modified.length}
+                </span>
+              </div>
+              {sc.added.length > 0 && (
+                <div className="mt-1 text-[11px]">
+                  <span className="text-[var(--success,#22c55e)]">+ </span>
+                  {sc.added.join(", ")}
+                </div>
+              )}
+              {sc.removed.length > 0 && (
+                <div className="mt-1 text-[11px]">
+                  <span className="text-[var(--danger,#f87171)]">− </span>
+                  {sc.removed.join(", ")}
+                </div>
+              )}
+              {sc.modified.length > 0 && (
+                <ul className="mt-1 space-y-0.5 text-[11px]">
+                  {sc.modified.map((m, i) => (
+                    <li key={i}>
+                      <span className="text-amber-400">~ </span>
+                      {m.name}{" "}
+                      <span className="text-[10px] text-[var(--fg-muted)]">({m.fields.join(", ")})</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+
+          {diff.logoUploadCount > 0 && (
+            <div className="rounded-lg border p-2 text-xs" style={{ borderColor: "var(--border)" }}>
+              <span className="text-[var(--accent)]">+ {diff.logoUploadCount} logo file{diff.logoUploadCount === 1 ? "" : "s"}</span> will be committed to <span className="font-mono">public/logo/</span>.
+            </div>
+          )}
+
+          <div className="rounded-lg border p-2 text-xs" style={{ borderColor: "var(--border)" }}>
+            <div className="text-[10px] uppercase tracking-wider text-[var(--fg-muted)]">Commit message</div>
+            <div className="mt-1 font-mono break-all text-[11px]">
+              {message.trim() || `admin: update ${region} links`}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-end gap-2 border-t p-3" style={{ borderColor: "var(--border)" }}>
+          <button
+            onClick={onCancel}
+            disabled={saving}
+            className="inline-flex h-9 items-center rounded-lg border px-3 text-sm hover:bg-[var(--bg-card-hover)] disabled:opacity-50"
+            style={{ borderColor: "var(--border)" }}
+          >
+            Back to edit
+          </button>
+          <button
+            onClick={onConfirm}
+            disabled={saving}
+            className="inline-flex h-9 items-center gap-2 rounded-full bg-[var(--accent)] px-4 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-50"
+          >
+            {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
+            {saving ? "Publishing…" : "Confirm & publish"}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }

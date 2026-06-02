@@ -1,0 +1,74 @@
+{
+  "categories": [
+    {
+      "id": "movies",
+      "name": "Movies & Shows",
+      "sites": [
+        {
+          "name": "Kurdsubtitle",
+          "url": "https://kurdsubtitle.net/",
+          "logo": "./logo/movies_shows/kurdsubtitle.png",
+          "status": "trusted",
+          "enabled": true
+        },
+        {
+          "name": "Kurdcinama",
+          "url": "https://kurdcinama.com/",
+          "logo": "./logo/movies_shows/kurdcinama.png",
+          "status": "trusted",
+          "enabled": true
+        },
+        {
+          "name": "Kurdfilm",
+          "url": "https://kurdfilm.krd/",
+          "logo": "./logo/movies_shows/kurdfilm.png",
+          "enabled": true
+        },
+        {
+          "name": "Shafilm",
+          "url": "https://shafilm.vip/",
+          "logo": "./logo/movies_shows/shafilm.png",
+          "enabled": true
+        },
+        {
+          "name": "Beenar",
+          "url": "https://beenar.net/",
+          "logo": "./logo/movies_shows/beenar.png",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "anime",
+      "name": "Anime",
+      "sites": []
+    },
+    {
+      "id": "manga",
+      "name": "Manga / Comics",
+      "sites": [
+        {
+          "name": "Kurdsubtitle",
+          "url": "https://kurdsubtitle.net/mangas",
+          "logo": "./logo/movies_shows/kurdsubtitle.png",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "livetv",
+      "name": "Live TV & Sports",
+      "sites": []
+    },
+    {
+      "id": "paid",
+      "name": "Paid Services",
+      "sites": []
+    },
+    {
+      "id": "apps",
+      "name": "Apps",
+      "sites": []
+    }
+  ]
+}

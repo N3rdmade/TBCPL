@@ -91,6 +91,12 @@
       "enabled": true
     },
     {
+      "code": "KURDISTAN",
+      "name": "Kurdistan",
+      "flag": "☀️",
+      "enabled": true
+    },
+    {
       "code": "AUSTRALIA",
       "name": "Australia",
       "flag": "🇦🇺",
