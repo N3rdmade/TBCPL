@@ -60,12 +60,6 @@
       "name": "Live TV & Sports",
       "sites": [
         {
-          "name": "Prossimamente — aggiungi un suggerimento!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "DAZN",
           "url": "https://www.dazn.com",
           "logo": "./logo/livetv/dazn.png",

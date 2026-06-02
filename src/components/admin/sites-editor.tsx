@@ -42,6 +42,7 @@ import {
 } from "lucide-react";
 import { normalizeAsset } from "@/lib/utils";
 import { deriveLogoFilename } from "@/lib/admin/paths";
+import { CATEGORY_META } from "@/lib/constants";
 import type { Category, Region, Site, SiteStatus } from "@/lib/types";
 
 interface SitesEditorProps {
@@ -1300,8 +1301,9 @@ function MultiTargetPanel({
   const [error, setError] = useState<string | null>(null);
   const [pendingAdd, setPendingAdd] = useState<MultiTarget[]>([]);
   const [pendingRemove, setPendingRemove] = useState<MultiTarget[]>([]);
-  const [addRegion, setAddRegion] = useState(regions[0]?.code ?? "USA");
-  const [addCat, setAddCat] = useState("");
+  const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
+  const [selectedCats, setSelectedCats] = useState<string[]>([]);
+  const CATEGORY_OPTIONS = useMemo(() => Object.keys(CATEGORY_META), []);
   const [committing, setCommitting] = useState(false);
   const [result, setResult] = useState<{ commitSha: string; commitUrl: string; added: MultiTarget[]; removed: MultiTarget[]; skipped: string[] } | null>(null);
 
@@ -1335,16 +1337,42 @@ function MultiTargetPanel({
     t.categoryId === currentTarget.categoryId;
 
   const queueAdd = () => {
-    const r = addRegion.toUpperCase();
-    const c = addCat.trim();
-    if (!r || !c) return;
-    if (hits?.some((h) => h.region === r && h.categoryId === c)) {
-      setError(`${r}/${c} already has this site.`);
-      return;
+    if (selectedRegions.length === 0 || selectedCats.length === 0) return;
+    const additions: MultiTarget[] = [];
+    const skipped: string[] = [];
+    for (const rRaw of selectedRegions) {
+      const r = rRaw.toUpperCase();
+      for (const c of selectedCats) {
+        if (hits?.some((h) => h.region === r && h.categoryId === c)) {
+          skipped.push(`${r}/${c}`);
+          continue;
+        }
+        if (pendingAdd.some((t) => t.region === r && t.categoryId === c)) continue;
+        if (additions.some((t) => t.region === r && t.categoryId === c)) continue;
+        additions.push({ region: r, categoryId: c });
+      }
     }
-    if (pendingAdd.some((t) => t.region === r && t.categoryId === c)) return;
-    setPendingAdd((prev) => [...prev, { region: r, categoryId: c }]);
-    setAddCat("");
+    if (additions.length > 0) {
+      setPendingAdd((prev) => [...prev, ...additions]);
+    }
+    if (skipped.length > 0) {
+      setError(`Already exists: ${skipped.join(", ")}`);
+    } else {
+      setError(null);
+    }
+    setSelectedRegions([]);
+    setSelectedCats([]);
+  };
+
+  const toggleSelectedRegion = (code: string) => {
+    setSelectedRegions((prev) =>
+      prev.includes(code) ? prev.filter((x) => x !== code) : [...prev, code],
+    );
+  };
+  const toggleSelectedCat = (id: string) => {
+    setSelectedCats((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
+    );
   };
 
   const toggleRemove = (t: MultiTarget) => {
@@ -1480,35 +1508,109 @@ function MultiTargetPanel({
             <div className="text-[11px] text-[var(--fg-muted)]">Only appears in the current view.</div>
           )}
 
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-[10px] uppercase tracking-wider text-[var(--fg-muted)]">Also add to:</span>
-            <select
-              value={addRegion}
-              onChange={(e) => setAddRegion(e.target.value)}
-              className="h-7 rounded-lg border bg-transparent px-2 text-xs"
-              style={{ borderColor: "var(--border)" }}
-            >
-              {regions.map((r) => (
-                <option key={r.code} value={r.code}>{r.code}</option>
-              ))}
-            </select>
-            <input
-              value={addCat}
-              onChange={(e) => setAddCat(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") queueAdd();
-              }}
-              placeholder="category-id"
-              className="h-7 w-32 rounded-lg border bg-transparent px-2 text-xs"
-              style={{ borderColor: "var(--border)" }}
-            />
+          <div className="space-y-2">
+            <span className="block text-[10px] uppercase tracking-wider text-[var(--fg-muted)]">Also add to:</span>
+
+            <div className="space-y-1">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-semibold text-[var(--fg-muted)]">Regions</span>
+                <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedRegions(regions.map((r) => r.code))}
+                    className="text-[10px] text-[var(--accent)] hover:underline"
+                  >
+                    All
+                  </button>
+                  <span className="text-[10px] text-[var(--fg-muted)]">·</span>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedRegions([])}
+                    className="text-[10px] text-[var(--fg-muted)] hover:underline"
+                  >
+                    None
+                  </button>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-1">
+                {regions.map((r) => {
+                  const on = selectedRegions.includes(r.code);
+                  return (
+                    <button
+                      key={r.code}
+                      type="button"
+                      onClick={() => toggleSelectedRegion(r.code)}
+                      className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px]"
+                      style={{
+                        borderColor: on ? "var(--accent)" : "var(--border)",
+                        background: on
+                          ? "color-mix(in oklab, var(--accent) 14%, transparent)"
+                          : "transparent",
+                      }}
+                    >
+                      {on ? <CheckSquare size={10} /> : <Square size={10} />}
+                      <span className="font-mono">{r.flag} {r.code}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-semibold text-[var(--fg-muted)]">Categories</span>
+                <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCats([...CATEGORY_OPTIONS])}
+                    className="text-[10px] text-[var(--accent)] hover:underline"
+                  >
+                    All
+                  </button>
+                  <span className="text-[10px] text-[var(--fg-muted)]">·</span>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCats([])}
+                    className="text-[10px] text-[var(--fg-muted)] hover:underline"
+                  >
+                    None
+                  </button>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-1">
+                {CATEGORY_OPTIONS.map((id) => {
+                  const meta = CATEGORY_META[id];
+                  const on = selectedCats.includes(id);
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => toggleSelectedCat(id)}
+                      title={meta.label}
+                      className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px]"
+                      style={{
+                        borderColor: on ? "var(--accent)" : "var(--border)",
+                        background: on
+                          ? "color-mix(in oklab, var(--accent) 14%, transparent)"
+                          : "transparent",
+                      }}
+                    >
+                      {on ? <CheckSquare size={10} /> : <Square size={10} />}
+                      <span>{meta.icon}</span>
+                      <span>{meta.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <button
               onClick={queueAdd}
-              disabled={!addCat.trim()}
+              disabled={selectedRegions.length === 0 || selectedCats.length === 0}
               className="inline-flex h-7 items-center gap-1 rounded-lg border px-2 text-[10px] hover:bg-[var(--bg-card-hover)] disabled:opacity-50"
               style={{ borderColor: "var(--border)" }}
             >
-              <Plus size={10} /> Queue
+              <Plus size={10} /> Queue {selectedRegions.length * selectedCats.length || ""} target{selectedRegions.length * selectedCats.length === 1 ? "" : "s"}
             </button>
           </div>
 

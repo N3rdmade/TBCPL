@@ -116,7 +116,6 @@
           "name": "netmirror",
           "url": "https://net11.cc/home",
           "logo": "./logo/movies_shows/netmirror.png",
-          "status": "new",
           "enabled": true
         },
         {
