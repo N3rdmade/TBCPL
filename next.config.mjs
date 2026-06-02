@@ -16,6 +16,17 @@ const nextConfig = {
       { source: "/site-request.html", destination: "/request", permanent: true },
     ];
   },
+  async headers() {
+    return [
+      {
+        source: "/:path(sitemap.xml|robots.txt)",
+        headers: [
+          { key: "Vary", value: "Accept-Encoding" },
+          { key: "Cache-Control", value: "public, max-age=3600, must-revalidate" },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
