@@ -1,24 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getRegions, getRegionByCode, getLinksForRegion, DEFAULT_REGION_CODE } from "@/lib/data";
+import { getRegionByCode, getLinksForRegion, DEFAULT_REGION_CODE } from "@/lib/data";
 import { CATEGORY_META } from "@/lib/constants";
 import { RegionPage } from "@/components/region-page";
 
-export const dynamicParams = false;
+export const dynamic = "force-static";
+export const revalidate = 3600;
 
 const RESERVED = new Set(["about", "dmca", "request"]);
-
-export async function generateStaticParams() {
-  const regions = await getRegions();
-  const params: { slug: string }[] = [];
-  for (const r of regions) {
-    if (r.code !== DEFAULT_REGION_CODE) params.push({ slug: r.code.toLowerCase() });
-  }
-  for (const cat of Object.keys(CATEGORY_META)) {
-    params.push({ slug: cat });
-  }
-  return params;
-}
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const { slug } = params;
