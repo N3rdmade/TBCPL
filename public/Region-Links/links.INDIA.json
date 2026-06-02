@@ -118,6 +118,13 @@
           "logo": "./logo/movies_shows/netmirror.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Hindinks4U",
+          "url": "https://hindilinks4u.study/",
+          "logo": "./logo/movies_shows/hindinks4u.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
