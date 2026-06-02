@@ -64,6 +64,13 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "DAZN",
+          "url": "https://www.dazn.com",
+          "logo": "./logo/livetv/dazn.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
