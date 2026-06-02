@@ -1,7 +1,6 @@
 # syntax=docker/dockerfile:1.7
 
 FROM node:20-alpine AS deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
