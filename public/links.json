@@ -520,7 +520,7 @@
         },
         {
           "name": "Sportsbite",
-          "url": "https://livetv.moviebite.cc/",
+          "url": "https://sportsbite.cv/",
           "logo": "./logo/livetv/Sportsbite Logo.png",
           "enabled": true
         },
@@ -548,15 +548,15 @@
           "name": "Stmify",
           "url": "https://stmify.com/",
           "logo": "./logo/livetv/stmify.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         },
         {
           "name": "ppv.to",
           "url": "https://ppv.to/",
           "logo": "./logo/livetv/ppv.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
