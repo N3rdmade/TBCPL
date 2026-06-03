@@ -565,6 +565,12 @@
       "name": "Paid Services",
       "sites": [
         {
+          "name": "TheTvApp",
+          "url": "https://thetvapp.to",
+          "logo": "./logo/livetv/tvappto.png",
+          "enabled": true
+        },
+        {
           "name": "Disney+",
           "url": "https://www.disneyplus.com/identity/login/",
           "logo": "./logo/paid_apps/disney+.png",
@@ -640,12 +646,6 @@
           "name": "AMC+",
           "url": "https://www.amcplus.com/login",
           "logo": "./logo/paid_apps/amc+.png",
-          "enabled": true
-        },
-        {
-          "name": "TheTvApp",
-          "url": "https://thetvapp.to",
-          "logo": "./logo/livetv/tvappto.png",
           "enabled": true
         }
       ]
