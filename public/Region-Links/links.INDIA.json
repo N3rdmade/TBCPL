@@ -124,6 +124,13 @@
           "logo": "./logo/movies_shows/hindinks4u.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Alooytv",
+          "url": "https://alooytv12.xyz/",
+          "logo": "./logo/movies_shows/alooytv.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
