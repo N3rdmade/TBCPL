@@ -40,6 +40,13 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "animeunity",
+          "url": "https://www.animeunity.so",
+          "logo": "./logo/anime/animeunity.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
