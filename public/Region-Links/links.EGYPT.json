@@ -9,6 +9,13 @@
           "url": "https://egyybes.autos/home",
           "logo": "./logo/movies_shows/EgyBest Logo.png",
           "enabled": true
+        },
+        {
+          "name": "Alooytv",
+          "url": "https://alooytv12.xyz/",
+          "logo": "./logo/movies_shows/alooytv.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
