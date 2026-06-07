@@ -312,6 +312,13 @@
           "url": "https://www.amcplus.com/login",
           "logo": "./logo/paid_apps/amc+.png",
           "enabled": true
+        },
+        {
+          "name": "JioHotstar",
+          "url": "https://www.jiohotstar.com",
+          "logo": "./logo/paid_apps/jiohotstar.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
