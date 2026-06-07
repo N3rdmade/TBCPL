@@ -35,6 +35,13 @@
           "logo": "./logo/movies_shows/netmirror.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Felixlatam",
+          "url": "https://flixlatam.com/",
+          "logo": "./logo/movies_shows/flixlatam.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
