@@ -66,59 +66,88 @@ async function main() {
     return acc;
   }, {});
 
-  const embeds = Object.values(groupedByFile).map(group => {
-    const shown = group.links.slice(0, 25);
-    const overflow = group.links.length - shown.length;
-    const fields = shown.map(link => {
-      const name = link.name.length > 256 ? link.name.substring(0, 253) + '...' : link.name;
-      let value = `**URL:** ${link.url}\n**Category:** ${link.category}\n**Status:** ${link.status}`;
-      if (link.error) {
-        value += `\n**Error:** ${link.error.substring(0, 100)}`;
-      }
-      if (value.length > 1024) {
-        value = value.substring(0, 1021) + '...';
-      }
-      return { name, value, inline: false };
-    });
+  const MAX_FIELDS = 25;
+  const MAX_EMBED_CHARS = 5500;
+  const COLOR = 15158332;
 
-    let description = `**File:** \`${group.file}\`\n**Total broken:** ${group.links.length}`;
-    if (overflow > 0) {
-      description += `\n*…and ${overflow} more not shown (Discord 25-field limit). See \`broken-links.json\` artifact.*`;
+  function linkToField(link) {
+    const name = link.name.length > 256 ? link.name.substring(0, 253) + '...' : link.name;
+    let value = `**URL:** ${link.url}\n**Category:** ${link.category}\n**Status:** ${link.status}`;
+    if (link.error) {
+      value += `\n**Error:** ${link.error.substring(0, 100)}`;
     }
-
-    return {
-      title: `🔴 Broken Links in ${group.region}`.substring(0, 256),
-      description: description.length > 4096 ? description.substring(0, 4093) + '...' : description,
-      color: 15158332,
-      fields: fields,
-      timestamp: new Date().toISOString()
-    };
-  });
-
-  const totalShown = embeds.reduce((sum, e) => sum + e.fields.length, 0);
-  const totalOverflow = brokenLinks.length - totalShown;
-
-  const mentions = '<@1141729666160402565> <@321029953200324610>';
-  let content = `${mentions}\n⚠️ **Link Checker Alert**\nFound ${brokenLinks.length} broken link(s) that need to be replaced.`;
-  if (totalOverflow > 0) {
-    content += `\n*Note: ${totalOverflow} link(s) omitted from this report due to Discord limits — check the workflow artifact for full list.*`;
+    if (value.length > 1024) {
+      value = value.substring(0, 1021) + '...';
+    }
+    return { name, value, inline: false };
   }
 
-  for (let i = 0; i < embeds.length; i += 10) {
-    const batch = embeds.slice(i, i + 10);
-    const messageContent = i === 0 ? content : null;
-    const payload = {};
+  const embeds = [];
+  for (const group of Object.values(groupedByFile)) {
+    const fields = group.links.map(linkToField);
+    const title = `🔴 Broken Links in ${group.region}`.substring(0, 256);
+    const baseDescription = `**File:** \`${group.file}\`\n**Total broken:** ${group.links.length}`;
 
-    if (messageContent) {
-      payload.content = messageContent;
-    }
-    if (batch.length > 0) {
-      payload.embeds = batch;
-    }
+    const chunks = [];
+    let current = [];
+    let currentChars = title.length + baseDescription.length + 40;
 
+    for (const field of fields) {
+      const fieldChars = field.name.length + field.value.length;
+      if (current.length >= MAX_FIELDS || currentChars + fieldChars > MAX_EMBED_CHARS) {
+        chunks.push(current);
+        current = [];
+        currentChars = title.length + baseDescription.length + 40;
+      }
+      current.push(field);
+      currentChars += fieldChars;
+    }
+    if (current.length > 0) chunks.push(current);
+
+    chunks.forEach((chunkFields, idx) => {
+      const partLabel = chunks.length > 1 ? ` (part ${idx + 1}/${chunks.length})` : '';
+      const description = baseDescription + partLabel;
+      embeds.push({
+        title: (title + partLabel).substring(0, 256),
+        description: description.length > 4096 ? description.substring(0, 4093) + '...' : description,
+        color: COLOR,
+        fields: chunkFields,
+        timestamp: new Date().toISOString()
+      });
+    });
+  }
+
+  const mentions = '<@1141729666160402565> <@321029953200324610>';
+  const content = `${mentions}\n⚠️ **Link Checker Alert**\nFound ${brokenLinks.length} broken link(s) that need to be replaced.`;
+
+  function embedSize(e) {
+    let s = (e.title || '').length + (e.description || '').length;
+    for (const f of e.fields || []) s += f.name.length + f.value.length;
+    return s;
+  }
+
+  const MAX_EMBEDS_PER_MSG = 10;
+  const MAX_MSG_CHARS = 5800;
+  const messages = [];
+  let batch = [];
+  let batchChars = 0;
+  for (const embed of embeds) {
+    const size = embedSize(embed);
+    if (batch.length >= MAX_EMBEDS_PER_MSG || batchChars + size > MAX_MSG_CHARS) {
+      messages.push(batch);
+      batch = [];
+      batchChars = 0;
+    }
+    batch.push(embed);
+    batchChars += size;
+  }
+  if (batch.length > 0) messages.push(batch);
+
+  for (let i = 0; i < messages.length; i++) {
+    const payload = { embeds: messages[i] };
+    if (i === 0) payload.content = content;
     await sendDiscordMessage(JSON.stringify(payload), null);
-
-    if (i + 10 < embeds.length) {
+    if (i + 1 < messages.length) {
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
