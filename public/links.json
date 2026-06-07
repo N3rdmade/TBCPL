@@ -324,6 +324,13 @@
           "logo": "./logo/anime/anikoto.png",
           "enabled": true,
           "status": "new"
+        },
+        {
+          "name": "AniDB",
+          "url": "https://anidb.app/home",
+          "logo": "./logo/anime/anidb",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
