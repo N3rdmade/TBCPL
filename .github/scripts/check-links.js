@@ -7,18 +7,93 @@ const MAX_RETRIES = 3;
 const RETRY_DELAY = 2000;
 const REQUEST_TIMEOUT = 10000;
 
+const urlCache = new Map();
+
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+function sendDiscordNotification(content, embeds) {
+  const webhookUrl = process.env.DISCORD_WEBHOOK;
+  if (!webhookUrl) return Promise.resolve();
+
+  return new Promise((resolve, reject) => {
+    const url = new URL(webhookUrl);
+    const payload = JSON.stringify({ content, embeds });
+
+    const options = {
+      hostname: url.hostname,
+      path: url.pathname + url.search,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(payload)
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let body = '';
+      res.on('data', chunk => body += chunk);
+      res.on('end', () => {
+        if (res.statusCode === 204 || res.statusCode === 200) {
+          resolve();
+        } else {
+          reject(new Error(`Discord webhook failed with status ${res.statusCode}: ${body}`));
+        }
+      });
+    });
+
+    req.on('error', reject);
+    req.write(payload);
+    req.end();
+  });
+}
+
+function countTotalLinks(filePaths) {
+  let total = 0;
+  let uniqueUrls = new Set();
+
+  for (const filePath of filePaths) {
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf8');
+      const data = JSON.parse(content);
+
+      for (const category of data.categories) {
+        for (const site of category.sites) {
+          if (site.enabled !== false && site.url) {
+            uniqueUrls.add(site.url);
+            total++;
+          }
+        }
+      }
+    }
+  }
+
+  return { total, unique: uniqueUrls.size };
+}
 
 async function checkUrl(url, retries = 0) {
   return new Promise((resolve) => {
     const urlObj = new URL(url);
     const protocol = urlObj.protocol === 'https:' ? https : http;
+    const origin = `${urlObj.protocol}//${urlObj.host}`;
 
     const options = {
       method: 'HEAD',
       timeout: REQUEST_TIMEOUT,
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; LinkChecker/1.0)'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'DNT': '1',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'none',
+        'Sec-Fetch-User': '?1',
+        'Cache-Control': 'max-age=0',
+        'Origin': origin,
+        'Referer': origin + '/'
       }
     };
 
@@ -52,7 +127,7 @@ async function checkUrl(url, retries = 0) {
     });
 
     req.on('timeout', () => {
-      req.destroy();
+      req.destroy(new Error('Request timed out'));
     });
 
     req.end();
@@ -69,8 +144,17 @@ async function checkLinksInFile(filePath, region) {
   for (const category of data.categories) {
     for (const site of category.sites) {
       if (site.enabled !== false && site.url) {
-        console.log(`Checking ${site.name}: ${site.url}`);
-        const result = await checkUrl(site.url);
+        let result;
+
+        if (urlCache.has(site.url)) {
+          console.log(`[CACHED] ${site.name}: ${site.url}`);
+          result = urlCache.get(site.url);
+        } else {
+          console.log(`Checking ${site.name}: ${site.url}`);
+          result = await checkUrl(site.url);
+          urlCache.set(site.url, result);
+          await sleep(500);
+        }
 
         if (!result.success) {
           brokenLinks.push({
@@ -86,8 +170,6 @@ async function checkLinksInFile(filePath, region) {
         } else {
           console.log(`✅ OK: ${site.name} (${result.status})`);
         }
-
-        await sleep(500);
       }
     }
   }
@@ -99,12 +181,50 @@ async function main() {
   const brokenLinks = [];
 
   const mainLinksPath = path.join(process.cwd(), 'public/links.json');
+  const regionLinksDir = path.join(process.cwd(), 'public/Region-Links');
+
+  const allFiles = [];
+  if (fs.existsSync(mainLinksPath)) {
+    allFiles.push(mainLinksPath);
+  }
+  if (fs.existsSync(regionLinksDir)) {
+    const regionFiles = fs.readdirSync(regionLinksDir)
+      .filter(f => f.endsWith('.json'))
+      .map(f => path.join(regionLinksDir, f));
+    allFiles.push(...regionFiles);
+  }
+
+  const { total, unique } = countTotalLinks(allFiles);
+  const avgTimePerLink = 10.5;
+  const estimatedMinutes = Math.ceil((unique * avgTimePerLink) / 60);
+  const startTime = new Date();
+  const estimatedEnd = new Date(startTime.getTime() + estimatedMinutes * 60000);
+
+  console.log(`Starting link check: ${total} total links (${unique} unique)`);
+  console.log(`Estimated time: ${estimatedMinutes} minutes`);
+
+  await sendDiscordNotification(
+    '🔍 **Link Checker Started**',
+    [{
+      title: 'Link Validation In Progress',
+      description: `Checking all links across the platform...`,
+      color: 3447003,
+      fields: [
+        { name: 'Total Links', value: `${total}`, inline: true },
+        { name: 'Unique URLs', value: `${unique}`, inline: true },
+        { name: 'Estimated Time', value: `~${estimatedMinutes} min`, inline: true },
+        { name: 'Started At', value: `<t:${Math.floor(startTime.getTime() / 1000)}:F>`, inline: false },
+        { name: 'Expected Completion', value: `<t:${Math.floor(estimatedEnd.getTime() / 1000)}:R>`, inline: false }
+      ],
+      timestamp: startTime.toISOString()
+    }]
+  ).catch(err => console.error('Failed to send start notification:', err));
+
   if (fs.existsSync(mainLinksPath)) {
     const links = await checkLinksInFile(mainLinksPath, 'GLOBAL');
     brokenLinks.push(...links);
   }
 
-  const regionLinksDir = path.join(process.cwd(), 'public/Region-Links');
   if (fs.existsSync(regionLinksDir)) {
     const files = fs.readdirSync(regionLinksDir).filter(f => f.endsWith('.json'));
 
