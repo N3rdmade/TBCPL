@@ -312,7 +312,7 @@
         {
           "name": "AniDB",
           "url": "https://anidb.app/home",
-          "logo": "./logo/anime/anidb",
+          "logo": "./logo/anime/anidb.png",
           "status": "new",
           "enabled": true
         },
