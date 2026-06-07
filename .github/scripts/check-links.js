@@ -7,6 +7,28 @@ const MAX_RETRIES = 3;
 const RETRY_DELAY = 2000;
 const REQUEST_TIMEOUT = 10000;
 
+const SKIP_HOSTS = new Set([
+  'auth.hulu.com',
+  'hulu.com',
+  'www.hulu.com'
+]);
+
+const SKIP_URLS = new Set([
+  'https://auth.hulu.com/web/login/',
+  'https://www.zee5.com/global',
+  'https://www.yupptv.com/channels'
+]);
+
+function isWhitelisted(url) {
+  if (SKIP_URLS.has(url)) return true;
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    return SKIP_HOSTS.has(host);
+  } catch {
+    return false;
+  }
+}
+
 const urlCache = new Map();
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -58,7 +80,7 @@ function countTotalLinks(filePaths) {
 
       for (const category of data.categories) {
         for (const site of category.sites) {
-          if (site.enabled !== false && site.url) {
+          if (site.enabled !== false && site.url && !isWhitelisted(site.url)) {
             uniqueUrls.add(site.url);
             total++;
           }
@@ -144,6 +166,11 @@ async function checkLinksInFile(filePath, region) {
   for (const category of data.categories) {
     for (const site of category.sites) {
       if (site.enabled !== false && site.url) {
+        if (isWhitelisted(site.url)) {
+          console.log(`⏭️  SKIP (whitelisted): ${site.name} - ${site.url}`);
+          continue;
+        }
+
         let result;
 
         if (urlCache.has(site.url)) {

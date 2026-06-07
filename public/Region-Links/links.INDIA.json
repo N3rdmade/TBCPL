@@ -60,7 +60,7 @@
         },
         {
           "name": "Vegamovies",
-          "url": "https://vegamovies.pe/",
+          "url": "https://vegamovie.pe/",
           "logo": "./logo/movies_shows/vegamovies.png",
           "enabled": true
         },

@@ -42,7 +42,7 @@
         },
         {
           "name": "RiveStream",
-          "url": "https://rivestream.app/",
+          "url": "https://rivestream.ru/",
           "logo": "./logo/movies_shows/rivestream.png",
           "enabled": true
         },
@@ -470,7 +470,7 @@
         },
         {
           "name": "RiveStream Sports",
-          "url": "https://rivestream.app/livesports/",
+          "url": "https://rivestream.ru/livesports/",
           "logo": "./logo/movies_shows/rivestream.png",
           "enabled": true
         },

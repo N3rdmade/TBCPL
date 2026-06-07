@@ -538,7 +538,7 @@
           "name": "tvpass",
           "url": "https://tvpass.org",
           "logo": "./logo/livetv/tvpass.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "Stmify",
