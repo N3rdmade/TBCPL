@@ -12,7 +12,7 @@
         },
         {
           "name": "Movies Bazar",
-          "url": "https://www.moviesbazar.tv/",
+          "url": "https://www.moviesbazar.su/",
           "logo": "./logo/movies_shows/Movies Bazar Logo v2.png",
           "enabled": true
         },
@@ -60,7 +60,7 @@
         },
         {
           "name": "Vegamovies",
-          "url": "https://vegamovies.global/",
+          "url": "https://vegamovies.pe/",
           "logo": "./logo/movies_shows/vegamovies.png",
           "enabled": true
         },
@@ -72,7 +72,7 @@
         },
         {
           "name": "HINDILINKS4U",
-          "url": "https://hindilinks4u.tours/",
+          "url": "https://hindilinks4u.party/",
           "logo": "./logo/movies_shows/hindilinks4u.png",
           "enabled": true
         },
@@ -84,7 +84,7 @@
         },
         {
           "name": "Multi movies",
-          "url": "https://multimovies.fyi/",
+          "url": "https://multimovies.wtf/",
           "logo": "./logo/movies_shows/multi-movies.jpg",
           "enabled": true
         },
@@ -96,7 +96,7 @@
         },
         {
           "name": "PR MOVIES",
-          "url": "https://prmovies.health/",
+          "url": "https://prmovies.farm/",
           "logo": "./logo/movies_shows/pr-movies.png",
           "enabled": true
         },
@@ -120,7 +120,7 @@
         },
         {
           "name": "Hindinks4U",
-          "url": "https://hindilinks4u.study/",
+          "url": "https://hindilinks4u.party/",
           "logo": "./logo/movies_shows/hindinks4u.png",
           "status": "new",
           "enabled": true
@@ -284,7 +284,7 @@
         },
         {
           "name": "Crunchyroll",
-          "url": "https://sso-v2.crunchyroll.com/login",
+          "url": "https://crunchyroll.com/login",
           "logo": "./logo/paid_apps/cruncyroll.png",
           "enabled": true
         },

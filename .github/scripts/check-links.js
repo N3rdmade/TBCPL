@@ -239,11 +239,10 @@ async function main() {
   if (brokenLinks.length > 0) {
     fs.writeFileSync('broken-links.json', JSON.stringify(brokenLinks, null, 2));
     console.log(`\n❌ Found ${brokenLinks.length} broken link(s)`);
-    process.exit(1);
   } else {
     console.log('\n✅ All links are working!');
-    process.exit(0);
   }
+  process.exit(0);
 }
 
 main().catch(err => {

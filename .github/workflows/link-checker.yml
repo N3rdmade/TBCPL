@@ -26,32 +26,34 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.SITE_VALIDATOR_WEBHOOK }}
 
       - name: Send Discord notification
-        if: failure()
+        if: always() && hashFiles('broken-links.json') != ''
+        run: node .github/scripts/send-discord-notification.js
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.SITE_VALIDATOR_WEBHOOK }}
+
+      - name: Notify Discord on workflow crash
+        if: failure() && hashFiles('broken-links.json') == ''
         run: |
-          if [ -f broken-links.json ]; then
-            node .github/scripts/send-discord-notification.js
-          else
-            node -e "
-              const https = require('https');
-              const url = new URL(process.env.DISCORD_WEBHOOK);
-              const payload = JSON.stringify({
-                content: '<@1141729666160402565> <@321029953200324610>\n🚨 **Link Checker Crashed**\nThe workflow failed before producing a broken-links report. Check the GitHub Actions logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
-              });
-              const req = https.request({
-                hostname: url.hostname,
-                path: url.pathname + url.search,
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) }
-              }, res => { res.on('data', () => {}); res.on('end', () => process.exit(res.statusCode < 300 ? 0 : 1)); });
-              req.on('error', e => { console.error(e); process.exit(1); });
-              req.write(payload); req.end();
-            "
-          fi
+          node -e "
+            const https = require('https');
+            const url = new URL(process.env.DISCORD_WEBHOOK);
+            const payload = JSON.stringify({
+              content: '<@1141729666160402565> <@321029953200324610>\n🚨 **Link Checker Crashed**\nThe workflow failed before producing a broken-links report. Check the GitHub Actions logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+            });
+            const req = https.request({
+              hostname: url.hostname,
+              path: url.pathname + url.search,
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) }
+            }, res => { res.on('data', () => {}); res.on('end', () => process.exit(res.statusCode < 300 ? 0 : 1)); });
+            req.on('error', e => { console.error(e); process.exit(1); });
+            req.write(payload); req.end();
+          "
         env:
           DISCORD_WEBHOOK: ${{ secrets.SITE_VALIDATOR_WEBHOOK }}
 
       - name: Upload broken links artifact
-        if: failure() && hashFiles('broken-links.json') != ''
+        if: always() && hashFiles('broken-links.json') != ''
         uses: actions/upload-artifact@v4
         with:
           name: broken-links

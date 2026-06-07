@@ -90,7 +90,7 @@
         },
         {
           "name": "VIPBox",
-          "url": "https://www.vipbox.sc/football-live",
+          "url": "https://vipbox1.com/football-live",
           "logo": "./logo/livetv/vipbox.png",
           "enabled": true
         }
@@ -156,7 +156,7 @@
         },
         {
           "name": "Crunchyroll",
-          "url": "https://sso-v2.crunchyroll.com/login",
+          "url": "https://crunchyroll.com/login",
           "logo": "./logo/paid_apps/cruncyroll.png",
           "enabled": true
         },

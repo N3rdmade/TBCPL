@@ -42,7 +42,7 @@
         },
         {
           "name": "RiveStream",
-          "url": "https://rivestream.org/",
+          "url": "https://rivestream.app/",
           "logo": "./logo/movies_shows/rivestream.png",
           "enabled": true
         },
@@ -78,7 +78,7 @@
         },
         {
           "name": "Bcine",
-          "url": "https://bcine.app/",
+          "url": "https://www.cineplay.to/",
           "logo": "./logo/movies_shows/bcine.png",
           "enabled": true
         },
@@ -113,12 +113,6 @@
           "enabled": true
         },
         {
-          "name": "SFlix",
-          "url": "https://sflix.fi/",
-          "logo": "./logo/movies_shows/sflix.png",
-          "enabled": true
-        },
-        {
           "name": "Nepu",
           "url": "https://nepu.to/",
           "logo": "./logo/movies_shows/nepu.png",
@@ -137,12 +131,6 @@
           "enabled": true
         },
         {
-          "name": "Xprime",
-          "url": "https://xprime.stream/",
-          "logo": "./logo/movies_shows/xprime.png",
-          "enabled": true
-        },
-        {
           "name": "SmashyStream",
           "url": "https://smashystream.xyz/",
           "logo": "./logo/movies_shows/smashystream.png",
@@ -150,7 +138,7 @@
         },
         {
           "name": "Flixway",
-          "url": "https://flixway.pro/",
+          "url": "https://flixway.ru/",
           "logo": "./logo/movies_shows/flixway.png",
           "enabled": true
         },
@@ -325,7 +313,7 @@
         },
         {
           "name": "Qtoon",
-          "url": "https://qtoon.net/",
+          "url": "https://qtoon.org/",
           "logo": "./logo/manga/qtoon.png",
           "enabled": true
         },
@@ -410,25 +398,25 @@
       "sites": [
         {
           "name": "TheTvApp",
-          "url": "https://thetvapp.to",
+          "url": "https://thetvapptv.com",
           "logo": "./logo/livetv/tvappto.png",
           "enabled": true
         },
         {
           "name": "TV247",
-          "url": "https://tv247.us",
+          "url": "https://tv247.site",
           "logo": "./logo/livetv/tv247.png",
           "enabled": true
         },
         {
           "name": "TheDaddy",
-          "url": "https://dlhd.dad/",
+          "url": "https://dlhd.pk/",
           "logo": "./logo/livetv/thedaddy.png",
           "enabled": true
         },
         {
           "name": "DaddyHD",
-          "url": "https://daddylive.lol/",
+          "url": "https://daddylive.org/",
           "logo": "./logo/livetv/daddyhd.png",
           "enabled": true
         },
@@ -482,7 +470,7 @@
         },
         {
           "name": "RiveStream Sports",
-          "url": "https://rivestream.org/livesports/",
+          "url": "https://rivestream.app/livesports/",
           "logo": "./logo/movies_shows/rivestream.png",
           "enabled": true
         },
@@ -566,7 +554,7 @@
         },
         {
           "name": "Crunchyroll",
-          "url": "https://sso-v2.crunchyroll.com/login",
+          "url": "https://crunchyroll.com/login",
           "logo": "./logo/paid_apps/cruncyroll.png",
           "enabled": true
         },

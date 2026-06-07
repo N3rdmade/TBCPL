@@ -141,12 +141,6 @@
           "enabled": true
         },
         {
-          "name": "Xprime",
-          "url": "https://xprime.su/",
-          "logo": "./logo/movies_shows/xprime.png",
-          "enabled": true
-        },
-        {
           "name": "SmashyStream",
           "url": "https://smashystream.xyz/",
           "logo": "./logo/movies_shows/smashystream.png",
@@ -164,14 +158,6 @@
           "logo": "./logo/movies_shows/reezli.png",
           "enabled": false,
           "status": "new"
-        },
-        {
-          "name": "SFlix",
-          "url": "https://sflix.fi/",
-          "logo": "./logo/movies_shows/sflix.png",
-          "description": "site datacenters got burned rip",
-          "enabled": false,
-          "status": "down"
         },
         {
           "name": "Cinemaos",
@@ -381,7 +367,7 @@
         },
         {
           "name": "Qtoon",
-          "url": "https://qtoon.net/",
+          "url": "https://qtoon.org/",
           "logo": "./logo/manga/qtoon.png",
           "enabled": true
         },
@@ -466,7 +452,7 @@
       "sites": [
         {
           "name": "TV247",
-          "url": "https://tv247.us",
+          "url": "https://tv247.site",
           "logo": "./logo/livetv/tv247.png",
           "enabled": true
         },
@@ -532,7 +518,7 @@
         },
         {
           "name": "Sportsbite",
-          "url": "https://sportsbite.cv/",
+          "url": "https://sportsbite.online/",
           "logo": "./logo/livetv/Sportsbite Logo.png",
           "enabled": true
         },
@@ -575,7 +561,7 @@
       "sites": [
         {
           "name": "TheTvApp",
-          "url": "https://thetvapp.to",
+          "url": "https://thetvapptv.com",
           "logo": "./logo/livetv/tvappto.png",
           "enabled": true
         },
@@ -635,7 +621,7 @@
         },
         {
           "name": "Crunchyroll",
-          "url": "https://sso.crunchyroll.com/login",
+          "url": "https://crunchyroll.com/login",
           "logo": "./logo/paid_apps/cruncyroll.png",
           "enabled": true
         },

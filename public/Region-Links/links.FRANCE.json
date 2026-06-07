@@ -174,7 +174,7 @@
         },
         {
           "name": "Crunchyroll",
-          "url": "https://sso-v2.crunchyroll.com/login",
+          "url": "https://crunchyroll.com/login",
           "logo": "./logo/paid_apps/cruncyroll.png",
           "enabled": true
         },
