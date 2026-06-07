@@ -28,6 +28,13 @@
           "logo": "./logo/movies_shows/sololatino",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "NetMirror",
+          "url": "https://net11.cc/home",
+          "logo": "./logo/movies_shows/netmirror.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
