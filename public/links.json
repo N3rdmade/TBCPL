@@ -331,6 +331,13 @@
           "logo": "./logo/anime/anidb",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Animeheaven",
+          "url": "https://animeheaven.me/",
+          "logo": "./logo/anime/animeheaven.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
