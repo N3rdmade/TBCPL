@@ -90,6 +90,13 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "FutbolLibre",
+          "url": "https://librefutboltv1.pe/",
+          "logo": "./logo/livetv/futbollibre.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
