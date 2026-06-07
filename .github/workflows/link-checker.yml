@@ -1,0 +1,35 @@
+name: Link Checker
+
+on:
+  schedule:
+    - cron: '23 */12 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check links
+        id: check
+        run: |
+          node .github/scripts/check-links.js
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.SITE_VALIDATOR_WEBHOOK }}
+
+      - name: Send Discord notification
+        if: failure()
+        run: |
+          if [ -f broken-links.json ]; then
+            node .github/scripts/send-discord-notification.js
+          fi
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.SITE_VALIDATOR_WEBHOOK }}

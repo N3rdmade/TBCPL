@@ -313,17 +313,15 @@
         },
         {
           "name": "AG48ANIME",
-          "url": "https://ag48-network.vercel.app",
+          "url": "https://www.ag48anime.site/",
           "logo": "./logo/anime/ag48anime.png",
-          "enabled": true,
-          "status": "new"
+          "enabled": true
         },
         {
           "name": "Anikoto",
           "url": "https://anikototv.to",
           "logo": "./logo/anime/anikoto.png",
-          "enabled": true,
-          "status": "new"
+          "enabled": true
         },
         {
           "name": "AniDB",
@@ -548,22 +546,19 @@
           "name": "DaddyLive",
           "url": "https://dlhd.pk/",
           "logo": "./logo/livetv/daddylive.png",
-          "enabled": true,
-          "status": "new"
+          "enabled": true
         },
         {
           "name": "tvpass",
           "url": "https://tvpass.org",
           "logo": "./logo/livetv/tvpass.png",
-          "enabled": true,
-          "status": "new"
+          "enabled": true
         },
         {
           "name": "Stmify",
           "url": "https://stmify.com/",
           "logo": "./logo/livetv/stmify.png",
-          "enabled": true,
-          "status": "new"
+          "enabled": true
         },
         {
           "name": "ppv.to",
