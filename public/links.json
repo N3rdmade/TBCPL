@@ -33,7 +33,7 @@
         },
         {
           "name": "overlook",
-          "url": "https://overlook.to",
+          "url": "overlook.to",
           "logo": "./logo/movies/overlook.png",
           "status": "trusted"
         },
