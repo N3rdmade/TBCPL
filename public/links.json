@@ -170,6 +170,12 @@
           "url": "https://cinemaos.live",
           "logo": "./logo/movies_shows/cinemaos.png",
           "enabled": true
+        },
+        {
+          "name": "Allyoucanwatch",
+          "url": "https://allyoucanwatch.net/",
+          "logo": "pending://movies/allyoucanwatch.png",
+          "status": "new"
         }
       ]
     },
