@@ -322,6 +322,13 @@
           "logo": "./logo/anime/animeheaven.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Anitaku",
+          "url": "https://anitaku.io/",
+          "logo": "./logo/anime/anitaku.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
