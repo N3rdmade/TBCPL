@@ -32,9 +32,9 @@
           "enabled": true
         },
         {
-          "name": "New site",
+          "name": "overlook",
           "url": "https://https://overlook.to",
-          "logo": "./logo/movies/new-site.png",
+          "logo": "pending://movies/new-site.png",
           "status": "trusted"
         },
         {
