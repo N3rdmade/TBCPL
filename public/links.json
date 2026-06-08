@@ -32,6 +32,12 @@
           "enabled": true
         },
         {
+          "name": "New site",
+          "url": "https://https://overlook.to",
+          "logo": "./logo/movies/new-site.png",
+          "status": "trusted"
+        },
+        {
           "name": "AlienFlix",
           "url": "https://ishowmovies.org/",
           "logo": "./logo/movies_shows/alienflix.png",
@@ -313,22 +319,22 @@
           "name": "AniDB",
           "url": "https://anidb.app/home",
           "logo": "./logo/anime/anidb.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         },
         {
           "name": "Animeheaven",
           "url": "https://animeheaven.me/",
           "logo": "./logo/anime/animeheaven.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         },
         {
           "name": "Anitaku",
           "url": "https://anitaku.io/",
           "logo": "./logo/anime/anitaku.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
