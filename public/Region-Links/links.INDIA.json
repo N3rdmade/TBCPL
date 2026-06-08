@@ -131,6 +131,13 @@
           "logo": "./logo/movies_shows/alooytv.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "TheNextplanet",
+          "url": "https://www.thenextplanet.living/",
+          "logo": "./logo/movies_shows/thenextplanet.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
