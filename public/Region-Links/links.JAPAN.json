@@ -5,10 +5,10 @@
       "name": "Movies & Shows",
       "sites": [
         {
-          "name": "近日公開予定 — 提案を追加してください！",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
+          "name": "Kiss KH",
+          "url": "https://kisskh.do/",
+          "logo": "./logo/movies_shows/Kiss KH Logo.png",
+          "enabled": true
         }
       ]
     },

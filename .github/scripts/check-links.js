@@ -15,7 +15,7 @@ const SKIP_HOSTS = new Set([
 
 const SKIP_URLS = new Set([
   'https://auth.hulu.com/web/login/',
-  'https://www.zee5.com/global',
+  'https://www.zee5.com/global',  
   'https://www.yupptv.com/channels'
 ]);
 

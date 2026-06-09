@@ -32,12 +32,6 @@
           "enabled": true
         },
         {
-          "name": "overlook",
-          "url": "overlook.to",
-          "logo": "./logo/movies/overlook.png",
-          "status": "trusted"
-        },
-        {
           "name": "AlienFlix",
           "url": "https://ishowmovies.org/",
           "logo": "./logo/movies_shows/alienflix.png",
