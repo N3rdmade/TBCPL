@@ -475,12 +475,6 @@
           "enabled": true
         },
         {
-          "name": "Sportsbite",
-          "url": "https://livetv.moviebite.cc/",
-          "logo": "./logo/livetv/Sportsbite Logo.png",
-          "enabled": true
-        },
-        {
           "name": "1Flex Live",
           "url": "https://www.1flex.ru/live-tv",
           "logo": "./logo/movies_shows/1flex.png",

@@ -12,7 +12,7 @@
         },
         {
           "name": "Movies",
-          "url": "https://inkapelis.cyou/",
+          "url": "https://inkapelis.cyou",
           "logo": "./logo/movies_shows/movies.png",
           "enabled": true
         },

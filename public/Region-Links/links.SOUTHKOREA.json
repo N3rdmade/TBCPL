@@ -24,7 +24,7 @@
         },
         {
           "name": "goplay.su",
-          "url": "https://goplay.su/",
+          "url": "https://goplay.su",
           "logo": "./logo/movies_shows/goplaysu.png",
           "status": "new",
           "enabled": true

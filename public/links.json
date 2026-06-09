@@ -167,7 +167,7 @@
         },
         {
           "name": "Allyoucanwatch",
-          "url": "https://allyoucanwatch.net/",
+          "url": "https://allyoucanwatch.net",
           "logo": "./logo/movies/allyoucanwatch.png",
           "status": "new"
         }
