@@ -83,20 +83,8 @@
           "enabled": true
         },
         {
-          "name": "StreamX",
-          "url": "https://streamex.net/",
-          "logo": "./logo/movies_shows/streamx.png",
-          "enabled": true
-        },
-        {
-          "name": "Cinezo",
-          "url": "https://www.cinezo.net/",
-          "logo": "./logo/movies_shows/cinezo.png",
-          "enabled": true
-        },
-        {
           "name": "Cineby",
-          "url": "https://www.cineby.gd/",
+          "url": "https://www.cineby.at/",
           "logo": "./logo/movies_shows/cineby.png",
           "enabled": true
         },

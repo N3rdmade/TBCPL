@@ -17,12 +17,6 @@
           "enabled": true
         },
         {
-          "name": "곧 더 추가됩니다 — 제안을 추가해 주세요!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "goplay.su",
           "url": "https://goplay.su",
           "logo": "./logo/movies_shows/goplaysu.png",

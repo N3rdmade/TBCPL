@@ -26,12 +26,6 @@
           "status": "trusted"
         },
         {
-          "name": "Overlook",
-          "url": "https://overlook.to",
-          "logo": "./logo/movies/new-site.png",
-          "status": "trusted"
-        },
-        {
           "name": "shuttletv",
           "url": "https://shuttletv.su/",
           "logo": "./logo/movies_shows/logo.webp",
@@ -45,7 +39,7 @@
         },
         {
           "name": "FlickyStream",
-          "url": "https://flickystream.ru/",
+          "url": "https://flickystream.su/",
           "logo": "./logo/movies_shows/flickystream.png",
           "enabled": true
         },
@@ -87,9 +81,9 @@
           "enabled": true
         },
         {
-          "name": "Cinezo",
-          "url": "https://www.cinezo.net/",
-          "logo": "./logo/movies_shows/cinezo.png",
+          "name": "Overlook",
+          "url": "https://overlook.to",
+          "logo": "./logo/movies/new-site.png",
           "enabled": true
         },
         {
@@ -99,14 +93,8 @@
           "enabled": true
         },
         {
-          "name": "StreamX",
-          "url": "https://streamex.sh/",
-          "logo": "./logo/movies_shows/streamx.png",
-          "enabled": true
-        },
-        {
           "name": "Cineby",
-          "url": "https://www.cineby.gd/",
+          "url": "https://www.cineby.at/",
           "logo": "./logo/movies_shows/cineby.png",
           "enabled": true
         },
@@ -159,23 +147,10 @@
           "enabled": true
         },
         {
-          "name": "reezli",
-          "url": "https://stream.reezli.vc/",
-          "logo": "./logo/movies_shows/reezli.png",
-          "enabled": false,
-          "status": "new"
-        },
-        {
           "name": "Cinemaos",
           "url": "https://cinemaos.live",
           "logo": "./logo/movies_shows/cinemaos.png",
           "enabled": true
-        },
-        {
-          "name": "Allyoucanwatch",
-          "url": "https://allyoucanwatch.net",
-          "logo": "./logo/movies/allyoucanwatch.png",
-          "status": "new"
         }
       ]
     },
