@@ -21,6 +21,13 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "goplay.su",
+          "url": "https://goplay.su/",
+          "logo": "./logo/movies_shows/goplaysu.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
@@ -28,7 +35,7 @@
       "id": "anime",
       "name": "Anime",
       "sites": [
-       {
+        {
           "name": "Kiss KH",
           "url": "https://kisskh.do/",
           "logo": "./logo/movies_shows/Kiss KH Logo.png",
