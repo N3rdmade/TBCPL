@@ -26,6 +26,13 @@
           "status": "trusted"
         },
         {
+          "name": "Overlook",
+          "url": "https://overlook.to",
+          "logo": "./logo/movies/new-site.png",
+          "enabled": true,
+          "status": "trusted"
+        },
+        {
           "name": "shuttletv",
           "url": "https://shuttletv.su/",
           "logo": "./logo/movies_shows/logo.webp",
@@ -78,12 +85,6 @@
           "name": "Cinegram",
           "url": "https://cinegram.tv/home",
           "logo": "./logo/movies_shows/cinegram.png",
-          "enabled": true
-        },
-        {
-          "name": "Overlook",
-          "url": "https://overlook.to",
-          "logo": "./logo/movies/new-site.png",
           "enabled": true
         },
         {
