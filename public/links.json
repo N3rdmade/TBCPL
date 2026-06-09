@@ -26,6 +26,12 @@
           "status": "trusted"
         },
         {
+          "name": "Overlook",
+          "url": "https://overlook.to",
+          "logo": "./logo/movies/new-site.png",
+          "status": "trusted"
+        },
+        {
           "name": "shuttletv",
           "url": "https://shuttletv.su/",
           "logo": "./logo/movies_shows/logo.webp",
@@ -169,6 +175,12 @@
           "name": "Allyoucanwatch",
           "url": "https://allyoucanwatch.net",
           "logo": "./logo/movies/allyoucanwatch.png",
+          "status": "new"
+        },
+        {
+          "name": "New site",
+          "url": "https://",
+          "logo": "./logo/movies/",
           "status": "new"
         }
       ]
