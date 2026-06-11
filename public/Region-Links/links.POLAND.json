@@ -223,6 +223,13 @@
           "logo": "./logo/apps/flowflix.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "PureVideo",
+          "url": "https://majusss.github.io/",
+          "logo": "./logo/apps/purevideo.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     }
