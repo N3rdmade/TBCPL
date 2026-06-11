@@ -84,6 +84,13 @@
           "logo": "./logo/livetv/futbollibre.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "RojaDirecta",
+          "url": "https://rojadirectastream.com/",
+          "logo": "./logo/livetv/rojadirecta.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
