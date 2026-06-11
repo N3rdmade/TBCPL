@@ -324,6 +324,13 @@
           "logo": "./logo/anime/anitaku.png",
           "enabled": true,
           "status": "new"
+        },
+        {
+          "name": "Lunar",
+          "url": "https://lunaranime.ru/anime",
+          "logo": "./logo/anime/lunaranime.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
