@@ -40,6 +40,13 @@
           "logo": "./logo/anime/docchi.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Shinden",
+          "url": "https://shinden.pl/",
+          "logo": "./logo/anime/shinden.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
@@ -52,6 +59,13 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "Shinden",
+          "url": "https://shinden.pl/",
+          "logo": "./logo/anime/shinden.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
