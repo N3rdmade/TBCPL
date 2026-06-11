@@ -152,6 +152,13 @@
           "url": "https://cinemaos.live",
           "logo": "./logo/movies_shows/cinemaos.png",
           "enabled": true
+        },
+        {
+          "name": "Cinephile",
+          "url": "https://cinephile1.vercel.app/",
+          "logo": "./logo/movies_shows/cinephile.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
