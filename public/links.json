@@ -26,13 +26,6 @@
           "status": "trusted"
         },
         {
-          "name": "Overlook",
-          "url": "https://overlook.to",
-          "logo": "./logo/movies/new-site.png",
-          "enabled": true,
-          "status": "trusted"
-        },
-        {
           "name": "shuttletv",
           "url": "https://shuttletv.su/",
           "logo": "./logo/movies_shows/logo.webp",
@@ -42,7 +35,7 @@
           "name": "AlienFlix",
           "url": "https://ishowmovies.org/",
           "logo": "./logo/movies_shows/alienflix.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "FlickyStream",
@@ -80,6 +73,13 @@
           "url": "https://filmcave.ru/",
           "logo": "./logo/movies_shows/filmcave.png",
           "enabled": true
+        },
+        {
+          "name": "Overlook",
+          "url": "https://overlook.to",
+          "logo": "./logo/movies/new-site.png",
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "Cinegram",
@@ -224,7 +224,7 @@
           "name": "yenime",
           "url": "https://yenime.net",
           "logo": "./logo/anime/yenime.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "Anistream",
@@ -260,13 +260,13 @@
           "name": "HiAnime",
           "url": "https://hianime.cv/home",
           "logo": "./logo/anime/hianime.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "9anime",
           "url": "https://9anime.cl/",
           "logo": "./logo/anime/9anime.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "Voidanime",
@@ -284,7 +284,7 @@
           "name": "Animesuge",
           "url": "https://animesuge.cz/",
           "logo": "./logo/anime/animesuge.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "AniWaves",
@@ -520,7 +520,7 @@
         },
         {
           "name": "Sportsbite",
-          "url": "https://sportsbite.online/",
+          "url": "https://sportsbite.xyz/",
           "logo": "./logo/livetv/Sportsbite Logo.png",
           "enabled": true
         },

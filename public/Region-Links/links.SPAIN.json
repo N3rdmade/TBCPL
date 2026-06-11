@@ -80,7 +80,7 @@
       "sites": [
         {
           "name": "FutbolLibre",
-          "url": "https://librefutboltv1.pe/",
+          "url": "https://futbol-libres.su/",
           "logo": "./logo/livetv/futbollibre.png",
           "status": "new",
           "enabled": true
