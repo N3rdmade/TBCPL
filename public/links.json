@@ -331,6 +331,13 @@
           "logo": "./logo/anime/lunaranime.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "AllManga",
+          "url": "https://allmanga.to/",
+          "logo": "./logo/anime/allmanga.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
@@ -452,6 +459,13 @@
           "logo": "./logo/manga/mangaxo.png",
           "enabled": true,
           "status": "new"
+        },
+        {
+          "name": "AllManga",
+          "url": "https://allmanga.to/",
+          "logo": "./logo/anime/allmanga.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
