@@ -216,6 +216,13 @@
           "url": "https://pikashowtv.in/",
           "logo": "./logo/apps/pikashow.png",
           "enabled": true
+        },
+        {
+          "name": "FlowFlix",
+          "url": "https://flowflix.vercel.app/",
+          "logo": "./logo/apps/flowflix.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     }
