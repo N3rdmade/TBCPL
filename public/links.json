@@ -459,6 +459,12 @@
           "enabled": true
         },
         {
+          "name": "DAMITV",
+          "url": "https://dami-tv.pro/",
+          "logo": "./logo/livetv/damitv.png",
+          "enabled": true
+        },
+        {
           "name": "DaddyHD",
           "url": "https://daddylive.org/",
           "logo": "./logo/livetv/daddyhd.png",
