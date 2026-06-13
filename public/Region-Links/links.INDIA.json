@@ -141,8 +141,15 @@
         },
         {
           "name": "Cinephile",
-          "url": "https://cinephile1.vercel.app/",
+          "url": "https://cinephilee.pages.dev/",
           "logo": "./logo/movies_shows/cinephile.png",
+          "status": "new",
+          "enabled": true
+        },
+        {
+          "name": "yupflix",
+          "url": "https://watch.yupflix.org/",
+          "logo": "./logo/movies_shows/yupflix.png",
           "status": "new",
           "enabled": true
         }
@@ -162,6 +169,12 @@
           "name": "WatchAnimeWorld",
           "url": "https://watchanimeworld.net/",
           "logo": "./logo/anime/watchanimeworld.png",
+          "enabled": true
+        },
+        {
+          "name": "animedekho",
+          "url": "https://animedekho.app/",
+          "logo": "./logo/anime/animedekho.png",
           "enabled": true
         },
         {

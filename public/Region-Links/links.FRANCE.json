@@ -59,6 +59,12 @@
           "enabled": true
         },
         {
+          "name": "MugiwaraNoStreaming",
+          "url": "https://www.mugiwara-no-streaming.com/",
+          "logo": "./logo/anime/mugiwaranostreaming.png",
+          "enabled": true
+        },
+        {
           "name": "Anime Sama",
           "url": "https://anime-sama.to/",
           "logo": "./logo/anime/anime-sama.png",
