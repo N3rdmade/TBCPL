@@ -152,6 +152,13 @@
           "logo": "./logo/movies_shows/yupflix.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Netprime4u",
+          "url": "https://netprime4u.lol/",
+          "logo": "./logo/movies_shows/netprime4u.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
@@ -225,6 +232,13 @@
           "logo": "./logo/anime/aniwave.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Netprime4u",
+          "url": "https://netprime4u.lol/",
+          "logo": "./logo/movies_shows/netprime4u.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
@@ -249,6 +263,13 @@
           "name": "Taranga Plus",
           "url": "https://tarangplus.in/",
           "logo": "./logo/livetv/taranga-plus.png",
+          "enabled": true
+        },
+        {
+          "name": "Netprime4u",
+          "url": "https://netprime4u.lol/",
+          "logo": "./logo/movies_shows/netprime4u.png",
+          "status": "new",
           "enabled": true
         }
       ]
