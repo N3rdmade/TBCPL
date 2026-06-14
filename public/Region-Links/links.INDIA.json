@@ -231,7 +231,15 @@
     {
       "id": "manga",
       "name": "Manga",
-      "sites": []
+      "sites": [
+        {
+          "name": "natomanga",
+          "url": "https://www.natomanga.com/",
+          "logo": "./logo/manga/natomanga.png",
+          "status": "new",
+          "enabled": true
+        }
+      ]
     },
     {
       "id": "livetv",
