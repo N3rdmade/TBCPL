@@ -581,6 +581,13 @@
           "logo": "./logo/livetv/ppv.png",
           "enabled": true,
           "status": "new"
+        },
+        {
+          "name": "Streamed.PK",
+          "url": "https://streamed.pk/",
+          "logo": "./logo/livetv/streamed.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
