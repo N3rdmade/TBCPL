@@ -29,12 +29,6 @@
       "name": "Manga",
       "sites": [
         {
-          "name": "近日公開予定 — 提案を追加してください！",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "King of Shojo",
           "url": "https://kingofshojo.com",
           "logo": "./logo/manga/kingofshojo.png",

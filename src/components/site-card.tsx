@@ -39,14 +39,6 @@ export function SiteCard({ site, categoryId }: Props) {
     } catch {}
   }
 
-  function report(e: React.MouseEvent) {
-    e.preventDefault();
-    e.stopPropagation();
-    const subject = encodeURIComponent(`[Report] ${site.name} — ${categoryId}`);
-    const body = encodeURIComponent(`Site: ${site.name}\nURL: ${site.url}\nCategory: ${categoryId}\n\nIssue:\n`);
-    window.open(`https://github.com/N3rdmade/TBCPL/issues/new?title=${subject}&body=${body}`, "_blank");
-  }
-
   function star(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
@@ -124,14 +116,6 @@ export function SiteCard({ site, categoryId }: Props) {
           className="grid h-6 w-6 place-items-center rounded-md bg-[var(--bg-elev)]/70 text-[var(--fg-muted)] backdrop-blur hover:text-[var(--fg)]"
         >
           {copied ? <Check size={11} /> : <Copy size={11} />}
-        </button>
-        <button
-          type="button"
-          aria-label="Report"
-          onClick={report}
-          className="grid h-6 w-6 place-items-center rounded-md bg-[var(--bg-elev)]/70 text-[var(--fg-muted)] backdrop-blur hover:text-[var(--fg)]"
-        >
-          <Flag size={11} />
         </button>
       </div>
 

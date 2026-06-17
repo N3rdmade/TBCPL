@@ -8,6 +8,6 @@ export const CATEGORY_META: Record<
   anime: { label: "Anime", icon: "🌸", blurb: "Anime streaming and aggregators." },
   manga: { label: "Manga", icon: "📚", blurb: "Manga readers and libraries." },
   livetv: { label: "Live TV & Sports", icon: "📺", blurb: "Live channels and sports streams." },
-  paid: { label: "Paid", icon: "💳", blurb: "Premium-cracked and paid alternatives." },
+  paid: { label: "Paid", icon: "💳", blurb: "Paid & Legal Alternative" },
   apps: { label: "Apps", icon: "📱", blurb: "Native apps and APKs." },
 };

@@ -49,12 +49,6 @@
       "name": "Manga",
       "sites": [
         {
-          "name": "곧 더 추가됩니다 — 제안을 추가해 주세요!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "King of Shojo",
           "url": "https://kingofshojo.com",
           "logo": "./logo/manga/kingofshojo.png",
