@@ -466,6 +466,13 @@
           "logo": "./logo/anime/allmanga.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "King of Shojo",
+          "url": "https://kingofshojo.com",
+          "logo": "./logo/manga/kingofshojo.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
