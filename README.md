@@ -12,7 +12,7 @@ Source Code of one of the most Demanding Indexing Site
 
 ## 
 ### How to add a new site? 
-fork the repo do the edit and make a pull req
+fork the repo do the edit and make a pull request
 
 we'll take a look if its good then sure..
 
