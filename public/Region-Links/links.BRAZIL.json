@@ -25,6 +25,13 @@
       ]
     },
     {
+      "name": "CineMac",
+      "url": "https://cinemac.info/",
+      "logo": "./logo/movies_shows/cinemac.png",
+      "enabled": true,
+      "status": "new"
+    },
+    {
       "id": "manga",
       "name": "Manga",
       "sites": [
