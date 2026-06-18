@@ -45,6 +45,13 @@
           "url": "https://filmpalast.to/",
           "logo": "./logo/movies_shows/filmpalast.png",
           "enabled": true
+        },
+        {
+          "name": "Kinox/Kinoz",
+          "url": "https://kinoz.to",
+          "logo": "./logo/movies_shows/kinox.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
