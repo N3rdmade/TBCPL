@@ -52,6 +52,13 @@
           "logo": "./logo/movies_shows/kinox.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "BurningSeries",
+          "url": "https://bs.to",
+          "logo": "./logo/movies_shows/burningseries.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
