@@ -9,6 +9,13 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "CineMac",
+          "url": "https://cinemac.info/",
+          "logo": "./logo/movies_shows/cinemac.png",
+          "enabled": true,
+          "status": "new"
         }
       ]
     },

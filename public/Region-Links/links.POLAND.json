@@ -11,6 +11,13 @@
           "enabled": true
         },
         {
+          "name": "CineMac",
+          "url": "https://cinemac.info/",
+          "logo": "./logo/movies_shows/cinemac.png",
+          "enabled": true,
+          "status": "new"
+        },
+        {
           "name": "CDA-HD",
           "url": "https://cda-hd.cc",
           "logo": "./logo/movies_shows/CDA-HD Logo.png",
