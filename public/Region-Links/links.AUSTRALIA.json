@@ -23,6 +23,13 @@
           "enabled": true
         },
         {
+          "name": "CineMac",
+          "url": "https://cinemac.info/",
+          "logo": "./logo/movies_shows/cinemac.png",
+          "enabled": true,
+          "status": "new"
+        },
+        {
           "name": "AlienFlix",
           "url": "https://ishowmovies.org/",
           "logo": "./logo/movies_shows/alienflix.png",

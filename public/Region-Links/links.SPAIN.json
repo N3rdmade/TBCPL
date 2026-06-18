@@ -23,6 +23,13 @@
           "logo": ""
         },
         {
+          "name": "CineMac",
+          "url": "https://cinemac.info/",
+          "logo": "./logo/movies_shows/cinemac.png",
+          "enabled": true,
+          "status": "new"
+        },
+        {
           "name": "SoloLatino",
           "url": "https://sololatino.net/",
           "logo": "./logo/movies_shows/sololatino",
