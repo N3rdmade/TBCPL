@@ -158,7 +158,7 @@
           "url": "https://cinephile.live/",
           "logo": "./logo/movies_shows/cinephile.png",
           "status": "new",
-          "enabled": true
+          "enabled": false
         }
       ]
     },
