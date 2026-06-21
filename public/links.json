@@ -87,15 +87,9 @@
           "enabled": true
         },
         {
-          "name": "Cinegram",
-          "url": "https://cinegram.tv/home",
-          "logo": "./logo/movies_shows/cinegram.png",
-          "enabled": true
-        },
-        {
-          "name": "Willow",
-          "url": "https://willow.arlen.icu/",
-          "logo": "./logo/movies_shows/willow.png",
+          "name": "LordFlix",
+          "url": "https://lordflix.org/",
+          "logo": "./logo/movies_shows/lordflix.png",
           "enabled": true
         },
         {
@@ -111,9 +105,15 @@
           "enabled": true
         },
         {
-          "name": "LordFlix",
-          "url": "https://lordflix.org/",
-          "logo": "./logo/movies_shows/lordflix.png",
+          "name": "Cinegram",
+          "url": "https://cinegram.tv/home",
+          "logo": "./logo/movies_shows/cinegram.png",
+          "enabled": true
+        },
+        {
+          "name": "Willow",
+          "url": "https://willow.arlen.icu/",
+          "logo": "./logo/movies_shows/willow.png",
           "enabled": true
         },
         {
