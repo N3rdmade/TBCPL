@@ -4,6 +4,13 @@
       "id": "movies",
       "name": "Movies & Shows",
       "sites": [
+        { 
+           "name": "Moonflix",
+          "url": "https://moonflix.site/",
+          "logo": "./logo/movies_shows/moonflix Logo.png",
+          "enabled": true
+          
+        }
         {
           "name": "Desicinemas",
           "url": "https://desicinemas.pk/",
