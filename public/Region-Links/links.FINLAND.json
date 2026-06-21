@@ -22,7 +22,7 @@
         {
           "name": "ViaPlay",
           "url": "https://viaplay.fi/urheilu",
-          "logo": "./logo/livetv/ViaPlay Logo.png",
+          "logo": "./logo/livetv/viaplay.png",
           "enabled": true
         }
       ]

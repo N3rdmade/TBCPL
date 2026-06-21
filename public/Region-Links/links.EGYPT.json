@@ -7,7 +7,7 @@
         {
           "name": "EgyBest",
           "url": "https://egyybes.autos/home",
-          "logo": "./logo/movies_shows/EgyBest Logo.png",
+          "logo": "./logo/movies_shows/egybest.png",
           "enabled": true
         },
         {
@@ -34,9 +34,9 @@
       "name": "Live TV & Sports",
       "sites": [
         {
-          "name": "Arabic TV Watch",
+          "name": "ArabicTV Watch",
           "url": "https://arabictvwatch.tv/",
-          "logo": "./logo/livetv/Arabic TV Logo.png",
+          "logo": "./logo/livetv/arabictv.png",
           "enabled": true
         }
       ]

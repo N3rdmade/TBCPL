@@ -5,10 +5,10 @@
       "name": "Movies & Shows",
       "sites": [
         {
-          "name": "Em breve mais — adicione uma sugestão!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "wareztuga",
+          "url": "https://wareztuga.io/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/movies_shows/wareztuga.png"
         }
       ]
     },

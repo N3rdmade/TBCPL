@@ -271,6 +271,23 @@ async function main() {
     console.log(`\n❌ Found ${brokenLinks.length} broken link(s)`);
   } else {
     console.log('\n✅ All links are working!');
+    const endTime = new Date();
+    const durationMin = Math.round((endTime.getTime() - startTime.getTime()) / 60000);
+    await sendDiscordNotification(
+      '✅ **Link Checker Completed**',
+      [{
+        title: 'No Dead Links Found',
+        description: 'All links checked successfully. Everything is working.',
+        color: 3066993,
+        fields: [
+          { name: 'Total Links', value: `${total}`, inline: true },
+          { name: 'Unique URLs', value: `${unique}`, inline: true },
+          { name: 'Duration', value: `~${durationMin} min`, inline: true },
+          { name: 'Finished At', value: `<t:${Math.floor(endTime.getTime() / 1000)}:F>`, inline: false }
+        ],
+        timestamp: endTime.toISOString()
+      }]
+    ).catch(err => console.error('Failed to send completion notification:', err));
   }
   process.exit(0);
 }

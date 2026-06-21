@@ -7,7 +7,7 @@
         {
           "name": "tv5mondeplus",
           "url": "https://www.tv5mondeplus.com/",
-          "logo": "./logo/movies_shows/tv5mondeplus Logo.png",
+          "logo": "./logo/movies_shows/tv5mondeplus.png",
           "enabled": true
         },
         {
@@ -38,19 +38,19 @@
           "name": "VoirAnime",
           "url": "https://voir-anime.to/",
           "enabled": true,
-          "logo": "./logo/anime/Voir Anime Logo.png"
+          "logo": "./logo/anime/voiranime.png"
         },
         {
           "name": "AnimesUltra",
           "url": "https://ww.animesultra.org/",
           "enabled": true,
-          "logo": "./logo/anime/AnimesUltra Logo.png"
+          "logo": "./logo/anime/animesultra.png"
         },
         {
           "name": "VostFree",
           "url": "https://vostfree.ws/",
           "enabled": true,
-          "logo": "./logo/anime/VostFree Logo.png"
+          "logo": "./logo/anime/vostfree.png"
         },
         {
           "name": "Sekai",

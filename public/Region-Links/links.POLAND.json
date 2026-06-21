@@ -7,13 +7,13 @@
         {
           "name": "Filman",
           "url": "https://filman.cc/",
-          "logo": "./logo/movies_shows/Filman Logo.png",
+          "logo": "./logo/movies_shows/filmancc.png",
           "enabled": true
         },
         {
           "name": "CDA-HD",
           "url": "https://cda-hd.cc",
-          "logo": "./logo/movies_shows/CDA-HD Logo.png",
+          "logo": "./logo/movies_shows/cda-hd.png",
           "enabled": true
         },
         {
@@ -76,7 +76,7 @@
         {
           "name": "TV.Eddit.Me",
           "url": "https://tv.eddit.me/",
-          "logo": "./logo/livetv/TV Eddit Logo.png",
+          "logo": "./logo/livetv/tveddit.png",
           "enabled": true
         },
         {

@@ -95,18 +95,6 @@
       "name": "Kurdistan",
       "flag": "☀️",
       "enabled": true
-    },
-    {
-      "code": "AUSTRALIA",
-      "name": "Australia",
-      "flag": "🇦🇺",
-      "enabled": false
-    },
-    {
-      "code": "CANADA",
-      "name": "Canada",
-      "flag": "🇨🇦",
-      "enabled": false
     }
   ]
 }
