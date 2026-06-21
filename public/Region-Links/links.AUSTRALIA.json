@@ -4,6 +4,13 @@
       "id": "movies",
       "name": "Movies & Shows",
       "sites": [
+        { 
+          "name": "Moonflix",
+          "url": "https://moonflix.site/",
+          "logo": "./logo/movies_shows/moonflix Logo.png",
+          "enabled": true
+          
+        },
         {
           "name": "1Shows",
           "url": "https://www.1shows.org/",
