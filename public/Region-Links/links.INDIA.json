@@ -5,7 +5,7 @@
       "name": "Movies & Shows",
       "sites": [
         { 
-           "name": "Moonflix",
+          "name": "Moonflix",
           "url": "https://moonflix.site/",
           "logo": "./logo/movies_shows/moonflix Logo.png",
           "enabled": true
