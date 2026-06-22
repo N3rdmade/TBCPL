@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
-const { request, Agent, setGlobalDispatcher } = require('undici');
 
 const MAX_RETRIES = 2;
 const RETRY_DELAY = 1500;
@@ -11,12 +10,8 @@ const MAX_REDIRECTS = 5;
 
 const { isWhitelisted } = require('./skip-list');
 
-setGlobalDispatcher(new Agent({
-  connect: { timeout: 5000, rejectUnauthorized: false },
-  headersTimeout: REQUEST_TIMEOUT,
-  bodyTimeout: REQUEST_TIMEOUT,
-  pipelining: 0,
-}));
+// Disable TLS verification for reachability checks on third-party sites
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const urlCache = new Map();
 
@@ -85,11 +80,11 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 async function singleRequest(url) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+  const timer = setTimeout(() => controller.abort('timeout'), REQUEST_TIMEOUT);
   try {
-    const res = await request(url, {
+    const res = await fetch(url, {
       method: 'HEAD',
-      maxRedirections: 0,
+      redirect: 'manual',
       signal: controller.signal,
       headers: {
         'user-agent': UA,
@@ -97,10 +92,7 @@ async function singleRequest(url) {
         'accept-language': 'en-US,en;q=0.9',
       },
     });
-    const status = res.statusCode;
-    const location = res.headers.location || null;
-    res.body.destroy();
-    return { status, location };
+    return { status: res.status, location: res.headers.get('location') || null };
   } catch (err) {
     return { error: err.code || err.name || err.message };
   } finally {

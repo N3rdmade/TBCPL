@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { request, Agent, setGlobalDispatcher } = require('undici');
 const { isWhitelisted } = require('./skip-list');
 
 const REQUEST_TIMEOUT = 8000;
@@ -9,12 +8,7 @@ const MAX_BODY_BYTES = 512 * 1024;
 const CONCURRENCY = 8;
 const SLEEP_BETWEEN = 50;
 
-setGlobalDispatcher(new Agent({
-  connect: { timeout: 5000, rejectUnauthorized: false },
-  headersTimeout: REQUEST_TIMEOUT,
-  bodyTimeout: REQUEST_TIMEOUT,
-  pipelining: 0,
-}));
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const FMHY_DOCS = [
   'https://raw.githubusercontent.com/fmhy/edit/refs/heads/main/docs/video.md',
@@ -76,27 +70,31 @@ function sameHost(a, b) {
 // Single-shot HTTP request with a hard timeout that ACTUALLY aborts.
 async function hit(url, { method = 'HEAD', timeout = REQUEST_TIMEOUT, wantBody = false } = {}) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeout);
+  const timer = setTimeout(() => controller.abort('timeout'), timeout);
   try {
-    const res = await request(url, {
+    const res = await fetch(url, {
       method,
-      maxRedirections: 0,
+      redirect: 'manual',
       signal: controller.signal,
       headers: COMMON_HEADERS,
     });
-    const status = res.statusCode;
-    const location = res.headers.location || null;
+    const status = res.status;
+    const location = res.headers.get('location') || null;
 
     let body = '';
     if (wantBody) {
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
       let bytes = 0;
-      for await (const chunk of res.body) {
-        bytes += chunk.length;
-        if (bytes > MAX_BODY_BYTES) { controller.abort(); break; }
-        body += chunk.toString('utf8');
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        bytes += value.length;
+        if (bytes > MAX_BODY_BYTES) { controller.abort('size-cap'); break; }
+        body += decoder.decode(value, { stream: true });
       }
     } else {
-      res.body.destroy();
+      try { res.body && res.body.cancel(); } catch {}
     }
     return { ok: true, status, location, body };
   } catch (err) {
