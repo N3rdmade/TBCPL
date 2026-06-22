@@ -8,6 +8,8 @@ on:
 jobs:
   check-links:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -24,6 +26,31 @@ jobs:
           node .github/scripts/check-links.js
         env:
           DISCORD_WEBHOOK: ${{ secrets.SITE_VALIDATOR_WEBHOOK }}
+
+      - name: Attempt automatic link updates
+        if: always() && hashFiles('broken-links.json') != ''
+        run: node .github/scripts/update-links.js
+
+      - name: Commit link updates
+        if: always() && hashFiles('link-updates.json') != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/links.json public/Region-Links/*.json
+          if git diff --cached --quiet; then
+            echo "No staged changes — skipping commit."
+            exit 0
+          fi
+          git commit -m "bot: auto-update broken links (redirect + FMHY)"
+          git push origin HEAD:${{ github.ref_name }}
+
+      - name: Upload link updates artifact
+        if: always() && hashFiles('link-updates.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-updates
+          path: link-updates.json
+          retention-days: 30
 
       - name: Send Discord notification
         if: always() && hashFiles('broken-links.json') != ''

@@ -46,14 +46,23 @@ async function main() {
     process.exit(0);
   }
 
-  const brokenLinks = JSON.parse(fs.readFileSync('broken-links.json', 'utf8'));
+  const originalBroken = JSON.parse(fs.readFileSync('broken-links.json', 'utf8'));
 
-  if (brokenLinks.length === 0) {
+  if (originalBroken.length === 0) {
     console.log('No broken links to report');
     process.exit(0);
   }
 
-  const groupedByFile = brokenLinks.reduce((acc, link) => {
+  const fixed = fs.existsSync('link-updates.json')
+    ? JSON.parse(fs.readFileSync('link-updates.json', 'utf8'))
+    : [];
+  const fixedKeySet = new Set(fixed.map(u => `${u.file}|${u.oldUrl}`));
+
+  const unresolved = originalBroken.filter(
+    l => !fixedKeySet.has(`${l.file}|${l.url}`)
+  );
+
+  const groupedByFile = unresolved.reduce((acc, link) => {
     const key = `${link.region}|${link.file}`;
     if (!acc[key]) {
       acc[key] = {
@@ -83,6 +92,29 @@ async function main() {
   }
 
   const embeds = [];
+
+  if (fixed.length > 0) {
+    const bySource = fixed.reduce((acc, u) => {
+      (acc[u.source] = acc[u.source] || []).push(u);
+      return acc;
+    }, {});
+    const summaryLines = Object.entries(bySource)
+      .map(([src, items]) => `**${src}:** ${items.length}`)
+      .join(' · ');
+    const sampleFields = fixed.slice(0, 10).map(u => ({
+      name: (u.name || 'unknown').substring(0, 256),
+      value: `~~${u.oldUrl}~~\n→ ${u.newUrl}\n*via ${u.source}* · \`${u.file}\``.substring(0, 1024),
+      inline: false,
+    }));
+    embeds.push({
+      title: `✅ Auto-fixed ${fixed.length} link(s)`,
+      description: `${summaryLines}${fixed.length > 10 ? `\n_Showing first 10 of ${fixed.length}._` : ''}`,
+      color: 3066993,
+      fields: sampleFields,
+      timestamp: new Date().toISOString(),
+    });
+  }
+
   for (const group of Object.values(groupedByFile)) {
     const fields = group.links.map(linkToField);
     const title = `🔴 Broken Links in ${group.region}`.substring(0, 256);
@@ -118,7 +150,12 @@ async function main() {
   }
 
   const mentions = '<@1141729666160402565> <@321029953200324610>';
-  const content = `${mentions}\n⚠️ **Link Checker Alert**\nFound ${brokenLinks.length} broken link(s) that need to be replaced.`;
+  const summary = [
+    `Found **${originalBroken.length}** broken link(s).`,
+    fixed.length > 0 ? `Auto-fixed **${fixed.length}** ✅` : null,
+    unresolved.length > 0 ? `**${unresolved.length}** still need attention ⚠️` : 'All resolved 🎉',
+  ].filter(Boolean).join(' · ');
+  const content = `${mentions}\n⚠️ **Link Checker Alert**\n${summary}`;
 
   function embedSize(e) {
     let s = (e.title || '').length + (e.description || '').length;
@@ -142,6 +179,7 @@ async function main() {
     batchChars += size;
   }
   if (batch.length > 0) messages.push(batch);
+  if (messages.length === 0) messages.push([]);
 
   for (let i = 0; i < messages.length; i++) {
     const payload = { embeds: messages[i] };
@@ -152,7 +190,7 @@ async function main() {
     }
   }
 
-  console.log(`Sent Discord notification for ${brokenLinks.length} broken link(s)`);
+  console.log(`Sent Discord notification: ${originalBroken.length} broken, ${fixed.length} fixed, ${unresolved.length} unresolved`);
 }
 
 main().catch(err => {
