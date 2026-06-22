@@ -72,9 +72,12 @@ function countTotalLinks(filePaths) {
   return { total, unique: uniqueUrls.size };
 }
 
-async function checkUrl(url, retries = 0) {
+const MAX_REDIRECTS = 5;
+
+function singleRequest(url) {
   return new Promise((resolve) => {
-    const urlObj = new URL(url);
+    let urlObj;
+    try { urlObj = new URL(url); } catch (e) { return resolve({ error: `bad url: ${e.message}` }); }
     const protocol = urlObj.protocol === 'https:' ? https : http;
     const origin = `${urlObj.protocol}//${urlObj.host}`;
 
@@ -85,55 +88,64 @@ async function checkUrl(url, retries = 0) {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.9',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'DNT': '1',
         'Connection': 'keep-alive',
         'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'Cache-Control': 'max-age=0',
         'Origin': origin,
         'Referer': origin + '/'
       }
     };
 
     const req = protocol.request(url, options, (res) => {
-      if (res.statusCode >= 200 && res.statusCode < 400) {
-        resolve({ success: true, status: res.statusCode });
-      } else if (res.statusCode === 404 || res.statusCode >= 500) {
-        if (retries < MAX_RETRIES) {
-          console.log(`Retry ${retries + 1}/${MAX_RETRIES} for ${url}`);
-          setTimeout(async () => {
-            const result = await checkUrl(url, retries + 1);
-            resolve(result);
-          }, RETRY_DELAY);
-        } else {
-          resolve({ success: false, status: res.statusCode });
-        }
-      } else {
-        resolve({ success: true, status: res.statusCode });
-      }
+      res.resume();
+      resolve({ status: res.statusCode, location: res.headers.location || null });
     });
-
-    req.on('error', async (err) => {
-      if (retries < MAX_RETRIES) {
-        console.log(`Retry ${retries + 1}/${MAX_RETRIES} for ${url} (error: ${err.message})`);
-        await sleep(RETRY_DELAY);
-        const result = await checkUrl(url, retries + 1);
-        resolve(result);
-      } else {
-        resolve({ success: false, error: err.message });
-      }
-    });
-
-    req.on('timeout', () => {
-      req.destroy(new Error('Request timed out'));
-    });
-
+    req.on('error', err => resolve({ error: err.message }));
+    req.on('timeout', () => req.destroy(new Error('timeout')));
     req.end();
   });
+}
+
+async function checkUrl(url, retries = 0) {
+  let current = url;
+  let lastStatus = null;
+  for (let hop = 0; hop <= MAX_REDIRECTS; hop++) {
+    const res = await singleRequest(current);
+    if (res.error) {
+      if (retries < MAX_RETRIES) {
+        console.log(`Retry ${retries + 1}/${MAX_RETRIES} for ${current} (error: ${res.error})`);
+        await sleep(RETRY_DELAY);
+        return checkUrl(url, retries + 1);
+      }
+      return { success: false, error: res.error };
+    }
+    lastStatus = res.status;
+    if (res.status >= 300 && res.status < 400 && res.location) {
+      let next;
+      try { next = new URL(res.location, current).toString(); } catch { break; }
+      try {
+        const origHost = new URL(url).host.toLowerCase().replace(/^www\./, '');
+        const nextHost = new URL(next).host.toLowerCase().replace(/^www\./, '');
+        if (origHost !== nextHost) {
+          return { success: false, status: res.status, redirectTo: next, reason: 'cross-domain-redirect' };
+        }
+      } catch {}
+      current = next;
+      continue;
+    }
+    if (res.status >= 200 && res.status < 400) {
+      return { success: true, status: res.status };
+    }
+    if (res.status === 404 || res.status >= 500) {
+      if (retries < MAX_RETRIES) {
+        console.log(`Retry ${retries + 1}/${MAX_RETRIES} for ${url}`);
+        await sleep(RETRY_DELAY);
+        return checkUrl(url, retries + 1);
+      }
+      return { success: false, status: res.status };
+    }
+    return { success: true, status: res.status };
+  }
+  return { success: false, status: lastStatus, error: 'too many redirects' };
 }
 
 async function checkLinksInFile(filePath, region) {
@@ -170,10 +182,13 @@ async function checkLinksInFile(filePath, region) {
             category: category.name,
             status: result.status || 'timeout/error',
             error: result.error,
+            redirectTo: result.redirectTo,
+            reason: result.reason,
             region: region,
             file: filePath
           });
-          console.log(`❌ BROKEN: ${site.name} - ${site.url} (${result.status || result.error})`);
+          const detail = result.redirectTo ? `→ ${result.redirectTo} (${result.reason})` : (result.status || result.error);
+          console.log(`❌ BROKEN: ${site.name} - ${site.url} (${detail})`);
         } else {
           console.log(`✅ OK: ${site.name} (${result.status})`);
         }

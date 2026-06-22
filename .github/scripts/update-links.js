@@ -5,8 +5,18 @@ const http = require('http');
 const { isWhitelisted } = require('./skip-list');
 
 const REQUEST_TIMEOUT = 15000;
-const MAX_REDIRECTS = 8;
+const PER_LINK_BUDGET = 45000;
+const MAX_REDIRECTS = 6;
+const MAX_BODY_BYTES = 256 * 1024;
 const SLEEP_BETWEEN = 400;
+
+function withTimeout(promise, ms, label) {
+  let timer;
+  const timeout = new Promise(resolve => {
+    timer = setTimeout(() => resolve({ error: `${label} exceeded ${ms}ms budget` }), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
 
 const FMHY_DOCS = [
   'https://raw.githubusercontent.com/fmhy/edit/refs/heads/main/docs/video.md',
@@ -73,7 +83,7 @@ function nameSlug(s) {
   return (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
-function fetchRaw(url, { method = 'GET', redirectsLeft = MAX_REDIRECTS } = {}) {
+function fetchRaw(url, { method = 'GET', redirectsLeft = MAX_REDIRECTS, originalUrl = url } = {}) {
   return new Promise((resolve) => {
     let urlObj;
     try {
@@ -94,33 +104,61 @@ function fetchRaw(url, { method = 'GET', redirectsLeft = MAX_REDIRECTS } = {}) {
       },
     };
 
+    let settled = false;
+    const settle = (value) => {
+      if (settled) return;
+      settled = true;
+      resolve(value);
+    };
+
     const req = protocol.request(url, options, (res) => {
       const status = res.statusCode;
       const loc = res.headers.location;
-      if (status >= 300 && status < 400 && loc && redirectsLeft > 0) {
+      if (status >= 300 && status < 400 && loc) {
+        if (redirectsLeft <= 0) {
+          res.resume();
+          return settle({ status, finalUrl: url, body: '' });
+        }
         let nextUrl;
         try {
           nextUrl = new URL(loc, url).toString();
         } catch {
-          return resolve({ status, finalUrl: url, body: '' });
+          res.resume();
+          return settle({ status, finalUrl: url, body: '' });
         }
         res.resume();
-        resolve(fetchRaw(nextUrl, { method, redirectsLeft: redirectsLeft - 1 }));
+        fetchRaw(nextUrl, { method, redirectsLeft: redirectsLeft - 1, originalUrl }).then(settle);
         return;
       }
 
       const chunks = [];
-      res.on('data', c => chunks.push(c));
+      let bytes = 0;
+      res.on('data', c => {
+        bytes += c.length;
+        if (bytes > MAX_BODY_BYTES) {
+          chunks.push(c.slice(0, Math.max(0, MAX_BODY_BYTES - (bytes - c.length))));
+          req.destroy();
+          settle({
+            status,
+            finalUrl: url,
+            body: method === 'GET' ? Buffer.concat(chunks).toString('utf8') : '',
+            truncated: true,
+          });
+        } else {
+          chunks.push(c);
+        }
+      });
       res.on('end', () => {
-        resolve({
+        settle({
           status,
           finalUrl: url,
           body: method === 'GET' ? Buffer.concat(chunks).toString('utf8') : '',
         });
       });
+      res.on('error', err => settle({ error: err.message }));
     });
 
-    req.on('error', err => resolve({ error: err.message }));
+    req.on('error', err => settle({ error: err.message }));
     req.on('timeout', () => req.destroy(new Error('timeout')));
     req.end();
   });
@@ -288,23 +326,45 @@ async function main() {
     let replacement = null;
     let source = null;
 
-    const redirected = await followRedirect(link.url);
-    if (redirected && redirected !== link.url) {
-      console.log(`   ↪︎  redirect → ${redirected}`);
-      const ok = await validateCandidate(redirected);
-      if (ok) {
-        replacement = redirected;
-        source = 'redirect';
+    const linkStart = Date.now();
+    const budgetLeft = () => PER_LINK_BUDGET - (Date.now() - linkStart);
+
+    if (link.redirectTo) {
+      const candidate = siteRoot(link.redirectTo);
+      if (candidate && candidate !== link.url) {
+        console.log(`   ↪︎  pre-detected redirect → ${candidate}`);
+        const ok = await withTimeout(validateCandidate(candidate), Math.min(REQUEST_TIMEOUT + 5000, budgetLeft()), `validate ${candidate}`);
+        if (ok === true) {
+          replacement = candidate;
+          source = 'redirect';
+        }
+      }
+    }
+
+    if (!replacement && budgetLeft() > 5000) {
+      const redirectResult = await withTimeout(followRedirect(link.url), Math.min(REQUEST_TIMEOUT + 5000, budgetLeft()), `redirect-follow ${link.url}`);
+      const redirected = redirectResult && !redirectResult.error && typeof redirectResult === 'string' ? redirectResult : null;
+      if (redirected && redirected !== link.url) {
+        console.log(`   ↪︎  redirect → ${redirected}`);
+        const ok = await withTimeout(validateCandidate(redirected), Math.min(REQUEST_TIMEOUT + 5000, budgetLeft()), `validate ${redirected}`);
+        if (ok === true) {
+          replacement = redirected;
+          source = 'redirect';
+        }
       }
     }
     await sleep(SLEEP_BETWEEN);
 
-    if (!replacement) {
-      const fromFmhy = await findFmhyReplacement(link);
-      if (fromFmhy) {
+    if (!replacement && budgetLeft() > 5000) {
+      const fromFmhy = await withTimeout(findFmhyReplacement(link), budgetLeft(), `fmhy ${link.url}`);
+      if (fromFmhy && !fromFmhy.error && typeof fromFmhy === 'string') {
         replacement = fromFmhy;
         source = 'fmhy';
       }
+    }
+
+    if (budgetLeft() <= 0) {
+      console.log(`   ⏱️  per-link budget exhausted`);
     }
 
     if (replacement && link.file) {
