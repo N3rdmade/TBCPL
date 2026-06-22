@@ -14,8 +14,15 @@ const SKIP_URLS = new Set([
   'https://tbcpl.lol/site-request.html',
 ]);
 
+function normalize(url) {
+  return (url || '').trim().replace(/\/+$/, '').toLowerCase();
+}
+
+const NORMALIZED_SKIP_URLS = new Set([...SKIP_URLS].map(normalize));
+
 function isWhitelisted(url) {
   if (SKIP_URLS.has(url)) return true;
+  if (NORMALIZED_SKIP_URLS.has(normalize(url))) return true;
   try {
     const host = new URL(url).hostname.toLowerCase();
     return SKIP_HOSTS.has(host);
