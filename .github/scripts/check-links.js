@@ -232,8 +232,8 @@ async function main() {
   }
 
   const { total, unique } = countTotalLinks(allFiles);
-  const avgTimePerLink = 10.5;
-  const estimatedMinutes = Math.ceil((unique * avgTimePerLink) / 60);
+  const avgTimePerLink = 2.5;
+  const estimatedMinutes = Math.max(1, Math.ceil((unique * avgTimePerLink) / CONCURRENCY / 60));
   const startTime = new Date();
   const estimatedEnd = new Date(startTime.getTime() + estimatedMinutes * 60000);
 
