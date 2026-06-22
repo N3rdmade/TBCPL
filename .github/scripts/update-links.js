@@ -21,11 +21,26 @@ const FMHY_DOCS = [
 ];
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
-const COMMON_HEADERS = {
-  'user-agent': UA,
-  'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  'accept-language': 'en-US,en;q=0.9',
-};
+
+function browserHeaders(url) {
+  let origin = '';
+  try { const u = new URL(url); origin = `${u.protocol}//${u.host}`; } catch {}
+  return {
+    'user-agent': UA,
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'max-age=0',
+    'upgrade-insecure-requests': '1',
+    'sec-ch-ua': '"Chromium";v="131", "Not_A Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'none',
+    'sec-fetch-user': '?1',
+    ...(origin ? { 'origin': origin, 'referer': origin + '/' } : {}),
+  };
+}
 
 const JUNK_HOST_SUFFIXES = [
   'github.com', 'github.io', 'reddit.com', 'wikipedia.org',
@@ -76,7 +91,7 @@ async function hit(url, { method = 'HEAD', timeout = REQUEST_TIMEOUT, wantBody =
       method,
       redirect: 'manual',
       signal: controller.signal,
-      headers: COMMON_HEADERS,
+      headers: browserHeaders(url),
     });
     const status = res.status;
     const location = res.headers.get('location') || null;
