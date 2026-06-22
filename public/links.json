@@ -236,7 +236,7 @@
         },
         {
           "name": "KickAssAnime",
-          "url": "https://kaa.to/",
+          "url": "https://kaa.lt/",
           "logo": "./logo/anime/kickassanime.png",
           "enabled": true
         },
@@ -330,7 +330,7 @@
         },
         {
           "name": "Kagane",
-          "url": "https://kagane.org/",
+          "url": "https://kagane.to/",
           "logo": "./logo/manga/kagane.png",
           "enabled": true
         },
@@ -490,7 +490,7 @@
         },
         {
           "name": "StreamEast",
-          "url": "https://xstreameast.com/",
+          "url": "https://streameastnow.net/",
           "logo": "./logo/livetv/streameast.png",
           "enabled": true
         },
@@ -510,12 +510,6 @@
           "name": "TV Garden",
           "url": "https://famelack.com/",
           "logo": "./logo/livetv/tvgarden.png",
-          "enabled": true
-        },
-        {
-          "name": "TOTV",
-          "url": "https://www.google.com/",
-          "logo": "./logo/livetv/totv.png",
           "enabled": true
         },
         {

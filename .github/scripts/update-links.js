@@ -52,6 +52,28 @@ const JUNK_HOST_SUFFIXES = [
   'archive.org', 'web.archive.org',
 ];
 
+// Hosts that indicate a parked/dead/redirected-elsewhere domain — never accept as replacement
+const REDIRECT_BLOCKLIST_SUFFIXES = [
+  'google.com', 'google.co', 'bing.com', 'yahoo.com', 'duckduckgo.com',
+  'godaddy.com', 'sedo.com', 'sedoparking.com', 'parkingcrew.net',
+  'hugedomains.com', 'undeveloped.com', 'dan.com', 'afternic.com',
+  'namecheap.com', 'porkbun.com', 'cloudflare.com',
+  'facebook.com', 'instagram.com', 'tiktok.com',
+  'youtube.com', 'twitter.com', 'x.com',
+  'archive.org', 'web.archive.org',
+  'github.com', 'github.io',
+  ...JUNK_HOST_SUFFIXES,
+];
+
+function isBlockedRedirectTarget(url) {
+  try {
+    const h = new URL(url).host.toLowerCase().replace(/^www\./, '');
+    return REDIRECT_BLOCKLIST_SUFFIXES.some(s => h === s || h.endsWith('.' + s));
+  } catch {
+    return true;
+  }
+}
+
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 function rootDomain(host) {
@@ -238,7 +260,7 @@ async function processLink(link) {
   // 1. pre-detected redirect from check-links.js
   if (link.redirectTo) {
     const c = siteRoot(link.redirectTo);
-    if (c && !sameHost(c, link.url) && await isAlive(c, budget)) {
+    if (c && !sameHost(c, link.url) && !isBlockedRedirectTarget(c) && await isAlive(c, budget)) {
       return { result: 'fix', source: 'redirect-pre', replacement: c, ms: Date.now() - t0 };
     }
   }
@@ -248,7 +270,7 @@ async function processLink(link) {
     const r = await resolveFinal(link.url, budget);
     if (r.ok && r.finalUrl && !sameHost(r.finalUrl, link.url)) {
       const root = siteRoot(r.finalUrl);
-      if (root && await isAlive(root, budget)) {
+      if (root && !isBlockedRedirectTarget(root) && await isAlive(root, budget)) {
         return { result: 'fix', source: 'redirect', replacement: root, ms: Date.now() - t0 };
       }
     }

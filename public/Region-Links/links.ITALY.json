@@ -6,13 +6,13 @@
       "sites": [
         {
           "name": "Cineblog01",
-          "url": "https://cineblog001.forum/",
+          "url": "https://cineblog001.courses/",
           "logo": "./logo/movies_shows/cineblog01.png",
           "enabled": true
         },
         {
           "name": "Altadefinizione",
-          "url": "https://altadefinizionegratis.living/",
+          "url": "https://summerlandfestival.it/",
           "logo": "./logo/movies_shows/altadefinizione.png",
           "enabled": true
         },
