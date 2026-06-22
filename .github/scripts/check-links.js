@@ -95,12 +95,23 @@ function singleRequest(url) {
       }
     };
 
-    const req = protocol.request(url, options, (res) => {
+    let settled = false;
+    let req;
+    const settle = (value) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(killer);
+      try { if (req) req.destroy(); } catch {}
+      resolve(value);
+    };
+    const killer = setTimeout(() => settle({ error: `hard timeout ${REQUEST_TIMEOUT}ms` }), REQUEST_TIMEOUT);
+
+    req = protocol.request(url, options, (res) => {
       res.resume();
-      resolve({ status: res.statusCode, location: res.headers.location || null });
+      settle({ status: res.statusCode, location: res.headers.location || null });
     });
-    req.on('error', err => resolve({ error: err.message }));
-    req.on('timeout', () => req.destroy(new Error('timeout')));
+    req.on('error', err => settle({ error: err.message }));
+    req.on('timeout', () => settle({ error: 'socket timeout' }));
     req.end();
   });
 }
