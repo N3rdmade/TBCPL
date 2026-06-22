@@ -12,7 +12,7 @@
         },
         {
           "name": "yablom",
-          "url": "https://yablom.com/euvcw7/home/yablom",
+          "url": "https://yablom.com/",
           "logo": "./logo/movies_shows/yablom.png",
           "enabled": true
         },
@@ -228,7 +228,7 @@
         },
         {
           "name": "BeeTV",
-          "url": "https://beetvs.download/",
+          "url": "https://beetvs.com.co/",
           "logo": "./logo/apps/beetv.png",
           "enabled": true
         },

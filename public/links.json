@@ -514,7 +514,7 @@
         },
         {
           "name": "TOTV",
-          "url": "http://totv.org/tv/usa/",
+          "url": "https://www.google.com/",
           "logo": "./logo/livetv/totv.png",
           "enabled": true
         },
@@ -659,7 +659,7 @@
         },
         {
           "name": "BeeTV",
-          "url": "https://beetvs.download/",
+          "url": "https://beetvs.com.co/",
           "logo": "./logo/apps/beetv.png",
           "enabled": true
         },

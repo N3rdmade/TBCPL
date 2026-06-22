@@ -48,7 +48,7 @@
         },
         {
           "name": "MovieRulz",
-          "url": "https://www.5movierulz.school/",
+          "url": "https://www.5movierulz.legal/",
           "logo": "./logo/movies_shows/movierulz.png",
           "enabled": true
         },
@@ -160,7 +160,7 @@
         },
         {
           "name": "Anime Lok",
-          "url": "https://animelok.online/",
+          "url": "https://animelok.net/",
           "logo": "./logo/anime/animelok.png",
           "enabled": true
         },
@@ -362,7 +362,7 @@
         },
         {
           "name": "BeeTV",
-          "url": "https://beetvs.download/",
+          "url": "https://beetvs.com.co/",
           "logo": "./logo/apps/beetv.png",
           "enabled": true
         },
