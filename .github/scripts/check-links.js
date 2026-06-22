@@ -1,13 +1,22 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
-const http = require('http');
+const { request, Agent, setGlobalDispatcher } = require('undici');
 
-const MAX_RETRIES = 3;
-const RETRY_DELAY = 2000;
-const REQUEST_TIMEOUT = 10000;
+const MAX_RETRIES = 2;
+const RETRY_DELAY = 1500;
+const REQUEST_TIMEOUT = 8000;
+const CONCURRENCY = 10;
+const MAX_REDIRECTS = 5;
 
 const { isWhitelisted } = require('./skip-list');
+
+setGlobalDispatcher(new Agent({
+  connect: { timeout: 5000, rejectUnauthorized: false },
+  headersTimeout: REQUEST_TIMEOUT,
+  bodyTimeout: REQUEST_TIMEOUT,
+  pipelining: 0,
+}));
 
 const urlCache = new Map();
 
@@ -72,49 +81,31 @@ function countTotalLinks(filePaths) {
   return { total, unique: uniqueUrls.size };
 }
 
-const MAX_REDIRECTS = 5;
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 
-function singleRequest(url) {
-  return new Promise((resolve) => {
-    let urlObj;
-    try { urlObj = new URL(url); } catch (e) { return resolve({ error: `bad url: ${e.message}` }); }
-    const protocol = urlObj.protocol === 'https:' ? https : http;
-    const origin = `${urlObj.protocol}//${urlObj.host}`;
-
-    const options = {
+async function singleRequest(url) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+  try {
+    const res = await request(url, {
       method: 'HEAD',
-      timeout: REQUEST_TIMEOUT,
-      rejectUnauthorized: false,
+      maxRedirections: 0,
+      signal: controller.signal,
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'Origin': origin,
-        'Referer': origin + '/'
-      }
-    };
-
-    let settled = false;
-    let req;
-    const settle = (value) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(killer);
-      try { if (req) req.destroy(); } catch {}
-      resolve(value);
-    };
-    const killer = setTimeout(() => settle({ error: `hard timeout ${REQUEST_TIMEOUT}ms` }), REQUEST_TIMEOUT);
-
-    req = protocol.request(url, options, (res) => {
-      res.resume();
-      settle({ status: res.statusCode, location: res.headers.location || null });
+        'user-agent': UA,
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'accept-language': 'en-US,en;q=0.9',
+      },
     });
-    req.on('error', err => settle({ error: err.message }));
-    req.on('timeout', () => settle({ error: 'socket timeout' }));
-    req.end();
-  });
+    const status = res.statusCode;
+    const location = res.headers.location || null;
+    res.body.destroy();
+    return { status, location };
+  } catch (err) {
+    return { error: err.code || err.name || err.message };
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 async function checkUrl(url, retries = 0) {
@@ -124,7 +115,6 @@ async function checkUrl(url, retries = 0) {
     const res = await singleRequest(current);
     if (res.error) {
       if (retries < MAX_RETRIES) {
-        console.log(`Retry ${retries + 1}/${MAX_RETRIES} for ${current} (error: ${res.error})`);
         await sleep(RETRY_DELAY);
         return checkUrl(url, retries + 1);
       }
@@ -149,7 +139,6 @@ async function checkUrl(url, retries = 0) {
     }
     if (res.status === 404 || res.status >= 500) {
       if (retries < MAX_RETRIES) {
-        console.log(`Retry ${retries + 1}/${MAX_RETRIES} for ${url}`);
         await sleep(RETRY_DELAY);
         return checkUrl(url, retries + 1);
       }
@@ -167,47 +156,53 @@ async function checkLinksInFile(filePath, region) {
   const data = JSON.parse(content);
   const brokenLinks = [];
 
+  const tasks = [];
   for (const category of data.categories) {
     for (const site of category.sites) {
-      if (site.enabled !== false && site.url) {
-        if (isWhitelisted(site.url)) {
-          console.log(`⏭️  SKIP (whitelisted): ${site.name} - ${site.url}`);
-          continue;
-        }
+      if (site.enabled === false || !site.url) continue;
+      if (isWhitelisted(site.url)) continue;
+      tasks.push({ site, category });
+    }
+  }
 
-        let result;
+  let cursor = 0;
+  let done = 0;
+  const total = tasks.length;
 
-        if (urlCache.has(site.url)) {
-          console.log(`[CACHED] ${site.name}: ${site.url}`);
-          result = urlCache.get(site.url);
-        } else {
-          console.log(`Checking ${site.name}: ${site.url}`);
-          result = await checkUrl(site.url);
-          urlCache.set(site.url, result);
-          await sleep(500);
-        }
-
-        if (!result.success) {
-          brokenLinks.push({
-            name: site.name,
-            url: site.url,
-            category: category.name,
-            status: result.status || 'timeout/error',
-            error: result.error,
-            redirectTo: result.redirectTo,
-            reason: result.reason,
-            region: region,
-            file: filePath
-          });
-          const detail = result.redirectTo ? `→ ${result.redirectTo} (${result.reason})` : (result.status || result.error);
-          console.log(`❌ BROKEN: ${site.name} - ${site.url} (${detail})`);
-        } else {
-          console.log(`✅ OK: ${site.name} (${result.status})`);
-        }
+  async function worker() {
+    while (true) {
+      const i = cursor++;
+      if (i >= total) return;
+      const { site, category } = tasks[i];
+      let result;
+      if (urlCache.has(site.url)) {
+        result = urlCache.get(site.url);
+      } else {
+        result = await checkUrl(site.url);
+        urlCache.set(site.url, result);
+      }
+      done++;
+      if (!result.success) {
+        brokenLinks.push({
+          name: site.name,
+          url: site.url,
+          category: category.name,
+          status: result.status || 'timeout/error',
+          error: result.error,
+          redirectTo: result.redirectTo,
+          reason: result.reason,
+          region: region,
+          file: filePath
+        });
+        const detail = result.redirectTo ? `→ ${result.redirectTo} (${result.reason})` : (result.status || result.error);
+        console.log(`❌ ${done}/${total} ${site.name} - ${site.url} (${detail})`);
+      } else {
+        console.log(`✅ ${done}/${total} ${site.name} (${result.status})`);
       }
     }
   }
 
+  await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()));
   return brokenLinks;
 }
 

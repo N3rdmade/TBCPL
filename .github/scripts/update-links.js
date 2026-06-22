@@ -1,15 +1,20 @@
 const fs = require('fs');
-const path = require('path');
-const https = require('https');
-const http = require('http');
+const { request, Agent, setGlobalDispatcher } = require('undici');
 const { isWhitelisted } = require('./skip-list');
 
-const REQUEST_TIMEOUT = 6000;
+const REQUEST_TIMEOUT = 8000;
 const PER_LINK_BUDGET = 20000;
 const MAX_REDIRECTS = 4;
-const MAX_BODY_BYTES = 256 * 1024;
-const SLEEP_BETWEEN = 100;
-const CONCURRENCY = 6;
+const MAX_BODY_BYTES = 512 * 1024;
+const CONCURRENCY = 8;
+const SLEEP_BETWEEN = 50;
+
+setGlobalDispatcher(new Agent({
+  connect: { timeout: 5000, rejectUnauthorized: false },
+  headersTimeout: REQUEST_TIMEOUT,
+  bodyTimeout: REQUEST_TIMEOUT,
+  pipelining: 0,
+}));
 
 const FMHY_DOCS = [
   'https://raw.githubusercontent.com/fmhy/edit/refs/heads/main/docs/video.md',
@@ -21,31 +26,12 @@ const FMHY_DOCS = [
   'https://raw.githubusercontent.com/fmhy/edit/refs/heads/main/docs/non-english.md',
 ];
 
-const BROWSER_HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-  'Accept-Language': 'en-US,en;q=0.9',
-  'Accept-Encoding': 'identity',
-  'Connection': 'keep-alive',
-  'Upgrade-Insecure-Requests': '1',
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
+const COMMON_HEADERS = {
+  'user-agent': UA,
+  'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language': 'en-US,en;q=0.9',
 };
-
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-function rootDomain(host) {
-  const h = host.toLowerCase().replace(/^www\./, '');
-  const parts = h.split('.');
-  if (parts.length <= 2) return h;
-  return parts.slice(-2).join('.');
-}
-
-function domainLabel(host) {
-  const h = host.toLowerCase().replace(/^www\./, '');
-  const parts = h.split('.');
-  if (parts.length === 0) return h;
-  if (parts.length === 1) return parts[0];
-  return parts[0];
-}
 
 const JUNK_HOST_SUFFIXES = [
   'github.com', 'github.io', 'reddit.com', 'wikipedia.org',
@@ -57,223 +43,213 @@ const JUNK_HOST_SUFFIXES = [
   'archive.org', 'web.archive.org',
 ];
 
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+function rootDomain(host) {
+  const h = host.toLowerCase().replace(/^www\./, '');
+  const parts = h.split('.');
+  if (parts.length <= 2) return h;
+  return parts.slice(-2).join('.');
+}
+function domainLabel(host) {
+  const h = host.toLowerCase().replace(/^www\./, '');
+  return h.split('.')[0] || h;
+}
 function isJunkHost(host) {
   const h = host.toLowerCase();
   if (h.includes('fmhy')) return true;
-  return JUNK_HOST_SUFFIXES.some(suffix => h === suffix || h.endsWith('.' + suffix));
+  return JUNK_HOST_SUFFIXES.some(s => h === s || h.endsWith('.' + s));
 }
-
 function siteRoot(u) {
-  try {
-    const url = new URL(u);
-    return `${url.protocol}//${url.host}/`;
-  } catch {
-    return null;
-  }
+  try { const x = new URL(u); return `${x.protocol}//${x.host}/`; } catch { return null; }
 }
-
 function nameSlug(s) {
   return (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
-
-function fetchRaw(url, { method = 'HEAD', redirectsLeft = MAX_REDIRECTS, wantBody = false, hardTimeout = REQUEST_TIMEOUT } = {}) {
-  return new Promise((resolve) => {
-    let urlObj;
-    try {
-      urlObj = new URL(url);
-    } catch (e) {
-      return resolve({ error: `bad url: ${e.message}` });
-    }
-    const protocol = urlObj.protocol === 'https:' ? https : http;
-    const origin = `${urlObj.protocol}//${urlObj.host}`;
-
-    const options = {
-      method,
-      timeout: hardTimeout,
-      rejectUnauthorized: false,
-      headers: {
-        ...BROWSER_HEADERS,
-        'Origin': origin,
-        'Referer': origin + '/',
-      },
-    };
-
-    let settled = false;
-    let req;
-    let socketRef = null;
-    const settle = (value) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(killer);
-      try { if (req) req.destroy(); } catch {}
-      try { if (socketRef) socketRef.destroy(); } catch {}
-      resolve(value);
-    };
-
-    const killer = setTimeout(() => settle({ error: `hard timeout ${hardTimeout}ms` }), hardTimeout);
-
-    req = protocol.request(url, options, (res) => {
-      const status = res.statusCode;
-      const loc = res.headers.location;
-      if (status >= 300 && status < 400 && loc) {
-        res.resume();
-        if (redirectsLeft <= 0) return settle({ status, finalUrl: url, body: '' });
-        let nextUrl;
-        try { nextUrl = new URL(loc, url).toString(); } catch { return settle({ status, finalUrl: url, body: '' }); }
-        clearTimeout(killer);
-        try { req.destroy(); } catch {}
-        settled = true;
-        fetchRaw(nextUrl, { method, redirectsLeft: redirectsLeft - 1, wantBody, hardTimeout }).then(resolve);
-        return;
-      }
-
-      if (!wantBody) {
-        res.resume();
-        return settle({ status, finalUrl: url, body: '' });
-      }
-
-      const chunks = [];
-      let bytes = 0;
-      res.on('data', c => {
-        bytes += c.length;
-        if (bytes > MAX_BODY_BYTES) {
-          return settle({ status, finalUrl: url, body: Buffer.concat(chunks).toString('utf8'), truncated: true });
-        }
-        chunks.push(c);
-      });
-      res.on('end', () => settle({ status, finalUrl: url, body: Buffer.concat(chunks).toString('utf8') }));
-      res.on('error', err => settle({ error: err.message }));
-    });
-
-    req.on('socket', (sock) => {
-      socketRef = sock;
-      sock.setTimeout(hardTimeout, () => settle({ error: 'socket idle timeout' }));
-    });
-    req.on('error', err => settle({ error: err.message }));
-    req.on('timeout', () => settle({ error: 'request timeout' }));
-    req.end();
-  });
+function sameHost(a, b) {
+  try {
+    return new URL(a).host.toLowerCase().replace(/^www\./, '')
+        === new URL(b).host.toLowerCase().replace(/^www\./, '');
+  } catch { return false; }
 }
 
-async function followRedirect(originalUrl) {
-  const res = await fetchRaw(originalUrl, { method: 'HEAD' });
-  if (res.error) return null;
-  if (res.status < 200 || res.status >= 400) return null;
-  if (!res.finalUrl) return null;
-
+// Single-shot HTTP request with a hard timeout that ACTUALLY aborts.
+async function hit(url, { method = 'HEAD', timeout = REQUEST_TIMEOUT, wantBody = false } = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeout);
   try {
-    const origHost = new URL(originalUrl).host.toLowerCase();
-    const finalHost = new URL(res.finalUrl).host.toLowerCase();
-    if (origHost === finalHost) return null;
-    return siteRoot(res.finalUrl);
-  } catch {
-    return null;
+    const res = await request(url, {
+      method,
+      maxRedirections: 0,
+      signal: controller.signal,
+      headers: COMMON_HEADERS,
+    });
+    const status = res.statusCode;
+    const location = res.headers.location || null;
+
+    let body = '';
+    if (wantBody) {
+      let bytes = 0;
+      for await (const chunk of res.body) {
+        bytes += chunk.length;
+        if (bytes > MAX_BODY_BYTES) { controller.abort(); break; }
+        body += chunk.toString('utf8');
+      }
+    } else {
+      res.body.destroy();
+    }
+    return { ok: true, status, location, body };
+  } catch (err) {
+    return { ok: false, error: err.code || err.name || err.message };
+  } finally {
+    clearTimeout(timer);
   }
 }
 
-async function validateCandidate(url) {
-  const res = await fetchRaw(url, { method: 'HEAD' });
-  if (res.error) return false;
-  return res.status >= 200 && res.status < 400;
-}
-
-let fmhyIndex = null;
-
-async function loadFmhyIndex() {
-  if (fmhyIndex) return fmhyIndex;
-  fmhyIndex = { byLabel: new Map(), byNameSlug: new Map(), entries: [] };
-
-  for (const docUrl of FMHY_DOCS) {
-    const res = await fetchRaw(docUrl, { method: 'GET', wantBody: true, hardTimeout: 20000 });
-    if (res.error || !res.body) {
-      console.log(`⚠️  Failed to fetch FMHY doc ${docUrl}`);
+// Follow redirects manually, capped, with budget.
+async function resolveFinal(url, budget) {
+  let current = url;
+  let lastStatus = null;
+  for (let hop = 0; hop <= MAX_REDIRECTS; hop++) {
+    if (budget.expired()) return { ok: false, error: 'budget' };
+    const res = await hit(current, { method: 'HEAD', timeout: Math.min(REQUEST_TIMEOUT, budget.left()) });
+    if (!res.ok) return res;
+    lastStatus = res.status;
+    if (res.status >= 300 && res.status < 400 && res.location) {
+      let next;
+      try { next = new URL(res.location, current).toString(); } catch { return { ok: false, error: 'bad-location' }; }
+      current = next;
       continue;
     }
-    const md = res.body;
-    const lineRegex = /^[^\n]*$/gm;
-    const linkRegex = /\[([^\]]{1,120})\]\((https?:\/\/[^)\s]+)\)/g;
-
-    let lineMatch;
-    while ((lineMatch = lineRegex.exec(md)) !== null) {
-      const line = lineMatch[0];
-      const localRegex = new RegExp(linkRegex.source, 'g');
-      let m;
-      let primary = null;
-      while ((m = localRegex.exec(line)) !== null) {
-        const linkText = m[1].trim();
-        const link = m[2].trim();
-        try {
-          const u = new URL(link);
-          const host = u.host.toLowerCase();
-          if (isJunkHost(host)) continue;
-          if (/^\d+$/.test(linkText) || /^(mirror|backup|alt)$/i.test(linkText)) continue;
-          primary = { name: linkText, url: siteRoot(link), host, label: domainLabel(host) };
-          break;
-        } catch {}
-      }
-      if (!primary) continue;
-
-      fmhyIndex.entries.push(primary);
-      if (primary.label) {
-        if (!fmhyIndex.byLabel.has(primary.label)) fmhyIndex.byLabel.set(primary.label, []);
-        fmhyIndex.byLabel.get(primary.label).push(primary);
-      }
-      const slug = nameSlug(primary.name);
-      if (slug.length >= 3) {
-        if (!fmhyIndex.byNameSlug.has(slug)) fmhyIndex.byNameSlug.set(slug, []);
-        fmhyIndex.byNameSlug.get(slug).push(primary);
-      }
-    }
+    return { ok: true, status: res.status, finalUrl: current };
   }
-  console.log(`📚 FMHY index built: ${fmhyIndex.entries.length} primary entries`);
-  return fmhyIndex;
+  return { ok: false, status: lastStatus, error: 'too-many-redirects' };
 }
 
-async function findFmhyReplacement(brokenLink, budgetLeft = () => Infinity) {
-  const idx = await loadFmhyIndex();
-  const ordered = [];
-  const seen = new Set();
-  const add = (url) => {
-    if (!url || url === brokenLink.url || seen.has(url)) return;
-    seen.add(url);
-    ordered.push(url);
+async function isAlive(url, budget) {
+  const r = await resolveFinal(url, budget);
+  if (!r.ok) return false;
+  return r.status >= 200 && r.status < 400;
+}
+
+// ─── FMHY index ──────────────────────────────────────────────────────────
+let fmhyIndexPromise = null;
+
+async function buildFmhyIndex() {
+  const idx = { byLabel: new Map(), byNameSlug: new Map(), count: 0 };
+  console.log(`📚 fetching ${FMHY_DOCS.length} FMHY docs in parallel…`);
+  const docs = await Promise.all(FMHY_DOCS.map(async (u) => {
+    const r = await hit(u, { method: 'GET', timeout: 15000, wantBody: true });
+    if (!r.ok || !r.body) {
+      console.log(`   ⚠️  failed: ${u} (${r.error || r.status})`);
+      return '';
+    }
+    console.log(`   ✓ ${u} (${r.body.length} bytes)`);
+    return r.body;
+  }));
+
+  const linkRe = /\[([^\]]{1,120})\]\((https?:\/\/[^)\s]+)\)/g;
+  for (const md of docs) {
+    if (!md) continue;
+    for (const line of md.split('\n')) {
+      const localRe = new RegExp(linkRe.source, 'g');
+      let m, primary = null;
+      while ((m = localRe.exec(line)) !== null) {
+        const text = m[1].trim();
+        const link = m[2].trim();
+        let u;
+        try { u = new URL(link); } catch { continue; }
+        const host = u.host.toLowerCase();
+        if (isJunkHost(host)) continue;
+        if (/^\d+$/.test(text) || /^(mirror|backup|alt)$/i.test(text)) continue;
+        primary = { name: text, url: siteRoot(link), host, label: domainLabel(host) };
+        break;
+      }
+      if (!primary) continue;
+      idx.count++;
+      if (!idx.byLabel.has(primary.label)) idx.byLabel.set(primary.label, []);
+      idx.byLabel.get(primary.label).push(primary);
+      const slug = nameSlug(primary.name);
+      if (slug.length >= 3) {
+        if (!idx.byNameSlug.has(slug)) idx.byNameSlug.set(slug, []);
+        idx.byNameSlug.get(slug).push(primary);
+      }
+    }
+  }
+  console.log(`📚 FMHY index built: ${idx.count} primary entries\n`);
+  return idx;
+}
+
+function getFmhyIndex() {
+  if (!fmhyIndexPromise) fmhyIndexPromise = buildFmhyIndex();
+  return fmhyIndexPromise;
+}
+
+async function findFmhyReplacement(link, budget) {
+  const idx = await getFmhyIndex();
+  const candidates = new Set();
+  let host = null, label = null;
+  try { host = new URL(link.url).host.toLowerCase(); label = domainLabel(host); } catch {}
+  if (label && idx.byLabel.has(label)) {
+    for (const c of idx.byLabel.get(label)) if (c.host !== host) candidates.add(c.url);
+  }
+  const slug = nameSlug(link.name);
+  if (slug.length >= 3 && idx.byNameSlug.has(slug)) {
+    for (const c of idx.byNameSlug.get(slug)) candidates.add(c.url);
+  }
+  for (const cand of candidates) {
+    if (!cand || cand === link.url) continue;
+    if (budget.expired()) return null;
+    if (await isAlive(cand, budget)) return cand;
+  }
+  return null;
+}
+
+// ─── per-link work ───────────────────────────────────────────────────────
+function makeBudget(ms) {
+  const start = Date.now();
+  return {
+    left: () => Math.max(0, ms - (Date.now() - start)),
+    expired: () => Date.now() - start >= ms,
   };
+}
 
-  let brokenHost = null;
-  let brokenLabel = null;
-  try {
-    brokenHost = new URL(brokenLink.url).host.toLowerCase();
-    brokenLabel = domainLabel(brokenHost);
-  } catch {}
+async function processLink(link) {
+  const tag = `[${link.name}]`;
+  if (isWhitelisted(link.url)) {
+    return { result: 'skip', reason: 'whitelisted' };
+  }
+  const budget = makeBudget(PER_LINK_BUDGET);
+  const t0 = Date.now();
 
-  if (brokenLabel) {
-    const byLabel = idx.byLabel.get(brokenLabel);
-    if (byLabel) {
-      for (const c of byLabel) {
-        if (c.host !== brokenHost) add(c.url);
+  // 1. pre-detected redirect from check-links.js
+  if (link.redirectTo) {
+    const c = siteRoot(link.redirectTo);
+    if (c && !sameHost(c, link.url) && await isAlive(c, budget)) {
+      return { result: 'fix', source: 'redirect-pre', replacement: c, ms: Date.now() - t0 };
+    }
+  }
+
+  // 2. fresh redirect-follow
+  if (!budget.expired()) {
+    const r = await resolveFinal(link.url, budget);
+    if (r.ok && r.finalUrl && !sameHost(r.finalUrl, link.url)) {
+      const root = siteRoot(r.finalUrl);
+      if (root && await isAlive(root, budget)) {
+        return { result: 'fix', source: 'redirect', replacement: root, ms: Date.now() - t0 };
       }
     }
   }
 
-  const slug = nameSlug(brokenLink.name);
-  if (slug.length >= 3) {
-    const byName = idx.byNameSlug.get(slug);
-    if (byName) {
-      for (const c of byName) add(c.url);
+  // 3. FMHY scrape
+  if (!budget.expired()) {
+    const fmhy = await findFmhyReplacement(link, budget);
+    if (fmhy) {
+      return { result: 'fix', source: 'fmhy', replacement: fmhy, ms: Date.now() - t0 };
     }
   }
 
-  for (const candidate of ordered) {
-    if (budgetLeft() < 2000) {
-      console.log(`   ⏱️  out of budget; stopping FMHY candidates`);
-      break;
-    }
-    console.log(`   🔎 trying FMHY candidate: ${candidate}`);
-    const ok = await validateCandidate(candidate);
-    await sleep(SLEEP_BETWEEN);
-    if (ok) return candidate;
-  }
-  return null;
+  return { result: 'unresolved', ms: Date.now() - t0, reason: budget.expired() ? 'budget' : 'no-match' };
 }
 
 function replaceUrlInFile(filePath, oldUrl, newUrl) {
@@ -282,135 +258,103 @@ function replaceUrlInFile(filePath, oldUrl, newUrl) {
   let replaced = false;
   for (const category of data.categories) {
     for (const site of category.sites) {
-      if (site.url === oldUrl) {
-        site.url = newUrl;
-        replaced = true;
-      }
+      if (site.url === oldUrl) { site.url = newUrl; replaced = true; }
     }
   }
-  if (replaced) {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n');
-  }
+  if (replaced) fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n');
   return replaced;
 }
 
+// ─── main ────────────────────────────────────────────────────────────────
 async function main() {
   if (!fs.existsSync('broken-links.json')) {
-    console.log('No broken-links.json found. Nothing to update.');
+    console.log('No broken-links.json. Nothing to update.');
     process.exit(0);
   }
-
   const broken = JSON.parse(fs.readFileSync('broken-links.json', 'utf8'));
   if (!broken.length) {
-    console.log('broken-links.json is empty. Nothing to update.');
+    console.log('broken-links.json empty.');
     process.exit(0);
   }
 
-  console.log(`🔧 Attempting to fix ${broken.length} broken link(s)...\n`);
+  console.log(`🔧 Processing ${broken.length} broken link(s) with concurrency=${CONCURRENCY}\n`);
+  // Kick off FMHY load in parallel with first link work
+  getFmhyIndex();
+
+  const results = new Array(broken.length);
+  let cursor = 0, doneCount = 0;
+  const runStart = Date.now();
+
+  async function worker(id) {
+    while (true) {
+      const i = cursor++;
+      if (i >= broken.length) return;
+      const link = broken[i];
+      const slot = `(${i + 1}/${broken.length})`;
+      console.log(`${slot} w${id} → ${link.name}  ${link.url}`);
+      try {
+        results[i] = await processLink(link);
+      } catch (e) {
+        results[i] = { result: 'unresolved', reason: `crash: ${e.message}` };
+      }
+      doneCount++;
+      const r = results[i];
+      if (r.result === 'fix') {
+        console.log(`${slot} ✅ ${r.source} ${r.ms}ms → ${r.replacement}`);
+      } else if (r.result === 'skip') {
+        console.log(`${slot} ⏭️  ${r.reason}`);
+      } else {
+        console.log(`${slot} ⚠️  ${r.reason} ${r.ms || 0}ms`);
+      }
+      await sleep(SLEEP_BETWEEN);
+    }
+  }
+
+  const progress = setInterval(() => {
+    const elapsed = Math.round((Date.now() - runStart) / 1000);
+    console.log(`⏱  progress: ${doneCount}/${broken.length}  elapsed ${elapsed}s`);
+  }, 10000);
+
+  await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => worker(i + 1)));
+  clearInterval(progress);
 
   const updates = [];
   const unresolved = [];
-
-  await loadFmhyIndex();
-
-  async function processLink(link) {
-    const tag = `[${link.name}]`;
-    if (isWhitelisted(link.url)) {
-      console.log(`${tag} ⏭️  whitelisted`);
-      return { link, result: 'skip' };
-    }
-    const linkStart = Date.now();
-    const budgetLeft = () => PER_LINK_BUDGET - (Date.now() - linkStart);
-    let replacement = null;
-    let source = null;
-
-    if (link.redirectTo) {
-      const candidate = siteRoot(link.redirectTo);
-      if (candidate && candidate !== link.url) {
-        const ok = await validateCandidate(candidate);
-        if (ok) { replacement = candidate; source = 'redirect-pre'; }
-      }
-    }
-
-    if (!replacement && budgetLeft() > 2000) {
-      const redirected = await followRedirect(link.url);
-      if (redirected && redirected !== link.url) {
-        const ok = await validateCandidate(redirected);
-        if (ok) { replacement = redirected; source = 'redirect'; }
-      }
-    }
-
-    if (!replacement && budgetLeft() > 2000) {
-      const fromFmhy = await findFmhyReplacement(link, budgetLeft);
-      if (fromFmhy) { replacement = fromFmhy; source = 'fmhy'; }
-    }
-
-    const ms = Date.now() - linkStart;
-    if (replacement && link.file) {
-      console.log(`${tag} ✅ ${source} (${ms}ms): ${link.url} → ${replacement}`);
-      return { link, result: 'fix', replacement, source };
-    }
-    console.log(`${tag} ⚠️  no replacement (${ms}ms)`);
-    return { link, result: 'unresolved' };
-  }
-
-  // run a pool with fixed concurrency
-  let cursor = 0;
-  const results = new Array(broken.length);
-  async function worker(id) {
-    while (true) {
-      const idx = cursor++;
-      if (idx >= broken.length) return;
-      console.log(`[worker ${id}] (${idx + 1}/${broken.length}) ${broken[idx].name} - ${broken[idx].url}`);
-      try {
-        results[idx] = await processLink(broken[idx]);
-      } catch (e) {
-        console.log(`[worker ${id}] error on ${broken[idx].url}: ${e.message}`);
-        results[idx] = { link: broken[idx], result: 'unresolved' };
-      }
-    }
-  }
-  await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => worker(i + 1)));
-
-  // serialize file writes
-  for (const r of results) {
-    if (!r) continue;
-    if (r.result === 'fix') {
-      const ok = replaceUrlInFile(r.link.file, r.link.url, r.replacement);
-      if (ok) {
+  for (let i = 0; i < broken.length; i++) {
+    const r = results[i];
+    const link = broken[i];
+    if (r && r.result === 'fix') {
+      if (replaceUrlInFile(link.file, link.url, r.replacement)) {
         updates.push({
-          name: r.link.name,
-          oldUrl: r.link.url,
+          name: link.name,
+          oldUrl: link.url,
           newUrl: r.replacement,
-          file: r.link.file,
-          region: r.link.region,
-          category: r.link.category,
+          file: link.file,
+          region: link.region,
+          category: link.category,
           source: r.source,
         });
       } else {
-        unresolved.push(r.link);
+        unresolved.push(link);
       }
     } else {
-      unresolved.push(r.link);
+      unresolved.push(link);
     }
   }
 
   if (updates.length) {
     fs.writeFileSync('link-updates.json', JSON.stringify(updates, null, 2));
-    console.log(`\n✨ Applied ${updates.length} update(s). See link-updates.json.`);
+    console.log(`\n✨ ${updates.length} link(s) updated → link-updates.json`);
   } else {
     console.log('\nNo updates applied.');
   }
-
   if (unresolved.length) {
     fs.writeFileSync('broken-links-unresolved.json', JSON.stringify(unresolved, null, 2));
-    console.log(`📝 ${unresolved.length} link(s) still unresolved. See broken-links-unresolved.json.`);
+    console.log(`📝 ${unresolved.length} unresolved → broken-links-unresolved.json`);
   }
-
+  const totalSec = Math.round((Date.now() - runStart) / 1000);
+  console.log(`Done in ${totalSec}s`);
   process.exit(0);
 }
 
-main().catch(err => {
-  console.error('update-links failed:', err);
-  process.exit(1);
-});
+main().catch(e => { console.error('FATAL', e); process.exit(1); });
