@@ -20,7 +20,8 @@ const SKIP_URLS = new Set([
   'https://allyoucanwatch.net',
   'https://goplay.su',
   'https://inkapelis.cyou',
-  'https://www.anivault.co'
+  'https://www.anivault.co',
+  "https://tbcpl.lol/site-request.html"
 ]);
 
 function isWhitelisted(url) {
