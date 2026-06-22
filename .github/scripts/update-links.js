@@ -4,11 +4,12 @@ const https = require('https');
 const http = require('http');
 const { isWhitelisted } = require('./skip-list');
 
-const REQUEST_TIMEOUT = 8000;
-const PER_LINK_BUDGET = 30000;
-const MAX_REDIRECTS = 5;
+const REQUEST_TIMEOUT = 6000;
+const PER_LINK_BUDGET = 20000;
+const MAX_REDIRECTS = 4;
 const MAX_BODY_BYTES = 256 * 1024;
-const SLEEP_BETWEEN = 200;
+const SLEEP_BETWEEN = 100;
+const CONCURRENCY = 6;
 
 const FMHY_DOCS = [
   'https://raw.githubusercontent.com/fmhy/edit/refs/heads/main/docs/video.md',
@@ -89,6 +90,7 @@ function fetchRaw(url, { method = 'HEAD', redirectsLeft = MAX_REDIRECTS, wantBod
     const options = {
       method,
       timeout: hardTimeout,
+      rejectUnauthorized: false,
       headers: {
         ...BROWSER_HEADERS,
         'Origin': origin,
@@ -98,11 +100,13 @@ function fetchRaw(url, { method = 'HEAD', redirectsLeft = MAX_REDIRECTS, wantBod
 
     let settled = false;
     let req;
+    let socketRef = null;
     const settle = (value) => {
       if (settled) return;
       settled = true;
       clearTimeout(killer);
       try { if (req) req.destroy(); } catch {}
+      try { if (socketRef) socketRef.destroy(); } catch {}
       resolve(value);
     };
 
@@ -141,8 +145,12 @@ function fetchRaw(url, { method = 'HEAD', redirectsLeft = MAX_REDIRECTS, wantBod
       res.on('error', err => settle({ error: err.message }));
     });
 
+    req.on('socket', (sock) => {
+      socketRef = sock;
+      sock.setTimeout(hardTimeout, () => settle({ error: 'socket idle timeout' }));
+    });
     req.on('error', err => settle({ error: err.message }));
-    req.on('timeout', () => settle({ error: 'socket timeout' }));
+    req.on('timeout', () => settle({ error: 'request timeout' }));
     req.end();
   });
 }
@@ -303,75 +311,87 @@ async function main() {
   const updates = [];
   const unresolved = [];
 
-  for (const link of broken) {
-    console.log(`\n— ${link.name} (${link.url})`);
-    if (isWhitelisted(link.url)) {
-      console.log(`   ⏭️  skipped (whitelisted)`);
-      unresolved.push(link);
-      continue;
-    }
-    let replacement = null;
-    let source = null;
+  await loadFmhyIndex();
 
+  async function processLink(link) {
+    const tag = `[${link.name}]`;
+    if (isWhitelisted(link.url)) {
+      console.log(`${tag} ⏭️  whitelisted`);
+      return { link, result: 'skip' };
+    }
     const linkStart = Date.now();
     const budgetLeft = () => PER_LINK_BUDGET - (Date.now() - linkStart);
+    let replacement = null;
+    let source = null;
 
     if (link.redirectTo) {
       const candidate = siteRoot(link.redirectTo);
       if (candidate && candidate !== link.url) {
-        console.log(`   ↪︎  pre-detected redirect → ${candidate}`);
         const ok = await validateCandidate(candidate);
-        if (ok) {
-          replacement = candidate;
-          source = 'redirect';
-        }
+        if (ok) { replacement = candidate; source = 'redirect-pre'; }
       }
     }
 
-    if (!replacement && budgetLeft() > 3000) {
+    if (!replacement && budgetLeft() > 2000) {
       const redirected = await followRedirect(link.url);
       if (redirected && redirected !== link.url) {
-        console.log(`   ↪︎  redirect → ${redirected}`);
         const ok = await validateCandidate(redirected);
-        if (ok) {
-          replacement = redirected;
-          source = 'redirect';
-        }
+        if (ok) { replacement = redirected; source = 'redirect'; }
       }
     }
-    await sleep(SLEEP_BETWEEN);
 
-    if (!replacement && budgetLeft() > 3000) {
+    if (!replacement && budgetLeft() > 2000) {
       const fromFmhy = await findFmhyReplacement(link, budgetLeft);
-      if (fromFmhy) {
-        replacement = fromFmhy;
-        source = 'fmhy';
+      if (fromFmhy) { replacement = fromFmhy; source = 'fmhy'; }
+    }
+
+    const ms = Date.now() - linkStart;
+    if (replacement && link.file) {
+      console.log(`${tag} ✅ ${source} (${ms}ms): ${link.url} → ${replacement}`);
+      return { link, result: 'fix', replacement, source };
+    }
+    console.log(`${tag} ⚠️  no replacement (${ms}ms)`);
+    return { link, result: 'unresolved' };
+  }
+
+  // run a pool with fixed concurrency
+  let cursor = 0;
+  const results = new Array(broken.length);
+  async function worker(id) {
+    while (true) {
+      const idx = cursor++;
+      if (idx >= broken.length) return;
+      console.log(`[worker ${id}] (${idx + 1}/${broken.length}) ${broken[idx].name} - ${broken[idx].url}`);
+      try {
+        results[idx] = await processLink(broken[idx]);
+      } catch (e) {
+        console.log(`[worker ${id}] error on ${broken[idx].url}: ${e.message}`);
+        results[idx] = { link: broken[idx], result: 'unresolved' };
       }
     }
+  }
+  await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => worker(i + 1)));
 
-    if (budgetLeft() <= 0) {
-      console.log(`   ⏱️  per-link budget exhausted (${PER_LINK_BUDGET}ms)`);
-    }
-
-    if (replacement && link.file) {
-      const ok = replaceUrlInFile(link.file, link.url, replacement);
+  // serialize file writes
+  for (const r of results) {
+    if (!r) continue;
+    if (r.result === 'fix') {
+      const ok = replaceUrlInFile(r.link.file, r.link.url, r.replacement);
       if (ok) {
-        console.log(`   ✅ ${source}: ${link.url} → ${replacement}`);
         updates.push({
-          name: link.name,
-          oldUrl: link.url,
-          newUrl: replacement,
-          file: link.file,
-          region: link.region,
-          category: link.category,
-          source,
+          name: r.link.name,
+          oldUrl: r.link.url,
+          newUrl: r.replacement,
+          file: r.link.file,
+          region: r.link.region,
+          category: r.link.category,
+          source: r.source,
         });
       } else {
-        unresolved.push(link);
+        unresolved.push(r.link);
       }
     } else {
-      console.log(`   ⚠️  no replacement found`);
-      unresolved.push(link);
+      unresolved.push(r.link);
     }
   }
 
