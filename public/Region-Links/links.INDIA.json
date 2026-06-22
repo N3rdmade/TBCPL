@@ -36,7 +36,7 @@
         },
         {
           "name": "Bollyflix",
-          "url": "https://bollyflix.moda/",
+          "url": "https://new.bollyflix.to/",
           "logo": "./logo/movies_shows/Bollyflix-movies.png",
           "enabled": true
         },
@@ -48,13 +48,13 @@
         },
         {
           "name": "MovieRulz",
-          "url": "https://www.5movierulz.camera",
+          "url": "https://www.5movierulz.school/",
           "logo": "./logo/movies_shows/movierulz.png",
           "enabled": true
         },
         {
           "name": "Vegamovies",
-          "url": "https://vegamovie.pe/",
+          "url": "https://vegamovie.sl/",
           "logo": "./logo/movies_shows/vegamovies.png",
           "enabled": true
         },
@@ -96,7 +96,7 @@
         },
         {
           "name": "world4u",
-          "url": "https://world4ufree.tw/",
+          "url": "https://world4ufree.cl/",
           "logo": "./logo/movies_shows/world4u.png",
           "enabled": true
         },
@@ -122,7 +122,7 @@
         },
         {
           "name": "TheNextplanet",
-          "url": "https://www.thenextplanet.living/",
+          "url": "https://www.thenextplanet.surf/",
           "logo": "./logo/movies_shows/thenextplanet.png",
           "status": "new",
           "enabled": true
@@ -160,7 +160,7 @@
         },
         {
           "name": "Anime Lok",
-          "url": "https://animelok.xyz/",
+          "url": "https://animelok.online/",
           "logo": "./logo/anime/animelok.png",
           "enabled": true
         },
@@ -178,7 +178,7 @@
         },
         {
           "name": "RARE TOONS INDIA",
-          "url": "https://rareanimes.buzz/",
+          "url": "https://www.rareanimes.mov/",
           "logo": "./logo/anime/rare-toons-india.png",
           "enabled": true
         },
@@ -270,7 +270,7 @@
         },
         {
           "name": "MAX",
-          "url": "https://www.max.com/",
+          "url": "https://www.hbomax.com/",
           "logo": "https://www.hbomax.com/img/hbomax/logo_nav_bar.png",
           "enabled": true
         },
@@ -318,7 +318,7 @@
         },
         {
           "name": "JioHotstar",
-          "url": "https://www.jiohotstar.com",
+          "url": "https://www.hotstar.com/",
           "logo": "./logo/paid_apps/jiohotstar.png",
           "status": "new",
           "enabled": true
@@ -362,7 +362,7 @@
         },
         {
           "name": "BeeTV",
-          "url": "https://beetv.download/",
+          "url": "https://beetvs.download/",
           "logo": "./logo/apps/beetv.png",
           "enabled": true
         },

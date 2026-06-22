@@ -24,7 +24,7 @@
         },
         {
           "name": "streamingcommunityz",
-          "url": "https://streamingcommunityz.company/",
+          "url": "https://streamingcommunityz.tech/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
           "status": "new",
           "enabled": true
@@ -105,7 +105,7 @@
         },
         {
           "name": "MAX",
-          "url": "https://www.max.com/",
+          "url": "https://www.hbomax.com/",
           "logo": "https://www.hbomax.com/img/hbomax/logo_nav_bar.png",
           "enabled": true
         },
@@ -177,7 +177,7 @@
         },
         {
           "name": "BeeTV",
-          "url": "https://beetv.download/",
+          "url": "https://beetvs.download/",
           "logo": "./logo/apps/beetv.png",
           "enabled": true
         },

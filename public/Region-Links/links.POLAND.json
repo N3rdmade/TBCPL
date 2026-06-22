@@ -123,7 +123,7 @@
         },
         {
           "name": "MAX",
-          "url": "https://www.max.com/",
+          "url": "https://www.hbomax.com/",
           "logo": "https://www.hbomax.com/img/hbomax/logo_nav_bar.png",
           "enabled": true
         },
@@ -175,7 +175,7 @@
       "id": "apps",
       "name": "Apps",
       "sites": [
-       {
+        {
           "name": "FlowFlix",
           "url": "https://flowflix.vercel.app/",
           "logo": "./logo/apps/flowflix.png",
@@ -209,7 +209,7 @@
         },
         {
           "name": "BeeTV",
-          "url": "https://beetv.download/",
+          "url": "https://beetvs.download/",
           "logo": "./logo/apps/beetv.png",
           "enabled": true
         },
