@@ -34,8 +34,8 @@ jobs:
       - name: Commit link updates
         if: always() && hashFiles('link-updates.json') != ''
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "rishabnotfound"
+          git config user.email "rishabnotfound@users.noreply.github.com"
           git add public/links.json public/Region-Links/*.json
           if git diff --cached --quiet; then
             echo "No staged changes — skipping commit."
