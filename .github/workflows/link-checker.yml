@@ -41,7 +41,7 @@ jobs:
             echo "No staged changes — skipping commit."
             exit 0
           fi
-          git commit -m "bot: auto-update broken links (redirect + FMHY)"
+          git commit -m "bot: auto-update broken links"
           git push origin HEAD:${{ github.ref_name }}
 
       - name: Upload link updates artifact
