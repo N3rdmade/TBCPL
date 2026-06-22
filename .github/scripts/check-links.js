@@ -19,7 +19,8 @@ const SKIP_URLS = new Set([
   'https://www.yupptv.com/channels',
   'https://allyoucanwatch.net',
   'https://goplay.su',
-  'https://inkapelis.cyou'
+  'https://inkapelis.cyou',
+  'https://www.anivault.co'
 ]);
 
 function isWhitelisted(url) {
