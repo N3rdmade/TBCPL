@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const http = require('http');
+const { isWhitelisted } = require('./skip-list');
 
 const REQUEST_TIMEOUT = 15000;
 const MAX_REDIRECTS = 8;
@@ -279,6 +280,11 @@ async function main() {
 
   for (const link of broken) {
     console.log(`\n— ${link.name} (${link.url})`);
+    if (isWhitelisted(link.url)) {
+      console.log(`   ⏭️  skipped (whitelisted)`);
+      unresolved.push(link);
+      continue;
+    }
     let replacement = null;
     let source = null;
 
