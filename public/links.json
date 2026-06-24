@@ -145,6 +145,12 @@
           "url": "https://cinemaos.live",
           "logo": "./logo/movies_shows/cinemaos.png",
           "enabled": true
+        },
+        {
+          "name": "New site",
+          "url": "https://overlook.to/",
+          "logo": "./logo/movies/new-site.png",
+          "status": "trusted"
         }
       ]
     },
@@ -298,8 +304,8 @@
           "name": "AllManga",
           "url": "https://allmanga.to/",
           "logo": "./logo/anime/allmanga.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
@@ -434,8 +440,8 @@
           "name": "King of Shojo",
           "url": "https://kingofshojo.com",
           "logo": "./logo/manga/kingofshojo.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
@@ -447,22 +453,22 @@
           "name": "DaddyLive",
           "url": "https://dlhd.pk/",
           "logo": "./logo/livetv/daddylive.png",
-          "status": "trusted",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "DAMITV",
           "url": "https://dami-tv.pro/",
           "logo": "./logo/livetv/damitv.png",
-          "status": "trusted",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "Streamed.PK",
           "url": "https://streamed.pk/",
           "logo": "./logo/livetv/streamed.png",
-          "status": "trusted",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "Sport+",
@@ -546,8 +552,8 @@
           "name": "fifstream1",
           "url": "https://fifstream1.gt.tc/",
           "logo": "./logo/livetv/fifstream1.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
