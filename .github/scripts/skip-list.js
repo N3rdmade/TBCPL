@@ -12,7 +12,8 @@ const SKIP_URLS = new Set([
   'https://inkapelis.cyou',
   'https://www.anivault.co',
   'https://tbcpl.lol/site-request.html',
-  'https://tv.eddit.me/'
+  'https://tv.eddit.me/',
+  'https://cokcok10.com/'
 ]);
 
 function normalize(url) {

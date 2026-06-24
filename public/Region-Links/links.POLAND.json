@@ -15,12 +15,6 @@
           "url": "https://cda-hd.cc",
           "logo": "./logo/movies_shows/cda-hd.png",
           "enabled": true
-        },
-        {
-          "name": "Wkrótce więcej — dodaj sugestię!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
         }
       ]
     },
@@ -60,12 +54,6 @@
           "logo": "./logo/anime/shinden.png",
           "status": "new",
           "enabled": true
-        },
-        {
-          "name": "Wkrótce więcej — dodaj sugestię!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
         }
       ]
     },
@@ -78,12 +66,6 @@
           "url": "https://tv.eddit.me/",
           "logo": "./logo/livetv/tveddit.png",
           "enabled": true
-        },
-        {
-          "name": "Wkrótce więcej — dodaj sugestię!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
         }
       ]
     },

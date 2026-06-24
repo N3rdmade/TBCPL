@@ -110,27 +110,37 @@
           "name": "Hindinks4U",
           "url": "https://hindilinks4u.party/",
           "logo": "./logo/movies_shows/hindinks4u.png",
-          "status": "new",
           "enabled": true
         },
         {
           "name": "Alooytv",
           "url": "https://alooytv12.xyz/",
           "logo": "./logo/movies_shows/alooytv.png",
-          "status": "new",
           "enabled": true
         },
         {
           "name": "TheNextplanet",
           "url": "https://www.thenextplanet.surf/",
           "logo": "./logo/movies_shows/thenextplanet.png",
-          "status": "new",
           "enabled": true
         },
         {
           "name": "yupflix",
           "url": "https://watch.yupflix.org/",
           "logo": "./logo/movies_shows/yupflix.png",
+          "enabled": true
+        },
+        {
+          "name": "1tamilblasters",
+          "url": "https://www.1tamilblasters.republican/",
+          "logo": "./logo/movies_shows/1tamilblasters.png",
+          "status": "new",
+          "enabled": true
+        },
+        {
+          "name": "cinephile",
+          "url": "https://cinephile.live/",
+          "logo": "./logo/movies_shows/cinephile.png",
           "status": "new",
           "enabled": true
         }
@@ -150,6 +160,12 @@
           "name": "WatchAnimeWorld",
           "url": "https://watchanimeworld.net/",
           "logo": "./logo/anime/watchanimeworld.png",
+          "enabled": true
+        },
+        {
+          "name": "AnimeJoker",
+          "url": "https://animejoker.com/",
+          "logo": "./logo/anime/animejoker.png",
           "enabled": true
         },
         {

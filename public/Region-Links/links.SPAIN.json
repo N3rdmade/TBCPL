@@ -17,15 +17,15 @@
           "enabled": true
         },
         {
-          "name": "Próximamente más — ¡agrega una sugerencia!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "SoloLatino",
           "url": "https://sololatino.net/",
           "logo": "./logo/movies_shows/sololatino.png",
+          "enabled": true
+        },
+        {
+          "name": "GDriveLatino",
+          "url": "https://www.gdrivelatino.net/",
+          "logo": "./logo/movies_shows/gdrivelatino.png",
           "enabled": true
         },
         {

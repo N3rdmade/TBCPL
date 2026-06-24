@@ -79,8 +79,8 @@ function countTotalLinks(filePaths) {
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 
 function browserHeaders(url) {
-  let origin = '';
-  try { const u = new URL(url); origin = `${u.protocol}//${u.host}`; } catch {}
+  let referer = '';
+  try { const u = new URL(url); referer = `${u.protocol}//${u.host}/`; } catch {}
   return {
     'user-agent': UA,
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
@@ -94,7 +94,7 @@ function browserHeaders(url) {
     'sec-fetch-mode': 'navigate',
     'sec-fetch-site': 'none',
     'sec-fetch-user': '?1',
-    ...(origin ? { 'origin': origin, 'referer': origin + '/' } : {}),
+    ...(referer ? { 'referer': referer } : {}),
   };
 }
 
