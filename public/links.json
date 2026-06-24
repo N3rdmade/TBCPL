@@ -69,6 +69,12 @@
           "enabled": true
         },
         {
+          "name": "New site",
+          "url": "https://overlook.to/",
+          "logo": "pending://movies/new-site.png",
+          "status": "trusted"
+        },
+        {
           "name": "popcorn",
           "url": "https://popcornmovies.org/",
           "logo": "./logo/movies_shows/popcornmovies.png",
@@ -145,12 +151,6 @@
           "url": "https://cinemaos.live",
           "logo": "./logo/movies_shows/cinemaos.png",
           "enabled": true
-        },
-        {
-          "name": "New site",
-          "url": "https://overlook.to/",
-          "logo": "./logo/movies/new-site.png",
-          "status": "trusted"
         }
       ]
     },
