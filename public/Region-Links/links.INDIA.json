@@ -5,6 +5,13 @@
       "name": "Movies & Shows",
       "sites": [
         {
+          "name": "PRMOVIES",
+          "url": "https://prmovies.farm/",
+          "logo": "./logo/movies_shows/pr-movies.png",
+          "enabled": true,
+          "status": "trusted"
+        },
+        {
           "name": "Desicinemas",
           "url": "https://desicinemas.pk/",
           "logo": "./logo/movies_shows/desicinemas.png",
@@ -14,12 +21,6 @@
           "name": "Movies Bazar",
           "url": "https://www.moviesbazar.su/",
           "logo": "./logo/movies_shows/moviesbazar.png",
-          "enabled": true
-        },
-        {
-          "name": "Tulnit",
-          "url": "https://breotv.com/",
-          "logo": "./logo/movies_shows/tulnit.png",
           "enabled": true
         },
         {
@@ -80,12 +81,6 @@
           "name": "KMMovies",
           "url": "https://kmmovies.life/",
           "logo": "./logo/movies_shows/kmmovies.png",
-          "enabled": true
-        },
-        {
-          "name": "PR MOVIES",
-          "url": "https://prmovies.farm/",
-          "logo": "./logo/movies_shows/pr-movies.png",
           "enabled": true
         },
         {
