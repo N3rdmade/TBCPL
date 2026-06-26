@@ -698,7 +698,14 @@
           "url": "https://youcineapkpro.com/",
           "logo": "./logo/livetv/youcine.webp",
           "enabled": true,
-          "status": "new"
+          "status": "new"    
+        },
+        {
+          "name": "CineLook",
+          "url": "https://cine-look.vercel.app/",
+          "logo": "./logo/movies_shows/cinelook.png",
+          "enabled": true,
+          "status": "trusted"
         }
       ]
     }
