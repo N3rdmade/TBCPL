@@ -149,7 +149,7 @@ async function main() {
     });
   }
 
-  const mentions = '<@1141729666160402565> <@321029953200324610>';
+  const mentions = '<@1141729666160402565>';
   const summary = [
     `Found **${originalBroken.length}** broken link(s).`,
     fixed.length > 0 ? `Auto-fixed **${fixed.length}** ✅` : null,

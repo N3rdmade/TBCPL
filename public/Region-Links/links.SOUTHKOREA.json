@@ -204,6 +204,12 @@
           "url": "http://www.tving.com/",
           "logo": "./logo/apps/tving.webp",
           "enabled": true
+        },
+        {
+          "name": "PlayFy",
+          "url": "https://playfy.live/",
+          "logo": "./logo/apps/playfy.png",
+          "enabled": true
         }
       ]
     }
