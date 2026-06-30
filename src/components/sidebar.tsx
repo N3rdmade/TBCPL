@@ -98,7 +98,7 @@ export function Sidebar({ categories }: Props) {
         </div>
         <div className="px-3 pt-1">
           <a
-            href="https://discord.gg/BPxzYVY5UU"
+            href="https://discord.gg/bazxR8fA43"
             target="_blank"
             rel="noreferrer noopener"
             className="mb-2 block overflow-hidden rounded-md transition hover:opacity-90"

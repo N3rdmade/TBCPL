@@ -105,7 +105,7 @@ export function Navbar() {
 
           {/* Discord + Reddit (mobile only — desktop has the sidebar banners) */}
           <a
-            href="https://discord.gg/BPxzYVY5UU"
+            href="https://discord.gg/bazxR8fA43"
             target="_blank"
             rel="noreferrer noopener"
             aria-label="Discord"
