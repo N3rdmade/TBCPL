@@ -37,7 +37,7 @@
         },
         {
           "name": "Bollyflix",
-          "url": "https://new.bollyflix.to/",
+          "url": "https://bollyflix.med/",
           "logo": "./logo/movies_shows/Bollyflix-movies.png",
           "enabled": true
         },
