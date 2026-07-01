@@ -25,7 +25,7 @@
         },
         {
           "name": "Bollyflix",
-          "url": "https://new.bollyflix.med/",
+          "url": "https://bollyflix.at/",
           "logo": "./logo/movies_shows/Bollyflix-movies.png",
           "enabled": true
         },
@@ -37,7 +37,7 @@
         },
         {
           "name": "MovieRulz",
-          "url": "https://www.5movierulz.house/",
+          "url": "https://www.5movierulz.limited/",
           "logo": "./logo/movies_shows/movierulz.png",
           "enabled": true
         },
