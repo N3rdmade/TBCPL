@@ -37,7 +37,7 @@
         },
         {
           "name": "Bollyflix",
-          "url": "https://bollyflix.med/",
+          "url": "https://new.bollyflix.med/",
           "logo": "./logo/movies_shows/Bollyflix-movies.png",
           "enabled": true
         },
@@ -55,7 +55,7 @@
         },
         {
           "name": "Vegamovies",
-          "url": "https://vegamovie.sn/",
+          "url": "https://vegamovie.ss/",
           "logo": "./logo/movies_shows/vegamovies.png",
           "enabled": true
         },
