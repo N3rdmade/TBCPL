@@ -6,7 +6,7 @@
       "sites": [
         {
           "name": "EgyBest",
-          "url": "https://egybesst.fit/",
+          "url": "https://egybesst.tattoo/",
           "logo": "./logo/movies_shows/egybest.png",
           "enabled": true
         },
@@ -75,7 +75,7 @@
         {
           "name": "stardima-ir",
           "url": "https://stardima-ir.cartoon.com.im/",
-          "logo": "./logo/anime/stardima-ir.png", 
+          "logo": "./logo/anime/stardima-ir.png",
           "enabled": true
         },
         {
