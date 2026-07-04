@@ -38,6 +38,12 @@
           "enabled": true
         },
         {
+          "name": "AniCine",
+          "url": "https://anicine.xyz/",
+          "logo": "./logo/movies_shows/anicine.png",
+          "enabled": true
+        },
+        {
           "name": "MeowTV",
           "url": "https://meowtv.ru/",
           "logo": "./logo/movies_shows/meowtv.png",
@@ -202,6 +208,12 @@
           "name": "AniDap",
           "url": "https://anidap.se/home",
           "logo": "./logo/anime/anidap.png",
+          "enabled": true
+        },
+          {
+          "name": "AniCine",
+          "url": "https://anicine.xyz/",
+          "logo": "./logo/anime/anicine.png",
           "enabled": true
         },
         {
