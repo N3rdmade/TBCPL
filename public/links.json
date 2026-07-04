@@ -531,12 +531,6 @@
           "enabled": true
         },
         {
-          "name": "GlobeTV",
-          "url": "https://globetv.app/",
-          "logo": "./logo/livetv/globetv.png",
-          "enabled": true
-        },
-        {
           "name": "Stmify",
           "url": "https://stmify.com/",
           "logo": "./logo/livetv/stmify.png",
