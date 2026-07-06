@@ -458,7 +458,7 @@
         },
         {
           "name": "DAMITV",
-          "url": "https://damitv.app/",
+          "url": "https://dami-tv.pro/",
           "logo": "./logo/livetv/damitv.png",
           "enabled": true,
           "status": "trusted"
