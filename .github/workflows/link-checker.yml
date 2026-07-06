@@ -65,7 +65,7 @@ jobs:
             const https = require('https');
             const url = new URL(process.env.DISCORD_WEBHOOK);
             const payload = JSON.stringify({
-              content: '<@1141729666160402565> <@321029953200324610>\n🚨 **Link Checker Crashed**\nThe workflow failed before producing a broken-links report. Check the GitHub Actions logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+              content: '<@1141729666160402565>\n🚨 **Link Checker Crashed**\nThe workflow failed before producing a broken-links report. Check the GitHub Actions logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
             });
             const req = https.request({
               hostname: url.hostname,

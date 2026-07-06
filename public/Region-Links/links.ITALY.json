@@ -17,12 +17,6 @@
           "enabled": true
         },
         {
-          "name": "Prossimamente — aggiungi un suggerimento!",
-          "url": "https://tbcpl.lol/site-request.html",
-          "enabled": true,
-          "logo": ""
-        },
-        {
           "name": "streamingcommunityz",
           "url": "https://streamingcommunityz.pl/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
@@ -197,6 +191,12 @@
           "name": "PikaShow",
           "url": "https://pikashowtv.in/",
           "logo": "./logo/apps/pikashow.png",
+          "enabled": true
+        },
+        {
+          "name": "PlayFy",
+          "url": "https://playfy.live/",
+          "logo": "./logo/apps/playfy.png",
           "enabled": true
         }
       ]

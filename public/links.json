@@ -70,7 +70,7 @@
         },
         {
           "name": "popcorn",
-          "url": "https://popcornmovies.org/",
+          "url": "https://popcornmovies.io/",
           "logo": "./logo/movies_shows/popcornmovies.png",
           "enabled": true
         },
@@ -87,15 +87,15 @@
           "enabled": true
         },
         {
-          "name": "LordFlix",
-          "url": "https://lordflix.org/",
-          "logo": "./logo/movies_shows/lordflix.png",
-          "enabled": true
-        },
-        {
           "name": "netplayz",
           "url": "https://netplayz.top/",
           "logo": "./logo/movies_shows/netplayz.png",
+          "enabled": true
+        },
+        {
+          "name": "HollyMovieHD",
+          "url": "https://hollymoviehd.cc/",
+          "logo": "./logo/movies_shows/hollymoviehd.png",
           "enabled": true
         },
         {
@@ -105,9 +105,15 @@
           "enabled": true
         },
         {
-          "name": "Cinegram",
-          "url": "https://cinegram.tv/home",
-          "logo": "./logo/movies_shows/cinegram.png",
+          "name": "Moviebox",
+          "url": "https://h5.inmoviebox.com/",
+          "logo": "./logo/movies_shows/moviebox.png",
+          "enabled": true
+        },
+        {
+          "name": "LordFlix",
+          "url": "https://lordflix.org/",
+          "logo": "./logo/movies_shows/lordflix.png",
           "enabled": true
         },
         {
@@ -141,15 +147,9 @@
           "enabled": true
         },
         {
-          "name": "Cinemaos",
-          "url": "https://cinemaos.live",
-          "logo": "./logo/movies_shows/cinemaos.png",
-          "enabled": true
-        },
-        {
-          "name": "Overlook",
-          "url": "https://overlook.cx/",
-          "logo": "./logo/movies_shows/overlook.png",
+          "name": "StreamingUnity",
+          "url": "https://streamingunity.dog",
+          "logo": "./logo/movies_shows/streamingcommunityz.png",
           "enabled": true
         }
       ]
@@ -205,9 +205,9 @@
           "enabled": true
         },
         {
-          "name": "Senpaiflix",
-          "url": "https://senpaiflix.fun",
-          "logo": "./logo/anime/senpaiflix.png",
+          "name": "moemotion",
+          "url": "https://www.moemotion.me/",
+          "logo": "./logo/anime/moemotion.png",
           "enabled": true
         },
         {
@@ -250,12 +250,6 @@
           "name": "FAnime",
           "url": "https://fanime.tv/",
           "logo": "./logo/anime/fanime.png",
-          "enabled": true
-        },
-        {
-          "name": "AniVault",
-          "url": "https://www.anivault.co/",
-          "logo": "./logo/anime/anivault.png",
           "enabled": true
         },
         {
@@ -350,6 +344,12 @@
           "name": "Comix",
           "url": "https://comix.to/",
           "logo": "./logo/manga/comix.png",
+          "enabled": true
+        },
+        {
+          "name": "MangaDot",
+          "url": "https://mangadot.net/",
+          "logo": "./logo/manga/mangadot.png",
           "enabled": true
         },
         {
@@ -531,12 +531,6 @@
           "enabled": true
         },
         {
-          "name": "GlobeTV",
-          "url": "https://globetv.app/",
-          "logo": "./logo/livetv/globetv.png",
-          "enabled": true
-        },
-        {
           "name": "Stmify",
           "url": "https://stmify.com/",
           "logo": "./logo/livetv/stmify.png",
@@ -544,7 +538,7 @@
         },
         {
           "name": "ppv.to",
-          "url": "https://ppv.to/",
+          "url": "https://ppv.st/",
           "logo": "./logo/livetv/ppv.png",
           "enabled": true
         },
@@ -699,6 +693,12 @@
           "logo": "./logo/livetv/youcine.webp",
           "enabled": true,
           "status": "new"
+        },
+        {
+          "name": "PlayFy",
+          "url": "https://playfy.live/",
+          "logo": "./logo/apps/playfy.png",
+          "enabled": true
         }
       ]
     }

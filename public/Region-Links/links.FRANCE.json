@@ -249,6 +249,12 @@
           "url": "https://pikashowtv.in/",
           "logo": "./logo/apps/pikashow.png",
           "enabled": true
+        },
+        {
+          "name": "PlayFy",
+          "url": "https://playfy.live/",
+          "logo": "./logo/apps/playfy.png",
+          "enabled": true
         }
       ]
     }

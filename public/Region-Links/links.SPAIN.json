@@ -55,9 +55,21 @@
           "enabled": true
         },
         {
+          "name": "animeytx",
+          "url": "https://wwv.animeytx.net/",
+          "logo": "./logo/anime/animeytx.png",
+          "enabled": true
+        },
+        {
           "name": "anime ninja",
           "url": "https://ver.animeonline.ninja/",
           "logo": "./logo/anime/anime-ninja.svg",
+          "enabled": true
+        },
+        {
+          "name": "veranimeonline",
+          "url": "https://veranimeonline.co/",
+          "logo": "./logo/anime/veranimeonline.png",
           "enabled": true
         }
       ]
@@ -222,6 +234,12 @@
           "name": "PikaShow",
           "url": "https://pikashowtv.in/",
           "logo": "./logo/apps/pikashow.png",
+          "enabled": true
+        },
+        {
+          "name": "PlayFy",
+          "url": "https://playfy.live/",
+          "logo": "./logo/apps/playfy.png",
           "enabled": true
         }
       ]
