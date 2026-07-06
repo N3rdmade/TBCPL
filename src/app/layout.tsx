@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s · TBCPL",
   },
   description:
-    "A curated, regional list of free streaming sites — movies, TV shows, anime, manga, live TV, sports and more. Fast fuzzy search, multi-region, no ads on us.",
+    "A curated, regional list of streaming resources — movies, TV shows, anime, manga, live TV, sports and more. Fast fuzzy search and multi-region support.",
   applicationName: "TBCPL",
   keywords: [
     "streaming sites",
@@ -41,9 +41,7 @@ export const metadata: Metadata = {
   publisher: "TBCPL",
   manifest: "/manifest.json",
   icons: {
-    icon: [
-      { url: "/logo.png", type: "image/png" },
-    ],
+    icon: [{ url: "/logo.png", type: "image/png" }],
     shortcut: "/logo.png",
     apple: "/logo.png",
   },
@@ -55,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "TBCPL",
     title: "TBCPL — The Best Couch Potato List",
     description:
-      "A curated, regional list of free streaming sites — movies, anime, manga, live TV and more.",
+      "A curated, regional list of streaming resources — movies, anime, manga, live TV and more.",
     url: "https://tbcpl.lol",
     locale: "en_US",
     images: [
@@ -71,13 +69,18 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TBCPL — The Best Couch Potato List",
     description:
-      "Curated streaming sites for movies, anime, manga, live TV and more — fast fuzzy search, multi-region.",
+      "Curated streaming resources for movies, anime, manga, live TV and more — fast fuzzy search, multi-region.",
     images: ["/banner.png"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   category: "entertainment",
 };
@@ -95,7 +98,11 @@ export default async function RootLayout({
   const searchIndex = await buildSearchIndex(DEFAULT_REGION_CODE);
 
   return (
-    <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
       <body className="min-h-screen antialiased">
         <ThemeProvider>
           <RegionContextProvider regions={regions} current={DEFAULT_REGION_CODE}>
@@ -109,11 +116,17 @@ export default async function RootLayout({
           </RegionContextProvider>
         </ThemeProvider>
 
-        <Script id="llvpn-ads" strategy="afterInteractive">
-          {`(function(s){s.dataset.zone='10657401',s.src='https://llvpn.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`}
-        </Script>
+        <Script
+          id="admaven-pop"
+          strategy="afterInteractive"
+          data-cfasync="false"
+          src="https://dcbbwymp1bhlf.cloudfront.net/?wbbcd=1412461"
+        />
 
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V" strategy="afterInteractive" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TD8F20DS4V"
+          strategy="afterInteractive"
+        />
         <Script id="gtag-init" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
