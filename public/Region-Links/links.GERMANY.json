@@ -12,7 +12,7 @@
         },
         {
           "name": "S.to",
-          "url": "https://s.to/",
+          "url": "https://SerienStream.to",
           "logo": "./logo/movies_shows/sto.png",
           "enabled": true
         },
@@ -55,7 +55,7 @@
         },
         {
           "name": "BurningSeries",
-          "url": "https://bs.to",
+          "url": "https://burning-series.io/",
           "logo": "./logo/movies_shows/burningseries.png",
           "status": "new",
           "enabled": true
