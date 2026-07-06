@@ -120,7 +120,7 @@ export default async function RootLayout({
           id="admaven-pop"
           strategy="afterInteractive"
           data-cfasync="false"
-          src="https://dcbbwymp1bhlf.cloudfront.net/?wbbcd=1412461"
+          src="https://dc9xwpjprguup.cloudfront.net/?pwxcd=1412461"
         />
 
         <Script
