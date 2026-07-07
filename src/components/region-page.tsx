@@ -1,4 +1,4 @@
-import { getLinksForRegion, getRegions } from "@/lib/data";
+import { getAllValidSiteUrls, getLinksForRegion, getRegions } from "@/lib/data";
 import type { Region } from "@/lib/types";
 import { Sidebar } from "./sidebar";
 import { FilterChips } from "./filter-chips";
@@ -15,7 +15,10 @@ interface Props {
 }
 
 export async function RegionPage({ region, onlyCategoryId }: Props) {
-  const data = await getLinksForRegion(region.code);
+  const [data, validUrls] = await Promise.all([
+    getLinksForRegion(region.code),
+    getAllValidSiteUrls(),
+  ]);
   const cats = data.categories.map((c) => ({ id: c.id, name: c.name, count: c.sites.length }));
   const visible = onlyCategoryId
     ? data.categories.filter((c) => c.id === onlyCategoryId)
@@ -38,7 +41,7 @@ export async function RegionPage({ region, onlyCategoryId }: Props) {
       <div className="flex gap-8">
         <Sidebar regionCode={region.code} categories={cats} />
         <div className="min-w-0 flex-1">
-          <RecentlyVisited />
+          <RecentlyVisited validUrls={[...validUrls]} />
           {!onlyCategoryId && <FavoritesSection />}
           {!onlyCategoryId && <FilterChips categories={cats} />}
           {!onlyCategoryId && <MobileCategoryBar categories={cats} />}

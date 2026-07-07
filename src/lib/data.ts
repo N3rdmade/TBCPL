@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import type {
@@ -56,6 +57,18 @@ export async function getLinksForRegion(
     })),
   };
 }
+
+export const getAllValidSiteUrls = cache(async (): Promise<Set<string>> => {
+  const regions = await getRegions();
+  const urls = new Set<string>();
+  for (const region of regions) {
+    const { categories } = await getLinksForRegion(region.code);
+    for (const cat of categories) {
+      for (const site of cat.sites) urls.add(site.url);
+    }
+  }
+  return urls;
+});
 
 // Unfiltered — for the admin editor so disabled sites are still visible/editable.
 export async function getAllLinksForRegion(

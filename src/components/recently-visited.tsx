@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { Clock, X } from "lucide-react";
 import { normalizeAsset } from "@/lib/utils";
@@ -30,7 +30,8 @@ export function addRecent(item: Omit<Recent, "visitedAt">) {
   } catch {}
 }
 
-export function RecentlyVisited() {
+export function RecentlyVisited({ validUrls }: { validUrls: string[] }) {
+  const valid = useMemo(() => new Set(validUrls), [validUrls]);
   const [items, setItems] = useState<Recent[]>([]);
   const [mounted, setMounted] = useState(false);
 
@@ -39,7 +40,10 @@ export function RecentlyVisited() {
     function load() {
       try {
         const raw = localStorage.getItem(KEY);
-        setItems(raw ? JSON.parse(raw) : []);
+        const all: Recent[] = raw ? JSON.parse(raw) : [];
+        const next = all.filter((r) => valid.has(r.url));
+        if (next.length !== all.length) localStorage.setItem(KEY, JSON.stringify(next));
+        setItems(next);
       } catch {
         setItems([]);
       }
@@ -47,7 +51,7 @@ export function RecentlyVisited() {
     load();
     window.addEventListener("tbcpl-recents-changed", load);
     return () => window.removeEventListener("tbcpl-recents-changed", load);
-  }, []);
+  }, [valid]);
 
   function clear() {
     localStorage.removeItem(KEY);
