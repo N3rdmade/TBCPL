@@ -30,23 +30,77 @@ export function addRecent(item: Omit<Recent, "visitedAt">) {
   } catch {}
 }
 
+async function fetchValidUrlSet(): Promise<Set<string>> {
+  const regionsRes = await fetch("/regions.json", { cache: "force-cache" });
+  const regionsData = await regionsRes.json();
+  const codes: string[] = (regionsData.regions || [])
+    .filter((r: { enabled?: boolean }) => r.enabled !== false)
+    .map((r: { code: string }) => r.code);
+
+  const files = [
+    "/links.json",
+    ...codes
+      .filter((c) => c !== "USA")
+      .map((c) => `/Region-Links/links.${c}.json`),
+  ];
+
+  const valid = new Set<string>();
+  const results = await Promise.all(
+    files.map((f) => fetch(f, { cache: "force-cache" }).then((r) => r.json()).catch(() => null))
+  );
+  for (const data of results) {
+    if (!data?.categories) continue;
+    for (const cat of data.categories) {
+      for (const site of cat.sites || []) {
+        if (site.enabled !== false && site.url) valid.add(site.url);
+      }
+    }
+  }
+  return valid;
+}
+
 export function RecentlyVisited() {
   const [items, setItems] = useState<Recent[]>([]);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    function load() {
+    let cancelled = false;
+
+    function readStored(): Recent[] {
       try {
         const raw = localStorage.getItem(KEY);
-        setItems(raw ? JSON.parse(raw) : []);
+        return raw ? JSON.parse(raw) : [];
       } catch {
-        setItems([]);
+        return [];
       }
     }
+
+    function load() {
+      setItems(readStored());
+    }
+
     load();
+
+    fetchValidUrlSet()
+      .then((valid) => {
+        if (cancelled) return;
+        const stored = readStored();
+        const kept = stored.filter((r) => valid.has(r.url));
+        if (kept.length !== stored.length) {
+          try {
+            localStorage.setItem(KEY, JSON.stringify(kept));
+          } catch {}
+        }
+        setItems(kept);
+      })
+      .catch(() => {});
+
     window.addEventListener("tbcpl-recents-changed", load);
-    return () => window.removeEventListener("tbcpl-recents-changed", load);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("tbcpl-recents-changed", load);
+    };
   }, []);
 
   function clear() {
