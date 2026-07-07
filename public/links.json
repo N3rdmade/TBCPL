@@ -205,9 +205,9 @@
           "enabled": true
         },
         {
-          "name": "moemotion",
-          "url": "https://www.moemotion.me/",
-          "logo": "./logo/anime/moemotion.png",
+          "name": "SenpaiFlix",
+          "url": "https://senpaiflix.fun/",
+          "logo": "./logo/anime/senpaiflix.png",
           "enabled": true
         },
         {
