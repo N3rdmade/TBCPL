@@ -33,6 +33,9 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "tailwindcss": "^4",
-    "typescript": "^5"
-  }
-}
+   "scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "export": "next export",
+  "start": "next start --port 80"
+},
