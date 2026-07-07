@@ -31,7 +31,7 @@ export function addRecent(item: Omit<Recent, "visitedAt">) {
 }
 
 async function fetchValidUrlSet(): Promise<Set<string>> {
-  const regionsRes = await fetch("/regions.json", { cache: "force-cache" });
+  const regionsRes = await fetch("/regions.json", { cache: "no-store" });
   const regionsData = await regionsRes.json();
   const codes: string[] = (regionsData.regions || [])
     .filter((r: { enabled?: boolean }) => r.enabled !== false)
@@ -46,7 +46,7 @@ async function fetchValidUrlSet(): Promise<Set<string>> {
 
   const valid = new Set<string>();
   const results = await Promise.all(
-    files.map((f) => fetch(f, { cache: "force-cache" }).then((r) => r.json()).catch(() => null))
+    files.map((f) => fetch(f, { cache: "no-store" }).then((r) => r.json()).catch(() => null))
   );
   for (const data of results) {
     if (!data?.categories) continue;
