@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return { title: `${m.label} — USA`, description: m.blurb };
   }
   const r = await getRegionByCode(slug);
-  if (r) return { title: `${r.flag} ${r.name}`, description: `Streaming sites curated for ${r.name}.` };
+  if (r) return { title: r.name, description: `Streaming sites curated for ${r.name}.` };
   return {};
 }
 

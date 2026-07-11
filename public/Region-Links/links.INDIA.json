@@ -73,7 +73,7 @@
         },
         {
           "name": "movies4u",
-          "url": "https://new3.movies4u.finance/",
+          "url": "https://new1.movies4u.clinic/",
           "logo": "./logo/movies_shows/movies4u.png",
           "enabled": true
         },
@@ -91,7 +91,7 @@
         },
         {
           "name": "netmirror",
-          "url": "https://net11.cc/home",
+          "url": "https://net77.cc/home",
           "logo": "./logo/movies_shows/netmirror.png",
           "enabled": true
         },
@@ -157,6 +157,24 @@
           "name": "AnimeJoker",
           "url": "https://animejoker.com/",
           "logo": "./logo/anime/animejoker.png",
+          "enabled": true
+        },
+        {
+          "name": "blakiteanime",
+          "url": "https://www.subdubanime.site/",
+          "logo": "./logo/anime/blakiteanime.png",
+          "enabled": true
+        },
+        {
+          "name": "Anime4u",
+          "url": "https://www.anime4u.org/",
+          "logo": "./logo/anime/anime4u.png",
+          "enabled": true
+        },
+        {
+          "name": "AnimeDrive",
+          "url": "https://animedrive.in/",
+          "logo": "./logo/anime/animedrive.png",
           "enabled": true
         },
         {

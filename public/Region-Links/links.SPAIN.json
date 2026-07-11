@@ -30,7 +30,7 @@
         },
         {
           "name": "NetMirror",
-          "url": "https://net11.cc/home",
+          "url": "https://net77.cc/home",
           "logo": "./logo/movies_shows/netmirror.png",
           "status": "new",
           "enabled": true
@@ -79,10 +79,10 @@
       "name": "Manga",
       "sites": [
         {
-          "name": "Próximamente más — ¡agrega una sugerencia!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "MangaVault",
+          "url": "https://mangavault.lat/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/manga/mangavault.png"
         }
       ]
     },

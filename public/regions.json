@@ -3,97 +3,97 @@
     {
       "code": "USA",
       "name": "United States",
-      "flag": "🇺🇸",
+      "flag": "us",
       "enabled": true
     },
     {
       "code": "INDIA",
       "name": "India",
-      "flag": "🇮🇳",
+      "flag": "in",
       "enabled": true
     },
     {
       "code": "RUSSIA",
       "name": "Russia",
-      "flag": "🇷🇺",
+      "flag": "ru",
       "enabled": true
     },
     {
       "code": "GERMANY",
       "name": "Germany",
-      "flag": "🇩🇪",
+      "flag": "de",
       "enabled": true
     },
     {
       "code": "FRANCE",
       "name": "France",
-      "flag": "🇫🇷",
+      "flag": "fr",
       "enabled": true
     },
     {
       "code": "BRAZIL",
       "name": "Brazil",
-      "flag": "🇧🇷",
+      "flag": "br",
       "enabled": true
     },
     {
       "code": "JAPAN",
       "name": "Japan",
-      "flag": "🇯🇵",
+      "flag": "jp",
       "enabled": true
     },
     {
       "code": "SOUTHKOREA",
       "name": "South Korea",
-      "flag": "🇰🇷",
+      "flag": "kr",
       "enabled": true
     },
     {
       "code": "SPAIN",
       "name": "Spain",
-      "flag": "🇪🇸",
+      "flag": "es",
       "enabled": true
     },
     {
       "code": "ITALY",
       "name": "Italy",
-      "flag": "🇮🇹",
+      "flag": "it",
       "enabled": true
     },
     {
       "code": "POLAND",
       "name": "Poland",
-      "flag": "🇵🇱",
+      "flag": "pl",
       "enabled": true
     },
     {
       "code": "NETHERLANDS",
       "name": "Netherlands",
-      "flag": "🇳🇱",
+      "flag": "nl",
       "enabled": true
     },
     {
       "code": "PORTUGAL",
       "name": "Portugal",
-      "flag": "🇵🇹",
+      "flag": "pt",
       "enabled": true
     },
     {
       "code": "FINLAND",
       "name": "Finland",
-      "flag": "🇫🇮",
+      "flag": "fi",
       "enabled": true
     },
     {
       "code": "EGYPT",
       "name": "Egypt",
-      "flag": "🇪🇬",
+      "flag": "eg",
       "enabled": true
     },
     {
       "code": "KURDISTAN",
       "name": "Kurdistan",
-      "flag": "☀️",
+      "flag": "kurdistan",
       "enabled": true
     }
   ]

@@ -20,6 +20,7 @@
   --warn: #f59e0b;
   --radius: 14px;
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --social-invert: 0;
 }
 
 [data-theme="midnight"] {
@@ -77,6 +78,7 @@
   --warn: #d97706;
   --radius: 12px;
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --social-invert: 1;
 }
 
 [data-theme="terminal"] {
@@ -192,6 +194,16 @@ body::before {
 }
 .tbcpl-glow {
   box-shadow: 0 0 0 1px var(--border-strong), 0 0 32px var(--accent-glow);
+}
+
+/* Social icons adapt to theme */
+/* Discord: invert on light themes (white logo -> black) */
+.social-icon-discord {
+  filter: invert(var(--social-invert));
+}
+/* Reddit: invert on dark themes with hue correction to preserve orange */
+.social-icon-reddit {
+  filter: invert(calc(1 - var(--social-invert))) hue-rotate(calc((1 - var(--social-invert)) * 180deg));
 }
 
 @keyframes pulse-soft {

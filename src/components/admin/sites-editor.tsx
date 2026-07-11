@@ -44,6 +44,7 @@ import { normalizeAsset } from "@/lib/utils";
 import { deriveLogoFilename } from "@/lib/admin/paths";
 import { CATEGORY_META } from "@/lib/constants";
 import type { Category, Region, Site, SiteStatus } from "@/lib/types";
+import { FlagIcon } from "../flag-icon";
 
 interface SitesEditorProps {
   regions: Region[];
@@ -513,7 +514,7 @@ export function SitesEditor({ regions, initialRegion }: SitesEditorProps) {
         >
           {regions.map((r) => (
             <option key={r.code} value={r.code}>
-              {r.flag} {r.name} ({r.code})
+              {r.name} ({r.code})
             </option>
           ))}
         </select>
@@ -1643,7 +1644,8 @@ function MultiTargetPanel({
                       }}
                     >
                       {on ? <CheckSquare size={10} /> : <Square size={10} />}
-                      <span className="font-mono">{r.flag} {r.code}</span>
+                      <FlagIcon code={r.flag} size={12} />
+                      <span className="font-mono">{r.code}</span>
                     </button>
                   );
                 })}

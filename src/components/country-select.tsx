@@ -1,14 +1,18 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
 import { useRegions } from "./region-context";
 import { DEFAULT_REGION_CLIENT } from "@/lib/constants";
+import { FlagIcon } from "./flag-icon";
 
 export function CountrySelect() {
   const router = useRouter();
   const pathname = usePathname();
   const { regions } = useRegions();
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   const current = useMemo(() => {
     const seg = (pathname ?? "/").split("/").filter(Boolean)[0]?.toUpperCase();
@@ -17,27 +21,78 @@ export function CountrySelect() {
     return match ? match.code : DEFAULT_REGION_CLIENT;
   }, [pathname, regions]);
 
+  const currentRegion = regions.find((r) => r.code === current);
+
+  // Close on click outside
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [open]);
+
+  // Close on escape
+  useEffect(() => {
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    if (open) {
+      document.addEventListener("keydown", handleEscape);
+      return () => document.removeEventListener("keydown", handleEscape);
+    }
+  }, [open]);
+
+  const handleSelect = (code: string) => {
+    setOpen(false);
+    router.push(code === DEFAULT_REGION_CLIENT ? "/" : `/${code.toLowerCase()}`);
+  };
+
   return (
-    <select
-      aria-label="Region"
-      value={current}
-      onChange={(e) => {
-        const code = e.target.value;
-        router.push(code === DEFAULT_REGION_CLIENT ? "/" : `/${code.toLowerCase()}`);
-      }}
-      className="tbcpl-pill h-9 cursor-pointer appearance-none bg-transparent pl-3 pr-8 text-sm font-semibold outline-none"
-      style={{
-        backgroundImage:
-          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a1a1aa' d='M1 1l5 5 5-5'/%3E%3C/svg%3E\")",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "right 12px center",
-      }}
-    >
-      {regions.map((r) => (
-        <option key={r.code} value={r.code} style={{ background: "var(--bg-elev)", color: "var(--fg)" }}>
-          {r.flag} {r.name}
-        </option>
-      ))}
-    </select>
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        aria-label="Select region"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        className="tbcpl-pill flex h-9 cursor-pointer items-center gap-2 pl-3 pr-2 text-sm font-semibold"
+      >
+        {currentRegion && <FlagIcon code={currentRegion.flag} size={16} />}
+        <span className="hidden xs:inline">{currentRegion?.name ?? "Region"}</span>
+        <ChevronDown
+          size={14}
+          className={`text-[var(--fg-muted)] transition-transform ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {open && (
+        <div
+          className="absolute right-0 top-full z-50 mt-1 max-h-72 w-48 overflow-y-auto rounded-xl border py-1 shadow-lg"
+          style={{
+            background: "var(--bg-elev)",
+            borderColor: "var(--border-strong)",
+            boxShadow: "var(--shadow)",
+          }}
+        >
+          {regions.map((r) => (
+            <button
+              key={r.code}
+              type="button"
+              onClick={() => handleSelect(r.code)}
+              className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors hover:bg-[var(--bg-card-hover)] ${
+                r.code === current ? "bg-[var(--bg-card-hover)] text-[var(--fg)]" : "text-[var(--fg-muted)]"
+              }`}
+            >
+              <FlagIcon code={r.flag} size={18} />
+              <span>{r.name}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

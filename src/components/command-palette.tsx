@@ -10,6 +10,7 @@ import type { Region, SiteSearchEntry } from "@/lib/types";
 import { CATEGORY_META } from "@/lib/constants";
 import { normalizeAsset } from "@/lib/utils";
 import { useFavorites, toggleStar } from "@/lib/favorites";
+import { FlagIcon } from "./flag-icon";
 
 type Ctx = { open: () => void; close: () => void };
 const PaletteCtx = createContext<Ctx | null>(null);
@@ -194,7 +195,7 @@ export function CommandPaletteProvider({ children, initialIndex, regions }: Prov
                         onSelect={() => { router.push(r.code === "USA" ? "/" : `/${r.code.toLowerCase()}`); close(); }}
                         className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-2 text-sm aria-selected:bg-[var(--bg-card-hover)]"
                       >
-                        <span className="grid h-5 w-5 place-items-center text-base">{r.flag}</span>
+                        <span className="grid h-5 w-5 place-items-center"><FlagIcon code={r.flag} size={16} /></span>
                         <span className="flex-1">{r.name}</span>
                         <Globe size={12} className="text-[var(--fg-muted)]" />
                       </Command.Item>

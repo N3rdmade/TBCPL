@@ -108,7 +108,7 @@ export function Sidebar({ categories }: Props) {
               alt="Join our Discord"
               width={400}
               height={120}
-              className="h-auto w-full max-w-[160px]"
+              className="h-auto w-full max-w-[160px] social-icon-discord"
               unoptimized
             />
           </a>
@@ -123,7 +123,7 @@ export function Sidebar({ categories }: Props) {
               alt="Join our subreddit"
               width={400}
               height={120}
-              className="h-auto w-full max-w-[160px]"
+              className="h-auto w-full max-w-[160px] social-icon-reddit"
               unoptimized
             />
           </a>

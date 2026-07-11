@@ -398,7 +398,7 @@
           "name": "ReadComicOnline",
           "url": "https://rcostation.xyz/",
           "logo": "./logo/manga/readcomiconline.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "MangaHub",
@@ -460,7 +460,7 @@
           "name": "DAMITV",
           "url": "https://dami-tv.pro/",
           "logo": "./logo/livetv/damitv.png",
-          "enabled": true,
+          "enabled": false,
           "status": "trusted"
         },
         {
@@ -472,7 +472,7 @@
         },
         {
           "name": "Sport+",
-          "url": "https://en12.sportplus.live/",
+          "url": "https://en97.sportplus.watch/",
           "logo": "https://cdn.apigodata.com/sp-imgs/logo.svg",
           "enabled": true
         },

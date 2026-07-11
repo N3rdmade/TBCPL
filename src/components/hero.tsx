@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { LatestCommitPill } from "./latest-commit-pill";
 import { LiveUsers } from "./live-users";
+import { FlagIcon } from "./flag-icon";
 
 interface Stat {
   label: string;
@@ -49,8 +50,9 @@ export function Hero({ regionFlag, regionName, stats }: Props) {
             {regionName && (
               <>
                 {" "}Showing{" "}
-                <span className="font-semibold text-[var(--fg)]">
-                  {regionFlag} {regionName}
+                <span className="inline-flex items-center gap-1.5 font-semibold text-[var(--fg)]">
+                  {regionFlag && <FlagIcon code={regionFlag} size={16} />}
+                  {regionName}
                 </span>
                 .
               </>

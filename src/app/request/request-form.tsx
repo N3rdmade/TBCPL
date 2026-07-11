@@ -116,7 +116,7 @@ export function RequestForm() {
               >
                 <option value="">Select region</option>
                 {regions.map((r) => (
-                  <option key={r.code} value={r.code}>{r.flag} {r.name}</option>
+                  <option key={r.code} value={r.code}>{r.name}</option>
                 ))}
               </select>
               <div className="flex gap-2">

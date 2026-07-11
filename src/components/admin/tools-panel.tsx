@@ -15,6 +15,7 @@ import {
   Copy,
 } from "lucide-react";
 import type { Region } from "@/lib/types";
+import { FlagIcon } from "../flag-icon";
 
 interface Orphan {
   repoPath: string;
@@ -765,7 +766,7 @@ function SiteSearchTool({ regions }: { regions: Region[] }) {
                         background: filterRegion === r ? "color-mix(in oklab, var(--accent) 14%, transparent)" : "transparent",
                       }}
                     >
-                      {meta?.flag ?? ""} {r}
+                      {meta?.flag && <FlagIcon code={meta.flag} size={12} className="mr-1" />}{r}
                     </button>
                   );
                 })}

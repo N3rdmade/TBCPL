@@ -16,7 +16,7 @@ export async function generateMetadata({
   const r = await getRegionByCode(slug);
   const meta = CATEGORY_META[category];
   if (!r || !meta) return {};
-  return { title: `${meta.label} — ${r.flag} ${r.name}`, description: meta.blurb };
+  return { title: `${meta.label} — ${r.name}`, description: meta.blurb };
 }
 
 export default async function RegionCategoryRoute({

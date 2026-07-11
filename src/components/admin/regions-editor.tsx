@@ -20,6 +20,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical, Plus, Trash2, Save, Loader2, ExternalLink } from "lucide-react";
 import type { Region } from "@/lib/types";
+import { FlagIcon } from "../flag-icon";
 
 export function RegionsEditor({ initial }: { initial: Region[] }) {
   const [regions, setRegions] = useState<Region[]>(initial);
@@ -220,13 +221,19 @@ function RegionRow({
       >
         {index + 1}
       </span>
-      <input
-        value={region.flag}
-        onChange={(e) => onUpdate({ flag: e.target.value })}
-        className="h-9 w-12 rounded-lg border bg-transparent px-1 text-center text-lg"
-        style={{ borderColor: "var(--border)" }}
-        aria-label="Flag"
-      />
+      <div className="flex items-center gap-1">
+        <span className="grid h-6 w-6 place-items-center">
+          <FlagIcon code={region.flag} size={16} />
+        </span>
+        <input
+          value={region.flag}
+          onChange={(e) => onUpdate({ flag: e.target.value.toLowerCase() })}
+          className="h-9 w-16 rounded-lg border bg-transparent px-2 text-center font-mono text-xs"
+          style={{ borderColor: "var(--border)" }}
+          placeholder="us"
+          aria-label="Flag code (ISO 2-letter)"
+        />
+      </div>
       <input
         value={region.code}
         onChange={(e) => onUpdate({ code: e.target.value.toUpperCase() })}

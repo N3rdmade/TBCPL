@@ -612,7 +612,7 @@ function ApproveModal({
                 <option value="">Region…</option>
                 {regions.map((r) => (
                   <option key={r.code} value={r.code}>
-                    {r.flag} {r.name} ({r.code})
+                    {r.name} ({r.code})
                   </option>
                 ))}
               </select>
