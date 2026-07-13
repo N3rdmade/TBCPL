@@ -112,7 +112,7 @@
         },
         {
           "name": "LordFlix",
-          "url": "https://lordflix.org/",
+          "url": "https://lordflix.su/",
           "logo": "./logo/movies_shows/lordflix.png",
           "enabled": true
         },
@@ -200,7 +200,7 @@
         },
         {
           "name": "AniDap",
-          "url": "https://anidap.se/home",
+          "url": "https://anidap.lol/",
           "logo": "./logo/anime/anidap.png",
           "enabled": true
         },
