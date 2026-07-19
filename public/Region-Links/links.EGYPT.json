@@ -44,13 +44,39 @@
           "name": "cartoony",
           "url": "https://cartoony.net/",
           "logo": "./logo/movies_shows/cartoony.png",
-          "status": "new",
           "enabled": true
         },
         {
           "name": "carateen",
           "url": "https://carateen.tv/",
           "logo": "./logo/movies_shows/carateen.png",
+          "enabled": true
+        },
+        {
+          "name": "carateen",
+          "url": "https://topcinma.com/",
+          "logo": "./logo/movies_shows/topcinema.png",
+          "status": "new",
+          "enabled": true
+        },
+        {
+          "name": "WeCima",
+          "url": "https://wecima.cx/",
+          "logo": "./logo/movies_shows/wecima.png",
+          "status": "new",
+          "enabled": true
+        },
+        {
+          "name": "DramaCafe",
+          "url": "https://dramacafe-tv.beauty/",
+          "logo": "./logo/movies_shows/dramacafe.png",
+          "status": "new",
+          "enabled": true
+        },
+        {
+          "name": "movizlands",
+          "url": "https://w3.movizlands.com/",
+          "logo": "./logo/movies_shows/movizlands.png",
           "status": "new",
           "enabled": true
         }
@@ -206,6 +232,13 @@
       "id": "apps",
       "name": "Apps",
       "sites": [
+        {
+          "name": "FasselHD",
+          "url": "https://fasselhd.com/",
+          "logo": "./logo/apps/fasselhd.png",
+          "status": "new",
+          "enabled": true
+        },
         {
           "name": "Playtorrio",
           "url": "https://playtorrio.pages.dev/",

@@ -59,8 +59,7 @@
           "name": "Spenflix",
           "url": "https://watch.spencerdevs.xyz/",
           "logo": "./logo/movies_shows/spenflix.png",
-          "enabled": true,
-          "status": "ok"
+          "enabled": false
         },
         {
           "name": "FilmCave",
@@ -84,6 +83,12 @@
           "name": "Nepu",
           "url": "https://nepu.to/",
           "logo": "./logo/movies_shows/nepu.png",
+          "enabled": true
+        },
+        {
+          "name": "flixgaze",
+          "url": "https://www.flixgaze.com/",
+          "logo": "./logo/movies_shows/flixgaze.png",
           "enabled": true
         },
         {
@@ -166,16 +171,16 @@
           "status": "trusted"
         },
         {
-          "name": "Miruro",
-          "url": "https://www.miruro.to",
-          "logo": "./logo/anime/miruro.png",
+          "name": "animepahe",
+          "url": "https://animepahe.pw/",
+          "logo": "./logo/anime/animepahe.png",
           "enabled": true,
           "status": "trusted"
         },
         {
-          "name": "animepahe",
-          "url": "https://animepahe.pw/",
-          "logo": "./logo/anime/animepahe.png",
+          "name": "Anikoto",
+          "url": "https://anikototv.to",
+          "logo": "./logo/anime/anikoto.png",
           "enabled": true,
           "status": "trusted"
         },
@@ -187,15 +192,35 @@
           "status": "trusted"
         },
         {
-          "name": "Anikage",
-          "url": "https://anikage.cc/home",
-          "logo": "./logo/anime/anikage.png",
+          "name": "Miruro",
+          "url": "https://www.miruro.to",
+          "logo": "./logo/anime/miruro.png",
+          "enabled": true,
+          "status": "trusted"
+        },
+        {
+          "name": "AnimeNexus",
+          "url": "https://anime.nexus/",
+          "logo": "./logo/anime/animenexus.png",
           "enabled": true
         },
         {
-          "name": "Anikoto",
-          "url": "https://anikototv.to",
-          "logo": "./logo/anime/anikoto.png",
+          "name": "AniDB",
+          "url": "https://anidb.app/home",
+          "logo": "./logo/anime/anidb.png",
+          "enabled": true
+        },
+        {
+          "name": "Senshi",
+          "url": "https://senshi.live/",
+          "logo": "./logo/anime/senshi.png",
+          "enabled": true
+        },
+        {
+          
+          "name": "Anikage",
+          "url": "https://anikage.cc/home",
+          "logo": "./logo/anime/anikage.png",
           "enabled": true
         },
         {
@@ -217,12 +242,6 @@
           "enabled": true
         },
         {
-          "name": "AnimeNexus",
-          "url": "https://anime.nexus/",
-          "logo": "./logo/anime/animenexus.png",
-          "enabled": true
-        },
-        {
           "name": "1Anime",
           "url": "https://1anime.app/discover",
           "logo": "./logo/anime/1anime.png",
@@ -235,21 +254,9 @@
           "enabled": true
         },
         {
-          "name": "Animetsu",
-          "url": "https://omg10.com/",
-          "logo": "./logo/anime/animetsu.png",
-          "enabled": true
-        },
-        {
           "name": "KickAssAnime",
           "url": "https://kaa.lt/",
           "logo": "./logo/anime/kickassanime.png",
-          "enabled": true
-        },
-        {
-          "name": "FAnime",
-          "url": "https://fanime.tv/",
-          "logo": "./logo/anime/fanime.png",
           "enabled": true
         },
         {
@@ -262,18 +269,6 @@
           "name": "AniWaves",
           "url": "https://aniwaves.ru",
           "logo": "./logo/anime/aniwave.png",
-          "enabled": true
-        },
-        {
-          "name": "AG48ANIME",
-          "url": "https://www.ag48anime.site/",
-          "logo": "./logo/anime/ag48anime.png",
-          "enabled": true
-        },
-        {
-          "name": "AniDB",
-          "url": "https://anidb.app/home",
-          "logo": "./logo/anime/anidb.png",
           "enabled": true
         },
         {
@@ -293,13 +288,6 @@
           "url": "https://lunaranime.ru/anime",
           "logo": "./logo/anime/lunaranime.png",
           "enabled": true
-        },
-        {
-          "name": "AllManga",
-          "url": "https://allmanga.to/",
-          "logo": "./logo/anime/allmanga.png",
-          "enabled": true,
-          "status": "new"
         }
       ]
     },
@@ -335,6 +323,12 @@
           "enabled": true
         },
         {
+          "name": "AquaManga",
+          "url": "https://aquareader.org/",
+          "logo": "./logo/manga/aquamanga.png",
+          "enabled": true
+        },
+        {
           "name": "Comick",
           "url": "https://comick.dev/",
           "logo": "./logo/manga/comick.png",
@@ -350,6 +344,12 @@
           "name": "MangaDot",
           "url": "https://mangadot.net/",
           "logo": "./logo/manga/mangadot.png",
+          "enabled": true
+        },
+        {
+          "name": "MangaBuddy",
+          "url": "https://mangabuddy1.co.uk/",
+          "logo": "./logo/manga/mangabuddy.png",
           "enabled": true
         },
         {
@@ -458,9 +458,9 @@
         },
         {
           "name": "DAMITV",
-          "url": "https://dami-tv.pro/",
+          "url": "https://ondemand.st/",
           "logo": "./logo/livetv/damitv.png",
-          "enabled": false,
+          "enabled": true,
           "status": "trusted"
         },
         {
@@ -474,6 +474,12 @@
           "name": "Sport+",
           "url": "https://en97.sportplus.watch/",
           "logo": "https://cdn.apigodata.com/sp-imgs/logo.svg",
+          "enabled": true
+        },
+        {
+          "name": "VenueVault",
+          "url": "https://venuevault.live/",
+          "logo": "./logo/livetv/venuevault.png",
           "enabled": true
         },
         {

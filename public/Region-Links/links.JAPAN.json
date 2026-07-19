@@ -34,6 +34,12 @@
           "logo": "./logo/manga/kingofshojo.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "MangaFire",
+          "url": "https://mangafire.to/home",
+          "logo": "./logo/manga/mangafire.png",
+          "enabled": true
         }
       ]
     },
