@@ -22,3 +22,5 @@ next-env.d.ts
 
 # Backup of legacy static site (kept in branch legacy-static-site)
 .legacy-backup
+
+ci.sh

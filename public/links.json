@@ -116,6 +116,12 @@
           "enabled": true
         },
         {
+          "name": "onlyflix",
+          "url": "https://onlyflix.to/",
+          "logo": "./logo/movies_shows/onlyflix.png",
+          "enabled": true
+        },
+        {
           "name": "HdTodayz",
           "url": "https://hdtodayz.net/",
           "logo": "./logo/movies_shows/hdtodayz.png",
@@ -128,12 +134,6 @@
           "enabled": true
         },
         {
-          "name": "345movie",
-          "url": "https://345movie.nl/",
-          "logo": "./logo/movies_shows/345movie.png",
-          "enabled": true
-        },
-        {
           "name": "FMovies",
           "url": "https://fmovies-hd.to/home/",
           "logo": "./logo/movies_shows/fmovies.png",
@@ -141,7 +141,7 @@
         },
         {
           "name": "WatchOTT",
-          "url": "https://watchott.ru",
+          "url": "https://watchott.org",
           "logo": "./logo/movies_shows/watchott.png",
           "enabled": true
         },

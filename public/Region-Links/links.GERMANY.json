@@ -55,7 +55,7 @@
         },
         {
           "name": "BurningSeries",
-          "url": "https://burning-series.io/",
+          "url": "https://burningseries.ac/",
           "logo": "./logo/movies_shows/burningseries.png",
           "status": "new",
           "enabled": true

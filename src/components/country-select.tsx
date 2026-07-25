@@ -62,7 +62,7 @@ export function CountrySelect() {
         className="tbcpl-pill flex h-9 cursor-pointer items-center gap-2 pl-3 pr-2 text-sm font-semibold"
       >
         {currentRegion && <FlagIcon code={currentRegion.flag} size={16} />}
-        <span className="hidden xs:inline">{currentRegion?.name ?? "Region"}</span>
+        <span>{currentRegion?.name ?? "Region"}</span>
         <ChevronDown
           size={14}
           className={`text-[var(--fg-muted)] transition-transform ${open ? "rotate-180" : ""}`}
@@ -71,7 +71,7 @@ export function CountrySelect() {
 
       {open && (
         <div
-          className="absolute right-0 top-full z-50 mt-1 max-h-72 w-48 overflow-y-auto rounded-xl border py-1 shadow-lg"
+          className="absolute left-1/2 top-full z-50 mt-1 max-h-72 w-48 -translate-x-1/2 overflow-y-auto rounded-xl border py-1 shadow-lg sm:left-auto sm:right-0 sm:translate-x-0"
           style={{
             background: "var(--bg-elev)",
             borderColor: "var(--border-strong)",

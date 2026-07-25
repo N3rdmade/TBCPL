@@ -17,6 +17,12 @@
           "enabled": true
         },
         {
+          "name": "Hidrama",
+          "url": "https://hidrama.to/",
+          "logo": "./logo/movies_shows/hidrama.png",
+          "enabled": true
+        },
+        {
           "name": "goplay.su",
           "url": "https://goplay.su",
           "logo": "./logo/movies_shows/goplaysu.png",

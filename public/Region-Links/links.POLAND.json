@@ -15,6 +15,30 @@
           "url": "https://cda-hd.cc",
           "logo": "./logo/movies_shows/cda-hd.png",
           "enabled": true
+        },
+        {
+          "name": "Ekino",
+          "url": "https://ekino.ws/",
+          "logo": "./logo/movies_shows/ekinotv.png",
+          "enabled": true
+        },
+        {
+          "name": "Obejrzyj",
+          "url": "https://obejrzyj.to/",
+          "logo": "./logo/movies_shows/obejrzyj.png",
+          "enabled": true
+        },
+        {
+          "name": "zaluknij",
+          "url": "https://zaluknij.cc/",
+          "logo": "./logo/movies_shows/zaluknij.png",
+          "enabled": true
+        },
+        {
+          "name": "bajeczki24",
+          "url": "https://bajeczki24.pl/",
+          "logo": "./logo/movies_shows/bajeczki24.png",
+          "enabled": true
         }
       ]
     },

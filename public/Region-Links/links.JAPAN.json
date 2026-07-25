@@ -48,10 +48,10 @@
       "name": "Live TV & Sports",
       "sites": [
         {
-          "name": "近日公開予定 — 提案を追加してください！",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "unextjp",
+          "url": "https://video.unext.jp/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/livetv/unextjp.png"
         }
       ]
     },
