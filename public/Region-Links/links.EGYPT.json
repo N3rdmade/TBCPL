@@ -6,7 +6,7 @@
       "sites": [
         {
           "name": "EgyBest",
-          "url": "https://egybesst.lol/",
+          "url": "https://egybesst.lat/",
           "logo": "./logo/movies_shows/egybest.png",
           "enabled": true
         },
@@ -54,7 +54,7 @@
         },
         {
           "name": "carateen",
-          "url": "https://topcinma.com/",
+          "url": "https://web2.topcinemaa.com/",
           "logo": "./logo/movies_shows/topcinema.png",
           "status": "new",
           "enabled": true
