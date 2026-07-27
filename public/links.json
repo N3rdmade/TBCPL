@@ -35,7 +35,8 @@
           "name": "FlickyStream",
           "url": "https://flickystream.dad/",
           "logo": "./logo/movies_shows/flickystream.png",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "MeowTV",
@@ -62,21 +63,9 @@
           "enabled": false
         },
         {
-          "name": "FilmCave",
-          "url": "https://filmcave.ru/",
-          "logo": "./logo/movies_shows/filmcave.png",
-          "enabled": true
-        },
-        {
-          "name": "popcorn",
-          "url": "https://popcornmovies.io/",
-          "logo": "./logo/movies_shows/popcornmovies.png",
-          "enabled": true
-        },
-        {
-          "name": "Cineby",
-          "url": "https://www.cineby.at/",
-          "logo": "./logo/movies_shows/cineby.png",
+          "name": "primeflix",
+          "url": "https://primeflix.ru/",
+          "logo": "./logo/movies_shows/primeflix.png",
           "enabled": true
         },
         {
@@ -104,6 +93,18 @@
           "enabled": true
         },
         {
+          "name": "Cinejoy",
+          "url": "https://cinejoy.to/",
+          "logo": "./logo/movies_shows/cinejoy.png",
+          "enabled": true
+        },
+        {
+          "name": "Cineby",
+          "url": "https://www.cineby.at/",
+          "logo": "./logo/movies_shows/cineby.png",
+          "enabled": true
+        },
+        {
           "name": "CinemaCity",
           "url": "https://cinemacity.cc/",
           "logo": "./logo/movies_shows/cinemacity.png",
@@ -122,6 +123,12 @@
           "enabled": true
         },
         {
+          "name": "popcorn",
+          "url": "https://popcornmovies.io/",
+          "logo": "./logo/movies_shows/popcornmovies.png",
+          "enabled": true
+        },
+        {
           "name": "HdTodayz",
           "url": "https://hdtodayz.net/",
           "logo": "./logo/movies_shows/hdtodayz.png",
@@ -137,12 +144,6 @@
           "name": "FMovies",
           "url": "https://fmovies-hd.to/home/",
           "logo": "./logo/movies_shows/fmovies.png",
-          "enabled": true
-        },
-        {
-          "name": "WatchOTT",
-          "url": "https://watchott.org",
-          "logo": "./logo/movies_shows/watchott.png",
           "enabled": true
         },
         {
@@ -226,6 +227,12 @@
           "name": "AniDap",
           "url": "https://anidap.lol/",
           "logo": "./logo/anime/anidap.png",
+          "enabled": true
+        },
+        {
+          "name": "Kitetsu",
+          "url": "https://kitetsu.net/",
+          "logo": "./logo/anime/kitetsu.png",
           "enabled": true
         },
         {
