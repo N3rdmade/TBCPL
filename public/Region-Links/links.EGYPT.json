@@ -54,7 +54,7 @@
         },
         {
           "name": "carateen",
-          "url": "https://web2.topcinemaa.com/",
+          "url": "https://topcinemaa.cc/",
           "logo": "./logo/movies_shows/topcinema.png",
           "status": "new",
           "enabled": true
@@ -68,7 +68,7 @@
         },
         {
           "name": "DramaCafe",
-          "url": "https://dramacafe-tv.club/",
+          "url": "https://dramacafe-tv.top/",
           "logo": "./logo/movies_shows/dramacafe.png",
           "status": "new",
           "enabled": true
