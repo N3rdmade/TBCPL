@@ -6,7 +6,7 @@
       "sites": [
         {
           "name": "Cineblog01",
-          "url": "https://cineblog001.space/",
+          "url": "https://cineblog001.store/",
           "logo": "./logo/movies_shows/cineblog01.png",
           "enabled": true
         },
@@ -18,7 +18,7 @@
         },
         {
           "name": "streamingcommunityz",
-          "url": "https://streamingcommunityz.team/",
+          "url": "https://streamingcommunityz.support/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
           "status": "new",
           "enabled": true
