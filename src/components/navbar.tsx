@@ -40,7 +40,7 @@ export function Navbar() {
         scrolled && "shadow-[0_4px_24px_rgba(0,0,0,0.25)]",
       )}
       style={{
-        background: "color-mix(in oklab, var(--bg) 82%, transparent)",
+        background: "color-mix(in oklab, var(--bg) 96%, transparent)",
         borderColor: scrolled ? "var(--border-strong)" : "var(--border)",
       }}
     >
@@ -60,7 +60,7 @@ export function Navbar() {
                   className={cn(
                     "rounded-full px-3 py-1.5 text-sm transition-colors",
                     active
-                      ? "bg-[var(--bg-card-hover)] text-[var(--fg)]"
+                      ? "bg-[color-mix(in_oklab,var(--accent)_20%,var(--bg-elev))] text-[var(--fg)] ring-1 ring-[var(--border-strong)]"
                       : "text-[var(--fg-muted)] hover:text-[var(--fg)]",
                   )}
                 >
@@ -159,7 +159,7 @@ export function Navbar() {
                       className={cn(
                         "block rounded-lg px-3 py-2.5 text-sm transition-colors",
                         active
-                          ? "bg-[var(--bg-card-hover)] text-[var(--fg)]"
+                          ? "bg-[color-mix(in_oklab,var(--accent)_20%,var(--bg-elev))] text-[var(--fg)] ring-1 ring-[var(--border-strong)]"
                           : "text-[var(--fg-muted)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--fg)]",
                       )}
                     >

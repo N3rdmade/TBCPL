@@ -17,6 +17,12 @@
           "enabled": true
         },
         {
+          "name": "movix",
+          "url": "https://movix.cash/",
+          "logo": "./logo/movies_shows/movixcash.png",
+          "enabled": true
+        },
+        {
           "name": "Tf1",
           "url": "https://www.tf1.fr/",
           "enabled": true,

@@ -8,7 +8,6 @@ export const THEMES = [
   { id: "midnight", label: "Midnight", swatch: "#38bdf8" },
   { id: "crimson", label: "Crimson", swatch: "#b91c1c" },
   { id: "synthwave", label: "Synthwave", swatch: "#ff38b8" },
-  { id: "paper", label: "Paper", swatch: "#7c3aed" },
   { id: "terminal", label: "Terminal", swatch: "#00ff66" },
 ] as const;
 

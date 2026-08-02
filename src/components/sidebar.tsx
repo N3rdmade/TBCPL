@@ -51,7 +51,7 @@ export function Sidebar({ categories }: Props) {
             className={cn(
               "flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
               active === "favorites"
-                ? "bg-[var(--bg-card-hover)] text-[var(--fg)]"
+                ? "relative bg-[color-mix(in_oklab,var(--accent)_18%,var(--bg-elev))] text-[var(--fg)] ring-1 ring-[var(--border-strong)] before:absolute before:inset-y-1.5 before:left-0 before:w-0.5 before:rounded-r before:bg-[var(--accent)]"
                 : "text-[var(--fg-muted)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--fg)]",
             )}
           >
@@ -75,7 +75,7 @@ export function Sidebar({ categories }: Props) {
               className={cn(
                 "flex items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
                 isActive
-                  ? "bg-[var(--bg-card-hover)] text-[var(--fg)]"
+                  ? "relative bg-[color-mix(in_oklab,var(--accent)_18%,var(--bg-elev))] text-[var(--fg)] ring-1 ring-[var(--border-strong)] before:absolute before:inset-y-1.5 before:left-0 before:w-0.5 before:rounded-r before:bg-[var(--accent)]"
                   : "text-[var(--fg-muted)] hover:bg-[var(--bg-card-hover)] hover:text-[var(--fg)]",
               )}
             >

@@ -365,9 +365,9 @@
           "enabled": true
         },
         {
-          "name": "MangaDex",
-          "url": "https://mangadex.org/",
-          "logo": "./logo/manga/mangadex.png",
+          "name": "SpecterScans",
+          "url": "https://specterscans.com/",
+          "logo": "./logo/manga/specterscans.png",
           "enabled": true
         },
         {
@@ -402,9 +402,9 @@
         },
         {
           "name": "ReadComicOnline",
-          "url": "https://rcostation.xyz/",
+          "url": "https://readcomicsonline.ru/",
           "logo": "./logo/manga/readcomiconline.png",
-          "enabled": false
+          "enabled": true
         },
         {
           "name": "MangaHub",

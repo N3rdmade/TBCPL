@@ -6,6 +6,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { WaveShaderBg } from "@/components/wave-shader-bg";
 import { GoFundMeBanner } from "@/components/gofundme-banner";
 import { SafetyToast } from "@/components/safety-toast";
 import { CommandPaletteProvider } from "@/components/command-palette";
@@ -98,13 +99,16 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen antialiased">
         <ThemeProvider>
+          <WaveShaderBg />
           <RegionContextProvider regions={regions} current={DEFAULT_REGION_CODE}>
             <CommandPaletteProvider initialIndex={searchIndex} regions={regions}>
-              <GoFundMeBanner />
-              <Navbar />
-              <div className="relative z-10">{children}</div>
-              <Footer />
-              <SafetyToast />
+              <div className="relative z-10">
+                <GoFundMeBanner />
+                <Navbar />
+                {children}
+                <Footer />
+                <SafetyToast />
+              </div>
             </CommandPaletteProvider>
           </RegionContextProvider>
         </ThemeProvider>

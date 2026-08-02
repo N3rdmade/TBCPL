@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Copy, ExternalLink, Flag, Check, Star } from "lucide-react";
 import type { Site } from "@/lib/types";
 import { normalizeAsset, cn } from "@/lib/utils";
@@ -28,6 +28,15 @@ export function SiteCard({ site, categoryId }: Props) {
   const { has, toggle, mounted } = useFavorites();
   const starred = mounted && has(site.url);
   const color = statusColor(site.status);
+  const cardRef = useRef<HTMLAnchorElement>(null);
+
+  function onPointerMove(e: React.PointerEvent<HTMLAnchorElement>) {
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+    el.style.setProperty("--my", `${e.clientY - rect.top}px`);
+  }
 
   async function copyUrl(e: React.MouseEvent | React.KeyboardEvent) {
     e.preventDefault();
@@ -50,9 +59,11 @@ export function SiteCard({ site, categoryId }: Props) {
 
   return (
     <a
+      ref={cardRef}
       href={site.url}
       target="_blank"
       rel="noreferrer noopener"
+      onPointerMove={onPointerMove}
       onClick={() => addRecent({ name: site.name, url: site.url, logo: site.logo, categoryId })}
       data-name={site.name.toLowerCase()}
       data-category={categoryId}
@@ -64,13 +75,27 @@ export function SiteCard({ site, categoryId }: Props) {
       )}
       title={site.name}
     >
-      {/* gradient halo on hover */}
+      {/* cursor spotlight */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(120% 80% at 50% 0%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 60%)",
+            "radial-gradient(180px circle at var(--mx, 50%) var(--my, 50%), color-mix(in oklab, var(--accent) 28%, transparent), transparent 65%)",
+        }}
+      />
+      {/* subtle animated border glow following cursor */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            "radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), color-mix(in oklab, var(--accent) 55%, transparent), transparent 40%)",
+          WebkitMask:
+            "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+          WebkitMaskComposite: "xor",
+          maskComposite: "exclude",
+          padding: "1px",
         }}
       />
 

@@ -46,10 +46,11 @@ export function FilterChips({ categories }: Props) {
 
   return (
     <div
-      className="sticky top-[57px] z-30 -mx-3 mb-5 border-y px-3 py-2.5 backdrop-blur-xl sm:-mx-4 sm:px-4 md:top-[64px] md:-mx-6 md:mb-6 md:px-6 md:py-3"
+      className="sticky top-[57px] z-30 mb-5 rounded-2xl border px-3 py-2.5 backdrop-blur-xl md:top-[61px] md:mb-6 md:px-4 md:py-3"
       style={{
-        background: "color-mix(in oklab, var(--bg) 84%, transparent)",
+        background: "color-mix(in oklab, var(--bg-elev) 55%, transparent)",
         borderColor: "var(--border)",
+        boxShadow: "0 8px 32px color-mix(in oklab, var(--bg) 40%, transparent)",
       }}
     >
       <div className="flex flex-col gap-2.5">

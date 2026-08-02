@@ -80,26 +80,6 @@
   --shadow: 0 8px 32px rgba(255, 56, 184, 0.18);
 }
 
-[data-theme="paper"] {
-  --bg: #f7f6f3;
-  --bg-elev: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f0eee8;
-  --border: rgba(0, 0, 0, 0.1);
-  --border-strong: rgba(0, 0, 0, 0.3);
-  --fg: #1c1b1a;
-  --fg-muted: #6b6964;
-  --accent: #7c3aed;
-  --accent-glow: rgba(124, 58, 237, 0.2);
-  --accent-fg: #ffffff;
-  --danger: #dc2626;
-  --success: #059669;
-  --warn: #d97706;
-  --radius: 12px;
-  --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  --social-invert: 1;
-}
-
 [data-theme="terminal"] {
   --bg: #000000;
   --bg-elev: #0a0f0a;
@@ -152,7 +132,7 @@ body {
   font-family: var(--font-mono);
 }
 
-/* Subtle radial accent backdrop, hidden in paper */
+/* Subtle radial accent backdrop */
 body::before {
   content: "";
   position: fixed;
@@ -162,10 +142,7 @@ body::before {
     radial-gradient(800px 500px at 15% -10%, var(--accent-glow), transparent 60%),
     radial-gradient(700px 500px at 90% 0%, var(--accent-glow), transparent 65%);
   opacity: 0.35;
-  z-index: 0;
-}
-[data-theme="paper"] body::before {
-  opacity: 0;
+  z-index: 1;
 }
 [data-theme="terminal"] body::before {
   background: repeating-linear-gradient(
@@ -186,13 +163,18 @@ body::before {
 
 /* Utility classes */
 .tbcpl-card {
-  background: var(--bg-card);
+  /* Layer transparent tint over opaque --bg so the card blocks the shader */
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)),
+    var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   transition: border-color 0.2s, background 0.2s, transform 0.15s;
 }
 .tbcpl-card:hover {
-  background: var(--bg-card-hover);
+  background:
+    linear-gradient(var(--bg-card-hover), var(--bg-card-hover)),
+    var(--bg);
   border-color: var(--border-strong);
 }
 .tbcpl-pill {
@@ -250,3 +232,4 @@ body::before {
 
 /* Smooth scroll on hash jumps */
 html { scroll-behavior: smooth; }
+

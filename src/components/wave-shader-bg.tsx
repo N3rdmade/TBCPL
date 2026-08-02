@@ -1,0 +1,225 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+
+function hexToRgb01(hex: string): [number, number, number] {
+  const m = hex.trim().replace("#", "");
+  const full = m.length === 3 ? m.split("").map((c) => c + c).join("") : m;
+  const int = parseInt(full, 16);
+  if (Number.isNaN(int)) return [0.1, 0.1, 0.1];
+  return [((int >> 16) & 255) / 255, ((int >> 8) & 255) / 255, (int & 255) / 255];
+}
+
+function parseCssColor(raw: string, fallback: [number, number, number]): [number, number, number] {
+  const s = raw.trim();
+  if (!s) return fallback;
+  if (s.startsWith("#")) return hexToRgb01(s);
+  const rgba = s.match(/rgba?\(([^)]+)\)/i);
+  if (rgba) {
+    const parts = rgba[1].split(",").map((p) => parseFloat(p));
+    if (parts.length >= 3) return [parts[0] / 255, parts[1] / 255, parts[2] / 255];
+  }
+  return fallback;
+}
+
+function readThemeColor(): [number, number, number] {
+  const cs = getComputedStyle(document.documentElement);
+  const accent = cs.getPropertyValue("--accent");
+  return parseCssColor(accent, [0.1, 0.1, 0.1]);
+}
+
+export function WaveShaderBg() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true, powerPreference: "low-power" });
+      // Cap DPR on mobile to stay light
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 1.5));
+      renderer.setClearColor(0x000000, 0);
+      container.appendChild(renderer.domElement);
+    } catch (err) {
+      console.error("WebGL not supported", err);
+      return;
+    }
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const startTime = performance.now();
+    let pausedAt = 0;
+    let pausedTotal = 0;
+
+    const vertexShader = `
+      varying vec2 vTextureCoord;
+      void main() {
+        vTextureCoord = uv;
+        gl_Position = vec4(position, 1.0);
+      }
+    `;
+
+    const fragmentShader = `
+      precision mediump float;
+      uniform vec2 iResolution;
+      uniform float iTime;
+      uniform vec3 uColor;
+      uniform float uIntensity;
+      varying vec2 vTextureCoord;
+
+      // Value noise + fBM for smooth organic blobs
+      float hash(vec2 p) {
+        return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+      }
+
+      float noise(vec2 p) {
+        vec2 i = floor(p);
+        vec2 f = fract(p);
+        vec2 u = f * f * (3.0 - 2.0 * f);
+        return mix(
+          mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
+          mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x),
+          u.y
+        );
+      }
+
+      float fbm(vec2 p) {
+        float v = 0.0;
+        float a = 0.5;
+        for (int i = 0; i < 3; i++) {
+          v += a * noise(p);
+          p *= 2.0;
+          a *= 0.5;
+        }
+        return v;
+      }
+
+      void main() {
+        vec2 uv = (2.0 * vTextureCoord * iResolution - iResolution.xy) / min(iResolution.x, iResolution.y);
+        float t = iTime * 0.08;
+
+        // Independent 2D flow vectors for each fbm sample — no single dominant axis
+        vec2 flow1 = vec2(cos(t * 0.7), sin(t * 0.9)) * t;
+        vec2 flow2 = vec2(sin(t * 1.1 + 1.7), cos(t * 0.6 + 3.4)) * t;
+        vec2 flow3 = vec2(cos(t * 0.5 + 2.3), sin(t * 1.3 + 4.1)) * t;
+
+        vec2 q = vec2(
+          fbm(uv + flow1),
+          fbm(uv + flow2 + vec2(5.2, 1.3))
+        );
+        float f = fbm(uv + 4.0 * q + flow3);
+
+        // Rim highlights: derivative of f
+        float rim = abs(fract(f * 4.0) - 0.5) * 2.0;
+        rim = pow(1.0 - rim, 3.5);
+
+        // Base blob shading (dark valleys, mid highlights)
+        float body = smoothstep(0.15, 0.9, f);
+
+        vec3 dark = uColor * 0.05;
+        vec3 mid  = uColor * 0.55;
+        vec3 hot  = uColor * 1.15;
+
+        vec3 col = mix(dark, mid, body);
+        col += hot * rim * 0.9;
+
+        // Vignette to keep edges deep
+        float vig = smoothstep(1.4, 0.4, length(uv));
+        col *= mix(0.35, 1.0, vig);
+
+        col *= uIntensity;
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `;
+
+    const themeColor = readThemeColor();
+    const uniforms = {
+      iTime: { value: 0 },
+      iResolution: { value: new THREE.Vector2() },
+      uColor: { value: new THREE.Vector3(...themeColor) },
+      uIntensity: { value: 1.0 },
+    };
+
+    const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms });
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    const onResize = () => {
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      renderer.setSize(w, h, false);
+      uniforms.iResolution.value.set(w, h);
+    };
+    window.addEventListener("resize", onResize);
+    onResize();
+
+    // Pause when tab hidden — accumulate hidden time so the animation doesn't jump on return
+    let paused = document.hidden;
+    if (paused) pausedAt = performance.now();
+    const onVis = () => {
+      if (document.hidden) {
+        pausedAt = performance.now();
+        paused = true;
+      } else {
+        pausedTotal += performance.now() - pausedAt;
+        paused = false;
+      }
+    };
+    document.addEventListener("visibilitychange", onVis);
+
+    // Update color live when theme changes
+    const mo = new MutationObserver(() => {
+      const [r, g, b] = readThemeColor();
+      uniforms.uColor.value.set(r, g, b);
+    });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "class", "style"] });
+
+    // Throttle mobile framerate to ~30fps
+    const frameInterval = isMobile ? 1 / 30 : 0;
+    let acc = 0;
+    let lastT = 0;
+    renderer.setAnimationLoop(() => {
+      if (paused) return;
+      const t = (performance.now() - startTime - pausedTotal) / 1000;
+      const dt = t - lastT;
+      lastT = t;
+      if (frameInterval > 0) {
+        acc += dt;
+        if (acc < frameInterval) return;
+        acc = 0;
+      }
+      uniforms.iTime.value = t;
+      renderer.render(scene, camera);
+    });
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", onVis);
+      mo.disconnect();
+      renderer.setAnimationLoop(null);
+      const canvas = renderer.domElement;
+      canvas.parentNode?.removeChild(canvas);
+      material.dispose();
+      geometry.dispose();
+      renderer.dispose();
+    };
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      aria-hidden
+      className="pointer-events-none fixed inset-0"
+      style={{ opacity: 0.5, zIndex: 0 }}
+    />
+  );
+}
