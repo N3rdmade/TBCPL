@@ -42,11 +42,11 @@
   --shadow: 0 8px 32px rgba(0, 8, 24, 0.6);
 }
 
-[data-theme="midnight-red"] {
+[data-theme="crimson"] {
   --bg: #040404;
   --bg-elev: #0b0909;
   --bg-card: rgba(255, 255, 255, 0.03);
-  --bg-card-hover: rgba(185, 28, 28, 0.08);
+  --bg-card-hover: rgba(117, 20, 20, 0.167);
   --border: rgba(185, 28, 28, 0.20);
   --border-strong: rgba(185, 28, 28, 0.45);
   --fg: #f5f5f5;
