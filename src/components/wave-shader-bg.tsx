@@ -37,8 +37,6 @@ export function WaveShaderBg() {
     if (!container) return;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     let renderer: THREE.WebGLRenderer;
@@ -48,10 +46,19 @@ export function WaveShaderBg() {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 1.5));
       renderer.setClearColor(0x000000, 0);
       container.appendChild(renderer.domElement);
+      // Style canvas so it fills the fixed container
+      renderer.domElement.style.width = "100%";
+      renderer.domElement.style.height = "100%";
+      renderer.domElement.style.display = "block";
     } catch (err) {
       console.error("WebGL not supported", err);
       return;
     }
+
+    // Log context loss so we can diagnose if mobile Safari kills it
+    renderer.domElement.addEventListener("webglcontextlost", (e) => {
+      console.warn("WebGL context lost", e);
+    });
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -73,6 +80,8 @@ export function WaveShaderBg() {
       uniform float iTime;
       uniform vec3 uColor;
       uniform float uIntensity;
+      uniform float uScale;
+      uniform float uTimeScale;
       varying vec2 vTextureCoord;
 
       // Value noise + fBM for smooth organic blobs
@@ -104,7 +113,8 @@ export function WaveShaderBg() {
 
       void main() {
         vec2 uv = (2.0 * vTextureCoord * iResolution - iResolution.xy) / min(iResolution.x, iResolution.y);
-        float t = iTime * 0.08;
+        uv *= uScale;
+        float t = iTime * 0.08 * uTimeScale;
 
         // Independent 2D flow vectors for each fbm sample — no single dominant axis
         vec2 flow1 = vec2(cos(t * 0.7), sin(t * 0.9)) * t;
@@ -145,7 +155,9 @@ export function WaveShaderBg() {
       iTime: { value: 0 },
       iResolution: { value: new THREE.Vector2() },
       uColor: { value: new THREE.Vector3(...themeColor) },
-      uIntensity: { value: 1.0 },
+      uIntensity: { value: isMobile ? 1.3 : 1.0 },
+      uScale: { value: isMobile ? 0.55 : 1.0 },
+      uTimeScale: { value: prefersReducedMotion ? 0.3 : 1.0 },
     };
 
     const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms });
@@ -183,8 +195,9 @@ export function WaveShaderBg() {
     });
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "class", "style"] });
 
-    // Throttle mobile framerate to ~30fps
-    const frameInterval = isMobile ? 1 / 30 : 0;
+    // Throttle framerate: reduced-motion → 24fps (smooth-ish but calmer),
+    // mobile → 30fps, desktop → uncapped
+    const frameInterval = prefersReducedMotion ? 1 / 24 : isMobile ? 1 / 30 : 0;
     let acc = 0;
     let lastT = 0;
     renderer.setAnimationLoop(() => {
@@ -218,8 +231,8 @@ export function WaveShaderBg() {
     <div
       ref={containerRef}
       aria-hidden
-      className="pointer-events-none fixed inset-0"
-      style={{ opacity: 0.5, zIndex: 0 }}
+      className="pointer-events-none fixed inset-0 opacity-[0.75] md:opacity-50"
+      style={{ zIndex: 0 }}
     />
   );
 }
