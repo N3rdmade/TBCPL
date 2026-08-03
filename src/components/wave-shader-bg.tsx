@@ -114,9 +114,10 @@ export function WaveShaderBg() {
         uv *= uScale;
         float t = iTime * 0.08;
 
-        // Independent 2D flow vectors — bounded (no `* t` multiplier that grows unbounded
-        // and makes the field appear to accelerate over time). Slow linear drift added
-        // separately so the field still travels rather than looping in place.
+        // Independent 2D flow vectors — bounded oscillation so the field's flow
+        // magnitude stays constant over time (previously multiplied by t, which
+        // made the animation appear to accelerate as the page stayed open).
+        // A small linear drift is added so the field still travels visually.
         vec2 drift = vec2(0.15, 0.10) * t;
         vec2 flow1 = vec2(cos(t * 0.7), sin(t * 0.9)) + drift;
         vec2 flow2 = vec2(sin(t * 1.1 + 1.7), cos(t * 0.6 + 3.4)) + drift * 0.7;
