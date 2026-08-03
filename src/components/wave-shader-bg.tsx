@@ -36,7 +36,6 @@ export function WaveShaderBg() {
     const container = containerRef.current;
     if (!container) return;
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     let renderer: THREE.WebGLRenderer;
@@ -81,7 +80,6 @@ export function WaveShaderBg() {
       uniform vec3 uColor;
       uniform float uIntensity;
       uniform float uScale;
-      uniform float uTimeScale;
       varying vec2 vTextureCoord;
 
       // Value noise + fBM for smooth organic blobs
@@ -114,12 +112,15 @@ export function WaveShaderBg() {
       void main() {
         vec2 uv = (2.0 * vTextureCoord * iResolution - iResolution.xy) / min(iResolution.x, iResolution.y);
         uv *= uScale;
-        float t = iTime * 0.08 * uTimeScale;
+        float t = iTime * 0.08;
 
-        // Independent 2D flow vectors for each fbm sample — no single dominant axis
-        vec2 flow1 = vec2(cos(t * 0.7), sin(t * 0.9)) * t;
-        vec2 flow2 = vec2(sin(t * 1.1 + 1.7), cos(t * 0.6 + 3.4)) * t;
-        vec2 flow3 = vec2(cos(t * 0.5 + 2.3), sin(t * 1.3 + 4.1)) * t;
+        // Independent 2D flow vectors — bounded (no `* t` multiplier that grows unbounded
+        // and makes the field appear to accelerate over time). Slow linear drift added
+        // separately so the field still travels rather than looping in place.
+        vec2 drift = vec2(0.15, 0.10) * t;
+        vec2 flow1 = vec2(cos(t * 0.7), sin(t * 0.9)) + drift;
+        vec2 flow2 = vec2(sin(t * 1.1 + 1.7), cos(t * 0.6 + 3.4)) + drift * 0.7;
+        vec2 flow3 = vec2(cos(t * 0.5 + 2.3), sin(t * 1.3 + 4.1)) + drift * 1.2;
 
         vec2 q = vec2(
           fbm(uv + flow1),
@@ -157,7 +158,6 @@ export function WaveShaderBg() {
       uColor: { value: new THREE.Vector3(...themeColor) },
       uIntensity: { value: isMobile ? 1.3 : 1.0 },
       uScale: { value: isMobile ? 0.55 : 1.0 },
-      uTimeScale: { value: prefersReducedMotion ? 0.3 : 1.0 },
     };
 
     const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms });
@@ -195,9 +195,8 @@ export function WaveShaderBg() {
     });
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "class", "style"] });
 
-    // Throttle framerate: reduced-motion → 24fps (smooth-ish but calmer),
-    // mobile → 30fps, desktop → uncapped
-    const frameInterval = prefersReducedMotion ? 1 / 24 : isMobile ? 1 / 30 : 0;
+    // Throttle framerate: mobile → 30fps, desktop → uncapped
+    const frameInterval = isMobile ? 1 / 30 : 0;
     let acc = 0;
     let lastT = 0;
     renderer.setAnimationLoop(() => {
