@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 function hexToRgb01(hex: string): [number, number, number] {
@@ -31,12 +31,24 @@ function readThemeColor(): [number, number, number] {
 
 export function WaveShaderBg() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [enabled, setEnabled] = useState<boolean | null>(null);
 
   useEffect(() => {
+    // Mobile devices skip the shader entirely — a static themed gradient is used instead.
+    // The shader was too heavy on low-end Android and offered marginal visual value at that size.
+    const mq = window.matchMedia("(min-width: 769px)");
+    const apply = () => setEnabled(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
     const container = containerRef.current;
     if (!container) return;
 
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = false;
 
     let renderer: THREE.WebGLRenderer;
     try {
@@ -225,13 +237,27 @@ export function WaveShaderBg() {
       geometry.dispose();
       renderer.dispose();
     };
-  }, []);
+  }, [enabled]);
+
+  if (enabled === false) {
+    return (
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0"
+        style={{
+          zIndex: 0,
+          background:
+            "radial-gradient(120% 80% at 20% 0%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 60%), radial-gradient(100% 70% at 100% 100%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 55%)",
+        }}
+      />
+    );
+  }
 
   return (
     <div
       ref={containerRef}
       aria-hidden
-      className="pointer-events-none fixed inset-0 opacity-[0.75] md:opacity-50"
+      className="pointer-events-none fixed inset-0 opacity-50"
       style={{ zIndex: 0 }}
     />
   );
