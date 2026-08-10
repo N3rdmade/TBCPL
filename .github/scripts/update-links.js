@@ -260,7 +260,15 @@ async function processLink(link) {
   // 1. pre-detected redirect from check-links.js
   if (link.redirectTo) {
     const c = siteRoot(link.redirectTo);
-    if (c && !sameHost(c, link.url) && !isBlockedRedirectTarget(c) && await isAlive(c, budget)) {
+    if (!c) {
+      console.log(`${tag} redirect-pre skipped: bad-url ${link.redirectTo}`);
+    } else if (sameHost(c, link.url)) {
+      console.log(`${tag} redirect-pre skipped: same-host ${c}`);
+    } else if (isBlockedRedirectTarget(c)) {
+      console.log(`${tag} redirect-pre skipped: blocked ${c}`);
+    } else if (!(await isAlive(c, budget))) {
+      console.log(`${tag} redirect-pre skipped: not-alive ${c}`);
+    } else {
       return { result: 'fix', source: 'redirect-pre', replacement: c, ms: Date.now() - t0 };
     }
   }
@@ -268,9 +276,19 @@ async function processLink(link) {
   // 2. fresh redirect-follow
   if (!budget.expired()) {
     const r = await resolveFinal(link.url, budget);
-    if (r.ok && r.finalUrl && !sameHost(r.finalUrl, link.url)) {
+    if (!r.ok) {
+      console.log(`${tag} redirect-follow failed: ${r.error || r.status}`);
+    } else if (!r.finalUrl || sameHost(r.finalUrl, link.url)) {
+      console.log(`${tag} redirect-follow no-cross-domain (final=${r.finalUrl})`);
+    } else {
       const root = siteRoot(r.finalUrl);
-      if (root && !isBlockedRedirectTarget(root) && await isAlive(root, budget)) {
+      if (!root) {
+        console.log(`${tag} redirect-follow skipped: bad-final ${r.finalUrl}`);
+      } else if (isBlockedRedirectTarget(root)) {
+        console.log(`${tag} redirect-follow skipped: blocked ${root}`);
+      } else if (!(await isAlive(root, budget))) {
+        console.log(`${tag} redirect-follow skipped: not-alive ${root}`);
+      } else {
         return { result: 'fix', source: 'redirect', replacement: root, ms: Date.now() - t0 };
       }
     }

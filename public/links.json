@@ -60,7 +60,7 @@
           "name": "Spenflix",
           "url": "https://watch.spencerdevs.xyz/",
           "logo": "./logo/movies_shows/spenflix.png",
-          "enabled": false
+          "enabled": true
         },
         {
           "name": "primeflix",
