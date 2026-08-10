@@ -168,11 +168,21 @@ async function resolveFinal(url, budget) {
   return { ok: false, status: lastStatus, error: 'too-many-redirects' };
 }
 
+// A domain is considered "alive" if it responds with any real HTTP status.
+// Cloudflare / bot-shield sites often 403/503/429 GitHub Actions IPs while
+// serving real users fine — treating those as alive avoids rejecting a valid
+// mirror just because the runner IP is on a datacenter blocklist.
+const ALIVE_STATUSES_EVEN_IF_HOSTILE = new Set([403, 405, 406, 429, 451, 503]);
+
 async function isAlive(url, budget) {
   const r = await resolveFinal(url, budget);
-  if (!r.ok) return false;
-  return r.status >= 200 && r.status < 400;
+  if (!r.ok) { lastAliveDetail = r.error || 'unknown-error'; return false; }
+  if (r.status >= 200 && r.status < 400) { lastAliveDetail = String(r.status); return true; }
+  if (ALIVE_STATUSES_EVEN_IF_HOSTILE.has(r.status)) { lastAliveDetail = `${r.status}-hostile-alive`; return true; }
+  lastAliveDetail = String(r.status);
+  return false;
 }
+let lastAliveDetail = '';
 
 // ─── FMHY index ──────────────────────────────────────────────────────────
 let fmhyIndexPromise = null;
@@ -274,7 +284,7 @@ async function processLink(link) {
     } else if (isBlockedRedirectTarget(c)) {
       console.log(`${tag} redirect-pre skipped: blocked ${c}`);
     } else if (!(await isAlive(c, budget))) {
-      console.log(`${tag} redirect-pre skipped: not-alive ${c}`);
+      console.log(`${tag} redirect-pre skipped: not-alive (${lastAliveDetail}) ${c}`);
     } else {
       return { result: 'fix', source: 'redirect-pre', replacement: c, ms: Date.now() - t0 };
     }
@@ -294,7 +304,7 @@ async function processLink(link) {
       } else if (isBlockedRedirectTarget(root)) {
         console.log(`${tag} redirect-follow skipped: blocked ${root}`);
       } else if (!(await isAlive(root, budget))) {
-        console.log(`${tag} redirect-follow skipped: not-alive ${root}`);
+        console.log(`${tag} redirect-follow skipped: not-alive (${lastAliveDetail}) ${root}`);
       } else {
         return { result: 'fix', source: 'redirect', replacement: root, ms: Date.now() - t0 };
       }
