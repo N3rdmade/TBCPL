@@ -141,13 +141,20 @@ async function hit(url, { method = 'HEAD', timeout = REQUEST_TIMEOUT, wantBody =
   }
 }
 
-// Follow redirects manually, capped, with budget.
+// Follow redirects manually, capped, with budget. Falls back to GET on any hop
+// where HEAD errors or returns 4xx — many hosts (Cloudflare, piracy sites)
+// reject HEAD but respond fine to GET.
 async function resolveFinal(url, budget) {
   let current = url;
   let lastStatus = null;
   for (let hop = 0; hop <= MAX_REDIRECTS; hop++) {
     if (budget.expired()) return { ok: false, error: 'budget' };
-    const res = await hit(current, { method: 'HEAD', timeout: Math.min(REQUEST_TIMEOUT, budget.left()) });
+    let res = await hit(current, { method: 'HEAD', timeout: Math.min(REQUEST_TIMEOUT, budget.left()) });
+    if (!res.ok || (res.status >= 400 && res.status < 500)) {
+      if (budget.expired()) return res.ok ? { ok: true, status: res.status, finalUrl: current } : res;
+      const g = await hit(current, { method: 'GET', timeout: Math.min(REQUEST_TIMEOUT, budget.left()) });
+      if (g.ok) res = g;
+    }
     if (!res.ok) return res;
     lastStatus = res.status;
     if (res.status >= 300 && res.status < 400 && res.location) {
