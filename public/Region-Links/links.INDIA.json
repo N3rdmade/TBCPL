@@ -37,7 +37,7 @@
         },
         {
           "name": "MovieRulz",
-          "url": "https://www.5movierulz.pictures/",
+          "url": "https://www.5movierulz.vacations/",
           "logo": "./logo/movies_shows/movierulz.png",
           "enabled": true
         },
@@ -49,7 +49,7 @@
         },
         {
           "name": "HINDILINKS4U",
-          "url": "https://hindilinks4u.directory/",
+          "url": "https://hindilinks4u.locker/",
           "logo": "./logo/movies_shows/hindilinks4u.png",
           "enabled": true
         },
@@ -97,7 +97,7 @@
         },
         {
           "name": "Hindinks4U",
-          "url": "https://hindilinks4u.directory/",
+          "url": "https://hindilinks4u.locker/",
           "logo": "./logo/movies_shows/hindinks4u.png",
           "enabled": true
         },
@@ -167,7 +167,7 @@
         },
         {
           "name": "Anime4u",
-          "url": "https://anime4u.org/",
+          "url": "https://anime4u.site/",
           "logo": "./logo/anime/anime4u.png",
           "enabled": true
         },
