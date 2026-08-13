@@ -362,12 +362,6 @@
           "enabled": true
         },
         {
-          "name": "OnStream APKs",
-          "url": "https://onstreamapks.app/",
-          "logo": "./logo/apps/onstream.png",
-          "enabled": true
-        },
-        {
           "name": "star sports",
           "url": "https://uvotv.com/",
           "logo": "./logo/apps/uvo.svg",

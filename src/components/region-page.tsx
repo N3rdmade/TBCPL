@@ -1,7 +1,6 @@
 import { getLinksForRegion, getRegions } from "@/lib/data";
 import type { Region } from "@/lib/types";
 import { Sidebar } from "./sidebar";
-import { FilterChips } from "./filter-chips";
 import { Hero } from "./hero";
 import { RecentlyVisited } from "./recently-visited";
 import { CategorySection } from "./category-section";
@@ -40,7 +39,6 @@ export async function RegionPage({ region, onlyCategoryId }: Props) {
         <div className="min-w-0 flex-1">
           <RecentlyVisited />
           {!onlyCategoryId && <FavoritesSection />}
-          {!onlyCategoryId && <FilterChips categories={cats} />}
           {!onlyCategoryId && <MobileCategoryBar categories={cats} />}
           <div className="space-y-10 md:space-y-12">
             {visible.map((cat) => (

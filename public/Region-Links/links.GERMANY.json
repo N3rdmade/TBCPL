@@ -97,6 +97,12 @@
           "logo": "./logo/livetv/sportschau.png"
         },
         {
+          "name": "golvar",
+          "url": "https://golvar896.sbs/",
+          "logo": "./logo/livetv/golvar.png",
+          "enabled": true
+        },
+        {
           "name": "3Sat",
           "url": "https://www.3sat.de/programm",
           "logo": "./logo/livetv/3sat.svg",
@@ -208,12 +214,6 @@
           "name": "Playtorrio",
           "url": "https://playtorrio.pages.dev/",
           "logo": "./logo/apps/playtorrio.png",
-          "enabled": true
-        },
-        {
-          "name": "OnStream APKs",
-          "url": "https://onstreamapks.app/",
-          "logo": "./logo/apps/onstream.png",
           "enabled": true
         },
         {
