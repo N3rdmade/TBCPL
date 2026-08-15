@@ -24,3 +24,4 @@ next-env.d.ts
 .legacy-backup
 
 ci.sh
+data

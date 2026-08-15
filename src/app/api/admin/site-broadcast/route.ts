@@ -3,7 +3,6 @@ import { requireAdmin } from "@/lib/auth/require-admin";
 import { getSessionToken } from "@/lib/auth/session";
 import { commitChanges, getRepoFile, type FileChange } from "@/lib/github/repo";
 import { linksPathForRegion } from "@/lib/admin/paths";
-import { db, COLLECTIONS } from "@/lib/db";
 import type { LinksData, Site, SiteStatus } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -168,23 +167,6 @@ export async function POST(req: Request) {
     body.message?.trim() ||
     `admin: broadcast "${base.name}" (${summary.join(" ")})`;
   const result = await commitChanges({ token, message, changes });
-
-  try {
-    const d = await db();
-    await d.collection(COLLECTIONS.auditLog).insertOne({
-      at: new Date(),
-      actor: auth.session.githubLogin,
-      action: "site.broadcast",
-      url: base.url,
-      added,
-      removed,
-      skipped,
-      commitSha: result.commitSha,
-      commitUrl: result.url,
-    });
-  } catch (e) {
-    console.error("audit log write failed", e);
-  }
 
   return NextResponse.json({
     ok: true,

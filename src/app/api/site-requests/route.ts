@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
-import { db, COLLECTIONS } from "@/lib/db";
+import { getDb } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -83,18 +83,23 @@ export async function POST(req: Request) {
   }
 
   try {
-    const d = await db();
-    const result = await d.collection(COLLECTIONS.siteRequests).insertOne({
+    const db = getDb();
+    const stmt = db.prepare(
+      `INSERT INTO site_requests
+         (siteUrl, siteName, siteFeature, targets, status, submittedAt, submitterIp, userAgent)
+       VALUES
+         (@siteUrl, @siteName, @siteFeature, @targets, 'pending', @submittedAt, @submitterIp, @userAgent)`,
+    );
+    const info = stmt.run({
       siteUrl,
       siteName,
       siteFeature,
-      targets: cleanTargets,
-      status: "pending",
-      submittedAt: new Date(),
+      targets: JSON.stringify(cleanTargets),
+      submittedAt: Date.now(),
       submitterIp: ip,
       userAgent: h.get("user-agent") ?? "",
     });
-    return NextResponse.json({ ok: true, id: result.insertedId.toString() });
+    return NextResponse.json({ ok: true, id: String(info.lastInsertRowid) });
   } catch (e) {
     console.error("site-request insert failed", e);
     return NextResponse.json({ error: "db_error" }, { status: 500 });

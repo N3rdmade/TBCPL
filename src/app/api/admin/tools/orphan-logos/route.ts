@@ -4,7 +4,6 @@ import path from "node:path";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { getSessionToken } from "@/lib/auth/session";
 import { loadAllRegionFiles } from "@/lib/admin/region-scan";
-import { db, COLLECTIONS } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -144,20 +143,6 @@ export async function DELETE(req: Request) {
     parents: [latestCommitSha],
   });
   await octo.git.updateRef({ owner, repo, ref: `heads/${branch}`, sha: commit.data.sha, force: false });
-
-  try {
-    const d = await db();
-    await d.collection(COLLECTIONS.auditLog).insertOne({
-      at: new Date(),
-      actor: auth.session.githubLogin,
-      action: "tools.orphan-delete",
-      paths,
-      commitSha: commit.data.sha,
-      commitUrl: commit.data.html_url,
-    });
-  } catch (e) {
-    console.error("audit log write failed", e);
-  }
 
   return NextResponse.json({
     ok: true,

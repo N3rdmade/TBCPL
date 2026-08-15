@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import { ObjectId } from "mongodb";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { getSessionToken } from "@/lib/auth/session";
-import { db, COLLECTIONS } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { commitChanges, getRepoFile, type FileChange } from "@/lib/github/repo";
 import { linksPathForRegion } from "@/lib/admin/paths";
 import type { Category, LinksData, Site } from "@/lib/types";
@@ -18,13 +17,51 @@ interface Target {
   categoryId: string;
 }
 
+interface RequestRow {
+  id: number;
+  siteUrl: string;
+  siteName: string;
+  siteFeature: string | null;
+  targets: string; // JSON
+  status: Status | null;
+  submittedAt: number;
+  submitterIp: string | null;
+  userAgent: string | null;
+  reviewedAt: number | null;
+  reviewedBy: string | null;
+  commitSha: string | null;
+  commitUrl: string | null;
+  skipped: string | null; // JSON
+}
+
 interface RequestDoc {
-  _id: ObjectId;
+  _id: string;
   siteUrl: string;
   siteName: string;
   siteFeature?: string;
   targets: Target[];
   status?: Status;
+}
+
+function parseTargets(raw: string | null | undefined): Target[] {
+  if (!raw) return [];
+  try {
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? (arr as Target[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function rowToDoc(row: RequestRow): RequestDoc {
+  return {
+    _id: String(row.id),
+    siteUrl: row.siteUrl,
+    siteName: row.siteName,
+    siteFeature: row.siteFeature ?? undefined,
+    targets: parseTargets(row.targets),
+    status: (row.status ?? "pending") as Status,
+  };
 }
 
 export async function GET(req: Request) {
@@ -35,31 +72,43 @@ export async function GET(req: Request) {
   const status = url.searchParams.get("status");
   const limit = Math.min(Number(url.searchParams.get("limit") ?? 100), 500);
 
-  const filter: Record<string, unknown> = {};
+  const db = getDb();
+  let rows: RequestRow[];
   if (status && (VALID_STATUSES as readonly string[]).includes(status)) {
-    filter.status = status;
+    rows = db
+      .prepare(
+        `SELECT id, siteUrl, siteName, siteFeature, targets, status, submittedAt,
+                reviewedAt, reviewedBy, commitSha, commitUrl, skipped
+           FROM site_requests
+          WHERE status = ?
+          ORDER BY submittedAt DESC
+          LIMIT ?`,
+      )
+      .all(status, limit) as RequestRow[];
+  } else {
+    rows = db
+      .prepare(
+        `SELECT id, siteUrl, siteName, siteFeature, targets, status, submittedAt,
+                reviewedAt, reviewedBy, commitSha, commitUrl, skipped
+           FROM site_requests
+          ORDER BY submittedAt DESC
+          LIMIT ?`,
+      )
+      .all(limit) as RequestRow[];
   }
 
-  const d = await db();
-  const docs = await d
-    .collection(COLLECTIONS.siteRequests)
-    .find(filter, { projection: { submitterIp: 0, userAgent: 0 } })
-    .sort({ submittedAt: -1 })
-    .limit(limit)
-    .toArray();
-
-  const items = docs.map((doc) => ({
-    id: doc._id.toString(),
-    siteUrl: doc.siteUrl,
-    siteName: doc.siteName,
-    siteFeature: doc.siteFeature,
-    targets: doc.targets,
-    status: doc.status ?? "pending",
-    submittedAt: doc.submittedAt,
-    reviewedBy: doc.reviewedBy ?? null,
-    reviewedAt: doc.reviewedAt ?? null,
-    commitSha: doc.commitSha ?? null,
-    commitUrl: doc.commitUrl ?? null,
+  const items = rows.map((row) => ({
+    id: String(row.id),
+    siteUrl: row.siteUrl,
+    siteName: row.siteName,
+    siteFeature: row.siteFeature ?? undefined,
+    targets: parseTargets(row.targets),
+    status: (row.status ?? "pending") as Status,
+    submittedAt: new Date(row.submittedAt).toISOString(),
+    reviewedBy: row.reviewedBy ?? null,
+    reviewedAt: row.reviewedAt ? new Date(row.reviewedAt).toISOString() : null,
+    commitSha: row.commitSha ?? null,
+    commitUrl: row.commitUrl ?? null,
   }));
 
   return NextResponse.json({ items });
@@ -240,18 +289,23 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ error: "invalid_status" }, { status: 400 });
   }
 
-  let _id: ObjectId;
-  try {
-    _id = new ObjectId(id);
-  } catch {
+  const numericId = Number(id);
+  if (!Number.isFinite(numericId) || Math.floor(numericId) !== numericId || numericId <= 0) {
     return NextResponse.json({ error: "invalid_id" }, { status: 400 });
   }
 
-  const d = await db();
-  const doc = (await d
-    .collection(COLLECTIONS.siteRequests)
-    .findOne({ _id })) as RequestDoc | null;
-  if (!doc) return NextResponse.json({ error: "not_found" }, { status: 404 });
+  const db = getDb();
+  const row = db
+    .prepare(
+      `SELECT id, siteUrl, siteName, siteFeature, targets, status, submittedAt,
+              reviewedAt, reviewedBy, commitSha, commitUrl, skipped
+         FROM site_requests
+        WHERE id = ?`,
+    )
+    .get(numericId) as RequestRow | undefined;
+  if (!row) return NextResponse.json({ error: "not_found" }, { status: 404 });
+
+  const doc = rowToDoc(row);
 
   let commitSha: string | null = null;
   let commitUrl: string | null = null;
@@ -278,35 +332,45 @@ export async function PATCH(req: Request) {
     }
   }
 
-  const setFields: Record<string, unknown> = {
+  const updates: string[] = ["status = @status", "reviewedBy = @reviewedBy", "reviewedAt = @reviewedAt"];
+  const params: Record<string, unknown> = {
+    id: numericId,
     status: status as Status,
     reviewedBy: auth.session.githubLogin,
-    reviewedAt: new Date(),
+    reviewedAt: Date.now(),
   };
   if (overrides) {
-    // Persist admin edits onto the request doc so the inbox shows the final state.
-    if (effectiveDoc.siteName !== doc.siteName) setFields.siteName = effectiveDoc.siteName;
-    if (effectiveDoc.siteUrl !== doc.siteUrl) setFields.siteUrl = effectiveDoc.siteUrl;
-    if (effectiveDoc.siteFeature !== doc.siteFeature) setFields.siteFeature = effectiveDoc.siteFeature;
-    if (effectiveDoc.targets !== doc.targets) setFields.targets = effectiveDoc.targets;
+    if (effectiveDoc.siteName !== doc.siteName) {
+      updates.push("siteName = @siteName");
+      params.siteName = effectiveDoc.siteName;
+    }
+    if (effectiveDoc.siteUrl !== doc.siteUrl) {
+      updates.push("siteUrl = @siteUrl");
+      params.siteUrl = effectiveDoc.siteUrl;
+    }
+    if (effectiveDoc.siteFeature !== doc.siteFeature) {
+      updates.push("siteFeature = @siteFeature");
+      params.siteFeature = effectiveDoc.siteFeature ?? null;
+    }
+    if (effectiveDoc.targets !== doc.targets) {
+      updates.push("targets = @targets");
+      params.targets = JSON.stringify(effectiveDoc.targets);
+    }
   }
-  if (commitSha) setFields.commitSha = commitSha;
-  if (commitUrl) setFields.commitUrl = commitUrl;
-  if (skipped.length) setFields.skipped = skipped;
+  if (commitSha) {
+    updates.push("commitSha = @commitSha");
+    params.commitSha = commitSha;
+  }
+  if (commitUrl) {
+    updates.push("commitUrl = @commitUrl");
+    params.commitUrl = commitUrl;
+  }
+  if (skipped.length) {
+    updates.push("skipped = @skipped");
+    params.skipped = JSON.stringify(skipped);
+  }
 
-  await d.collection(COLLECTIONS.siteRequests).updateOne({ _id }, { $set: setFields });
-
-  await d.collection(COLLECTIONS.auditLog).insertOne({
-    at: new Date(),
-    actor: auth.session.githubLogin,
-    action: "site-request.update",
-    requestId: id,
-    newStatus: status,
-    commitSha,
-    commitUrl,
-    addedTo,
-    skipped,
-  });
+  db.prepare(`UPDATE site_requests SET ${updates.join(", ")} WHERE id = @id`).run(params);
 
   return NextResponse.json({
     ok: true,

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Globe2, LayoutGrid, Inbox, ScrollText, ExternalLink, Wrench } from "lucide-react";
+import { Globe2, LayoutGrid, Inbox, ExternalLink, Wrench } from "lucide-react";
 import { getSessionUser } from "@/lib/auth/session";
 import { getRegions, getLinksForRegion } from "@/lib/data";
-import { db, COLLECTIONS } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { env } from "@/lib/env";
 
 export const metadata: Metadata = {
@@ -21,12 +21,15 @@ async function getStats() {
 
   let pendingRequests = 0;
   try {
-    const d = await db();
-    pendingRequests = await d
-      .collection(COLLECTIONS.siteRequests)
-      .countDocuments({ status: { $in: [null, "pending"] } });
+    const db = getDb();
+    const row = db
+      .prepare(
+        "SELECT COUNT(*) as c FROM site_requests WHERE status = 'pending' OR status IS NULL",
+      )
+      .get() as { c: number } | undefined;
+    pendingRequests = row?.c ?? 0;
   } catch {
-    // Mongo unreachable — leave as 0
+    // DB unreachable — leave as 0
   }
 
   return {
@@ -100,12 +103,6 @@ export default async function AdminDashboardPage() {
           icon={<Wrench size={18} />}
           title="Power tools"
           body="Scan for orphan logos, replace domains across all regions, run a health check, fill empty categories."
-        />
-        <ActionCard
-          href="/admin-panel/audit"
-          icon={<ScrollText size={18} />}
-          title="Audit log"
-          body="Every publish, every approver, every commit SHA. Tied to your GitHub identity."
         />
       </div>
     </div>

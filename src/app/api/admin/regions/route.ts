@@ -3,7 +3,6 @@ import { requireAdmin } from "@/lib/auth/require-admin";
 import { getSessionToken } from "@/lib/auth/session";
 import { commitChanges } from "@/lib/github/repo";
 import { regionsJsonPath } from "@/lib/admin/paths";
-import { db, COLLECTIONS } from "@/lib/db";
 import { getAllRegions } from "@/lib/data";
 import type { Region } from "@/lib/types";
 
@@ -69,20 +68,6 @@ export async function POST(req: Request) {
       authorName: auth.session.githubLogin,
       authorEmail: `${auth.session.githubId}+${auth.session.githubLogin}@users.noreply.github.com`,
     });
-
-    try {
-      const d = await db();
-      await d.collection(COLLECTIONS.auditLog).insertOne({
-        at: new Date(),
-        actor: auth.session.githubLogin,
-        action: "publish.regions",
-        regionCount: clean.length,
-        commitSha: result.commitSha,
-        commitUrl: result.url,
-      });
-    } catch (e) {
-      console.error("audit log write failed", e);
-    }
 
     return NextResponse.json({ ok: true, ...result });
   } catch (e) {

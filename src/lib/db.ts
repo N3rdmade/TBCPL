@@ -1,53 +1,51 @@
 import "server-only";
-import { MongoClient, type Db } from "mongodb";
-import { env } from "./env";
+import Database from "better-sqlite3";
+import path from "node:path";
+import fs from "node:fs";
 
 declare global {
   // eslint-disable-next-line no-var
-  var __tbcpl_mongo: { client: MongoClient | null; promise: Promise<MongoClient> | null } | undefined;
+  var __tbcpl_sqlite: Database.Database | undefined;
 }
 
 const g = globalThis as typeof globalThis & {
-  __tbcpl_mongo?: { client: MongoClient | null; promise: Promise<MongoClient> | null };
+  __tbcpl_sqlite?: Database.Database;
 };
 
-if (!g.__tbcpl_mongo) g.__tbcpl_mongo = { client: null, promise: null };
+const SCHEMA = `
+CREATE TABLE IF NOT EXISTS site_requests (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  siteUrl TEXT NOT NULL,
+  siteName TEXT NOT NULL,
+  siteFeature TEXT,
+  targets TEXT NOT NULL DEFAULT '[]',
+  status TEXT NOT NULL DEFAULT 'pending',
+  submittedAt INTEGER NOT NULL,
+  submitterIp TEXT,
+  userAgent TEXT,
+  reviewedAt INTEGER,
+  reviewedBy TEXT,
+  commitSha TEXT,
+  commitUrl TEXT,
+  skipped TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_site_requests_submitted ON site_requests(submittedAt DESC);
+CREATE INDEX IF NOT EXISTS idx_site_requests_status_submitted ON site_requests(status, submittedAt DESC);
+`;
 
-async function getClient(): Promise<MongoClient> {
-  const store = g.__tbcpl_mongo!;
-  if (store.client) return store.client;
-  if (!store.promise) {
-    const uri = env.MONGODB_URI();
-    store.promise = new MongoClient(uri, {
-      serverSelectionTimeoutMS: 6000,
-    }).connect();
+function openDb(): Database.Database {
+  const dataDir = path.join(process.cwd(), "data");
+  fs.mkdirSync(dataDir, { recursive: true });
+  const dbPath = path.join(dataDir, "tbcpl.db");
+  const db = new Database(dbPath);
+  db.pragma("journal_mode = WAL");
+  db.exec(SCHEMA);
+  return db;
+}
+
+export function getDb(): Database.Database {
+  if (!g.__tbcpl_sqlite) {
+    g.__tbcpl_sqlite = openDb();
   }
-  store.client = await store.promise;
-  return store.client;
-}
-
-export async function db(): Promise<Db> {
-  const client = await getClient();
-  return client.db(env.DB_NAME());
-}
-
-export const COLLECTIONS = {
-  sessions: "sessions",
-  admins: "admins",
-  auditLog: "auditLog",
-  siteRequests: "siteRequests",
-  cache: "cache",
-} as const;
-
-export async function ensureIndexes() {
-  const d = await db();
-  await Promise.all([
-    d.collection(COLLECTIONS.sessions).createIndex({ sid: 1 }, { unique: true }),
-    d.collection(COLLECTIONS.sessions).createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
-    d.collection(COLLECTIONS.admins).createIndex({ githubLogin: 1 }, { unique: true }),
-    d.collection(COLLECTIONS.siteRequests).createIndex({ submittedAt: -1 }),
-    d.collection(COLLECTIONS.siteRequests).createIndex({ status: 1, submittedAt: -1 }),
-    d.collection(COLLECTIONS.auditLog).createIndex({ at: -1 }),
-    d.collection(COLLECTIONS.cache).createIndex({ key: 1 }, { unique: true }),
-  ]);
+  return g.__tbcpl_sqlite;
 }

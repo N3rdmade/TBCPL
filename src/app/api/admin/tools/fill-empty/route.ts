@@ -3,7 +3,6 @@ import { requireAdmin } from "@/lib/auth/require-admin";
 import { getSessionToken } from "@/lib/auth/session";
 import { commitChanges, type FileChange } from "@/lib/github/repo";
 import { loadAllRegionFiles } from "@/lib/admin/region-scan";
-import { db, COLLECTIONS } from "@/lib/db";
 import type { Site } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -61,20 +60,6 @@ export async function POST(req: Request) {
     body.message?.trim() ||
     `admin: seed ${seeded.length} empty categor${seeded.length === 1 ? "y" : "ies"} with placeholder`;
   const result = await commitChanges({ token, message, changes });
-
-  try {
-    const d = await db();
-    await d.collection(COLLECTIONS.auditLog).insertOne({
-      at: new Date(),
-      actor: auth.session.githubLogin,
-      action: "tools.fill-empty",
-      seeded,
-      commitSha: result.commitSha,
-      commitUrl: result.url,
-    });
-  } catch (e) {
-    console.error("audit log write failed", e);
-  }
 
   return NextResponse.json({
     ok: true,

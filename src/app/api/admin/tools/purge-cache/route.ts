@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth/require-admin";
-import { db, COLLECTIONS } from "@/lib/db";
 import { env } from "@/lib/env";
 
 export const runtime = "nodejs";
@@ -80,20 +79,6 @@ export async function POST(req: Request) {
   if (!r.ok || !cf.success) {
     const detail = cf.errors?.map((e) => `${e.code}: ${e.message}`).join("; ") ?? `HTTP ${r.status}`;
     return NextResponse.json({ error: "cf_failed", detail }, { status: 502 });
-  }
-
-  try {
-    const d = await db();
-    await d.collection(COLLECTIONS.auditLog).insertOne({
-      at: new Date(),
-      actor: auth.session.githubLogin,
-      action: "tools.purge-cache",
-      scope,
-      urlsCount: scope === "urls" ? (body.urls ?? []).length : null,
-      cfRequestId: cf.result?.id ?? null,
-    });
-  } catch (e) {
-    console.error("audit log write failed", e);
   }
 
   return NextResponse.json({

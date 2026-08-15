@@ -1,14 +1,19 @@
 import "server-only";
 import { cookies } from "next/headers";
-import { randomBytes } from "node:crypto";
-import { db, COLLECTIONS } from "../db";
+import { SignJWT, jwtVerify } from "jose";
 import { encrypt, decrypt } from "../crypto";
+import { env } from "../env";
 
 const COOKIE = "tbcpl_sid";
 const TTL_DAYS = 7;
+const TTL_SECONDS = TTL_DAYS * 86_400;
+const ALG = "HS256";
+
+function secretKey(): Uint8Array {
+  return new TextEncoder().encode(env.SESSION_SECRET());
+}
 
 export interface SessionRecord {
-  sid: string;
   githubLogin: string;
   githubId: number;
   avatarUrl: string;
@@ -24,6 +29,14 @@ export interface SessionUser {
   permission: SessionRecord["permission"];
 }
 
+interface JWTPayload {
+  githubLogin: string;
+  githubId: number;
+  avatarUrl: string;
+  tokenEnc: string;
+  permission: SessionRecord["permission"];
+}
+
 export async function createSession(input: {
   githubLogin: string;
   githubId: number;
@@ -31,46 +44,56 @@ export async function createSession(input: {
   token: string;
   permission: SessionRecord["permission"];
 }): Promise<string> {
-  const sid = randomBytes(24).toString("base64url");
-  const now = new Date();
-  const expiresAt = new Date(now.getTime() + TTL_DAYS * 86_400_000);
-  const d = await db();
-  await d.collection<SessionRecord>(COLLECTIONS.sessions).insertOne({
-    sid,
+  const now = Math.floor(Date.now() / 1000);
+  const exp = now + TTL_SECONDS;
+
+  const payload: JWTPayload = {
     githubLogin: input.githubLogin,
     githubId: input.githubId,
     avatarUrl: input.avatarUrl,
     tokenEnc: encrypt(input.token),
     permission: input.permission,
-    createdAt: now,
-    expiresAt,
-  });
+  };
+
+  const jwt = await new SignJWT({ ...payload })
+    .setProtectedHeader({ alg: ALG })
+    .setIssuedAt(now)
+    .setExpirationTime(exp)
+    .sign(secretKey());
 
   const jar = cookies();
   jar.set({
     name: COOKIE,
-    value: sid,
+    value: jwt,
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
-    expires: expiresAt,
+    expires: new Date(exp * 1000),
   });
-  return sid;
+  return jwt;
 }
 
 export async function getSession(): Promise<SessionRecord | null> {
   const jar = cookies();
-  const sid = jar.get(COOKIE)?.value;
-  if (!sid) return null;
-  const d = await db();
-  const rec = await d.collection<SessionRecord>(COLLECTIONS.sessions).findOne({ sid });
-  if (!rec) return null;
-  if (rec.expiresAt < new Date()) {
-    await d.collection(COLLECTIONS.sessions).deleteOne({ sid });
+  const jwt = jar.get(COOKIE)?.value;
+  if (!jwt) return null;
+  try {
+    const { payload } = await jwtVerify(jwt, secretKey(), { algorithms: [ALG] });
+    const iat = typeof payload.iat === "number" ? payload.iat : Math.floor(Date.now() / 1000);
+    const exp = typeof payload.exp === "number" ? payload.exp : iat + TTL_SECONDS;
+    return {
+      githubLogin: String(payload.githubLogin ?? ""),
+      githubId: Number(payload.githubId ?? 0),
+      avatarUrl: String(payload.avatarUrl ?? ""),
+      tokenEnc: String(payload.tokenEnc ?? ""),
+      permission: payload.permission as SessionRecord["permission"],
+      createdAt: new Date(iat * 1000),
+      expiresAt: new Date(exp * 1000),
+    };
+  } catch {
     return null;
   }
-  return rec;
 }
 
 export async function getSessionUser(): Promise<SessionUser | null> {
@@ -86,16 +109,15 @@ export async function getSessionUser(): Promise<SessionUser | null> {
 export async function getSessionToken(): Promise<string | null> {
   const rec = await getSession();
   if (!rec) return null;
-  return decrypt(rec.tokenEnc);
+  try {
+    return decrypt(rec.tokenEnc);
+  } catch {
+    return null;
+  }
 }
 
 export async function destroySession() {
   const jar = cookies();
-  const sid = jar.get(COOKIE)?.value;
-  if (sid) {
-    const d = await db();
-    await d.collection(COLLECTIONS.sessions).deleteOne({ sid });
-  }
   jar.delete(COOKIE);
 }
 

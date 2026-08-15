@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { exchangeCodeForToken, getCurrentUser, getRepoPermission, isAdminPermission } from "@/lib/auth/github";
 import { createSession, consumeOAuthState } from "@/lib/auth/session";
-import { db, COLLECTIONS } from "@/lib/db";
 import { env } from "@/lib/env";
 
 export const runtime = "nodejs";
@@ -41,22 +40,6 @@ export async function GET(req: Request) {
       token,
       permission: perm,
     });
-
-    // Upsert into admins collection
-    const d = await db();
-    await d.collection(COLLECTIONS.admins).updateOne(
-      { githubLogin: user.login },
-      {
-        $set: {
-          githubLogin: user.login,
-          avatarUrl: user.avatar_url,
-          permission: perm,
-          lastLoginAt: new Date(),
-        },
-        $setOnInsert: { addedAt: new Date() },
-      },
-      { upsert: true },
-    );
 
     return NextResponse.redirect(`${home}/admin-panel`);
   } catch (e) {

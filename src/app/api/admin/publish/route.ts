@@ -3,7 +3,6 @@ import { requireAdmin } from "@/lib/auth/require-admin";
 import { getSessionToken } from "@/lib/auth/session";
 import { commitChanges, type FileChange } from "@/lib/github/repo";
 import { linksPathForRegion, logoPathForCategory } from "@/lib/admin/paths";
-import { db, COLLECTIONS } from "@/lib/db";
 import type { Category, Site, SiteStatus } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -122,24 +121,6 @@ export async function POST(req: Request) {
       authorName: auth.session.githubLogin,
       authorEmail: `${auth.session.githubId}+${auth.session.githubLogin}@users.noreply.github.com`,
     });
-
-    // Audit log
-    try {
-      const d = await db();
-      await d.collection(COLLECTIONS.auditLog).insertOne({
-        at: new Date(),
-        actor: auth.session.githubLogin,
-        action: "publish.links",
-        region,
-        categoryCount: cleanCategories.length,
-        logoCount: logoPathByKey.size,
-        commitSha: result.commitSha,
-        commitUrl: result.url,
-        message,
-      });
-    } catch (e) {
-      console.error("audit log write failed", e);
-    }
 
     return NextResponse.json({ ok: true, ...result });
   } catch (e) {

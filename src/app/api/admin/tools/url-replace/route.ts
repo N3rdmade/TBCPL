@@ -3,7 +3,6 @@ import { requireAdmin } from "@/lib/auth/require-admin";
 import { getSessionToken } from "@/lib/auth/session";
 import { commitChanges, type FileChange } from "@/lib/github/repo";
 import { loadAllRegionFiles, normalizeUrl } from "@/lib/admin/region-scan";
-import { db, COLLECTIONS } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -113,24 +112,6 @@ export async function POST(req: Request) {
     `admin: replace url ${target.host} → ${newUrl} (${replaced} site${replaced === 1 ? "" : "s"})`;
 
   const result = await commitChanges({ token, message, changes });
-
-  try {
-    const d = await db();
-    await d.collection(COLLECTIONS.auditLog).insertOne({
-      at: new Date(),
-      actor: auth.session.githubLogin,
-      action: "tools.url-replace",
-      oldUrl,
-      newUrl,
-      mode,
-      replaced,
-      regions: touched,
-      commitSha: result.commitSha,
-      commitUrl: result.url,
-    });
-  } catch (e) {
-    console.error("audit log write failed", e);
-  }
 
   return NextResponse.json({
     ok: true,
