@@ -124,7 +124,7 @@
         },
         {
           "name": "popcorn",
-          "url": "https://popcornmovies.io/",
+          "url": "https://popcornmovies.ac/",
           "logo": "./logo/movies_shows/popcornmovies.png",
           "enabled": true
         },
@@ -457,7 +457,7 @@
       "sites": [
         {
           "name": "DaddyLive",
-          "url": "https://dlhd.st/",
+          "url": "https://dlstreams.st/",
           "logo": "./logo/livetv/daddylive.png",
           "enabled": true,
           "status": "trusted"

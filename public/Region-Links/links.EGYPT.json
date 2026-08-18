@@ -6,7 +6,7 @@
       "sites": [
         {
           "name": "EgyBest",
-          "url": "https://egybesst.homes/",
+          "url": "https://egybesst.garden/",
           "logo": "./logo/movies_shows/egybest.png",
           "enabled": true
         },
@@ -68,7 +68,7 @@
         },
         {
           "name": "DramaCafe",
-          "url": "https://dramacafe-tv.team/",
+          "url": "https://dramacafe-tv.social/",
           "logo": "./logo/movies_shows/dramacafe.png",
           "status": "new",
           "enabled": true
