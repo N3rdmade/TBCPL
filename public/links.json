@@ -99,21 +99,15 @@
           "enabled": true
         },
         {
-          "name": "Cineby",
-          "url": "https://www.cineby.at/",
-          "logo": "./logo/movies_shows/cineby.png",
+          "name": "Movy",
+          "url": "https://www.movy.bz/",
+          "logo": "./logo/movies_shows/movy.png",
           "enabled": true
         },
         {
           "name": "CinemaCity",
           "url": "https://cinemacity.cc/",
           "logo": "./logo/movies_shows/cinemacity.png",
-          "enabled": true
-        },
-        {
-          "name": "Moviebox",
-          "url": "https://h5.inmoviebox.com/",
-          "logo": "./logo/movies_shows/moviebox.png",
           "enabled": true
         },
         {
@@ -215,7 +209,7 @@
           "name": "Senshi",
           "url": "https://senshi.live/",
           "logo": "./logo/anime/senshi.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "Anikage",
