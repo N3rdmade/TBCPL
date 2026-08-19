@@ -67,7 +67,7 @@
         },
         {
           "name": "hdhub4u",
-          "url": "https://new1.hdhub4u.limo/?utm=mn1",
+          "url": "https://new1.hdhub4u.af/",
           "logo": "./logo/movies_shows/hdhub4u.png",
           "enabled": true
         },
@@ -85,7 +85,7 @@
         },
         {
           "name": "world4u",
-          "url": "https://world4ufree.diy/",
+          "url": "https://world4ufree.farm/",
           "logo": "./logo/movies_shows/world4u.png",
           "enabled": true
         },
