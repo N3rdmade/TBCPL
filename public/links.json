@@ -206,12 +206,6 @@
           "enabled": true
         },
         {
-          "name": "Senshi",
-          "url": "https://senshi.live/",
-          "logo": "./logo/anime/senshi.png",
-          "enabled": false
-        },
-        {
           "name": "Anikage",
           "url": "https://anikage.cc/home",
           "logo": "./logo/anime/anikage.png",
@@ -395,6 +389,12 @@
           "enabled": true
         },
         {
+          "name": "batcave",
+          "url": "https://batcave.biz/",
+          "logo": "./logo/manga/batcave.png",
+          "enabled": true
+        },
+        {
           "name": "ReadComicOnline",
           "url": "https://readcomicsonline.ru/",
           "logo": "./logo/manga/readcomiconline.png",
@@ -552,8 +552,13 @@
           "name": "fifstream1",
           "url": "https://fifstream1.gt.tc/",
           "logo": "./logo/livetv/fifstream1.png",
-          "enabled": true,
-          "status": "new"
+          "enabled": true
+        },
+        {
+          "name": "freetvgarden",
+          "url": "https://freetvgarden.com/",
+          "logo": "./logo/livetv/freetvgarden.png",
+          "enabled": true
         }
       ]
     },

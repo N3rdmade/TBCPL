@@ -73,7 +73,7 @@
         },
         {
           "name": "movies4u",
-          "url": "https://new3.movies4u.clinic/",
+          "url": "https://movies4u.tube/",
           "logo": "./logo/movies_shows/movies4u.png",
           "enabled": true
         },
@@ -148,7 +148,7 @@
         },
         {
           "name": "WatchAnimeWorld",
-          "url": "https://watchanimeworld.net/",
+          "url": "https://watchanimeworld.one/",
           "logo": "./logo/anime/watchanimeworld.png",
           "status": "trusted",
           "enabled": true
@@ -198,7 +198,7 @@
         },
         {
           "name": "Anime Salt",
-          "url": "https://animesalt.link/",
+          "url": "https://animesalt.me/",
           "logo": "./logo/anime/animesalt.png",
           "enabled": true
         },

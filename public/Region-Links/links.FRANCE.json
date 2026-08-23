@@ -23,10 +23,22 @@
           "enabled": true
         },
         {
+          "name": "purstream",
+          "url": "https://purstream.wiki/",
+          "logo": "./logo/movies_shows/purstream.png",
+          "enabled": true
+        },
+        {
           "name": "Tf1",
           "url": "https://www.tf1.fr/",
           "enabled": true,
           "logo": "./logo/movies_shows/tf1.svg"
+        },
+        {
+          "name": "flixium",
+          "url": "https://flixium.top/",
+          "logo": "./logo/movies_shows/flixium.png",
+          "enabled": true
         },
         {
           "name": "Fawesome",
@@ -123,6 +135,12 @@
           "url": "https://www.arte.tv/en/",
           "enabled": true,
           "logo": "./logo/livetv/arte-tv.png"
+        },
+        {
+          "name": "flixium",
+          "url": "https://flixium.top/",
+          "logo": "./logo/movies_shows/flixium.png",
+          "enabled": true
         }
       ]
     },
