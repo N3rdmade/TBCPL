@@ -37,7 +37,7 @@
         },
         {
           "name": "MovieRulz",
-          "url": "https://www.5movierulz.plumbing/",
+          "url": "https://www.5movierulz.kitchen/",
           "logo": "./logo/movies_shows/movierulz.png",
           "enabled": true
         },
@@ -173,7 +173,7 @@
         },
         {
           "name": "AnimeDrive",
-          "url": "https://animedrive.in/",
+          "url": "https://animedrive.me/",
           "logo": "./logo/anime/animedrive.png",
           "enabled": true
         },
