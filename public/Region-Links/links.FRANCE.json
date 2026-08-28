@@ -60,7 +60,7 @@
         },
         {
           "name": "AnimesUltra",
-          "url": "https://ww.animesultra.org/",
+          "url": "https://v2.animesultra.org/",
           "enabled": true,
           "logo": "./logo/anime/animesultra.png"
         },
