@@ -151,6 +151,13 @@
           "url": "https://streamingunity.vip/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
           "enabled": true
+        },
+        {
+          "name": "Bflix",
+          "url": "https://bflix.se/home/",
+          "logo": "./logo/movies_shows/bflix.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },

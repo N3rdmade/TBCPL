@@ -132,6 +132,13 @@
           "logo": "./logo/movies_shows/cinephile.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Bflix",
+          "url": "https://bflix.se/home/",
+          "logo": "./logo/movies_shows/bflix.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
