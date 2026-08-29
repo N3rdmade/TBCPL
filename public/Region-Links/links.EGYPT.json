@@ -68,7 +68,7 @@
         },
         {
           "name": "DramaCafe",
-          "url": "https://dramacafe-tv.info/",
+          "url": "https://dramacafe-tv.live/",
           "logo": "./logo/movies_shows/dramacafe.png",
           "status": "new",
           "enabled": true
