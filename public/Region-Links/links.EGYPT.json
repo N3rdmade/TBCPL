@@ -79,6 +79,13 @@
           "logo": "./logo/movies_shows/movizlands.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Shahid4u",
+          "url": "https://shaiid4u.net/",
+          "logo": "./logo/movies_shows/shahid4u.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
