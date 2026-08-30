@@ -1,0 +1,24 @@
+{
+  "filters": [
+    {
+      "id": "torbox",
+      "groupId": "service",
+      "name": "TorBox",
+      "pattern": "(?i)\\b(tb|torbox)\\b",
+      "imageURL": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/torbox.png",
+      "tagColor": "#00000000",
+      "borderColor": "#00000000",
+      "textColor": "#00000000",
+      "tagStyle": "filled and bordered",
+      "isEnabled": true,
+      "type": "filter"
+    }
+  ],
+  "groups": [
+    {
+      "id": "service",
+      "name": "Service",
+      "color": "#00000000"
+    }
+  ]
+}
