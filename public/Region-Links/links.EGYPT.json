@@ -54,7 +54,7 @@
         },
         {
           "name": "carateen",
-          "url": "https://web.topcinemaa.live/",
+          "url": "https://topcinemaa.live/",
           "logo": "./logo/movies_shows/topcinema.png",
           "status": "new",
           "enabled": true
