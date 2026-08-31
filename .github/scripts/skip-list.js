@@ -14,6 +14,7 @@ const SKIP_URLS = new Set([
   'https://tbcpl.lol/site-request.html',
   'https://tv.eddit.me/',
   'https://cokcok10.com/',
+  'https://willow.arlen.icu/',
   'https://stmify.com/'
 ]);
 
