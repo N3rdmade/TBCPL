@@ -35,6 +35,13 @@
           "logo": "./logo/movies_shows/tvwiki.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "pinoymovieshub",
+          "url": "https://pinoymovieshub.win/",
+          "logo": "./logo/movies_shows/pinoymovieshub.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },

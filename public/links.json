@@ -33,7 +33,7 @@
         },
         {
           "name": "FlickyStream",
-          "url": "https://flickystream.dad/",
+          "url": "https://flickystream.mov/",
           "logo": "./logo/movies_shows/flickystream.png",
           "enabled": true,
           "status": "trusted"
@@ -123,9 +123,9 @@
           "enabled": true
         },
         {
-          "name": "HdTodayz",
-          "url": "https://hdtodayz.net/",
-          "logo": "./logo/movies_shows/hdtodayz.png",
+          "name": "lookmovie2",
+          "url": "https://www.lookmovie2.to/",
+          "logo": "./logo/movies_shows/lookmovie2.png",
           "enabled": true
         },
         {
@@ -224,9 +224,9 @@
           "enabled": true
         },
         {
-          "name": "SenpaiFlix",
-          "url": "https://senpaiflix.fun/",
-          "logo": "./logo/anime/senpaiflix.png",
+          "name": "Aniflix",
+          "url": "https://aniflix.uno/",
+          "logo": "./logo/anime/aniflix.png",
           "enabled": true
         },
         {

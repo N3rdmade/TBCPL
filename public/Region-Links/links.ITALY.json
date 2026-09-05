@@ -22,6 +22,13 @@
           "logo": "./logo/movies_shows/streamingcommunityz.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "altadefinizionex",
+          "url": "https://altadefinizionex.live/",
+          "logo": "./logo/movies_shows/altadefinizionex.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
