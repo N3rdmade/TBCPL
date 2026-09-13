@@ -148,6 +148,12 @@
           "url": "https://arabictvwatch.tv/",
           "logo": "./logo/livetv/arabictv.png",
           "enabled": true
+        },
+        {
+          "name": "BeinSports",
+          "url": "https://www.beinsports.com/en-mena",
+          "logo": "./logo/livetv/beinsports.png",
+          "enabled": true
         }
       ]
     },

@@ -93,10 +93,10 @@
       "name": "Manga",
       "sites": [
         {
-          "name": "Bald mehr — füge einen Vorschlag hinzu!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "Toomics",
+          "url": "https://toomics.com/de",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/manga/toomics.png"
         }
       ]
     },
