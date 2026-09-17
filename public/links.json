@@ -477,12 +477,6 @@
           "enabled": true
         },
         {
-          "name": "VenueVault",
-          "url": "https://venuevault.live/",
-          "logo": "./logo/livetv/venuevault.png",
-          "enabled": true
-        },
-        {
           "name": "TheTvApp",
           "url": "https://thetvapp.plus/",
           "logo": "./logo/livetv/tvappto.png",

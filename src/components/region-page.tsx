@@ -30,7 +30,7 @@ export async function RegionPage({ region, onlyCategoryId }: Props) {
 
   return (
     <main className="mx-auto max-w-[1600px] px-3 pb-16 pt-4 sm:px-4 md:px-6 md:pt-6 2xl:px-8">
-      <Hero regionFlag={region.flag} regionName={region.name} stats={stats} />
+      <Hero regionCode={region.code} regionFlag={region.flag} regionName={region.name} stats={stats} />
       <div className="mb-4 flex justify-center md:hidden">
         <CountrySelect />
       </div>

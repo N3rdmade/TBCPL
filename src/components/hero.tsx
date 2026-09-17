@@ -10,12 +10,13 @@ interface Stat {
 }
 
 interface Props {
+  regionCode?: string;
   regionFlag?: string;
   regionName?: string;
   stats?: Stat[];
 }
 
-export function Hero({ regionFlag, regionName, stats }: Props) {
+export function Hero({ regionCode, regionFlag, regionName, stats }: Props) {
   return (
     <section
       className="relative mb-6 overflow-hidden rounded-2xl border md:mb-8 md:rounded-3xl"
@@ -87,7 +88,7 @@ export function Hero({ regionFlag, regionName, stats }: Props) {
             )}
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <LatestCommitPill />
-              <LiveUsers />
+              <LiveUsers region={regionCode} shortLabel={regionFlag} />
             </div>
           </div>
         </div>
@@ -111,7 +112,7 @@ export function Hero({ regionFlag, regionName, stats }: Props) {
 
           <div className="flex flex-col gap-2">
             <LatestCommitPill />
-            <LiveUsers />
+            <LiveUsers region={regionCode} />
           </div>
         </aside>
       </div>

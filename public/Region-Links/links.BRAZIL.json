@@ -5,10 +5,10 @@
       "name": "Movies & Shows",
       "sites": [
         {
-          "name": "Em breve mais — adicione uma sugestão!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "deepcine",
+          "url": "https://deepcine.tv/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/movies_shows/deepcine.png"
         }
       ]
     },

@@ -90,6 +90,12 @@
           "url": "https://tv.eddit.me/",
           "logo": "./logo/livetv/tveddit.png",
           "enabled": true
+        },
+        {
+          "name": "FreeStream-live1h",
+          "url": "https://freestreams-live1h.pk/",
+          "logo": "./logo/livetv/fsl.png",
+          "enabled": true
         }
       ]
     },

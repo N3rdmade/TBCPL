@@ -6,8 +6,9 @@ export const dynamic = "force-dynamic";
 const WINDOW_MS = 60_000; // a user is "online" if they pinged in the last 60s
 const MAX_ENTRIES = 50_000; // soft cap so a flood can't OOM the lambda
 
+type Entry = { ts: number; region: string };
 type Store = {
-  seen: Map<string, number>;
+  seen: Map<string, Entry>;
   lastSweep: number;
 };
 
@@ -22,10 +23,9 @@ function sweep(now: number) {
   if (now - store.lastSweep < 5_000) return;
   store.lastSweep = now;
   const cutoff = now - WINDOW_MS;
-  for (const [id, ts] of store.seen) {
-    if (ts < cutoff) store.seen.delete(id);
+  for (const [id, e] of store.seen) {
+    if (e.ts < cutoff) store.seen.delete(id);
   }
-  // hard cap fallback
   if (store.seen.size > MAX_ENTRIES) {
     const trim = store.seen.size - MAX_ENTRIES;
     let i = 0;
@@ -40,35 +40,50 @@ function getId(req: Request): string {
   const fwd = req.headers.get("x-forwarded-for") ?? "";
   const ip = fwd.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "anon";
   const ua = req.headers.get("user-agent") ?? "";
-  // Coarse identity — IP + UA — no cookies, no fingerprinting.
   return `${ip}::${ua.slice(0, 40)}`;
 }
 
-function payload(now: number) {
+function getRegion(req: Request): string {
+  const url = new URL(req.url);
+  const r = url.searchParams.get("region")?.trim().toUpperCase();
+  if (!r) return "UNKNOWN";
+  // whitelist chars so a garbage param can't blow up the key space
+  return /^[A-Z0-9_-]{1,16}$/.test(r) ? r : "UNKNOWN";
+}
+
+function payload(now: number, region: string) {
+  const byRegion: Record<string, number> = {};
+  let total = 0;
+  for (const { region: r } of store.seen.values()) {
+    byRegion[r] = (byRegion[r] ?? 0) + 1;
+    total++;
+  }
   return {
-    online: store.seen.size,
+    online: byRegion[region] ?? 0,
+    onlineTotal: total,
+    byRegion,
+    region,
     windowSeconds: WINDOW_MS / 1000,
     serverTime: now,
   };
 }
 
-export async function GET(req: Request) {
+function handle(req: Request) {
   const now = Date.now();
   sweep(now);
-  // GET also counts as a heartbeat (so the widget can be passive).
-  store.seen.set(getId(req), now);
-  return NextResponse.json(payload(now), {
+  const region = getRegion(req);
+  store.seen.set(getId(req), { ts: now, region });
+  return NextResponse.json(payload(now, region), {
     headers: { "cache-control": "no-store" },
   });
 }
 
+export async function GET(req: Request) {
+  return handle(req);
+}
+
 export async function POST(req: Request) {
-  const now = Date.now();
-  sweep(now);
-  store.seen.set(getId(req), now);
-  return NextResponse.json(payload(now), {
-    headers: { "cache-control": "no-store" },
-  });
+  return handle(req);
 }
 
 export async function OPTIONS() {

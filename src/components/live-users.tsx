@@ -6,25 +6,29 @@ const PING_INTERVAL_MS = 60_000;
 
 interface PingResponse {
   online: number;
+  onlineTotal: number;
+  byRegion: Record<string, number>;
+  region: string;
   windowSeconds: number;
   serverTime: number;
 }
 
-export function LiveUsers() {
-  const [count, setCount] = useState<number | null>(null);
+export function LiveUsers({ region, shortLabel }: { region?: string; shortLabel?: string }) {
+  const [data, setData] = useState<PingResponse | null>(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
+    const qs = region ? `?region=${encodeURIComponent(region)}` : "";
 
     async function ping() {
       try {
-        const res = await fetch("/api/ping", { method: "POST", cache: "no-store" });
+        const res = await fetch(`/api/ping${qs}`, { method: "POST", cache: "no-store" });
         if (!res.ok) throw new Error("bad status");
-        const data = (await res.json()) as PingResponse;
+        const json = (await res.json()) as PingResponse;
         if (!cancelled) {
-          setCount(data.online);
+          setData(json);
           setError(false);
         }
       } catch {
@@ -49,9 +53,16 @@ export function LiveUsers() {
       if (timer) clearTimeout(timer);
       document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, []);
+  }, [region]);
 
-  if (error || count === null) return null;
+  if (error || data === null) return null;
+
+  const count = region ? data.online : data.onlineTotal;
+  const scope = region ? region : "global";
+  const short = (shortLabel ?? region ?? "").toUpperCase();
+  const title = region
+    ? `${count} ${count === 1 ? "person is" : "people are"} online in ${region} right now (${data.onlineTotal} globally)`
+    : `${count} ${count === 1 ? "person is" : "people are"} online right now`;
 
   return (
     <div
@@ -61,7 +72,7 @@ export function LiveUsers() {
         borderColor: "var(--border)",
         color: "var(--fg-muted)",
       }}
-      title={`${count} ${count === 1 ? "person is" : "people are"} online right now`}
+      title={title}
     >
       <span className="relative grid h-2 w-2 place-items-center">
         <span
@@ -74,7 +85,21 @@ export function LiveUsers() {
         />
       </span>
       <span className="tabular-nums text-[var(--fg)]">{count.toLocaleString()}</span>
-      <span>Users in Real-Time using TBCPL :)</span>
+      {region ? (
+        <>
+          <span className="sm:hidden">
+            Users viewing <span className="text-[var(--fg)]">{short}</span> in Real-Time
+          </span>
+          <span className="hidden sm:inline">
+            Users viewing <span className="text-[var(--fg)]">{scope}</span> in Real-Time
+          </span>
+        </>
+      ) : (
+        <>
+          <span className="sm:hidden">online</span>
+          <span className="hidden sm:inline">Users in Real-Time using TBCPL :)</span>
+        </>
+      )}
     </div>
   );
 }
