@@ -33,7 +33,7 @@
         },
         {
           "name": "FlickyStream",
-          "url": "https://flickystream.mov/",
+          "url": "https://meowtv.ru/",
           "logo": "./logo/movies_shows/flickystream.png",
           "enabled": true,
           "status": "trusted"
@@ -502,7 +502,7 @@
         },
         {
           "name": "iStreamEast",
-          "url": "https://streameast.cool/",
+          "url": "https://thestreameast.top/",
           "logo": "./logo/livetv/istreameast.png",
           "enabled": true
         },
