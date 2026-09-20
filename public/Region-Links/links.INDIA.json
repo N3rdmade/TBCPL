@@ -37,7 +37,7 @@
         },
         {
           "name": "MovieRulz",
-          "url": "https://www.5movierulz.solutions/",
+          "url": "https://www.5movierulz.fitness/",
           "logo": "./logo/movies_shows/movierulz.png",
           "enabled": true
         },
@@ -85,7 +85,7 @@
         },
         {
           "name": "world4u",
-          "url": "https://world4ufree.farm/",
+          "url": "https://world4ufree.world/",
           "logo": "./logo/movies_shows/world4u.png",
           "enabled": true
         },
