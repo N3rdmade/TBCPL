@@ -6,7 +6,7 @@
       "sites": [
         {
           "name": "Cineblog01",
-          "url": "https://cineblog001.center/",
+          "url": "https://cineblog001.download/",
           "logo": "./logo/movies_shows/cineblog01.png",
           "enabled": true
         },
@@ -18,14 +18,14 @@
         },
         {
           "name": "streamingcommunityz",
-          "url": "https://streamingcommunityz.academy/",
+          "url": "https://streamingcommunityz.photos/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
           "status": "new",
           "enabled": true
         },
         {
           "name": "altadefinizionex",
-          "url": "https://altadefinizione.fast/",
+          "url": "https://altadefinizionex.live/",
           "logo": "./logo/movies_shows/altadefinizionex.png",
           "status": "new",
           "enabled": true
