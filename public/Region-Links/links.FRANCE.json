@@ -29,6 +29,18 @@
           "enabled": true
         },
         {
+          "name": "bowdtv",
+          "url": "https://bowdtv.com/",
+          "logo": "./logo/movies_shows/bowdtv.png",
+          "enabled": true
+        },
+        {
+          "name": "fexini",
+          "url": "https://fexini.net/",
+          "logo": "./logo/movies_shows/fexini.png",
+          "enabled": true
+        },
+        {
           "name": "Tf1",
           "url": "https://www.tf1.fr/",
           "enabled": true,

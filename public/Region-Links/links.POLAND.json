@@ -56,13 +56,18 @@
           "name": "docchi",
           "url": "https://docchi.pl/",
           "logo": "./logo/anime/docchi.png",
-          "status": "new",
           "enabled": true
         },
         {
           "name": "Shinden",
           "url": "https://shinden.pl/",
           "logo": "./logo/anime/shinden.png",
+          "enabled": true
+        },
+        {
+          "name": "NaszeAnime",
+          "url": "https://naszeanime.pl/",
+          "logo": "./logo/anime/naszeanime.png",
           "status": "new",
           "enabled": true
         }

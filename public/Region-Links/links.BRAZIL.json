@@ -17,10 +17,10 @@
       "name": "Anime",
       "sites": [
         {
-          "name": "Em breve mais — adicione uma sugestão!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "meusanimes",
+          "url": "https://meusanimes.blog/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/anime/meusanimes.png"
         }
       ]
     },

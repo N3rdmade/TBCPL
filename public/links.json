@@ -60,7 +60,7 @@
           "name": "Spenflix",
           "url": "https://spencerdevs.xyz/",
           "logo": "./logo/movies_shows/spenflix.png",
-          "enabled": true
+          "enabled": false
         },
         {
           "name": "primeflix",
@@ -114,6 +114,12 @@
           "name": "onlyflix",
           "url": "https://onlyflix.to/",
           "logo": "./logo/movies_shows/onlyflix.png",
+          "enabled": true
+        },
+        {
+          "name": "popcorn",
+          "url": "https://bingr.one/home/",
+          "logo": "./logo/movies_shows/bingr.png",
           "enabled": true
         },
         {
@@ -251,6 +257,12 @@
           "name": "KickAssAnime",
           "url": "https://kaa.lt/",
           "logo": "./logo/anime/kickassanime.png",
+          "enabled": true
+        },
+        {
+          "name": "AniClover",
+          "url": "https://aniclover.cc/",
+          "logo": "./logo/anime/aniclover.png",
           "enabled": true
         },
         {
@@ -540,6 +552,12 @@
           "name": "ppv.to",
           "url": "https://ppv.st/",
           "logo": "./logo/livetv/ppv.png",
+          "enabled": true
+        },
+        {
+          "name": "goalzen",
+          "url": "https://www.goalzen.site/",
+          "logo": "./logo/livetv/goalzen.png",
           "enabled": true
         },
         {
