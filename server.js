@@ -1,6 +1,6 @@
-// Custom Next.js server with a WebSocket presence endpoint at /api/live.
-// Presence = count of open WS connections, grouped by region sent on connect.
-// ponytail: single-process count, run one pm2 instance or move to Redis pub/sub
+// Custom Next.js server + WebSocket presence at /api/live.
+// Count = unique IPs seen in the last WINDOW_MS, grouped by region.
+// ponytail: single-process store, add Redis if you run >1 pm2 instance
 
 const { createServer } = require("http");
 const { parse } = require("url");
@@ -12,7 +12,24 @@ const port = parseInt(process.env.PORT || "3000", 10);
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const WINDOW_MS = 30 * 60 * 1000; // 30 min
+const SWEEP_MS = 60 * 1000;
+const BROADCAST_MIN_MS = 2000; // don't broadcast more than once per 2s
 const REGION_RE = /^[A-Z0-9_-]{1,16}$/;
+const MAX_ENTRIES = 100_000;
+
+/** ip -> { ts, region } */
+const seen = new Map();
+let lastBroadcast = 0;
+let broadcastTimer = null;
+
+function getIp(req) {
+  const cf = req.headers["cf-connecting-ip"];
+  if (cf) return String(cf).trim();
+  const fwd = req.headers["x-forwarded-for"];
+  if (fwd) return String(fwd).split(",")[0].trim();
+  return req.socket.remoteAddress || "anon";
+}
 
 function parseRegion(req) {
   try {
@@ -24,30 +41,54 @@ function parseRegion(req) {
   }
 }
 
-function snapshot(wss) {
+function snapshot() {
   const byRegion = {};
   let total = 0;
-  for (const client of wss.clients) {
-    if (client.readyState !== 1) continue;
-    const r = client.region || "UNKNOWN";
-    byRegion[r] = (byRegion[r] ?? 0) + 1;
+  for (const { region } of seen.values()) {
+    byRegion[region] = (byRegion[region] ?? 0) + 1;
     total++;
   }
   return { onlineTotal: total, byRegion, serverTime: Date.now() };
 }
 
+function sendTo(ws, snap) {
+  if (ws.readyState !== 1) return;
+  ws.send(
+    JSON.stringify({
+      ...snap,
+      online: snap.byRegion[ws.region] ?? 0,
+      region: ws.region,
+    }),
+  );
+}
+
 function broadcast(wss) {
-  const snap = snapshot(wss);
-  const payload = JSON.stringify(snap);
-  for (const client of wss.clients) {
-    if (client.readyState === 1) {
-      client.send(
-        JSON.stringify({
-          ...snap,
-          online: snap.byRegion[client.region || "UNKNOWN"] ?? 0,
-          region: client.region || "UNKNOWN",
-        }),
-      );
+  const snap = snapshot();
+  for (const ws of wss.clients) sendTo(ws, snap);
+}
+
+function scheduleBroadcast(wss) {
+  const now = Date.now();
+  const wait = Math.max(0, lastBroadcast + BROADCAST_MIN_MS - now);
+  if (broadcastTimer) return;
+  broadcastTimer = setTimeout(() => {
+    broadcastTimer = null;
+    lastBroadcast = Date.now();
+    broadcast(wss);
+  }, wait);
+}
+
+function sweep() {
+  const cutoff = Date.now() - WINDOW_MS;
+  for (const [ip, e] of seen) {
+    if (e.ts < cutoff) seen.delete(ip);
+  }
+  if (seen.size > MAX_ENTRIES) {
+    const trim = seen.size - MAX_ENTRIES;
+    let i = 0;
+    for (const k of seen.keys()) {
+      if (i++ >= trim) break;
+      seen.delete(k);
     }
   }
 }
@@ -67,21 +108,25 @@ app.prepare().then(() => {
       ws.isAlive = true;
       wss.emit("connection", ws, req);
       ws.on("pong", () => (ws.isAlive = true));
-      ws.on("close", () => broadcast(wss));
-      ws.on("error", (e) => console.error("[ws] err", e));
-      const snap = snapshot(wss);
-      const msg = JSON.stringify({
-        ...snap,
-        online: snap.byRegion[ws.region] ?? 0,
-        region: ws.region,
-      });
-      console.log("[ws] connect region=%s clients=%d sending=%s", ws.region, wss.clients.size, msg);
-      ws.send(msg);
-      broadcast(wss);
+      ws.on("error", () => {});
+
+      const ip = getIp(req);
+      const prev = seen.get(ip);
+      seen.set(ip, { ts: Date.now(), region: ws.region });
+      // send the new client its snapshot immediately
+      sendTo(ws, snapshot());
+      // only wake everyone else if the visible count actually changed
+      if (!prev) scheduleBroadcast(wss);
     });
   });
 
-  // heartbeat: drop dead clients so the count stays honest
+  setInterval(() => {
+    const before = seen.size;
+    sweep();
+    if (seen.size !== before) scheduleBroadcast(wss);
+  }, SWEEP_MS);
+
+  // heartbeat: drop dead sockets
   setInterval(() => {
     for (const ws of wss.clients) {
       if (!ws.isAlive) {

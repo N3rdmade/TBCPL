@@ -24,7 +24,9 @@ export function LiveUsers({ region, shortLabel }: { region?: string; shortLabel?
       ws = new WebSocket(`${proto}//${window.location.host}/api/live${qs}`);
       ws.onmessage = (ev) => {
         try {
-          setData(JSON.parse(ev.data) as LiveMsg);
+          const parsed = JSON.parse(ev.data) as LiveMsg;
+          console.log("[live-users] msg", parsed);
+          setData(parsed);
         } catch {
           /* ignore */
         }
