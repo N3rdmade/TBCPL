@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -13,6 +13,7 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@octokit/rest": "^22.0.1",
     "@types/better-sqlite3": "^9.6.0",
+    "@types/ws": "^8.18.1",
     "better-sqlite3": "^13.0.3",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -27,6 +28,7 @@
     "sharp": "^0.35.1",
     "simplex-noise": "^4.0.3",
     "tailwind-merge": "^3.6.0",
+    "ws": "^8.22.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {

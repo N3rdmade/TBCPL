@@ -2,56 +2,50 @@
 
 import { useEffect, useState } from "react";
 
-const PING_INTERVAL_MS = 60_000;
-
-interface PingResponse {
+interface LiveMsg {
   online: number;
   onlineTotal: number;
   byRegion: Record<string, number>;
   region: string;
-  windowSeconds: number;
   serverTime: number;
 }
 
 export function LiveUsers({ region, shortLabel }: { region?: string; shortLabel?: string }) {
-  const [data, setData] = useState<PingResponse | null>(null);
+  const [data, setData] = useState<LiveMsg | null>(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    let cancelled = false;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const qs = region ? `?region=${encodeURIComponent(region)}` : "";
+    let ws: WebSocket | null = null;
+    let retry: ReturnType<typeof setTimeout> | undefined;
+    let closed = false;
 
-    async function ping() {
-      try {
-        const res = await fetch(`/api/ping${qs}`, { method: "POST", cache: "no-store" });
-        if (!res.ok) throw new Error("bad status");
-        const json = (await res.json()) as PingResponse;
-        if (!cancelled) {
-          setData(json);
+    function connect() {
+      const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
+      const qs = region ? `?region=${encodeURIComponent(region)}` : "";
+      ws = new WebSocket(`${proto}//${window.location.host}/api/live${qs}`);
+      ws.onmessage = (ev) => {
+        try {
+          setData(JSON.parse(ev.data) as LiveMsg);
           setError(false);
+        } catch {
+          /* ignore */
         }
-      } catch {
-        if (!cancelled) setError(true);
-      } finally {
-        if (!cancelled) timer = setTimeout(ping, PING_INTERVAL_MS);
-      }
+      };
+      ws.onclose = () => {
+        if (closed) return;
+        setError(true);
+        // ponytail: fixed 5s backoff, add jitter if thundering herd shows up
+        retry = setTimeout(connect, 5_000);
+      };
+      ws.onerror = () => ws?.close();
     }
 
-    ping();
-
-    function onVisibility() {
-      if (document.visibilityState === "visible") {
-        if (timer) clearTimeout(timer);
-        ping();
-      }
-    }
-    document.addEventListener("visibilitychange", onVisibility);
+    connect();
 
     return () => {
-      cancelled = true;
-      if (timer) clearTimeout(timer);
-      document.removeEventListener("visibilitychange", onVisibility);
+      closed = true;
+      if (retry) clearTimeout(retry);
+      ws?.close();
     };
   }, [region]);
 
