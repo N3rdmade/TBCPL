@@ -303,7 +303,7 @@
       "sites": [
         {
           "name": "MangaBall",
-          "url": "https://mangaball.net/",
+          "url": "https://mangaball.com/",
           "logo": "./logo/manga/mangaball.png",
           "enabled": true,
           "status": "trusted"
