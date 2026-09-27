@@ -65,8 +65,18 @@ app.prepare().then(() => {
     wss.handleUpgrade(req, socket, head, (ws) => {
       ws.region = parseRegion(req);
       ws.isAlive = true;
+      wss.emit("connection", ws, req);
       ws.on("pong", () => (ws.isAlive = true));
       ws.on("close", () => broadcast(wss));
+      ws.on("error", (e) => console.error("[ws] err", e));
+      const snap = snapshot(wss);
+      const msg = JSON.stringify({
+        ...snap,
+        online: snap.byRegion[ws.region] ?? 0,
+        region: ws.region,
+      });
+      console.log("[ws] connect region=%s clients=%d sending=%s", ws.region, wss.clients.size, msg);
+      ws.send(msg);
       broadcast(wss);
     });
   });

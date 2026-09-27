@@ -12,7 +12,6 @@ interface LiveMsg {
 
 export function LiveUsers({ region, shortLabel }: { region?: string; shortLabel?: string }) {
   const [data, setData] = useState<LiveMsg | null>(null);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     let ws: WebSocket | null = null;
@@ -26,14 +25,12 @@ export function LiveUsers({ region, shortLabel }: { region?: string; shortLabel?
       ws.onmessage = (ev) => {
         try {
           setData(JSON.parse(ev.data) as LiveMsg);
-          setError(false);
         } catch {
           /* ignore */
         }
       };
       ws.onclose = () => {
         if (closed) return;
-        setError(true);
         // ponytail: fixed 5s backoff, add jitter if thundering herd shows up
         retry = setTimeout(connect, 5_000);
       };
@@ -49,7 +46,7 @@ export function LiveUsers({ region, shortLabel }: { region?: string; shortLabel?
     };
   }, [region]);
 
-  if (error || data === null) return null;
+  if (data === null) return null;
 
   const count = region ? data.online : data.onlineTotal;
   const scope = region ? region : "global";
