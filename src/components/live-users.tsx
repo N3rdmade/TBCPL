@@ -17,6 +17,7 @@ export function LiveUsers({ region, shortLabel }: { region?: string; shortLabel?
     let ws: WebSocket | null = null;
     let retry: ReturnType<typeof setTimeout> | undefined;
     let closed = false;
+    let attempt = 0;
 
     function connect() {
       const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
@@ -33,8 +34,9 @@ export function LiveUsers({ region, shortLabel }: { region?: string; shortLabel?
       };
       ws.onclose = () => {
         if (closed) return;
-        // ponytail: fixed 5s backoff, add jitter if thundering herd shows up
-        retry = setTimeout(connect, 5_000);
+        // first reconnect fast (StrictMode / transient), then back off
+        const delay = attempt++ === 0 ? 100 : 5_000;
+        retry = setTimeout(connect, delay);
       };
       ws.onerror = () => ws?.close();
     }
