@@ -37,7 +37,7 @@
         },
         {
           "name": "MovieRulz",
-          "url": "https://www.5movierulz.institute/",
+          "url": "https://www.5movierulz.works/",
           "logo": "./logo/movies_shows/movierulz.png",
           "enabled": true
         },
@@ -141,7 +141,7 @@
       "sites": [
         {
           "name": "Kartoonsme",
-          "url": "https://kartoons.me/home",
+          "url": "https://kartoons.to/",
           "logo": "./logo/anime/kartoons.png",
           "status": "trusted",
           "enabled": true
