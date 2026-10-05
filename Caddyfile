@@ -5,3 +5,11 @@ www.tbcpl.lol {
 tbcpl.lol {
 	reverse_proxy web:80
 }
+
+www.layla.wtf {
+	redir https://layla.wtf{uri} permanent
+}
+
+layla.wtf {
+	reverse_proxy layla-web-1:3001
+}

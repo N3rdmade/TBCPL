@@ -60,6 +60,15 @@ services:
       retries: 5
     logging: *default-logging
 
+  prune:
+    image: docker:cli
+    container_name: tbcpl-prune
+    restart: unless-stopped
+    entrypoint: ["sh","-c","while true; do docker image prune -af --filter 'until=168h'; sleep 86400; done"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    logging: *default-logging
+
 volumes:
   redis-data:
   caddy-data:
