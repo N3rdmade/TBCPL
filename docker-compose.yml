@@ -10,8 +10,8 @@ services:
     image: tbcpl:latest
     container_name: tbcpl-web
     restart: unless-stopped
-    ports:
-      - "80:80"
+    expose:
+      - "80"
     env_file:
       - .env
     environment:
@@ -26,6 +26,22 @@ services:
       timeout: 5s
       retries: 3
       start_period: 20s
+    logging: *default-logging
+
+  caddy:
+    image: caddy:2
+    container_name: tbcpl-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - web
     logging: *default-logging
 
   redis:
@@ -44,3 +60,5 @@ services:
 
 volumes:
   redis-data:
+  caddy-data:
+  caddy-config:

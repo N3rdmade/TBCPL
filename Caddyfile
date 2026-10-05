@@ -1,0 +1,7 @@
+www.tbcpl.lol {
+	redir https://tbcpl.lol{uri} permanent
+}
+
+tbcpl.lol {
+	reverse_proxy web:80
+}
