@@ -21,7 +21,7 @@ const TEAM = [
   },
   {
     name: "R",
-    role: "Maintainer",
+    role: "Infrastructure & Maintainer",
     avatar: "https://avatars.githubusercontent.com/u/84559232?v=4",
     bio: "Helping maintain and improve TBCPL to keep it running smoothly for the community.",
     github: "https://github.com/rishabnotfound",
