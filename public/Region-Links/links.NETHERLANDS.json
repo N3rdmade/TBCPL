@@ -9,6 +9,13 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
+        },
+        {
+          "name": "Cinelite",
+          "url": "https:/cinelite.xyz",
+          "logo": "./logo/movies_shows/cinelite-logo.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },

@@ -157,6 +157,13 @@
           "url": "https://streamingunity.fun/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
           "enabled": true
+        },
+        {
+          "name": "Cinelite",
+          "url": "https:/cinelite.xyz",
+          "logo": "./logo/movies_shows/cinelite-logo.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },

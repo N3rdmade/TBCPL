@@ -73,6 +73,13 @@
           "logo": "./logo/movies_shows/hdfilmewin.png",
           "status": "new",
           "enabled": true
+        },
+        {
+          "name": "Cinelite",
+          "url": "https:/cinelite.xyz",
+          "logo": "./logo/movies_shows/cinelite-logo.png",
+          "status": "new",
+          "enabled": true
         }
       ]
     },
