@@ -40,7 +40,7 @@
         },
         {
           "name": "Cinelite",
-          "url": "https:/cinelite.xyz",
+          "url": "https://cinelite.xyz/",
           "logo": "./logo/movies_shows/cinelite-logo.png",
           "enabled": true,
           "status": "new"
