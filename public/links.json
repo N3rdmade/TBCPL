@@ -39,6 +39,13 @@
           "status": "trusted"
         },
         {
+          "name": "Cinelite",
+          "url": "https:/cinelite.xyz",
+          "logo": "./logo/movies_shows/cinelite-logo.png",
+          "enabled": true,
+          "status": "new"
+        },
+        {
           "name": "MeowTV",
           "url": "https://meowtv.ru/",
           "logo": "./logo/movies_shows/meowtv.png",
@@ -156,13 +163,6 @@
           "name": "StreamingUnity",
           "url": "https://streamingunity.fun/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
-          "enabled": true
-        },
-        {
-          "name": "Cinelite",
-          "url": "https:/cinelite.xyz",
-          "logo": "./logo/movies_shows/cinelite-logo.png",
-          "status": "new",
           "enabled": true
         }
       ]
