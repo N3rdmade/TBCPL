@@ -85,7 +85,7 @@
         },
         {
           "name": "world4u",
-          "url": "https://world4ufree.beer/",
+          "url": "https://worldfree4u.blog/",
           "logo": "./logo/movies_shows/world4u.png",
           "enabled": true
         },
@@ -130,13 +130,6 @@
           "name": "cinephile",
           "url": "https://cinephile.live/",
           "logo": "./logo/movies_shows/cinephile.png",
-          "status": "new",
-          "enabled": true
-        },
-        {
-          "name": "Cinelite",
-          "url": "https:/cinelite.xyz",
-          "logo": "./logo/movies_shows/cinelite-logo.png",
           "status": "new",
           "enabled": true
         }
@@ -212,7 +205,7 @@
         },
         {
           "name": "Anime Lok",
-          "url": "https://animelok.live/",
+          "url": "https://animelok.cc/",
           "logo": "./logo/anime/animelok.png",
           "enabled": true
         },
@@ -385,6 +378,12 @@
           "name": "star sports",
           "url": "https://uvotv.com/",
           "logo": "./logo/apps/uvo.svg",
+          "enabled": true
+        },
+        {
+          "name": "anivortex",
+          "url": "https://anivortex.in/",
+          "logo": "./logo/apps/anivortex.png",
           "enabled": true
         },
         {

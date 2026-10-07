@@ -9,13 +9,6 @@
           "url": "https://tbcpl.lol/site-request.html",
           "enabled": true,
           "logo": ""
-        },
-        {
-          "name": "Cinelite",
-          "url": "https:/cinelite.xyz",
-          "logo": "./logo/movies_shows/cinelite-logo.png",
-          "status": "new",
-          "enabled": true
         }
       ]
     },
@@ -48,10 +41,10 @@
       "name": "Live TV & Sports",
       "sites": [
         {
-          "name": "Binnenkort meer — voeg een suggestie toe!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "espnl",
+          "url": "https://www.espn.nl/watch/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/livetv/espnl.png"
         }
       ]
     },

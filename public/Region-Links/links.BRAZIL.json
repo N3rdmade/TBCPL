@@ -29,10 +29,10 @@
       "name": "Manga",
       "sites": [
         {
-          "name": "Em breve mais — adicione uma sugestão!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "mangalivre",
+          "url": "https://mangalivre.blog/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/manga/mangalivre.png"
         }
       ]
     },

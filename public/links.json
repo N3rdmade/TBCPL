@@ -32,24 +32,11 @@
           "enabled": true
         },
         {
-          "name": "FlickyStream",
-          "url": "https://meowtv.ru/",
-          "logo": "./logo/movies_shows/flickystream.png",
-          "enabled": true,
-          "status": "trusted"
-        },
-        {
-          "name": "Cinelite",
-          "url": "https://cinelite.xyz/",
-          "logo": "./logo/movies_shows/cinelite-logo.png",
-          "enabled": true,
-          "status": "new"
-        },
-        {
           "name": "MeowTV",
           "url": "https://meowtv.ru/",
           "logo": "./logo/movies_shows/meowtv.png",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "RiveStream",
@@ -58,16 +45,16 @@
           "enabled": true
         },
         {
+          "name": "FlickyStream",
+          "url": "https://meowtv.ru/",
+          "logo": "./logo/movies_shows/flickystream.png",
+          "enabled": true
+        },
+        {
           "name": "CinemaBZ",
           "url": "https://cinema.army/",
           "logo": "./logo/movies_shows/cinemabz.png",
           "enabled": true
-        },
-        {
-          "name": "Spenflix",
-          "url": "https://spencerdevs.xyz/",
-          "logo": "./logo/movies_shows/spenflix.png",
-          "enabled": false
         },
         {
           "name": "primeflix",
@@ -154,9 +141,9 @@
           "enabled": true
         },
         {
-          "name": "Flixway",
-          "url": "https://flixway.to/",
-          "logo": "./logo/movies_shows/flixway.png",
+          "name": "Cinelite",
+          "url": "https://cinelite.xyz/",
+          "logo": "./logo/movies_shows/cinelite-logo.png",
           "enabled": true
         },
         {
@@ -207,15 +194,15 @@
           "status": "trusted"
         },
         {
-          "name": "AnimeNexus",
-          "url": "https://anime.nexus/",
-          "logo": "./logo/anime/animenexus.png",
+          "name": "anipm",
+          "url": "https://ani.pm/",
+          "logo": "./logo/anime/anipm.png",
           "enabled": true
         },
         {
-          "name": "AniDB",
-          "url": "https://anidb.app/home",
-          "logo": "./logo/anime/anidb.png",
+          "name": "AnimeNexus",
+          "url": "https://anime.nexus/",
+          "logo": "./logo/anime/animenexus.png",
           "enabled": true
         },
         {
@@ -246,12 +233,6 @@
           "name": "Animex",
           "url": "https://animex.one/home",
           "logo": "./logo/anime/animex.png",
-          "enabled": true
-        },
-        {
-          "name": "AnimeTVPlus",
-          "url": "https://animetvplus.xyz/",
-          "logo": "./logo/anime/animetvplus.png",
           "enabled": true
         },
         {
@@ -707,7 +688,7 @@
         },
         {
           "name": "MobiFlix",
-          "url": "https://mobiflix.tv/",
+          "url": "https://mobiflix.net/",
           "logo": "./logo/apps/mobiflix.png",
           "enabled": true
         },
