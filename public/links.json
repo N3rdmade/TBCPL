@@ -26,17 +26,24 @@
           "status": "trusted"
         },
         {
-          "name": "shuttletv",
-          "url": "https://shuttletv.su/",
-          "logo": "./logo/movies_shows/shuttletv.webp",
-          "enabled": true
-        },
-        {
           "name": "MeowTV",
           "url": "https://meowtv.ru/",
           "logo": "./logo/movies_shows/meowtv.png",
           "enabled": true,
           "status": "trusted"
+        },
+        {
+          "name": "Cinelite",
+          "url": "https://cinelite.xyz/",
+          "logo": "./logo/movies_shows/cinelite-logo.png",
+          "enabled": true,
+          "status": "trusted"
+        },
+        {
+          "name": "shuttletv",
+          "url": "https://shuttletv.su/",
+          "logo": "./logo/movies_shows/shuttletv.webp",
+          "enabled": true
         },
         {
           "name": "RiveStream",
@@ -138,12 +145,6 @@
           "name": "FMovies",
           "url": "https://fmovies-hd.to/home/",
           "logo": "./logo/movies_shows/fmovies.png",
-          "enabled": true
-        },
-        {
-          "name": "Cinelite",
-          "url": "https://cinelite.xyz/",
-          "logo": "./logo/movies_shows/cinelite-logo.png",
           "enabled": true
         },
         {
