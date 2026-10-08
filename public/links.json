@@ -40,6 +40,13 @@
           "status": "trusted"
         },
         {
+          "name": "Moviewala",
+          "url": "https://moviewala.tv/",
+          "logo": "./logo/movies_shows/moviewala.webp",
+          "status": "new",
+          "enabled": true
+        },
+        {
           "name": "shuttletv",
           "url": "https://shuttletv.su/",
           "logo": "./logo/movies_shows/shuttletv.webp",
