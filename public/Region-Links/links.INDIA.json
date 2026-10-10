@@ -25,7 +25,7 @@
         },
         {
           "name": "Bollyflix",
-          "url": "https://new.bollyflix.vote/",
+          "url": "https://bollyflix.photo/",
           "logo": "./logo/movies_shows/Bollyflix-movies.png",
           "enabled": true
         },
@@ -67,7 +67,7 @@
         },
         {
           "name": "hdhub4u",
-          "url": "https://new2.hdhub4u.free/",
+          "url": "https://new3.hdhub4u.free/",
           "logo": "./logo/movies_shows/hdhub4u.png",
           "enabled": true
         },
