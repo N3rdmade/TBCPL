@@ -15,7 +15,8 @@ const SKIP_URLS = new Set([
   'https://tv.eddit.me/',
   'https://cokcok10.com/',
   'https://willow.arlen.icu/',
-  'https://stmify.com/'
+  'https://stmify.com/',
+  'https://shafilm.vip/'
 ]);
 
 function normalize(url) {
