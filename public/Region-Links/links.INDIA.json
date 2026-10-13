@@ -61,13 +61,13 @@
         },
         {
           "name": "KMMovies",
-          "url": "https://kmmovies.baby/",
+          "url": "https://kmmovies.cfd/",
           "logo": "./logo/movies_shows/kmmovies.png",
           "enabled": true
         },
         {
           "name": "hdhub4u",
-          "url": "https://new3.hdhub4u.free/",
+          "url": "https://new7.hdhub4u.cl/",
           "logo": "./logo/movies_shows/hdhub4u.png",
           "enabled": true
         },
