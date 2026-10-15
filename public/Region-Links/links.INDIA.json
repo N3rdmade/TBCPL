@@ -36,6 +36,12 @@
           "enabled": true
         },
         {
+          "name": "moviewala",
+          "url": "https://moviewala.tv/",
+          "logo": "./logo/movies_shows/moviewala.png",
+          "enabled": true
+        },
+        {
           "name": "MovieRulz",
           "url": "https://www.5movierulz.directory/",
           "logo": "./logo/movies_shows/movierulz.png",
@@ -198,12 +204,6 @@
           "enabled": true
         },
         {
-          "name": "animedekho",
-          "url": "https://animedekho.app/",
-          "logo": "./logo/anime/animedekho.png",
-          "enabled": true
-        },
-        {
           "name": "Anime Lok",
           "url": "https://animelok.cc/",
           "logo": "./logo/anime/animelok.png",
@@ -211,7 +211,7 @@
         },
         {
           "name": "Anime Salt",
-          "url": "https://animesalt.me/",
+          "url": "https://animesalt.cx/",
           "logo": "./logo/anime/animesalt.png",
           "enabled": true
         },

@@ -71,6 +71,12 @@
           "url": "https://veranimeonline.co/",
           "logo": "./logo/anime/veranimeonline.png",
           "enabled": true
+        },
+        {
+          "name": "animeflv",
+          "url": "https://vww.animeflv.one/",
+          "logo": "./logo/anime/animeflv.png",
+          "enabled": true
         }
       ]
     },

@@ -9,6 +9,12 @@
           "url": "https://deepcine.tv/",
           "enabled": true,
           "logo": "./logo/movies_shows/deepcine.png"
+        },
+        {
+          "name": "cinesouza",
+          "url": "https://cinesouza.online/",
+          "enabled": true,
+          "logo": "./logo/movies_shows/cinesouza  .png"
         }
       ]
     },
@@ -41,10 +47,10 @@
       "name": "Live TV & Sports",
       "sites": [
         {
-          "name": "Em breve mais — adicione uma sugestão!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "minhatela",
+          "url": "https://minhatela.xyz/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/livetv/minhatela.png"
         }
       ]
     },

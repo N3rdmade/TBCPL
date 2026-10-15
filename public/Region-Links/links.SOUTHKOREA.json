@@ -26,20 +26,25 @@
           "name": "goplay.su",
           "url": "https://goplay.su",
           "logo": "./logo/movies_shows/goplaysu.png",
-          "status": "new",
           "enabled": true
         },
         {
           "name": "tvwiki",
           "url": "https://cokcok10.com/",
           "logo": "./logo/movies_shows/tvwiki.png",
-          "status": "new",
           "enabled": true
         },
         {
           "name": "pinoymovieshub",
           "url": "https://pinoymovieshub.win/",
           "logo": "./logo/movies_shows/pinoymovieshub.png",
+          "status": "new",
+          "enabled": true
+        },
+        {
+          "name": "ivyflix",
+          "url": "https://www.ivyflix.com/",
+          "logo": "./logo/movies_shows/ivyflix.png",
           "status": "new",
           "enabled": true
         }

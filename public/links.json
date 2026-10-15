@@ -40,9 +40,9 @@
           "status": "trusted"
         },
         {
-          "name": "shuttletv",
-          "url": "https://shuttletv.su/",
-          "logo": "./logo/movies_shows/shuttletv.webp",
+          "name": "rivo",
+          "url": "https://rivo.st/",
+          "logo": "./logo/movies_shows/rivost.png",
           "enabled": true
         },
         {
@@ -142,9 +142,9 @@
           "enabled": true
         },
         {
-          "name": "FMovies",
-          "url": "https://fmovies-hd.to/home/",
-          "logo": "./logo/movies_shows/fmovies.png",
+          "name": "atlantic",
+          "url": "https://atlantic.st/",
+          "logo": "./logo/movies_shows/atlantic.png",
           "enabled": true
         },
         {
@@ -219,9 +219,9 @@
           "enabled": true
         },
         {
-          "name": "Kitetsu",
-          "url": "https://kitetsu.net/",
-          "logo": "./logo/anime/kitetsu.png",
+          "name": "jjba",
+          "url": "https://jjba.lol/",
+          "logo": "./logo/anime/jjba.png",
           "enabled": true
         },
         {

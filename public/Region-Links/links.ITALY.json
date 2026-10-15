@@ -40,6 +40,12 @@
           "name": "animeunity",
           "url": "https://www.animeunity.so",
           "logo": "./logo/anime/animeunity.png",
+          "enabled": true
+        },
+        {
+          "name": "animesaturn",
+          "url": "https://www.animesaturn.net/",
+          "logo": "./logo/anime/animesaturn.png",
           "status": "new",
           "enabled": true
         }
@@ -50,10 +56,16 @@
       "name": "Manga",
       "sites": [
         {
-          "name": "Prossimamente — aggiungi un suggerimento!",
-          "url": "https://tbcpl.lol/site-request.html",
+          "name": "mangaworldmx",
+          "url": "https://www.mangaworld.mx/",
           "enabled": true,
-          "logo": ""
+          "logo": "./logo/manga/mangaworldmx.png"
+        },
+        {
+          "name": "phoenixscans",
+          "url": "https://www.phoenixscans.com/",
+          "enabled": true,
+          "logo": "./logo/manga/phoenixscans.png"
         }
       ]
     },
