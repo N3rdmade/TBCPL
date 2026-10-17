@@ -152,6 +152,13 @@
           "url": "https://streamingunity.fun/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
           "enabled": true
+        },
+        {
+          "name": "Cimbar",
+          "url": "https://cimbar.me/",
+          "logo": "./logo/movies_shows/cimbar.png",
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
