@@ -521,7 +521,7 @@
         },
         {
           "name": "RiveStream Sports",
-          "url": "https://rivestream.ru/livesports/",
+          "url": "https://www.rivestream.app/",
           "logo": "./logo/movies_shows/rivestream.png",
           "enabled": true
         },
