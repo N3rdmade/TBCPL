@@ -6,7 +6,7 @@
       "sites": [
         {
           "name": "Cineblog01",
-          "url": "https://cineblog001.delivery/",
+          "url": "https://cineblog001.loan/",
           "logo": "./logo/movies_shows/cineblog01.png",
           "enabled": true
         },
@@ -25,7 +25,7 @@
         },
         {
           "name": "altadefinizionex",
-          "url": "https://altadefinizionex.life/",
+          "url": "https://altadefinizionex.forum/",
           "logo": "./logo/movies_shows/altadefinizionex.png",
           "status": "new",
           "enabled": true
