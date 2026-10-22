@@ -379,7 +379,7 @@
         },
         {
           "name": "MangaKakalot",
-          "url": "https://www.mangakakalot.gg/",
+          "url": "https://www.kakamanga.com/",
           "logo": "./logo/manga/mangakakalot.png",
           "enabled": true
         },
@@ -575,7 +575,7 @@
         },
         {
           "name": "Shudder",
-          "url": "https://www.shudder.com/",
+          "url": "https://watch.shudder.com/",
           "logo": "./logo/paid_apps/shudder.png",
           "enabled": true
         },

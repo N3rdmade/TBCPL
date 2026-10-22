@@ -62,7 +62,7 @@
         },
         {
           "name": "anime ninja",
-          "url": "https://ver.animeonline.ninja/",
+          "url": "https://ver2.animeonline.ninja/",
           "logo": "./logo/anime/anime-ninja.svg",
           "enabled": true
         },
@@ -124,7 +124,7 @@
         },
         {
           "name": "Shudder",
-          "url": "https://www.shudder.com/",
+          "url": "https://watch.shudder.com/",
           "logo": "./logo/paid_apps/shudder.png",
           "enabled": true
         },
