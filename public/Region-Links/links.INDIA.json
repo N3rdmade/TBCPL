@@ -43,7 +43,7 @@
         },
         {
           "name": "MovieRulz",
-          "url": "https://www.5movierulz.recipes/",
+          "url": "https://www.5movierulz.green/",
           "logo": "./logo/movies_shows/movierulz.png",
           "enabled": true
         },
@@ -326,7 +326,7 @@
         },
         {
           "name": "Crunchyroll",
-          "url": "https://crunchyroll.com/login",
+          "url": "https://sso.crunchyroll.com/",
           "logo": "./logo/paid_apps/cruncyroll.png",
           "enabled": true
         },
