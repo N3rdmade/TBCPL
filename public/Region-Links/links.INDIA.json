@@ -241,7 +241,7 @@
       "sites": [
         {
           "name": "natomanga",
-          "url": "https://www.natomanga.com/",
+          "url": "https://www.manganami.com/",
           "logo": "./logo/manga/natomanga.png",
           "status": "new",
           "enabled": true
