@@ -25,7 +25,7 @@
         },
         {
           "name": "Bollyflix",
-          "url": "https://bollyflix.co.za/",
+          "url": "https://bollyflix.church/",
           "logo": "./logo/movies_shows/Bollyflix-movies.png",
           "enabled": true
         },
@@ -43,7 +43,7 @@
         },
         {
           "name": "MovieRulz",
-          "url": "https://www.5movierulz.green/",
+          "url": "https://www.5movierulz.delivery/",
           "logo": "./logo/movies_shows/movierulz.png",
           "enabled": true
         },
@@ -223,7 +223,7 @@
         },
         {
           "name": "RARE TOONS INDIA",
-          "url": "https://www.rareanimes.mov/",
+          "url": "https://www.rareanimes.fans/",
           "logo": "./logo/anime/rare-toons-india.png",
           "enabled": true
         },
