@@ -6,7 +6,7 @@
       "sites": [
         {
           "name": "Cineblog01",
-          "url": "https://cineblog001.men/",
+          "url": "https://cineblog001.party/",
           "logo": "./logo/movies_shows/cineblog01.png",
           "enabled": true
         },
@@ -18,14 +18,14 @@
         },
         {
           "name": "streamingcommunityz",
-          "url": "https://streamingcommunityz.day/",
+          "url": "https://streamingcommunityz.boo/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
           "status": "new",
           "enabled": true
         },
         {
           "name": "altadefinizionex",
-          "url": "https://altadefinizionex.vip/",
+          "url": "https://altadefinizionex.bar/",
           "logo": "./logo/movies_shows/altadefinizionex.png",
           "status": "new",
           "enabled": true
