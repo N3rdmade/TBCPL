@@ -113,6 +113,12 @@
           "logo": "./logo/manga/sushiscan.webp"
         },
         {
+          "name": "fujiscans",
+          "url": "https://fuji-scan.com/",
+          "enabled": true,
+          "logo": "./logo/manga/fujiscans.png"
+        },
+        {
           "name": "Manga Scantrad",
           "url": "https://manga-scantrad.io/",
           "logo": "./logo/manga/manga-scantrad.png",

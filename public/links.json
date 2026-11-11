@@ -143,7 +143,7 @@
         },
         {
           "name": "atlantic",
-          "url": "https://atlantic.st/",
+          "url": "https://atlantic.bz/",
           "logo": "./logo/movies_shows/atlantic.png",
           "enabled": true
         },
@@ -198,6 +198,18 @@
           "name": "anipm",
           "url": "https://ani.pm/",
           "logo": "./logo/anime/anipm.png",
+          "enabled": true
+        },
+        {
+          "name": "anidream",
+          "url": "https://anidream.to/",
+          "logo": "./logo/anime/anidream.png",
+          "enabled": true
+        },
+        {
+          "name": "gotaku",
+          "url": "https://gotaku.to/",
+          "logo": "./logo/anime/gotaku.png",
           "enabled": true
         },
         {
