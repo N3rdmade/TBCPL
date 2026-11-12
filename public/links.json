@@ -119,7 +119,7 @@
         },
         {
           "name": "popcorn",
-          "url": "https://bingr.one/home/",
+          "url": "https://bingr.st/",
           "logo": "./logo/movies_shows/bingr.png",
           "enabled": true
         },
@@ -161,7 +161,7 @@
       "sites": [
         {
           "name": "ReAnime",
-          "url": "https://reanime.to/home",
+          "url": "https://reanime.cz/",
           "logo": "./logo/anime/reanime.png",
           "enabled": true,
           "status": "trusted"
