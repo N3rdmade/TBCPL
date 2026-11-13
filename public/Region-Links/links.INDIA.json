@@ -73,7 +73,7 @@
         },
         {
           "name": "hdhub4u",
-          "url": "https://new13.hdhub4u.cl/",
+          "url": "https://new14.hdhub4u.cl/",
           "logo": "./logo/movies_shows/hdhub4u.png",
           "enabled": true
         },
@@ -223,7 +223,7 @@
         },
         {
           "name": "RARE TOONS INDIA",
-          "url": "https://www.rareanimes.fans/",
+          "url": "https://www.rareanimes.foo/",
           "logo": "./logo/anime/rare-toons-india.png",
           "enabled": true
         },
