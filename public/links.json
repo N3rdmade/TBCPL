@@ -152,6 +152,12 @@
           "url": "https://streamingunity.day/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
           "enabled": true
+        },
+        {
+          "name": "TabMovie",
+          "url": "https://www.tabmovies.xyz/",
+          "logo": "./logo/movies_shows/tabmovie.png",
+          "enabled": true
         }
       ]
     },
