@@ -664,10 +664,10 @@
       "name": "Apps",
       "sites": [
         {
-          "name": "Playtorrio",
+          "name": "VyseTV",
           "url": "https://vysetv.cc/",
-          "logo": "./logo/apps/playtorrio.png",
-          "enabled": true
+          "logo": "./logo/apps/vysetv.png",
+          "status": "new"
         },
         {
           "name": "BeeTV",
