@@ -67,7 +67,7 @@
         },
         {
           "name": "KMMovies",
-          "url": "https://kmmovies.beer/",
+          "url": "https://kmmovies.quest/",
           "logo": "./logo/movies_shows/kmmovies.png",
           "enabled": true
         },
@@ -85,7 +85,7 @@
         },
         {
           "name": "moviesmod",
-          "url": "https://moviesmod.tw/",
+          "url": "https://moviesmod.fi/",
           "logo": "./logo/movies_shows/moviesmod.png",
           "enabled": true
         },
@@ -241,7 +241,7 @@
       "sites": [
         {
           "name": "natomanga",
-          "url": "https://www.manganami.com/",
+          "url": "https://www.natumanga.com/",
           "logo": "./logo/manga/natomanga.png",
           "status": "new",
           "enabled": true
