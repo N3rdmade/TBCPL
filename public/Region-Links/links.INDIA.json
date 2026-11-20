@@ -129,15 +129,15 @@
           "name": "1tamilblasters",
           "url": "https://www.1tamilblasters.blog/",
           "logo": "./logo/movies_shows/1tamilblasters.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         },
         {
           "name": "cinephile",
           "url": "https://cinephile.live/",
           "logo": "./logo/movies_shows/cinephile.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
@@ -149,22 +149,22 @@
           "name": "Kartoonsme",
           "url": "https://kartoons.to/",
           "logo": "./logo/anime/kartoons.png",
-          "status": "trusted",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "AG48 ANIME",
           "url": "https://www.ag48anime.fun/",
           "logo": "./logo/anime/ag48anime.png",
-          "status": "trusted",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "WatchAnimeWorld",
           "url": "https://watchanimeworld.one/",
           "logo": "./logo/anime/watchanimeworld.png",
-          "status": "trusted",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "AnimeJoker",
@@ -200,8 +200,8 @@
           "name": "DesiDubAnime",
           "url": "https://www.desidubanime.me/",
           "logo": "./logo/anime/desidubanime.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "ok"
         },
         {
           "name": "Anime Lok",
@@ -243,8 +243,8 @@
           "name": "natomanga",
           "url": "https://www.natumanga.com/",
           "logo": "./logo/manga/natomanga.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
@@ -352,15 +352,15 @@
           "name": "JioHotstar",
           "url": "https://www.hotstar.com/",
           "logo": "./logo/paid_apps/jiohotstar.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         },
         {
           "name": "AhaVideo",
           "url": "https://www.aha.video/",
           "logo": "./logo/paid_apps/ahavideo.png",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
@@ -420,8 +420,8 @@
           "name": "YouCine",
           "url": "https://youcineapkpro.com/",
           "logo": "./logo/livetv/youcine.webp",
-          "status": "new",
-          "enabled": true
+          "enabled": true,
+          "status": "ok"
         },
         {
           "name": "PlayFy",
