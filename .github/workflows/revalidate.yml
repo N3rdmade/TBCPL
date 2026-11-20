@@ -1,0 +1,20 @@
+name: Revalidate prod cache
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Signed POST to /api/revalidate
+        env:
+          SECRET: ${{ secrets.TBCPL_WEBHOOK_SECRET }}
+        run: |
+          BODY='{"ref":"${{ github.ref }}","sha":"${{ github.sha }}"}'
+          SIG="sha256=$(printf '%s' "$BODY" | openssl dgst -sha256 -hmac "$SECRET" -r | cut -d' ' -f1)"
+          curl -fsS -X POST https://tbcpl.lol/api/revalidate \
+            -H "Content-Type: application/json" \
+            -H "X-Hub-Signature-256: $SIG" \
+            -d "$BODY"
