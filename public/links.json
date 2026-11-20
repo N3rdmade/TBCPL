@@ -134,7 +134,8 @@
           "name": "lookmovie2",
           "url": "https://www.lookmovie2.to/",
           "logo": "./logo/movies_shows/lookmovie2.png",
-          "enabled": true
+          "enabled": false,
+          "status": "ok"
         },
         {
           "name": "Willow",
