@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "node:crypto";
-import { revalidateTag } from "next/cache";
+import { revalidateTag, revalidatePath } from "next/cache";
 import { DATA_CACHE_TAG } from "@/lib/data";
 
 export const runtime = "nodejs";
@@ -24,6 +24,12 @@ export async function POST(req: NextRequest) {
   }
 
   revalidateTag(DATA_CACHE_TAG);
+  // Static pages (force-static + revalidate=3600) hold pre-rendered HTML
+  // with the old JSON baked in. Tag flush only invalidates fetch cache —
+  // the HTML layer needs path revalidation too. "layout" scope nukes every
+  // route that uses the root layout, which is all of them.
+  revalidatePath("/", "layout");
+  revalidatePath("/sitemap.xml");
 
   // Also drop Cloudflare's edge cache so visitors see fresh HTML instantly.
   // Fire-and-forget: if CF is down, Next's own cache is already flushed above.
