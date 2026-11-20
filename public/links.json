@@ -43,7 +43,8 @@
           "name": "rivo",
           "url": "https://rivo.st/",
           "logo": "./logo/movies_shows/rivost.png",
-          "enabled": true
+          "enabled": true,
+          "status": "trusted"
         },
         {
           "name": "RiveStream",
@@ -88,12 +89,6 @@
           "enabled": true
         },
         {
-          "name": "HollyMovieHD",
-          "url": "https://hollymoviehd.cc/",
-          "logo": "./logo/movies_shows/hollymoviehd.png",
-          "enabled": true
-        },
-        {
           "name": "Cinejoy",
           "url": "https://cinejoy.pk/",
           "logo": "./logo/movies_shows/cinejoy.png",
@@ -103,6 +98,12 @@
           "name": "Movy",
           "url": "https://www.movy.sx/",
           "logo": "./logo/movies_shows/movy.png",
+          "enabled": true
+        },
+        {
+          "name": "HollyMovieHD",
+          "url": "https://hollymoviehd.cc/",
+          "logo": "./logo/movies_shows/hollymoviehd.png",
           "enabled": true
         },
         {
