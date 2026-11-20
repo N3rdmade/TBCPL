@@ -57,7 +57,7 @@
       "sites": [
         {
           "name": "mangaworldmx",
-          "url": "https://www.mangaworld.mx/",
+          "url": "https://www.mangaworld.me/",
           "enabled": true,
           "logo": "./logo/manga/mangaworldmx.png"
         },
