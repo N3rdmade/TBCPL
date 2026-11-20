@@ -83,12 +83,6 @@
           "enabled": true
         },
         {
-          "name": "Cinejoy",
-          "url": "https://cinejoy.pk/",
-          "logo": "./logo/movies_shows/cinejoy.png",
-          "enabled": true
-        },
-        {
           "name": "netplayz",
           "url": "https://netplayz.top/",
           "logo": "./logo/movies_shows/netplayz.png",
@@ -98,6 +92,12 @@
           "name": "Movy",
           "url": "https://www.movy.sx/",
           "logo": "./logo/movies_shows/movy.png",
+          "enabled": true
+        },
+        {
+          "name": "Cinejoy",
+          "url": "https://cinejoy.pk/",
+          "logo": "./logo/movies_shows/cinejoy.png",
           "enabled": true
         },
         {
