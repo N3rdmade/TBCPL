@@ -83,15 +83,15 @@
           "enabled": true
         },
         {
-          "name": "netplayz",
-          "url": "https://netplayz.top/",
-          "logo": "./logo/movies_shows/netplayz.png",
-          "enabled": true
-        },
-        {
           "name": "Cinejoy",
           "url": "https://cinejoy.pk/",
           "logo": "./logo/movies_shows/cinejoy.png",
+          "enabled": true
+        },
+        {
+          "name": "netplayz",
+          "url": "https://netplayz.top/",
+          "logo": "./logo/movies_shows/netplayz.png",
           "enabled": true
         },
         {
