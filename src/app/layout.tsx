@@ -95,9 +95,41 @@ export default async function RootLayout({
   const regions = await getRegions();
   const searchIndex = await buildSearchIndex(DEFAULT_REGION_CODE);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://tbcpl.lol/#website",
+        url: "https://tbcpl.lol",
+        name: "TBCPL",
+        description:
+          "Curated regional list of free streaming sites — movies, TV, anime, manga, live TV and sports.",
+        inLanguage: "en-US",
+        publisher: { "@id": "https://tbcpl.lol/#org" },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: { "@type": "EntryPoint", urlTemplate: "https://tbcpl.lol/?q={search_term_string}" },
+          "query-input": "required name=search_term_string",
+        },
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://tbcpl.lol/#org",
+        name: "TBCPL",
+        url: "https://tbcpl.lol",
+        logo: "https://tbcpl.lol/logo.png",
+      },
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ThemeProvider>
           <SiteShaderBackground />
           <RegionContextProvider regions={regions} current={DEFAULT_REGION_CODE}>

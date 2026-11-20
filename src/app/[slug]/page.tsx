@@ -13,10 +13,29 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const { slug } = params;
   if (CATEGORY_META[slug]) {
     const m = CATEGORY_META[slug];
-    return { title: `${m.label} — USA`, description: m.blurb };
+    const defaultRegion = await getRegionByCode(DEFAULT_REGION_CODE);
+    const regionName = defaultRegion?.name ?? "USA";
+    const title = `${m.label} — ${regionName}`;
+    return {
+      title,
+      description: m.blurb,
+      alternates: { canonical: `/${slug}` },
+      openGraph: { title, description: m.blurb, url: `/${slug}`, type: "website" },
+      twitter: { title, description: m.blurb, card: "summary_large_image" },
+    };
   }
   const r = await getRegionByCode(slug);
-  if (r) return { title: r.name, description: `Streaming sites curated for ${r.name}.` };
+  if (r) {
+    const title = `${r.name} — Free streaming sites`;
+    const description = `Curated free streaming sites for ${r.name}: movies, TV, anime, manga, live TV and sports.`;
+    return {
+      title,
+      description,
+      alternates: { canonical: `/${slug}` },
+      openGraph: { title, description, url: `/${slug}`, type: "website" },
+      twitter: { title, description, card: "summary_large_image" },
+    };
+  }
   return {};
 }
 

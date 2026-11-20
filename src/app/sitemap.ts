@@ -3,6 +3,10 @@ import { getLinksForRegion, getRegions } from "@/lib/data";
 
 const BASE = "https://tbcpl.lol";
 
+// Rebuild hourly so admin-panel edits (new regions/categories) reach crawlers
+// without a redeploy.
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [

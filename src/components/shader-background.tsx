@@ -407,6 +407,10 @@ export function ShaderBackground({ className }: { className?: string }) {
     let disposed = false;
     const start = performance.now();
     const timeAnimated = Math.abs(UNIFORMS.timeScale) > 0.0001;
+    // Cap at ~30fps — slow drift doesn't need 60, halves GPU on idle desktops.
+    // ponytail: fixed 33ms budget, make configurable if a theme ever needs smoother motion.
+    const FRAME_MS = 33;
+    let lastFrame = 0;
 
     const resizeCanvas = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -516,6 +520,11 @@ export function ShaderBackground({ className }: { className?: string }) {
     const render = (now: number) => {
       raf = 0;
       if (disposed || !visible || !inView) return;
+      if (now - lastFrame < FRAME_MS) {
+        raf = requestAnimationFrame(render);
+        return;
+      }
+      lastFrame = now;
       const dt = lastNow === null ? 0 : Math.min((now - lastNow) / 1000, 0.1);
       lastNow = now;
       const follow = 1 - Math.exp(-12 * dt);
@@ -594,10 +603,15 @@ export function SiteShaderBackground() {
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 769px)");
-    const apply = () => setEnabled(mq.matches);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setEnabled(mq.matches && !reduce.matches);
     apply();
     mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    reduce.addEventListener("change", apply);
+    return () => {
+      mq.removeEventListener("change", apply);
+      reduce.removeEventListener("change", apply);
+    };
   }, []);
 
   if (enabled === null) return null;

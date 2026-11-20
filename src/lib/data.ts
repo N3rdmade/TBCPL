@@ -1,5 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { env } from "./env";
 import type {
   LinksData,
   Region,
@@ -11,10 +12,34 @@ import type {
 const PUBLIC_DIR = path.join(process.cwd(), "public");
 const DEFAULT_REGION = "USA";
 
+// Realtime source: raw.githubusercontent.com. Admin edits commit to main →
+// webhook at /api/revalidate flushes the tag → next request is fresh.
+// Local dev without a push hook still works via the disk fallback below.
+// ponytail: if the repo ever goes private, switch RAW_BASE to the contents API
+// and add Authorization header.
+function rawUrl(rel: string): string {
+  const owner = env.REPO_OWNER();
+  const repo = env.REPO_NAME();
+  const branch = env.REPO_BRANCH();
+  return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/public/${rel}`;
+}
+
+export const DATA_CACHE_TAG = "tbcpl-data";
+
 async function readJSON<T>(rel: string): Promise<T> {
-  const full = path.join(PUBLIC_DIR, rel);
-  const raw = await fs.readFile(full, "utf8");
-  return JSON.parse(raw) as T;
+  if (process.env.TBCPL_DATA_SOURCE === "disk") {
+    const raw = await fs.readFile(path.join(PUBLIC_DIR, rel), "utf8");
+    return JSON.parse(raw) as T;
+  }
+  const res = await fetch(rawUrl(rel), {
+    next: { tags: [DATA_CACHE_TAG], revalidate: 3600 },
+  });
+  if (!res.ok) {
+    // Fall back to disk so a GitHub outage doesn't take the site down.
+    const raw = await fs.readFile(path.join(PUBLIC_DIR, rel), "utf8");
+    return JSON.parse(raw) as T;
+  }
+  return (await res.json()) as T;
 }
 
 export async function getRegions(): Promise<Region[]> {

@@ -16,7 +16,16 @@ export async function generateMetadata({
   const r = await getRegionByCode(slug);
   const meta = CATEGORY_META[category];
   if (!r || !meta) return {};
-  return { title: `${meta.label} — ${r.name}`, description: meta.blurb };
+  const title = `${meta.label} — ${r.name}`;
+  const description = `${meta.blurb} Curated for ${r.name}.`;
+  const canonical = `/${slug}/${category}`;
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { title, description, url: canonical, type: "website" },
+    twitter: { title, description, card: "summary_large_image" },
+  };
 }
 
 export default async function RegionCategoryRoute({

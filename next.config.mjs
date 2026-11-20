@@ -7,6 +7,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "avatars.githubusercontent.com" },
       { protocol: "https", hostname: "flagcdn.com" },
+      { protocol: "https", hostname: "raw.githubusercontent.com" },
     ],
   },
   async redirects() {
