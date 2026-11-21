@@ -4,6 +4,12 @@ www.tbcpl.lol {
 
 tbcpl.lol {
 	reverse_proxy web:80
+	# Strip Next App Router headers that make Cloudflare refuse to cache HTML.
+	# Vary on RSC/Router headers forces CF to DYNAMIC; we don't need variant
+	# splits on those since all users get the same SSR output per URL.
+	header -Vary
+	header -X-Nextjs-Cache
+	header -X-Powered-By
 }
 
 www.layla.wtf {
