@@ -44,7 +44,7 @@
           "url": "https://rivo.st/",
           "logo": "./logo/movies_shows/rivost.png",
           "enabled": true,
-          "status": "new"
+          "status": "down"
         },
         {
           "name": "RiveStream",
@@ -144,16 +144,17 @@
           "enabled": true
         },
         {
-          "name": "atlantic",
-          "url": "https://atlantic.bz/",
-          "logo": "./logo/movies_shows/atlantic.png",
-          "enabled": true
-        },
-        {
           "name": "StreamingUnity",
           "url": "https://streamingunity.day/",
           "logo": "./logo/movies_shows/streamingcommunityz.png",
           "enabled": true
+        },
+        {
+          "name": "atlantic",
+          "url": "https://atlantic.bz/",
+          "logo": "./logo/movies_shows/atlantic.png",
+          "enabled": true,
+          "status": "new"
         }
       ]
     },
