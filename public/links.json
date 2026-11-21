@@ -154,7 +154,7 @@
           "url": "https://atlantic.bz/",
           "logo": "./logo/movies_shows/atlantic.png",
           "enabled": true,
-          "status": "new"
+          "status": "ok"
         }
       ]
     },
