@@ -44,7 +44,7 @@
           "url": "https://rivo.st/",
           "logo": "./logo/movies_shows/rivost.png",
           "enabled": true,
-          "status": "down"
+          "status": "ok"
         },
         {
           "name": "RiveStream",
