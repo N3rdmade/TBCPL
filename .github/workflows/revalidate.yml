@@ -8,6 +8,13 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
+      - name: Wait for raw.githubusercontent.com CDN to catch up
+        # Raw CDN lags HEAD by up to ~5 min. If we flush caches before it
+        # catches up, prod re-fetches the OLD file and re-caches stale.
+        # 90s covers the common case; worst-case staleness is bounded by the
+        # hourly `revalidate: 3600` safety net.
+        run: sleep 90
+
       - name: Signed POST to /api/revalidate
         env:
           SECRET: ${{ secrets.TBCPL_WEBHOOK_SECRET }}
