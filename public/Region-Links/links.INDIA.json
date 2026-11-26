@@ -85,19 +85,19 @@
         },
         {
           "name": "moviesmod",
-          "url": "https://moviesmod.fi/",
+          "url": "https://moviesmod.free/",
           "logo": "./logo/movies_shows/moviesmod.png",
           "enabled": true
         },
         {
           "name": "world4u",
-          "url": "https://worldfree4u.you/",
+          "url": "https://worldfree4u.fast/",
           "logo": "./logo/movies_shows/world4u.png",
           "enabled": true
         },
         {
           "name": "netmirror",
-          "url": "https://net77.cc/home",
+          "url": "https://net11.cc/",
           "logo": "./logo/movies_shows/netmirror.png",
           "enabled": true
         },
