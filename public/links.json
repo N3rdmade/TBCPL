@@ -5,9 +5,9 @@
       "name": "Movies & Shows",
       "sites": [
         {
-          "name": "1Shows",
-          "url": "https://www.1shows.org/",
-          "logo": "./logo/movies_shows/1shows.png",
+          "name": "1Waves",
+          "url": "https://www.1waves.gd/",
+          "logo": "./logo/movies_shows/1waves.png",
           "enabled": true,
           "status": "trusted"
         },
